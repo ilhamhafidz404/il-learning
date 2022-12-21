@@ -18,7 +18,7 @@
   </style>
 </head>
 <body class="">
-  <main class="grid grid-cols-2 gap-5 min-h-screen">
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-5 min-h-screen">
     <section 
       class="
         relative
@@ -26,11 +26,28 @@
         after:absolute
         after:inset-0
         after:bg-black/30
+        order-2
+        sm:order-1
+        h-screen
+        md:h-auto
       "
     >
       <div class="h-full w-full">
         <img src="{{ asset('images/auth/slide1.jpg') }}" class="h-full object-cover">
-        <div class="absolute bottom-[100px] text-white z-10 pl-10 border-l-[5px] border-blue-500">
+        <div 
+            class="
+                absolute 
+                bottom-[100px] 
+                text-white 
+                z-10 
+                pl-10 
+                border-l-[5px] 
+                border-blue-500 
+                w-[85%]
+                md:w-[45%]
+                lg:w-[85%]
+            "
+        >
           <h1 class="text-3xl font-bold tracking-wider">ALOPE UNIVERSITY Learning</h1>
           <p class="text-sm mt-3">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident voluptate, corporis at autem laboriosam magnam et quis minima quidem ipsa totam optio, placeat officiis? Neque earum illum placeat magnam unde.
@@ -38,11 +55,45 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center justify-center">
-      <div class="w-[70%] text-center">
+    <section 
+        class="
+            z-20 
+            right-0 
+            flex 
+            items-center 
+            rounded
+            justify-center 
+            bg-white
+            border-blue-500
+            order-1 
+            sm:order-2 
+            md:right-[50px] 
+            lg:right-0 
+            top-0 
+            md:top-1/2
+            lg:top-0 
+            md:-translate-y-1/2
+            lg:-translate-y-0
+            relative
+            md:absolute 
+            lg:relative
+            w-auto
+            md:w-[400px]
+            lg:w-auto 
+            py-0
+            md:py-7
+            lg:py-0
+            border-b-0
+            md:border-b-[5px]
+            lg:border-b-0
+            h-screen
+            md:h-auto
+        "
+    >
+      <div class="w-[80%] md:w-[85%] lg:w-[70%] text-center">
         <div class="mb-10">
-          <img src="{{ asset('images/logo.png') }}" width="70px" class="mx-auto mb-2">
-          <h2 class="text-2xl font-semibold">ALOPE UNIVERSITY</h2>
+          <img src="{{ asset('images/logo.png') }}" class="mx-auto mb-2 w-[70px] md:w-[50px] lg:w-[70px]">
+          <h2 class="text-2xl md:text-xl lg:text-2xl font-semibold">ALOPE UNIVERSITY</h2>
         </div>
         <form method="POST" action="{{ route('login') }}">
           @csrf
@@ -267,7 +318,7 @@
           </div>
           <div>
             <button class="bg-[#285ac4] hover:bg-[#285ac4]/80 w-full py-3 rounded text-white">
-              Submit
+              Login
             </button>
             <span class="relative block mt-10 mb-5">
               <hr>
@@ -281,7 +332,7 @@
           </div>
         </form>
       </div>
-      <footer class="absolute bottom-[25px]">
+      <footer class="absolute bottom-[25px] block md:hidden lg:block">
         <small class="text-gray-600">Copyright &copy; 2022 by ALOPE University</small>
       </footer>
     <section>
