@@ -122,6 +122,7 @@
                   border-red-500
                 @enderror
               "
+              value="{{old("email")}}"
               placeholder=" " 
             />
             <span 
