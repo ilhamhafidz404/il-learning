@@ -17,25 +17,49 @@ class CourseSeeder extends Seeder
     {
         Course::insert([
             [
-                'name' => "Algoritma dan Permrogramman"
+                'name' => "Algoritma dan Permrogramman",
+                'slug' => "algoritma-dan-permrogramman",
+                'sks' => 3
             ],
             [
-                'name' => "Pancasila"
+                'name' => "Pancasila",
+                'slug' => "pancasila",
+                'sks' => 2
             ],
             [
-                'name' => "Komputer Masyarakat"
+                'name' => "Manajemen Umum",
+                'slug' => "manajemen-umum",
+                'sks' => 2
             ],
             [
-                'name' => "Pengantar Teknologi Informasi"
+                'name' => "Desain Grafis",
+                'slug' => "desain-grafis",
+                'sks' => 2
             ],
             [
-                'name' => "Manajemen Umum"
+                'name' => "Komputer Masyarakat",
+                'slug' => "komputer-masyarakat",
+                'sks' => 2
             ],
             [
-                'name' => "Logika Informatika"
+                'name' => "Pengantar Teknologi Informasi",
+                'slug' => "pengantar-teknologi-informasi",
+                'sks' => 2
             ],
             [
-                'name' => "Kalkulus"
+                'name' => "Kalkulus",
+                'slug' => "kalkulus",
+                'sks' => 3
+            ],
+            [
+                'name' => "Bahasa Inggris",
+                'slug' => "bahasa-inggris",
+                'sks' => 2
+            ],
+            [
+                'name' => "Logika Informatika",
+                'slug' => "logika-informatika",
+                'sks' => 2
             ],
         ]);
     }

@@ -18,4 +18,9 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function Submission()
+    {
+        return $this->belongsToMany(Submission::class);
+    }
 }

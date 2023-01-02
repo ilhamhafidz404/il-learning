@@ -14,6 +14,11 @@ class Classroom extends Model
         return $this->hasMany(User::class);
     }
 
+    public function Submission()
+    {
+        return $this->hasMany(Submission::class);
+    }
+
     public function Lecturer()
     {
         return $this->belongsToMany(Lecturer::class);
