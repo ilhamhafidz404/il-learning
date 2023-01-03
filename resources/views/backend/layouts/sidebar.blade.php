@@ -15,6 +15,7 @@
         border-r
         sm:border-0
         sm:shadow
+        z-20
     "
 >
     <ul>
@@ -53,20 +54,10 @@
                     class="px-5 py-3 dark:text-white border-transparent border-l-[5px] flex items-center hover:text-indigo-500"
                 @endif
             >
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke-width="1.5" 
-                    stroke="currentColor" 
-                    class="w-6 h-6 mr-3"
-                >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" 
-                    />
-                </svg>
+                @include(
+                    'components.icons.bookOpen-regular-icon',
+                    ['class' => 'w-6 h-6 mr-3']
+                )
                 Course
             </a>
         </li>
@@ -97,5 +88,79 @@
             </a>
         </li>
     </ul>
+    <div class="absolute bottom-[35px] w-full px-5 block sm:hidden">
+        <ul class="mt-auto">
+            <li class="mb-3">
+                <button 
+                    class="
+                        dark:bg-gray-200 
+                        bg-slate-600 
+                        text-dark 
+                        w-full 
+                        py-2 
+                        rounded 
+                        text-sm
+                        flex
+                        justify-center
+                        items-center
+                        dark:text-gray-800
+                        text-white
+                    "
+                    onclick="
+                        event.preventDefault();
+                        document.getElementById('changeThemeMode').submit();
+                    "
+                >
+                    @include(
+                    'components.icons.sun-regular-icon', 
+                        ['class' => 'w-5 h-5 hidden dark:block mr-2']
+                    )
+                    @include(
+                        'components.icons.moon-regular-icon', 
+                        ['class' => 'w-5 h-5 dark:hidden text-white mr-2']
+                    )
+                    Change 
+                    <span class="hidden dark:inline mx-[2px]">Light</span> 
+                    <span class="dark:hidden mx-[2px]">Dark</span> 
+                    Mode
+                </button>
+                <form 
+                    id="changeThemeMode" 
+                    action="{{ route('change.theme.mode') }}" 
+                    method="POST" 
+                    class="d-none"
+                >
+                @csrf
+                </form>
+            </li>
+            <li>
+                <button 
+                    class="
+                        bg-red-500 
+                        hover:bg-red-400 
+                        text-white 
+                        w-full 
+                        py-2 
+                        rounded 
+                        text-sm
+                    "
+                    onclick="
+                        event.preventDefault();
+                        document.getElementById('logout-form').submit();
+                    "
+                >
+                    Logout
+                </button>
+                <form 
+                    id="logout-form" 
+                    action="{{ route('logout') }}" 
+                    method="POST" 
+                    class="d-none"
+                >
+                    @csrf
+                </form>
+            </li>
+        </ul>
+    </div>
 </aside>
 <div class="md:hidden lg:block"></div>
