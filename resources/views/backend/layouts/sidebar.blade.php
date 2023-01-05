@@ -22,7 +22,7 @@
         <li>
             <a 
                 href="{{ route('dashboard') }}" 
-                @if (Route::has('dashboard'))
+                @if (Route::is('dashboard'))
                     class="px-5 py-3 border-indigo-500 border-l-[5px] flex items-center hover:text-indigo-500 text-indigo-500"
                 @else
                     class="px-5 py-3 dark:text-white border-transparent border-l-[5px] flex items-center hover:text-indigo-500"
@@ -48,7 +48,7 @@
         <li>
             <a 
                 href="{{ route('course.index') }}" 
-                @if (Route::has('course/*'))
+                @if (Route::is('course*'))
                     class="px-5 py-3 border-indigo-500 border-l-[5px] flex items-center hover:text-indigo-500 text-indigo-500"
                 @else
                     class="px-5 py-3 dark:text-white border-transparent border-l-[5px] flex items-center hover:text-indigo-500"
@@ -64,7 +64,7 @@
         <li>
             <a 
                 href="{{ route('acceptsks.index') }}" 
-                @if (Route::has('accept-sks'))
+                @if (Route::is('acceptsks*'))
                     class="px-5 py-3 border-indigo-500 border-l-[5px] flex items-center hover:text-indigo-500 text-indigo-500"
                 @else
                     class="px-5 py-3 dark:text-white border-transparent border-l-[5px] flex items-center hover:text-indigo-500"

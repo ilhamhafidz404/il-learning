@@ -11,9 +11,13 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $course = Course::all();
+        $courses = Course::all();
+        $myCourses = Course::whereHas('user', function ($q) {
+            $q->where('user_id', '=', Auth::user()->id);
+        })->get();
         return view("backend.course.index", [
-            'course' => $course
+            'courses' => $courses,
+            'myCourses' => $myCourses,
         ]);
     }
     public function show(Request $request)

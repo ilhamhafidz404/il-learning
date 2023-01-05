@@ -30,8 +30,8 @@ Route::middleware(['auth'])->group(function () {
     // 
     Route::get('/lecturers', LecturerController::class)->name('lecturers');
     // 
-    Route::get('/accept-sks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
-    Route::post('/accept-sks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
+    Route::get('/acceptsks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
+    Route::post('/acceptsks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
     // 
     Route::post('/change-theme-mode', ThemeModeController::class)->name('change.theme.mode');
 });
