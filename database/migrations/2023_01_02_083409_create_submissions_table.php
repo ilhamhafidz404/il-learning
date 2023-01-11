@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('subtitle');
             $table->date('deadline');
             $table->foreignId('lecturer_id');
             $table->foreignId('course_id');

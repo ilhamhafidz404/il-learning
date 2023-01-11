@@ -9,9 +9,11 @@ class Submission extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'subtitle', 'deadline', 'lecturer_id', 'course_id', 'classroom_id'];
+
     public function Course()
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsTo(Course::class);
     }
 
     public function Classroom()

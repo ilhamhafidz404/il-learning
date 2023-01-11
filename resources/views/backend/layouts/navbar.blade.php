@@ -72,8 +72,12 @@
                         >
                     </div>
                     <span class="text-left">
-                        <p class="font-semibold dark:text-gray-100">
-                            {{ Auth::user()->name }}
+                        <p class="font-semibold dark:text-gray-100 whitespace-nowrap">
+                            @if (Session::has('lecturer'))
+                                {{ $lecturer->name }}
+                            @else
+                                {{ Auth::user()->name }}
+                            @endif
                         </p>
                         <small 
                             class="
@@ -83,7 +87,11 @@
                                 dark:text-gray-300
                             "
                         >
-                            {{ Auth::user()->email }}
+                            @if (Session::has('lecturer'))
+                                {{ $lecturer->email }}
+                            @else
+                                {{ Auth::user()->email }}
+                            @endif
                         </small>
                     </span>
                 </button>

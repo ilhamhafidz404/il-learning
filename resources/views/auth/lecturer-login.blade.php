@@ -95,7 +95,7 @@
           <img src="{{ asset('images/logo.png') }}" class="mx-auto mb-2 w-[70px] md:w-[50px] lg:w-[70px]">
           <h2 class="text-2xl md:text-xl lg:text-2xl font-semibold">ALOPE UNIVERSITY</h2>
         </div>
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('lecturer.authenticate') }}">
           @csrf
           <div class="relative mb-5">
             <input 
@@ -326,7 +326,7 @@
               <small class="absolute top-[-10px] bg-white px-3 left-1/2 -translate-x-1/2">OR</small>
             </span>
             <a 
-              href="{{ route('lecturer.login') }}"
+              href="{{ route('login') }}"
               class="
                 border-[#4285f4] 
                 border 
@@ -343,7 +343,7 @@
                 mb-3
               "
             >
-              Login As Lecturer
+              Login As Student
             </a>
             <button class="border-[#4285f4] border hover:bg-[#4285f4]/80 w-full py-3 rounded text-[#4285f4] hover:text-white flex justify-center text-sm items-center">
               <img src="{{ asset('images/icon/google.png') }}" width="25px" class="mr-3">

@@ -7,6 +7,8 @@ namespace Database\Seeders;
 use App\Models\ManyToMany\CourseLecturer;
 use Database\Seeders\ManyToMany\ClassroomLecturerSeeder;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+
 
 class DatabaseSeeder extends Seeder
 {

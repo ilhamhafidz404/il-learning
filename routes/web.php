@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\LecturerLoginController as AuthLecturerLoginController;
 use App\Http\Controllers\Backend\AcceptSKSController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\Lecturer\SubmissionController;
 use App\Http\Controllers\Backend\LecturerController;
 use App\Http\Controllers\more\ThemeModeController;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +21,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('/lecturer-login', [AuthLecturerLoginController::class, 'index'])->name('lecturer.login');
+    Route::post('/lecturer-login', [AuthLecturerLoginController::class, 'authenticate'])->name('lecturer.authenticate');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -33,9 +41,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/acceptsks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
     Route::post('/acceptsks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
     // 
+    Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
+    // 
     Route::post('/change-theme-mode', ThemeModeController::class)->name('change.theme.mode');
 });
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();

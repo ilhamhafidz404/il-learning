@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Models\Lecturer;
 
 class CourseController extends Controller
 {
@@ -23,6 +25,15 @@ class CourseController extends Controller
     public function show(Request $request)
     {
         $course = Course::whereSlug($request->slug)->first();
+        if (Session::has('lecturer')) {
+            $lecturer = Lecturer::whereEmail(Session::get('email'))->first();
+
+            return view('backend.course.show', [
+                'course' => $course,
+                'lecturer' => $lecturer
+            ]);
+        }
+
         return view("backend.course.show", [
             'course' => $course
         ]);

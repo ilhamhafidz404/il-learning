@@ -15,21 +15,22 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::insert([
-            [
-                'name' => 'ilham hafidz',
-                'email' => 'xxspanzie@gmail.com',
-                'password' => bcrypt('password'),
-                'classroom_id' => 1,
-                'mode' => 'dark',
-            ],
-            [
-                'name' => 'Hamdan Alfarizi',
-                'email' => 'hamdan@gmail.com',
-                'password' => bcrypt('password'),
-                'classroom_id' => 2,
-                'mode' => 'light',
-            ],
+        $user = User::create([
+            'name' => 'ilham hafidz',
+            'email' => 'xxspanzie@gmail.com',
+            'password' => bcrypt('password'),
+            'classroom_id' => 1,
+            'mode' => 'dark',
         ]);
+        // $user->assignRole('student');
+
+        $user = User::create([
+            'name' => 'Hamdan Alfarizi',
+            'email' => 'hamdan@gmail.com',
+            'password' => bcrypt('password'),
+            'classroom_id' => 2,
+            'mode' => 'light',
+        ]);
+        // $user->assignRole('student');
     }
 }
