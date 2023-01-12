@@ -52,33 +52,132 @@
             gap-5
         "
     >
-      <form action="{{ route('submission.store') }}" class="z-50" method="POST">
+      <form 
+        action="{{ route('submission.store') }}" 
+        class="z-50 text-gray-800 dark:text-gray-200 col-span-2" 
+        method="POST"
+    >
         @csrf
         <input type="number" name="course" value="{{ $course->id }}" hidden>
         <input type="number" name="lecturer" value="{{ $lecturer->id }}" hidden>
         
-        <div>
-            <label for="">Judul Tugas</label>
-            <input type="text" name="name">
+        <div class="mb-5">
+            <label for="name" class="block">Judul Tugas</label>
+            <input 
+                type="text" 
+                name="name" 
+                id="name" 
+                class="
+                    rounded 
+                    py-2 
+                    px-3 
+                    w-full 
+                    text-gray-800 
+                    bg-gray-100
+                    dark:text-gray-200 
+                    dark:bg-slate-700
+                "
+                required
+            >
         </div>
-        <div>
-            <label for="">Keterangan Tugas</label>
-            <textarea name="subtitle" id="" cols="30" rows="10"></textarea>
+        <div class="mb-5">
+            <label for="subtitle" class="block">Keterangan Tugas</label>
+            <textarea 
+                name="subtitle" 
+                id="subtitle"
+                class="
+                    w-full 
+                    max-h-[100px] 
+                    min-h-[100px] 
+                    px-3 
+                    py-2 
+                    rounded 
+                    text-gray-800 
+                    bg-gray-100 
+                    dark:text-gray-200
+                    dark:bg-slate-700
+                "
+            ></textarea>
         </div>
-        <div>
-            <label for="">Kelas</label>
-            <select name="classroom" id="">
-                <option value="">Pilih Kelas</option>
-                @foreach ($lecturer->classroom as $classroom)
-                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
-                @endforeach
-            </select>
+        <div class="grid grid-cols-2 gap-5 mb-5">
+            <div>
+                <label for="classroom" class="block">Kelas</label>
+                <select 
+                    name="classroom" 
+                    id="classroom" 
+                    class="
+                        w-full 
+                        px-3 
+                        py-3 
+                        rounded 
+                        text-gray-800 
+                        bg-gray-100 
+                        dark:text-gray-200
+                        dark:bg-slate-700
+                    "
+                    required
+                >
+                    <option value="">Pilih Kelas</option>
+                    @foreach ($lecturer->classroom as $classroom)
+                        <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label for="deadline" class="block">Deadline Tugas</label>
+                <input 
+                    type="date"
+                    name="deadline" 
+                    id="deadline" 
+                    class="
+                        w-full 
+                        px-3 
+                        py-2 
+                        rounded 
+                        text-gray-800 
+                        bg-gray-100 
+                        dark:text-gray-200
+                        dark:bg-slate-700
+                    "
+                    required
+                >
+            </div>
         </div>
-        <div>
-            <label for="">Deadline Tugas</label>
-            <input type="date" name="deadline">
+        <div class="flex justify-between mt-7">
+            <a 
+                class="mt-7 bg-gray-500 px-5 py-2 rounded hover:bg-gray-400 text-white"
+                href="{{ route('dashboard') }}"
+            >
+                Kembali
+            </a>
+            <div>
+                <button 
+                    type="reset"
+                    class="
+                        bg-red-500 
+                        px-5 
+                        py-2 
+                        rounded 
+                        hover:bg-red-400
+                        text-white
+                    "
+                >
+                    Reset
+                </button>
+                <button 
+                    class="
+                        bg-indigo-500 
+                        px-5 
+                        py-2 
+                        rounded 
+                        hover:bg-indigo-400
+                        text-white
+                    "
+                >
+                    Submit
+                </button>
+            </div>
         </div>
-        <button >Submit</button>
       </form>
     </div>
 </section>
