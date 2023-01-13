@@ -1,7 +1,13 @@
 @extends('backend.layouts.master')
 
 @section('content')
-@include('components.confirmModal')
+@include('components.confirmModal' , 
+    [ 
+        'title' => 'Apakah anda yakin?', 
+        'subtitle' => 'Data yang sudah terpilih tidak bisa di batalkan lagi.',
+        'to' => 'confirmSKS'
+    ]
+)
 @include('components.toast')
 
 <section 

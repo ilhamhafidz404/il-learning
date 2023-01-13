@@ -1,6 +1,15 @@
 @extends('backend.layouts.master')
 
 @section('content')
+@include('components.confirmModal' , 
+    [ 
+        'title' => 'Yakin upload tugas?', 
+        'subtitle' => 'Tugas akan dikumpulkan jika anda tekan yakin',
+        'to' => 'upload_submission'
+    ]
+)
+@include('components.toast')
+
     <section 
         class="
             col-span-5 
@@ -37,10 +46,6 @@
             "
         ></span>
         <div class="text-white relative h-[300px]">
-            {{-- <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
-            @foreach ($course->lecturer as $lecturer)
-                <span>{{ $lecturer->name }}</span>
-            @endforeach --}}
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">Mission Name</h1>
             <p>{{ $submission->lecturer->name }}  | {{ $submission->course->name }}</p>
             <a href="{{ route('dashboard') }}" class="text-white absolute bottom-[150px] z-50 left-0">Kembali</a>
@@ -54,7 +59,7 @@
                 p-5
                 rounded
                 gap-5
-                z-50
+                z-30
                 relative
             "
         >
@@ -67,6 +72,7 @@
             <p>{{ $submission->subtitle }}</p>
             <span class="text-sm bg-red-500 py-1 px-2 rounded-md">Belum mengumpulkan</span>
             <form 
+                id="upload_submission"
                 action="{{ route('submitsubmission') }}" 
                 class="mt-10" 
                 enctype="multipart/form-data"
@@ -102,7 +108,8 @@
                             Reset
                         </button>
                         <button 
-                            type="submit"
+                            type="button"
+                            onClick="toggleConfirm()"
                             class="bg-indigo-500 hover:bg-indigo-400 px-5 py-2 rounded"
                         >
                             Submit
@@ -112,4 +119,19 @@
             </form>
         </div>
     </section>
+@endsection
+
+@section('script')
+<script>
+    const hideNoty= ()=>{
+        const noty = document.getElementById('noty')
+        noty.classList.toggle('flex');
+        noty.classList.toggle('hidden');
+    }
+
+    const toggleConfirm = () =>{
+        const cofirmModal= document.getElementById('confirmModal');
+        cofirmModal.classList.toggle('hidden');
+    }
+</script>
 @endsection

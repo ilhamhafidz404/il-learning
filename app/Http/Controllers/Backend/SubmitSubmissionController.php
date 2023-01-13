@@ -23,6 +23,10 @@ class SubmitSubmissionController extends Controller
 
         // }
 
-        return back();
+        return redirect()->back()->with([
+            'success' => true,
+            'title' => 'Berhasil Meng-upload Tugas',
+            'message' => 'Anda sudah meng-upload tugas'
+        ]);
     }
 }

@@ -4,7 +4,7 @@
         fixed 
         bottom-0 
         right-0 
-        z-20 
+        z-50 
         bg-white 
         dark:bg-slate-800 
         shadow 
@@ -18,7 +18,7 @@
         w-[400px]
         justify-between
         items-center
-        @if (Session::has('success') ||Session::has('error'))
+        @if (Session::has('success') || Session::has('error'))
             flex
         @else
             hidden

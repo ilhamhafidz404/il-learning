@@ -1,4 +1,4 @@
-<section id="confirmModal" class="fixed inset-0 bg-black/70 z-30 hidden">
+<section id="confirmModal" class="fixed inset-0 bg-black/70 z-50 hidden">
     <div 
         class="
             bg-white 
@@ -20,9 +20,9 @@
             ['class' => 'w-52 h-52 absolute left-[-50px] top-[-40px] text-cyan-500']
         )
         <div class="w-[70%] ml-auto">
-            <h3 class="text-xl text-cyan-500 font-bold mb-5 uppercase">Apakah anda yakin?</h3>
+            <h3 class="text-xl text-cyan-500 font-bold mb-5 uppercase">{{ $title }}</h3>
             <p class="text-sm text-gray-700 dark:text-gray-100">
-                Data yang sudah terpilih tidak bisa di batalkan lagi.
+                {{ $subtitle }}
             </p>
             <div class="mt-5">
                 <button 
@@ -51,7 +51,7 @@
                     "
                     onclick="
                         event.preventDefault();
-                        document.getElementById('confirmSKS').submit();
+                        document.getElementById('{{ $to }}').submit();
                     "
                 >
                     Yakin
