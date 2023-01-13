@@ -21,4 +21,9 @@ class Lecturer extends Authenticatable
     {
         return $this->belongsToMany(Classroom::class);
     }
+
+    public function Submission()
+    {
+        return $this->hasMany(Submission::class);
+    }
 }

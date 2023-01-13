@@ -20,4 +20,9 @@ class Submission extends Model
     {
         return $this->belongsTo(Classroom::class);
     }
+
+    public function Lecturer()
+    {
+        return $this->belongsTo(Lecturer::class);
+    }
 }

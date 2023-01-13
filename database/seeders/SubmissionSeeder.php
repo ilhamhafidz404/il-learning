@@ -18,6 +18,7 @@ class SubmissionSeeder extends Seeder
         Submission::insert([
             [
                 'name' => "Modul 1",
+                'slug' => "modul1",
                 'subtitle' => "Modul 1",
                 'deadline' => "2023-01-10",
                 "lecturer_id" => 1,
@@ -26,6 +27,7 @@ class SubmissionSeeder extends Seeder
             ],
             [
                 'name' => "Modul 2",
+                'slug' => "modul2",
                 'subtitle' => "Modul 1",
                 'deadline' => "2023-01-10",
                 "lecturer_id" => 1,
@@ -34,6 +36,7 @@ class SubmissionSeeder extends Seeder
             ],
             [
                 'name' => "Modul 3",
+                'slug' => "modul3",
                 'subtitle' => "Modul 1",
                 'deadline' => "2023-01-10",
                 "lecturer_id" => 1,

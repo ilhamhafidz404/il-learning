@@ -50,15 +50,21 @@
             grid
             grid-cols-2
             gap-5
-        ">
-            @forelse ($course->submission as $index => $submission)
-                @if ($submission->classroom->id == Auth::user()->classroom->id)
+            z-50
+            relative
+        "
+    >
+        @forelse ($course->submission as $index => $submission)
+            @if ($submission->classroom->id == Auth::user()->classroom->id)
+                <a href="{{ route('submission.show', $submission->slug) }}">
                     <div 
                         class="
                             bg-white 
+                            dark:bg-slate-600
                             p-5 
                             rounded 
                             shadow
+                            dark:text-gray-200
                             @if ($index+1 == count($course->submission) && $index+1%2 > 0)
                             col-span-2
                             @endif
@@ -69,19 +75,20 @@
                         <br>
                         <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
                     </div>
-                @endif
-            @empty
-                <div class="text-center col-span-2 py-10">
-                    <h2 class="text-8xl">😁</h2>
-                    <h5 
-                        class="
-                            text-3xl 
-                            mt-5 
-                            tracking-wide
-                            dark:text-white
-                        "
-                    >Belum ada tugas untukmu</h5>
-                </div>
-            @endforelse
+                </a>
+            @endif
+        @empty
+            <div class="text-center col-span-2 py-10">
+                <h2 class="text-8xl">😁</h2>
+                <h5 
+                    class="
+                        text-3xl 
+                        mt-5 
+                        tracking-wide
+                        dark:text-white
+                    "
+                >Belum ada tugas untukmu</h5>
+            </div>
+        @endforelse
     </div>
 </section>
