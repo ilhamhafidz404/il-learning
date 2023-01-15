@@ -9,7 +9,15 @@ class Submission extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'subtitle', 'deadline', 'lecturer_id', 'course_id', 'classroom_id'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'deadline',
+        'lecturer_id',
+        'course_id',
+        'classroom_id'
+    ];
 
     public function Course()
     {

@@ -25,15 +25,6 @@ class CourseController extends Controller
     public function show(Request $request)
     {
         $course = Course::whereSlug($request->slug)->first();
-        if (Session::has('lecturer')) {
-            $lecturer = Lecturer::whereEmail(Session::get('email'))->first();
-
-            return view('backend.course.show', [
-                'course' => $course,
-                'lecturer' => $lecturer
-            ]);
-        }
-
         return view("backend.course.show", [
             'course' => $course
         ]);

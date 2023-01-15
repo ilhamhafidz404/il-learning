@@ -10,4 +10,9 @@ class Submitsubmission extends Model
     use HasFactory;
 
     protected $fillable = ['description', 'file', 'user_id', 'submission_id'];
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -42,8 +42,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/acceptsks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
     Route::post('/acceptsks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
     // 
-    Route::get('/submission/{slug}', [SubmissionController::class, 'show'])->name('submission.show');
     Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
+    Route::get('/submission/add', [SubmissionController::class, 'create'])->name('submission.create');
+    Route::get('/submission/{slug}', [SubmissionController::class, 'show'])->name('submission.show');
     //
     Route::post('/submitsubmission', SubmitSubmissionController::class)->name('submitsubmission');
     //  

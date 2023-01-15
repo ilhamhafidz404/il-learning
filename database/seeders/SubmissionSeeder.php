@@ -19,7 +19,7 @@ class SubmissionSeeder extends Seeder
             [
                 'name' => "Modul 1",
                 'slug' => "modul1",
-                'subtitle' => "Modul 1",
+                'description' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, amet unde eos perferendis molestias, modi similique omnis, minima mollitia quis a cupiditate dolor cumque fugiat. Natus suscipit quibusdam pariatur ratione.",
                 'deadline' => "2023-01-10",
                 "lecturer_id" => 1,
                 "course_id" => 1,
@@ -28,7 +28,7 @@ class SubmissionSeeder extends Seeder
             [
                 'name' => "Modul 2",
                 'slug' => "modul2",
-                'subtitle' => "Modul 1",
+                'description' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, amet unde eos perferendis molestias, modi similique omnis, minima mollitia quis a cupiditate dolor cumque fugiat. Natus suscipit quibusdam pariatur ratione.",
                 'deadline' => "2023-01-10",
                 "lecturer_id" => 1,
                 "course_id" => 1,
@@ -37,7 +37,7 @@ class SubmissionSeeder extends Seeder
             [
                 'name' => "Modul 3",
                 'slug' => "modul3",
-                'subtitle' => "Modul 1",
+                'description' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, amet unde eos perferendis molestias, modi similique omnis, minima mollitia quis a cupiditate dolor cumque fugiat. Natus suscipit quibusdam pariatur ratione.",
                 'deadline' => "2023-01-10",
                 "lecturer_id" => 1,
                 "course_id" => 1,

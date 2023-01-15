@@ -69,7 +69,7 @@
                 {{ $submission->deadline }}
             </small>
             <hr class="my-3 border-slate-600">
-            <p>{{ $submission->subtitle }}</p>
+            <p>{{ $submission->description }}</p>
             <span class="text-sm bg-red-500 py-1 px-2 rounded-md">Belum mengumpulkan</span>
             <form 
                 id="upload_submission"
@@ -79,19 +79,48 @@
                 method="POST"
             >
                 @csrf
-                <input type="text" readonly value="{{ $submission->id }}" name="submission">
+                <input type="text" hidden value="{{ $submission->id }}" name="submission">
 
                 <div class="mb-5">
-                    <label for="description" class="block">Description</label>
+                    <label 
+                        for="description" 
+                        class="
+                            block 
+                            font-bold 
+                            mb-2 
+                            @error('description')
+                                text-red-500  
+                            @enderror
+                        "
+                    >
+                        Description
+                    </label>
                     <textarea 
                         name="description" 
                         id="description" 
-                        class="w-full max-h-[100px] min-h-[100px] rounded bg-slate-700 px-2 py-2"
-                    ></textarea>
+                        required
+                        class="
+                            w-full 
+                            max-h-[100px] 
+                            min-h-[100px] 
+                            rounded 
+                            bg-slate-700 
+                            px-2 
+                            py-2
+                            @error('description')
+                                border-2
+                                border-red-500
+                                bg-red-500/10
+                            @enderror
+                        "
+                    >{{ old('description') }}</textarea>
+                    @error('description')
+                        <small class="text-red-500">{{ $message }}</small>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="file">File : </label>
-                    <input type="file" name="file" id="file">
+                    <input type="file" name="file" id="file" required>
                 </div>
                 <div class="flex justify-between mt-10">
                     <a 

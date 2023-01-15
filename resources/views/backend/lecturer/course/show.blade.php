@@ -38,7 +38,10 @@
         @foreach ($course->lecturer as $lecturer)
             <span>{{ $lecturer->name }}</span>
         @endforeach
-        <a href="{{ route('dashboard') }}" class="text-white absolute bottom-[150px] z-50 left-0">Kembali</a>
+        <a 
+            href="{{ route('dashboard') }}" 
+            class="text-white absolute bottom-[150px] z-50 left-0"
+        >Kembali</a>
     </div>
     <div 
         class="
@@ -50,134 +53,45 @@
             grid
             grid-cols-2
             gap-5
+            z-50
+            relative
         "
     >
-      <form 
-        action="{{ route('submission.store') }}" 
-        class="z-50 text-gray-800 dark:text-gray-200 col-span-2" 
-        method="POST"
-    >
-        @csrf
-        <input type="number" name="course" value="{{ $course->id }}" hidden>
-        <input type="number" name="lecturer" value="{{ $lecturer->id }}" hidden>
-        
-        <div class="mb-5">
-            <label for="name" class="block">Judul Tugas</label>
-            <input 
-                type="text" 
-                name="name" 
-                id="name" 
-                class="
-                    rounded 
-                    py-2 
-                    px-3 
-                    w-full 
-                    text-gray-800 
-                    bg-gray-100
-                    dark:text-gray-200 
-                    dark:bg-slate-700
-                "
-                required
-            >
-        </div>
-        <div class="mb-5">
-            <label for="subtitle" class="block">Keterangan Tugas</label>
-            <textarea 
-                name="subtitle" 
-                id="subtitle"
-                class="
-                    w-full 
-                    max-h-[100px] 
-                    min-h-[100px] 
-                    px-3 
-                    py-2 
-                    rounded 
-                    text-gray-800 
-                    bg-gray-100 
-                    dark:text-gray-200
-                    dark:bg-slate-700
-                "
-            ></textarea>
-        </div>
-        <div class="grid grid-cols-2 gap-5 mb-5">
-            <div>
-                <label for="classroom" class="block">Kelas</label>
-                <select 
-                    name="classroom" 
-                    id="classroom" 
+        @forelse ($course->submission as $index => $submission)
+            @if ($submission->classroom->id == Auth::user()->classroom->id)
+                <a href="{{ route('submission.show', $submission->slug) }}">
+                    <div 
+                        class="
+                            bg-white 
+                            dark:bg-slate-600
+                            p-5 
+                            rounded 
+                            shadow
+                            dark:text-gray-200
+                            @if ($index+1 == count($course->submission) && $index+1%2 > 0)
+                            col-span-2
+                            @endif
+                        "
+                    >
+                        <h3 class="font-bold">{{ $submission->name}}</h3>
+                        <small>{{ $submission->deadline }}</small>
+                        <br>
+                        <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
+                    </div>
+                </a>
+            @endif
+        @empty
+            <div class="text-center col-span-2 py-10">
+                <h2 class="text-8xl">😁</h2>
+                <h5 
                     class="
-                        w-full 
-                        px-3 
-                        py-3 
-                        rounded 
-                        text-gray-800 
-                        bg-gray-100 
-                        dark:text-gray-200
-                        dark:bg-slate-700
+                        text-3xl 
+                        mt-5 
+                        tracking-wide
+                        dark:text-white
                     "
-                    required
-                >
-                    <option value="">Pilih Kelas</option>
-                    @foreach ($lecturer->classroom as $classroom)
-                        <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
-                    @endforeach
-                </select>
+                >Belum ada tugas untukmu</h5>
             </div>
-            <div>
-                <label for="deadline" class="block">Deadline Tugas</label>
-                <input 
-                    type="date"
-                    name="deadline" 
-                    id="deadline" 
-                    class="
-                        w-full 
-                        px-3 
-                        py-2 
-                        rounded 
-                        text-gray-800 
-                        bg-gray-100 
-                        dark:text-gray-200
-                        dark:bg-slate-700
-                    "
-                    required
-                >
-            </div>
-        </div>
-        <div class="flex justify-between mt-7">
-            <a 
-                class="mt-7 bg-gray-500 px-5 py-2 rounded hover:bg-gray-400 text-white"
-                href="{{ route('dashboard') }}"
-            >
-                Kembali
-            </a>
-            <div>
-                <button 
-                    type="reset"
-                    class="
-                        bg-red-500 
-                        px-5 
-                        py-2 
-                        rounded 
-                        hover:bg-red-400
-                        text-white
-                    "
-                >
-                    Reset
-                </button>
-                <button 
-                    class="
-                        bg-indigo-500 
-                        px-5 
-                        py-2 
-                        rounded 
-                        hover:bg-indigo-400
-                        text-white
-                    "
-                >
-                    Submit
-                </button>
-            </div>
-        </div>
-      </form>
+        @endforelse
     </div>
 </section>
