@@ -8,8 +8,10 @@ use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\Submission;
 use App\Models\Submitsubmission;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class SubmissionController extends Controller
@@ -65,14 +67,20 @@ class SubmissionController extends Controller
             $lecturer = Lecturer::whereEmail(Session::get('email'))->first();
             $submission = Submission::whereSlug($slug)->first();
             $submitSubmissions = Submitsubmission::whereSubmissionId($submission->id)->get();
+            // 
+            $userCount = User::whereClassroomId($submission->classroom_id)->count();
             return view('backend.lecturer.submission.show', [
                 'submission' => $submission,
                 'lecturer' => $lecturer,
-                'submitSubmissions' => $submitSubmissions
+                'submitSubmissions' => $submitSubmissions,
+                'userCount' => $userCount
             ]);
         }
+        $submission = Submission::whereSlug($slug)->first();
+        $submitSubmission = Submitsubmission::whereUserId(Auth::user()->id)->whereSubmissionId($submission->id)->first();
         return view('backend.student.submission.show', [
-            'submission' => Submission::whereSlug($slug)->first()
+            'submission' => $submission,
+            'submitSubmission' => $submitSubmission,
         ]);
     }
 

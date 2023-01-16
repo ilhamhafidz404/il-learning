@@ -44,7 +44,8 @@
     <div 
         class="
             -mt-[150px]
-            text-gray-200
+            text-gray-800
+            dark:text-gray-200
             bg-white
             dark:bg-slate-800
             p-5
@@ -54,20 +55,28 @@
             relative
         "
     >
-        <h2 class=" text-2xl font-semibold">{{ $submission->name }}</h2>
-        <small>
+        <div class="flex justify-between items-center">
+            <h2 class=" text-2xl font-semibold">{{ $submission->name }}</h2>
+            <span class="text-white text-sm bg-red-500 py-1 px-2 rounded-md">
+                {{ $submitSubmissions->count() }} / {{ $userCount }}
+            </span>
+        </div>
+        <p>
             <span class="font-bold">Deadline :</span>
             {{ $submission->deadline }}
-        </small>
-        <hr class="my-3 border-slate-600">
+        </p>
+        <h3 class="font-bold mt-3">Description :</h3>
         <p>{{ $submission->description }}</p>
-        <span class="text-sm bg-red-500 py-1 px-2 rounded-md">2/10</span>
+        <hr class="my-3 border-slate-600">
 
         <section class="mt-10">
-            @foreach ($submitSubmissions as $submission)
+            @forelse ($submitSubmissions as $submission)
                 <div 
                     class="
-                        bg-slate-700 
+                        text-gray-800 
+                        dark:text-white
+                        bg-gray-200 
+                        dark:bg-slate-700 
                         rounded 
                         p-5 
                         flex 
@@ -89,12 +98,23 @@
                         {{ $submission->description }}
                     </p>
                     <span>
-                        <a href="{{ asset('storage/'. $submission->file) }}" class="w-[10%] bg-indigo-500 py-2 px-5 rounded hover:bg-indigo-400">
+                        <a 
+                            href="{{ asset('storage/'. $submission->file) }}" 
+                            class="w-[10%] bg-indigo-500 py-2 px-5 rounded hover:bg-indigo-400 text-white"
+                        >
                             Download
                         </a>
                     </span>
                 </div>
-            @endforeach
+            @empty
+                <div class="text-center my-20">
+                    <h2 class="text-8xl">☹️</h2>
+                    <h3 class="text-2xl mt-4 text-gray-600 dark:text-gray-200">
+                        Belum ada yang mengumpulkan tugas
+                        <span class="font-semibold text-indigo-500">{{ $submission->name }}</span>
+                    </h3>
+                </div>
+            @endforelse
         </section>
     </div>
 </section>
