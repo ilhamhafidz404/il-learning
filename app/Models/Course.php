@@ -23,4 +23,9 @@ class Course extends Model
     {
         return $this->hasMany(Submission::class);
     }
+
+    public function Mission()
+    {
+        return $this->hasMany(Mission::class);
+    }
 }

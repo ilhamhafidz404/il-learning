@@ -19,7 +19,8 @@
             -z-10 
             h-[400px] 
             object-cover 
-            object-[100px]
+            object-center
+            lg:object-[100px]
         "
     >
     <span

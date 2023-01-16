@@ -1,11 +1,6 @@
 @extends('backend.layouts.master')
 
 @section('content')
-    {{-- @if (Session::has('lecturer') and Session::get('lecturer'))
-        @include('backend.lecturer.course.show')
-    @else
-        @include('backend.student.course.show')
-    @endif --}}
     <section 
         class="
             col-span-5 
@@ -42,11 +37,13 @@
                 bg-black/30
             "
         ></span>
+
         <div class="text-white relative h-[300px]">
-            <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
-            @foreach ($course->lecturer as $lecturer)
-                <span>{{ $lecturer->name }}</span>
-            @endforeach
+            <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $mission->name }}</h1>
+            <span>
+                {{ $mission->course->lecturer[0]->name }} |
+                {{ $mission->course->name }}
+            </span>
             <a 
                 href="{{ route('dashboard') }}" 
                 class="text-white absolute bottom-[150px] z-50 left-0"
@@ -88,7 +85,6 @@
 
         <div 
             class="
-                -mt-[150px]
                 bg-white
                 dark:bg-slate-800
                 p-5
@@ -98,10 +94,11 @@
                 gap-5
                 z-50
                 relative
+                -mt-[150px]
             "
         >
-            @forelse ($missions as $index => $mission)
-                <a href="{{ route('mission.show', $mission->slug) }}">
+            @forelse ($submissions as $index => $submission)
+                <a href="{{ route('submission.show', $submission->slug) }}">
                     <div 
                         class="
                             bg-white 
@@ -112,27 +109,10 @@
                             dark:text-gray-200
                         "
                     >
-                        <span class="flex justify-between items-center">
-                            <h3 class="font-bold">{{ $mission->name}}</h3>
-                            <h4 class="font-bold">70%</h4>
-                        </span>
-                        <span 
-                            class="
-                             relative
-                                mt-5
-                                w-full
-                                h-[5px]
-                                rounded
-                                bg-indigo-500/40
-                                block
-                                after:content-['']
-                                after:w-[70%]
-                                after:bg-indigo-500
-                                after:h-full
-                                after:absolute
-                                after:rounded
-                            "
-                        ></span>
+                        <h3 class="font-bold">{{ $submission->name}}</h3>
+                        <small>{{ $submission->deadline }}</small>
+                        <br>
+                        <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
                     </div>
                 </a>
             @empty

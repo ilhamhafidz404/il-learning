@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SubmissionController;
 use App\Http\Controllers\Backend\LecturerController;
 use App\Http\Controllers\Backend\SubmitSubmissionController;
+use App\Http\Controllers\MissionController;
 use App\Http\Controllers\more\ThemeModeController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     // 
     Route::get('/acceptsks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
     Route::post('/acceptsks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
+    // 
+    Route::get('/mission/{slug}', [MissionController::class, 'show'])->name('mission.show');
     // 
     Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
     Route::get('/submission/add', [SubmissionController::class, 'create'])->name('submission.create');

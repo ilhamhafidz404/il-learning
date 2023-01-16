@@ -31,7 +31,8 @@
                 -z-10 
                 h-[400px] 
                 object-cover 
-                object-[100px]
+                object-center
+                lg:object-[100px]
             "
         >
         <span
@@ -46,7 +47,7 @@
             "
         ></span>
         <div class="text-white relative h-[300px]">
-            <h1 class="font-bold text-4xl uppercase mb-2 mt-20">Mission Name</h1>
+            <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $submission->mission->name }}</h1>
             <p>{{ $submission->lecturer->name }}  | {{ $submission->course->name }}</p>
             <a href="{{ route('dashboard') }}" class="text-white absolute bottom-[150px] z-50 left-0">Kembali</a>
         </div>
@@ -104,7 +105,7 @@
                 </div>
                 <div class="flex justify-between mt-10">
                     <a 
-                        href="{{ route('dashboard') }}"
+                        href="{{ route('mission.show', $submission->mission->name) }}"
                         class="bg-gray-500 hover:bg-gray-400 px-5 py-2 rounded text-white"
                     >
                         Kembali
@@ -178,7 +179,7 @@
                     </div>
                     <div class="flex justify-between mt-10">
                         <a 
-                            href="{{ route('dashboard') }}"
+                            href="{{ route('mission.show', $submission->mission->slug) }}"
                             class="bg-gray-500 hover:bg-gray-400 px-5 py-2 rounded text-white"
                         >
                             Kembali

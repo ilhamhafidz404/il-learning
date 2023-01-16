@@ -20,10 +20,6 @@ class SubmitSubmissionController extends Controller
             'submission_id' => $request->submission,
         ]);
 
-        // Submission::whereId($request->submission)->update(){
-
-        // }
-
         return redirect()->back()->with([
             'success' => true,
             'title' => 'Berhasil Meng-upload Tugas',

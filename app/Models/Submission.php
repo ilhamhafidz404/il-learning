@@ -33,4 +33,9 @@ class Submission extends Model
     {
         return $this->belongsTo(Lecturer::class);
     }
+
+    public function Mission()
+    {
+        return $this->belongsTo(Mission::class);
+    }
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\Lecturer;
+use App\Models\Mission;
 
 class CourseController extends Controller
 {
@@ -24,9 +25,11 @@ class CourseController extends Controller
     }
     public function show(Request $request)
     {
+        $missions = Mission::all();
         $course = Course::whereSlug($request->slug)->first();
         return view("backend.course.show", [
-            'course' => $course
+            'course' => $course,
+            'missions' => $missions
         ]);
     }
 }
