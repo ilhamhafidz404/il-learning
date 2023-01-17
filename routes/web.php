@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\SubmissionController;
 use App\Http\Controllers\Backend\LecturerController;
 use App\Http\Controllers\Backend\SubmitSubmissionController;
 use App\Http\Controllers\Backend\MissionController;
+use App\Http\Controllers\more\DeleteSubmitSubmission;
 use App\Http\Controllers\more\ThemeModeController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -50,7 +51,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
     Route::get('/submission/add', [SubmissionController::class, 'create'])->name('submission.create');
     Route::get('/submission/{slug}', [SubmissionController::class, 'show'])->name('submission.show');
+    Route::delete('/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
     //
+    Route::delete('/submitsubmission/{id}', DeleteSubmitSubmission::class)->name('submitsubmission.destroy');
     Route::post('/submitsubmission', SubmitSubmissionController::class)->name('submitsubmission');
     //  
     Route::post('/change-theme-mode', ThemeModeController::class)->name('change.theme.mode');

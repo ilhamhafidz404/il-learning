@@ -130,7 +130,10 @@
                     </a>
                     <div class="flex md:w-auto w-full mb-5 md:mb-0">
                         <a
-                            href=""
+                            onclick="
+                                event.preventDefault();
+                                document.getElementById('deleteSubmitSubmission').submit();
+                            "
                             class="
                                 bg-red-500 
                                 hover:bg-red-400 
@@ -143,12 +146,22 @@
                                 md:w-auto
                                 inline-block
                                 text-center
+                                cursor-pointer
                             "
                         >
                             Delete Submission
                         </a>
+                        <form 
+                            id="deleteSubmitSubmission"
+                            action="{{ route('submitsubmission.destroy', $submitSubmission->id) }}"
+                            method="POST"
+                        >
+                            @method("DELETE")
+                            @csrf
+                        </form>
                         <a 
-                            href=""
+                            target="_blank"
+                            href="{{ asset('storage/'. $submitSubmission->file) }}"
                             class="
                                 bg-indigo-500 
                                 hover:bg-indigo-400 
