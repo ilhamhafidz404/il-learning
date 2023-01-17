@@ -1,4 +1,4 @@
-<nav class="py-3 bg-white dark:bg-slate-800 shadow fixed left-0 top-0 right-0 z-40">
+<nav class="py-3 bg-white dark:bg-slate-800 shadow fixed left-0 top-0 right-0 z-50">
     <section class="container mx-auto flex justify-between items-center px-3 sm:px-0">
         <div class="flex items-center">
             <img 

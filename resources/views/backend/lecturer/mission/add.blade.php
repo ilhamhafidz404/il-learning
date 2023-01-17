@@ -54,7 +54,7 @@
             @endforeach
             <a 
                 href="{{ route('course.show', $course->slug) }}" 
-                class="text-white absolute bottom-[150px] z-50 left-0"
+                class="text-white absolute bottom-[150px] z-30 left-0"
             >
                 Kembali
             </a>
@@ -74,7 +74,7 @@
             <form 
                 id="addMission"
                 action="{{ route('mission.store') }}" 
-                class="z-40 text-gray-800 dark:text-gray-200 col-span-2" 
+                class="z-30 text-gray-800 dark:text-gray-200 col-span-2" 
                 method="POST"
             >
                 @csrf
@@ -145,14 +145,24 @@
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="flex justify-between mt-7">
+                <div class="flex flex-wrap justify-between md:flex-row flex-col-reverse mt-10 items-center">
                     <a 
-                        class="mt-7 bg-gray-500 px-5 py-2 rounded hover:bg-gray-400 text-white"
+                        class="
+                            bg-gray-500 
+                            px-5 
+                            py-2 
+                            rounded 
+                            hover:bg-gray-400 
+                            text-white 
+                            md:w-auto 
+                            w-full 
+                            text-center
+                        "
                         href="{{ route('course.show', $course->slug) }}" 
                     >
                         Kembali
                     </a>
-                    <div>
+                    <div class="flex gap-4 md:w-auto w-full md:mb-0 mb-3">
                         <button 
                             type="reset"
                             class="
@@ -162,6 +172,8 @@
                                 rounded 
                                 hover:bg-red-400
                                 text-white
+                                md:w-auto
+                                w-1/2
                             "
                         >
                             Reset
@@ -176,6 +188,8 @@
                                 rounded 
                                 hover:bg-indigo-400
                                 text-white
+                                md:w-auto
+                                w-1/2
                             "
                         >
                             Submit

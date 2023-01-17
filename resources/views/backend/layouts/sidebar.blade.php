@@ -15,7 +15,7 @@
         border-r
         sm:border-0
         sm:shadow
-        z-20
+        z-40
     "
 >
     <ul>

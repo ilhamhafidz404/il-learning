@@ -51,7 +51,7 @@
             <p>{{ $submission->lecturer->name }}  | {{ $submission->course->name }}</p>
             <a 
                 href="{{ route('mission.show', $submission->mission->slug) }}" 
-                class="text-white absolute bottom-[150px] z-50 left-0"
+                class="text-white absolute bottom-[150px] z-30 left-0"
             >
                 Kembali
             </a>
@@ -108,23 +108,55 @@
                     <label for="file">File : </label>
                     Logo file
                 </div>
-                <div class="flex justify-between mt-10">
+                <div class="flex flex-col-reverse md:flex-row justify-between mt-10">
                     <a 
                         href="{{ route('mission.show', $submission->mission->slug) }}"
-                        class="bg-gray-500 hover:bg-gray-400 px-5 py-2 rounded text-white"
+                        class="
+                            bg-gray-500 
+                            hover:bg-gray-400 
+                            px-5 py-2 rounded 
+                            text-white 
+                            w-full
+                            md:w-auto
+                            inline-block
+                            text-center
+                        "
                     >
                         Kembali
                     </a>
-                    <div>
+                    <div class="flex md:w-auto w-full mb-5 md:mb-0">
                         <a
                             href=""
-                            class="bg-red-500 hover:bg-red-400 px-5 py-3 mr-3 rounded text-white"
+                            class="
+                                bg-red-500 
+                                hover:bg-red-400 
+                                px-5 
+                                py-3 
+                                mr-3 
+                                rounded 
+                                text-white 
+                                w-1/2 
+                                md:w-auto
+                                inline-block
+                                text-center
+                            "
                         >
                             Delete Submission
                         </a>
                         <a 
                             href=""
-                            class="bg-indigo-500 hover:bg-indigo-400 px-5 py-3 rounded text-white"
+                            class="
+                                bg-indigo-500 
+                                hover:bg-indigo-400 
+                                px-5 
+                                py-3 
+                                rounded 
+                                text-white 
+                                w-1/2 
+                                md:w-auto
+                                inline-block
+                                text-center
+                            "
                         >
                             Download
                         </a>

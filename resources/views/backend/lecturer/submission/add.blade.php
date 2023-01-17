@@ -52,7 +52,10 @@
             @foreach ($course->lecturer as $lecturer)
                 <span>| {{ $lecturer->name }}</span>
             @endforeach
-             <a href="{{ route('course.show', $course->slug) }}" class="text-white absolute bottom-[150px] z-50 left-0">
+             <a 
+                href="{{ route('course.show', $course->slug) }}" 
+                class="text-white absolute bottom-[150px] z-30 left-0"
+            >
                 Kembali
             </a>
         </div>
@@ -71,7 +74,7 @@
             <form 
                 id="addSubmission"
                 action="{{ route('submission.store') }}" 
-                class="z-40 text-gray-800 dark:text-gray-200 col-span-2" 
+                class="z-30 text-gray-800 dark:text-gray-200 col-span-2" 
                 method="POST"
             >
                 @csrf
@@ -159,7 +162,7 @@
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="grid grid-cols-3 gap-5 mb-5">
+                <div class="grid md:grid-cols-3 gap-5 mb-5">
                     <div>
                         <label for="mission" class="block">Mission</label>
                         <select 
@@ -254,14 +257,24 @@
                         @enderror
                     </div>
                 </div>
-                <div class="flex justify-between mt-7">
+                <div class="flex flex-wrap justify-between md:flex-row flex-col-reverse mt-10 items-center">
                     <a 
-                        class="mt-7 bg-gray-500 px-5 py-2 rounded hover:bg-gray-400 text-white"
-                        href="{{ route('course.show', $course->slug) }}"
+                        class="
+                            bg-gray-500 
+                            px-5 
+                            py-2 
+                            rounded 
+                            hover:bg-gray-400 
+                            text-white 
+                            md:w-auto 
+                            w-full 
+                            text-center
+                        "
+                        href="{{ route('course.show', $course->slug) }}" 
                     >
                         Kembali
                     </a>
-                    <div>
+                    <div class="flex gap-4 md:w-auto w-full md:mb-0 mb-3">
                         <button 
                             type="reset"
                             class="
@@ -271,13 +284,15 @@
                                 rounded 
                                 hover:bg-red-400
                                 text-white
+                                md:w-auto
+                                w-1/2
                             "
                         >
                             Reset
                         </button>
                         <button 
-                            type="submit"
-                            {{-- onclick="toggleConfirm()" --}}
+                            type="button"
+                            onclick="toggleConfirm()"
                             class="
                                 bg-indigo-500 
                                 px-5 
@@ -285,6 +300,8 @@
                                 rounded 
                                 hover:bg-indigo-400
                                 text-white
+                                md:w-auto
+                                w-1/2
                             "
                         >
                             Submit

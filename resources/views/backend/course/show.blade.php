@@ -49,7 +49,7 @@
             @endforeach
             <a 
                 href="{{ route('dashboard') }}" 
-                class="text-white absolute bottom-[150px] z-50 left-0"
+                class="text-white absolute bottom-[150px] z-30 left-0"
             >
                 Kembali
             </a>
@@ -94,9 +94,10 @@
                 p-5
                 rounded
                 grid
-                grid-cols-2
+                grid-cols-1
+                md:grid-cols-2
                 gap-5
-                z-50
+                z-30
                 relative
             "
         >
