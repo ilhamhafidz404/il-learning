@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use App\Models\Lecturer;
 use App\Models\Mission;
+use App\Models\Submitsubmission;
 
 class CourseController extends Controller
 {
@@ -27,9 +26,11 @@ class CourseController extends Controller
     {
         $course = Course::whereSlug($request->slug)->first();
         $missions = Mission::whereCourseId($course->id)->get();
+        $submitSubmissions = Submitsubmission::whereUserId(Auth::user()->id);
         return view("backend.course.show", [
             'course' => $course,
-            'missions' => $missions
+            'missions' => $missions,
+            'submitSubmissions' => $submitSubmissions,
         ]);
     }
 }

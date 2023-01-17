@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('file');
             $table->text('description');
             $table->foreignId('user_id');
+            $table->foreignId('mission_id');
             $table->foreignId('submission_id');
             $table->timestamps();
         });

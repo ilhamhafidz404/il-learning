@@ -104,7 +104,7 @@
                 <a href="{{ route('mission.show', $mission->slug) }}">
                     <div 
                         class="
-                            bg-white 
+                            bg-white
                             dark:bg-slate-600
                             p-5 
                             rounded 
@@ -114,7 +114,17 @@
                     >
                         <span class="flex justify-between items-center">
                             <h3 class="font-bold">{{ $mission->name}}</h3>
-                            <h4 class="font-bold">70%</h4>
+                            <h4 class="font-bold">
+                                @if ($submitSubmissions->whereMissionId($mission->id)->count())    
+                                    {{ 
+                                        Str::limit($submitSubmissions->whereMissionId($mission->id)->count() /
+                                        $mission->submission->count() * 100 , 4, '')
+                                    }}
+                                @else
+                                    0
+                                @endif
+                                %
+                            </h4>
                         </span>
                         <span 
                             class="
@@ -126,7 +136,18 @@
                                 bg-indigo-500/40
                                 block
                                 after:content-['']
-                                after:w-[70%]
+                                @if ($submitSubmissions->whereMissionId($mission->id)->count() > 0)    
+                                    @if ($submitSubmissions->whereMissionId($mission->id)->count()/ $mission->submission->count()*100 == 100)
+                                        after:w-full
+                                    @else
+                                        after:w-[{{ 
+                                            Str::limit($submitSubmissions->whereMissionId($mission->id)->count() /
+                                            $mission->submission->count() * 100 , 2, '')
+                                        }}%]
+                                    @endif
+                                @else
+                                    after:w-[0%]
+                                @endif
                                 after:bg-indigo-500
                                 after:h-full
                                 after:absolute

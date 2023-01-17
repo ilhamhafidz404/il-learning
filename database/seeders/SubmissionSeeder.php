@@ -17,8 +17,8 @@ class SubmissionSeeder extends Seeder
     {
         Submission::insert([
             [
-                'name' => "Modul 1",
-                'slug' => "modul1",
+                'name' => "Laporan",
+                'slug' => "laporan",
                 'description' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, amet unde eos perferendis molestias, modi similique omnis, minima mollitia quis a cupiditate dolor cumque fugiat. Natus suscipit quibusdam pariatur ratione.",
                 'deadline' => "2023-01-10",
                 "mission_id" => 1,
@@ -27,8 +27,8 @@ class SubmissionSeeder extends Seeder
                 "classroom_id" => 1,
             ],
             [
-                'name' => "Modul 2",
-                'slug' => "modul2",
+                'name' => "Praktikum",
+                'slug' => "praktikum",
                 'description' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, amet unde eos perferendis molestias, modi similique omnis, minima mollitia quis a cupiditate dolor cumque fugiat. Natus suscipit quibusdam pariatur ratione.",
                 'deadline' => "2023-01-10",
                 "mission_id" => 1,
@@ -37,8 +37,8 @@ class SubmissionSeeder extends Seeder
                 "classroom_id" => 1,
             ],
             [
-                'name' => "Modul 3",
-                'slug' => "modul3",
+                'name' => "Post Test",
+                'slug' => "post-test",
                 'description' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, amet unde eos perferendis molestias, modi similique omnis, minima mollitia quis a cupiditate dolor cumque fugiat. Natus suscipit quibusdam pariatur ratione.",
                 'deadline' => "2023-01-10",
                 "mission_id" => 1,

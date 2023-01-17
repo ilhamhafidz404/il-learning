@@ -17,6 +17,7 @@ class SubmitSubmissionController extends Controller
             'file' => $request->file('file')->store('complete_submission'),
             'description' => $request->description,
             'user_id' => Auth::user()->id,
+            'mission_id' => $request->mission,
             'submission_id' => $request->submission,
         ]);
 

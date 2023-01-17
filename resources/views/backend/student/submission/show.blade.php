@@ -139,6 +139,7 @@
                     method="POST"
                 >
                     @csrf
+                    <input type="text" hidden value="{{ $submission->mission->id }}" name="mission">
                     <input type="text" hidden value="{{ $submission->id }}" name="submission">
                     <div class="mb-5">
                         <label 
