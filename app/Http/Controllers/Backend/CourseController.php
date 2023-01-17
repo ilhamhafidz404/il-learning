@@ -25,8 +25,8 @@ class CourseController extends Controller
     }
     public function show(Request $request)
     {
-        $missions = Mission::all();
         $course = Course::whereSlug($request->slug)->first();
+        $missions = Mission::whereCourseId($course->id)->get();
         return view("backend.course.show", [
             'course' => $course,
             'missions' => $missions

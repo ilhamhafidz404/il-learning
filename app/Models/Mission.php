@@ -9,6 +9,8 @@ class Mission extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug', 'course_id'];
+
     public function Submission()
     {
         return $this->hasMany(Submission::class);

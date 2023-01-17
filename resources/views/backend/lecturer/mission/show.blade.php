@@ -45,7 +45,7 @@
                 {{ $mission->course->name }}
             </span>
             <a 
-                href="{{ route('dashboard') }}" 
+                href="{{ route('course.show', $mission->course->slug) }}" 
                 class="text-white absolute bottom-[150px] z-50 left-0"
             >
                 Kembali
@@ -53,7 +53,7 @@
            @if (Session::has('lecturer'))
                 <div class="flex absolute right-0 bottom-[150px] ">
                     <a 
-                        href="{{ route('submission.create', ['slug' => $course->slug]) }}" 
+                        href="{{ route('mission.create', ['slug' => $mission->course->slug]) }}" 
                         class="
                             bg-emerald-500 
                             hover:bg-emerald-400 
@@ -67,7 +67,7 @@
                         Add Mission
                     </a>
                     <a 
-                        href="{{ route('submission.create', ['slug' => $course->slug]) }}" 
+                        href="{{ route('submission.create', ['slug' => $mission->course->slug]) }}" 
                         class="
                             bg-indigo-500 
                             hover:bg-indigo-400 
@@ -125,7 +125,19 @@
                             tracking-wide
                             dark:text-white
                         "
-                    >Belum ada tugas untukmu</h5>
+                    >
+                        @if (Session::has('lecturer'))
+                            Belum ada submission, 
+                            <a 
+                                href="{{ route('submission.create', ['slug' => $mission->course->slug]) }}" 
+                                class="text-indigo-500"
+                            >
+                                Buat Submission?
+                            </a>
+                        @else
+                            Belum ada tugas untukmu
+                        @endif
+                    </h5>
                 </div>
             @endforelse
         </div>

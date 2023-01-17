@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmissionRequest;
 use App\Models\Course;
 use App\Models\Lecturer;
+use App\Models\Mission;
 use App\Models\Submission;
 use App\Models\Submitsubmission;
 use App\Models\User;
@@ -35,10 +36,12 @@ class SubmissionController extends Controller
     {
         $lecturer = Lecturer::whereEmail(Session::get('email'))->first();
         $course = Course::whereSlug($_GET['slug'])->first();
+        $missions = Mission::whereCourseId($course->id)->get();
 
         return view('backend.lecturer.submission.add', [
             'course' => $course,
-            'lecturer' => $lecturer
+            'lecturer' => $lecturer,
+            'missions' => $missions
         ]);
     }
 
@@ -49,6 +52,7 @@ class SubmissionController extends Controller
             'slug' => Str::slug($request->name),
             'description' => $request->description,
             'deadline' => $request->deadline,
+            'mission_id' => $request->mission,
             'lecturer_id' => $request->lecturer,
             'course_id' => $request->course,
             'classroom_id' => $request->classroom,

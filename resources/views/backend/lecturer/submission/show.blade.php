@@ -100,6 +100,7 @@
                     </p>
                     <span>
                         <a 
+                            target="_blank"
                             href="{{ asset('storage/'. $submission->file) }}" 
                             class="w-[10%] bg-indigo-500 py-2 px-5 rounded hover:bg-indigo-400 text-white"
                         >

@@ -56,7 +56,7 @@
            @if (Session::has('lecturer'))
                 <div class="flex absolute right-0 bottom-[150px] ">
                     <a 
-                        href="{{ route('submission.create', ['slug' => $course->slug]) }}" 
+                        href="{{ route('mission.create', ['slug' => $course->slug]) }}" 
                         class="
                             bg-emerald-500 
                             hover:bg-emerald-400 

@@ -14,6 +14,7 @@ class Submission extends Model
         'slug',
         'description',
         'deadline',
+        'mission_id',
         'lecturer_id',
         'course_id',
         'classroom_id'

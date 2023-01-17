@@ -47,7 +47,14 @@
             "
         ></span>
         <div class="text-white relative h-[300px]">
-            <a href="{{ route('dashboard') }}" class="text-white absolute bottom-[150px] z-50 left-0">Kembali</a>
+            <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
+            <span class="text-indigo-500 font-bold">ADD SUBMISSION </span>
+            @foreach ($course->lecturer as $lecturer)
+                <span>| {{ $lecturer->name }}</span>
+            @endforeach
+             <a href="{{ route('course.show', $course->slug) }}" class="text-white absolute bottom-[150px] z-50 left-0">
+                Kembali
+            </a>
         </div>
         <div 
             class="
@@ -152,7 +159,33 @@
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="grid grid-cols-2 gap-5 mb-5">
+                <div class="grid grid-cols-3 gap-5 mb-5">
+                    <div>
+                        <label for="mission" class="block">Mission</label>
+                        <select 
+                            name="mission" 
+                            id="mission" 
+                            class="
+                                w-full 
+                                px-3 
+                                py-3 
+                                rounded 
+                                text-gray-800 
+                                bg-gray-100 
+                                dark:text-gray-200
+                                dark:bg-slate-700
+                            "
+                            required
+                        >
+                            <option value="" hidden selected>Pilih Mission</option>
+                            @foreach ($missions as $mission)
+                                <option value="{{ $mission->id }}">{{ $mission->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('mission')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
                     <div>
                         <label for="classroom" class="block">Kelas</label>
                         <select 
