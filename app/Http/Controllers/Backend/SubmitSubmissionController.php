@@ -19,6 +19,7 @@ class SubmitSubmissionController extends Controller
             'user_id' => Auth::user()->id,
             'mission_id' => $request->mission,
             'submission_id' => $request->submission,
+            'extension' => $request->file('file')->extension(),
         ]);
 
         return redirect()->back()->with([

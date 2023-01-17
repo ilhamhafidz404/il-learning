@@ -106,7 +106,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="file">File : </label>
-                    Logo file
+                    <img 
+                        src="{{ asset('images/icon/fileExtensions/'.$submitSubmission->extension.'.jpg') }}" 
+                        alt="{{ $submitSubmission->extension }}"
+                        width="50"
+                    >
                 </div>
                 <div class="flex flex-col-reverse md:flex-row justify-between mt-10">
                     <a 

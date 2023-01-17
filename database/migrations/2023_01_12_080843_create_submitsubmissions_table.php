@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('mission_id');
             $table->foreignId('submission_id');
+            $table->string('extension');
             $table->timestamps();
         });
     }

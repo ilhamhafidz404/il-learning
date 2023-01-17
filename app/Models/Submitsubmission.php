@@ -9,7 +9,7 @@ class Submitsubmission extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['description', 'file', 'user_id', 'mission_id', 'submission_id'];
+    protected $fillable = ['description', 'file', 'user_id', 'mission_id', 'submission_id', 'extension'];
 
     public function User()
     {
