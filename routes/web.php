@@ -2,15 +2,21 @@
 
 use App\Http\Controllers\Auth\LecturerLoginController as AuthLecturerLoginController;
 use App\Http\Controllers\Backend\AcceptSKSController;
+
+use App\Http\Controllers\Backend\Account\ProfileController;
+
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SubmissionController;
 use App\Http\Controllers\Backend\LecturerController;
-use App\Http\Controllers\Backend\SubmitSubmissionController;
 use App\Http\Controllers\Backend\MissionController;
-use App\Http\Controllers\more\DeleteSubmitSubmission;
-use App\Http\Controllers\more\ThemeModeController;
-use Illuminate\Routing\Router;
+
+use App\Http\Controllers\more\{
+    SubmitSubmissionController,
+    DeleteSubmitSubmission,
+    MyAccountController,
+    ThemeModeController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +63,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/submitsubmission', SubmitSubmissionController::class)->name('submitsubmission');
     //  
     Route::post('/change-theme-mode', ThemeModeController::class)->name('change.theme.mode');
+    // 
+    Route::get('/account', MyAccountController::class)->name('myaccount');
+    // 
+    Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

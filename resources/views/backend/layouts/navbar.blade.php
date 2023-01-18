@@ -61,7 +61,7 @@
                                 rounded-full
                                 dark:border-gray-100">
                         <img 
-                            src="{{ asset('images/profile/profile.jpg') }}" 
+                            src="{{ asset('storage/'.Auth::user()->profile) }}" 
                             alt="profile photo"
                             class="
                                 w-full 
@@ -114,7 +114,7 @@
                     <ul>
                         <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-3 py-2">
                             <a 
-                                href=""
+                                href="{{ route('profile.show', Auth::user()->username) }}"
                                 class="
                                     w-full 
                                     block 

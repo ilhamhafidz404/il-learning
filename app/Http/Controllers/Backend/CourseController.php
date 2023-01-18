@@ -17,7 +17,7 @@ class CourseController extends Controller
         $myCourses = Course::whereHas('user', function ($q) {
             $q->where('user_id', '=', Auth::user()->id);
         })->get();
-        return view("backend.course.index", [
+        return view("backend.oneForAll.course.index", [
             'courses' => $courses,
             'myCourses' => $myCourses,
         ]);
@@ -27,7 +27,7 @@ class CourseController extends Controller
         $course = Course::whereSlug($request->slug)->first();
         $missions = Mission::whereCourseId($course->id)->get();
         $submitSubmissions = Submitsubmission::whereUserId(Auth::user()->id);
-        return view("backend.course.show", [
+        return view("backend.oneForAll.course.show", [
             'course' => $course,
             'missions' => $missions,
             'submitSubmissions' => $submitSubmissions,

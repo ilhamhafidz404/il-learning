@@ -25,7 +25,7 @@ class MissionController extends Controller
     {
         $mission = Mission::whereSlug($slug)->first();
         $submissions = Submission::whereMissionId($mission->id)->get();
-        return view('backend.lecturer.mission.show', [
+        return view('backend.oneForAll.mission.show', [
             'lecturer' => Lecturer::whereEmail(Session::get('email'))->first(),
             'mission' => $mission,
             'submissions' => $submissions,

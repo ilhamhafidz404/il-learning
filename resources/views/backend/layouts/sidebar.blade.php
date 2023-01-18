@@ -22,11 +22,21 @@
         <li>
             <a 
                 href="{{ route('dashboard') }}" 
-                @if (Route::is('dashboard'))
-                    class="px-5 py-3 border-indigo-500 border-l-[5px] flex items-center hover:text-indigo-500 text-indigo-500"
-                @else
-                    class="px-5 py-3 dark:text-white border-transparent border-l-[5px] flex items-center hover:text-indigo-500"
-                @endif
+               class="
+                    px-5 
+                    py-3 
+                    border-l-[5px]
+                    dark:text-white 
+                    @if (Route::is('dashboard*'))
+                        border-indigo-500 
+                        !text-indigo-500
+                    @else
+                        border-transparent 
+                    @endif
+                    flex 
+                    items-center 
+                    hover:text-indigo-500 
+                " 
             >
                 <svg 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -48,11 +58,21 @@
         <li>
             <a 
                 href="{{ route('course.index') }}" 
-                @if (Route::is('course*'))
-                    class="px-5 py-3 border-indigo-500 border-l-[5px] flex items-center hover:text-indigo-500 text-indigo-500"
-                @else
-                    class="px-5 py-3 dark:text-white border-transparent border-l-[5px] flex items-center hover:text-indigo-500"
-                @endif
+                class="
+                    px-5 
+                    py-3 
+                    border-l-[5px]
+                    dark:text-white 
+                    @if (Route::is('course*') || Route::is('mission*') || Route::is('submission*'))
+                        border-indigo-500 
+                        !text-indigo-500
+                    @else
+                        border-transparent 
+                    @endif
+                    flex 
+                    items-center 
+                    hover:text-indigo-500 
+                " 
             >
                 @include(
                     'components.icons.bookOpen-regular-icon',
@@ -65,11 +85,21 @@
             <li>
                 <a 
                     href="{{ route('acceptsks.index') }}" 
-                    @if (Route::is('acceptsks*'))
-                        class="px-5 py-3 border-indigo-500 border-l-[5px] flex items-center hover:text-indigo-500 text-indigo-500"
-                    @else
-                        class="px-5 py-3 dark:text-white border-transparent border-l-[5px] flex items-center hover:text-indigo-500"
-                    @endif
+                    class="
+                        px-5 
+                        py-3 
+                        border-l-[5px]
+                        dark:text-white 
+                        @if (Route::is('acceptsks*'))
+                            border-indigo-500 
+                            !text-indigo-500
+                        @else
+                            border-transparent 
+                        @endif
+                        flex 
+                        items-center 
+                        hover:text-indigo-500 
+                    " 
                 >
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -89,6 +119,32 @@
                 </a>
             </li>
         @endif
+        <li>
+            <a 
+                href="{{ route('myaccount') }}" 
+                class="
+                    px-5 
+                    py-3 
+                    border-l-[5px]
+                    dark:text-white 
+                    @if (Route::is('myaccount*'))
+                        border-indigo-500 
+                        !text-indigo-500
+                    @else
+                        border-transparent 
+                    @endif
+                    flex 
+                    items-center 
+                    hover:text-indigo-500 
+                " 
+            >
+                @include(
+                    'components.icons.userGroup-regular-icon',
+                    ['class' => 'w-6 h-6 mr-3']
+                )
+                My Account
+            </a>
+        </li>
     </ul>
     <div class="absolute bottom-[35px] w-full px-5 block sm:hidden">
         <ul class="mt-auto">
