@@ -28,7 +28,9 @@ class DatabaseSeeder extends Seeder
             SubmissionSeeder::class,
             MissionSeeder::class,
             // 
-            ClassroomLecturerSeeder::class
+            ClassroomLecturerSeeder::class,
+            // 
+            AdminSeeder::class
         ]);
 
         CourseLecturer::insert([

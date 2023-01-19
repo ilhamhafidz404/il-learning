@@ -30,29 +30,19 @@
         >
         <div>
             <h2 class="uppercase text-2xl font-semibold">{{ $user->name }}</h2>
-            <small class="text-gray-300 text-base">20220810052</small>
+            <small class="text-gray-800 dark:text-gray-300 text-base">20220810052</small>
         </div>
     </div>
     <section class="grid grid-cols-3 gap-5 mt-10">
         <a 
-            href=""
+            href="{{ route('profile.show', Auth::user()->username) }}"
             class="bg-[#2441e7] p-5 rounded text-white relative flex items-center min-h-[120px] overflow-hidden"
         >
             <div class="w-1/3">
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke-width="1.5" 
-                    stroke="currentColor" 
-                    class="w-40 h-40 absolute top-0 -left-[40px]"
-                >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" 
-                    />
-                </svg>
+                @include(
+                    'components.icons.userCircle-solid-icon',
+                    ['class' => 'w-40 h-40 absolute top-0 -left-[40px]']
+                )
             </div>
             <div>
                 <h3 class="text-2xl font-bold">See My Account</h3>
@@ -65,20 +55,11 @@
             class="bg-[#ff1053] p-5 rounded text-white relative flex items-center min-h-[120px] overflow-hidden"
         >
             <div class="w-1/3">
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke-width="1.5" 
-                    stroke="currentColor" 
-                    class="w-40 h-40 absolute top-0 -left-[40px]"
-                >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" 
-                    />
-                </svg>
+                
+                @include(
+                    'components.icons.key-solid-icon',
+                    ['class' => 'w-36 absolute top-0 -left-[20px] rotate-[110deg]']
+                )
             </div>
             <div>
                 <h3 class="text-2xl font-bold">Manage Auth</h3>
@@ -91,20 +72,10 @@
             class="bg-[#00a78e] p-5 rounded text-white relative flex items-center min-h-[120px] overflow-hidden"
         >
             <div class="w-1/3">
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke-width="1.5" 
-                    stroke="currentColor" 
-                    class="w-40 h-40 absolute top-0 -left-[40px]"
-                >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" 
-                    />
-                </svg>
+                @include(
+                    'components.icons.cog-solid-icon',
+                    ['class' => 'w-40 h-40 absolute top-0 -left-[40px]']
+                )
             </div>
             <div>
                 <h3 class="text-2xl font-bold">Account Setting</h3>

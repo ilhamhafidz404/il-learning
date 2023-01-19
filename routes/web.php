@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
+
 use App\Http\Controllers\Auth\LecturerLoginController as AuthLecturerLoginController;
 use App\Http\Controllers\Backend\AcceptSKSController;
 
@@ -37,6 +39,8 @@ Route::middleware(['guest'])->group(function () {
     });
     Route::get('/lecturer-login', [AuthLecturerLoginController::class, 'index'])->name('lecturer.login');
     Route::post('/lecturer-login', [AuthLecturerLoginController::class, 'authenticate'])->name('lecturer.authenticate');
+    // 
+    Route::get('/admin/login', [AuthController::class, 'login'])->name('admin.login');
 });
 
 Route::middleware(['auth'])->group(function () {

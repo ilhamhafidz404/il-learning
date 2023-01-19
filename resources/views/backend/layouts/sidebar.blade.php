@@ -22,7 +22,7 @@
         <li>
             <a 
                 href="{{ route('dashboard') }}" 
-               class="
+                class="
                     px-5 
                     py-3 
                     border-l-[5px]
@@ -127,7 +127,7 @@
                     py-3 
                     border-l-[5px]
                     dark:text-white 
-                    @if (Route::is('myaccount*'))
+                    @if (Route::is('myaccount*') || Route::is('profile*'))
                         border-indigo-500 
                         !text-indigo-500
                     @else
