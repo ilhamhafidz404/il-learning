@@ -11,83 +11,148 @@
     @include('components.widgets')    
 
     <section class="grid grid-cols-6 gap-5 mt-10">
-        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded">
-            <h2 
-                class="
-                    text-xl 
-                    font-semibold 
-                    text-gray-800 
-                    dark:text-indigo-500
-                    m-5
-                "
-            >
-                Courses
-            </h2>
-
-            @forelse (Auth::user()->course as $index => $course)
-                <a
-                    href="{{ route('course.show', $course->slug) }}" 
+        <div class="col-span-6 md:col-span-4">
+            <div class="bg-white dark:bg-slate-800 shadow-md rounded">
+                <h2 
                     class="
-                        flex 
-                        flex-col 
-                        sm:flex-row 
-                        gap-5 
-                        items-center 
-                        h-[300px] 
-                        sm:h-[170px] 
-                        hover:bg-gray-100 
-                        dark:hover:bg-slate-700 
-                        p-5
-                        @if ($index+1 != count(Auth::user()->course))
-                            border-b
-                        @endif
-                        border-gray-100
-                        dark:border-slate-600
+                        text-xl 
+                        font-semibold 
+                        text-gray-800 
+                        dark:text-indigo-500
+                        m-5
+                        mt-0
+                        pt-5
                     "
                 >
-                    <img 
-                        src="https://www.toptal.com/designers/subtlepatterns/uploads/floor-tile.png"
-                        class="w-full sm:w-[35%] h-[65%] sm:!h-full object-cover rounded "
+                    Courses
+                </h2>
+
+                @forelse (Auth::user()->course as $index => $course)
+                    <a
+                        href="{{ route('course.show', $course->slug) }}" 
+                        class="
+                            flex 
+                            flex-col 
+                            sm:flex-row 
+                            gap-5 
+                            items-center 
+                            h-[300px] 
+                            sm:h-[170px] 
+                            hover:bg-gray-100 
+                            dark:hover:bg-slate-700 
+                            p-5
+                            @if ($index+1 != count(Auth::user()->course))
+                                border-b
+                            @endif
+                            border-gray-100
+                            dark:border-slate-600
+                        "
                     >
-                    <div class="w-full sm:w-[65%]">
-                        <small class="dark:text-gray-100">TEKNIK INFORMATIKA S1</small>
-                        <h2 
-                            class="
-                                text-xl 
-                                font-medium 
-                                mb-3 
-                                dark:text-gray-100
-                                uppercase
-                            "
+                        <img 
+                            src="https://www.toptal.com/designers/subtlepatterns/uploads/floor-tile.png"
+                            class="w-full sm:w-[35%] h-[65%] sm:!h-full object-cover rounded "
                         >
-                            {{ $course->name }}
-                        </h2>
-                        <span>
-                            @foreach ($course->lecturer as $lecturer)
-                                @foreach ($lecturer->classroom as $classroom)
-                                    @if ($classroom->name == Auth::user()->classroom->name)
-                                        <small class="font-semibold dark:text-gray-100">
-                                            {{ $lecturer->name }}
-                                        </small>
-                                    @endif
+                        <div class="w-full sm:w-[65%]">
+                            <small class="dark:text-gray-100">TEKNIK INFORMATIKA S1</small>
+                            <h2 
+                                class="
+                                    text-xl 
+                                    font-medium 
+                                    mb-3 
+                                    dark:text-gray-100
+                                    uppercase
+                                "
+                            >
+                                {{ $course->name }}
+                            </h2>
+                            <span>
+                                @foreach ($course->lecturer as $lecturer)
+                                    @foreach ($lecturer->classroom as $classroom)
+                                        @if ($classroom->name == Auth::user()->classroom->name)
+                                            <small class="font-semibold dark:text-gray-100">
+                                                {{ $lecturer->name }}
+                                            </small>
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                            @endforeach
-                            <small class="dark:text-gray-100"> | </small>
-                            <small class="dark:text-gray-100">TINFC-2022-01</small>
-                        </span>
+                                <small class="dark:text-gray-100"> | </small>
+                                <small class="dark:text-gray-100">TINFC-2022-01</small>
+                            </span>
+                        </div>
+                    </a>
+                @empty
+                    <div class="text-center my-20">
+                        <h2 class="text-8xl">☹️</h2>
+                        <h3 class="text-2xl mt-4 text-gray-600 dark:text-gray-200">
+                            you have not received credits
+                        </h3>
                     </div>
-                </a>
-            @empty
-                <div class="text-center my-20">
-                    <h2 class="text-8xl">☹️</h2>
-                    <h3 class="text-2xl mt-4 text-gray-600 dark:text-gray-200">
-                        you have not received credits
-                    </h3>
-                </div>
-            @endforelse
+                @endforelse
+            </div>
         </div>
-        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-2 p-5 shadow-md rounded">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-indigo-500">Timeline</h2>
+
+        <div class="col-span-6 md:col-span-2">
+            <div class="bg-white dark:bg-slate-800 py-5 shadow-md rounded">
+                <h2 class="text-xl font-semibold text-gray-800 dark:text-indigo-500 mx-5">Upcoming Event</h2>
+                @if ($submitSubmissions->count() == $submissions->count())
+                    <div class="text-center my-10 dark:text-white">
+                        <h6 class="text-6xl">😁</h6>
+                        <p class="mt-5 font-bold text-xl">Tidak Ada Tugas Untukmu</p>
+                    </div>
+                @elseif ($submitSubmissions->count() == 0 && $submissions->count() > 1)
+                    <ul class="mt-3 text-gray-800 dark:text-white">
+                        @foreach ($submissions as $submission)
+                            <li class="hover:bg-slate-700 px-5 py-3">
+                                <a href="{{ route('submission.show', $submission->slug) }}" class="flex items-center">
+                                    <span class="bg-indigo-500 inline-block p-1 rounded mr-3">
+                                        @include(
+                                            'components.icons.bookOpen-regular-icon',
+                                            ['class' => 'w-8']
+                                        )
+                                    </span>
+                                    <div class="relative w-full">
+                                        <h5 class="font-bold text">
+                                        {{ $submission->name }} -  {{ $submission->mission->name }}
+                                        </h5>
+                                        <small class="text-gray-300 block -mt-1">{{ $submission->course->name }}</small>
+                                        <span class="absolute top-0 right-0 text-sm text-gray-200 italic">
+                                            {{ $submission->deadline }}
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <ul class="mt-3 text-gray-800 dark:text-white">
+                        @foreach ($submissions as $submission)
+                            @foreach ($submitSubmissions as $submitsubmission)    
+                                @if ($submission->id != $submitsubmission->submission_id)
+                                    <li class="hover:bg-slate-700 px-5 py-3">
+                                        <a href="{{ route('submission.show', $submission->slug) }}"" class="flex items-center">
+                                            <span class="bg-indigo-500 inline-block p-1 rounded mr-3">
+                                                @include(
+                                                    'components.icons.bookOpen-regular-icon',
+                                                    ['class' => 'w-8']
+                                                )
+                                            </span>
+                                            <div class="relative w-full">
+                                                <h5 class="font-bold text">
+                                                {{ $submission->name }} -  {{ $submission->mission->name }}
+                                                </h5>
+                                                <small class="text-gray-300 block -mt-1">{{ $submission->course->name }}</small>
+                                                <span class="absolute top-0 right-0 text-sm text-gray-200 italic">
+                                                    {{ $submission->deadline }}
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
         </div>
     </section>
 </section>

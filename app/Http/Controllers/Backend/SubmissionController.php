@@ -47,9 +47,10 @@ class SubmissionController extends Controller
 
     public function store(Request $request)
     {
+        $mission = Mission::whereId($request->mission)->first();
         Submission::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name),
             'description' => $request->description,
             'deadline' => $request->deadline,
             'mission_id' => $request->mission,

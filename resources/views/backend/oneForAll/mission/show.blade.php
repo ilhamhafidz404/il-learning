@@ -99,23 +99,25 @@
             "
         >
             @forelse ($submissions as $index => $submission)
-                <a href="{{ route('submission.show', $submission->slug) }}">
-                    <div 
-                        class="
-                            bg-white 
-                            dark:bg-slate-600
-                            p-5 
-                            rounded 
-                            shadow
-                            dark:text-gray-200
-                        "
-                    >
-                        <h3 class="font-bold">{{ $submission->name}}</h3>
-                        <small>{{ $submission->deadline }}</small>
-                        <br>
-                        <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
-                    </div>
-                </a>
+                @if ($submission->classroom_id == Auth::user()->classroom_id)
+                    <a href="{{ route('submission.show', $submission->slug) }}">
+                        <div 
+                            class="
+                                bg-white 
+                                dark:bg-slate-600
+                                p-5 
+                                rounded 
+                                shadow
+                                dark:text-gray-200
+                            "
+                        >
+                            <h3 class="font-bold">{{ $submission->name}}</h3>
+                            <small>{{ $submission->deadline }}</small>
+                            <br>
+                            <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
+                        </div>
+                    </a>
+                @endif
             @empty
                 <div class="text-center col-span-2 py-10">
                     <h2 class="text-8xl">😁</h2>

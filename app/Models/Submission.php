@@ -39,4 +39,9 @@ class Submission extends Model
     {
         return $this->belongsTo(Mission::class);
     }
+
+    public function Submitsubmission()
+    {
+        return $this->hasMany(Submitsubmission::class);
+    }
 }

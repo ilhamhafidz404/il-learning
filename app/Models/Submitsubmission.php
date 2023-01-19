@@ -15,4 +15,9 @@ class Submitsubmission extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function Submission()
+    {
+        return $this->belongsTo(Submission::class);
+    }
 }
