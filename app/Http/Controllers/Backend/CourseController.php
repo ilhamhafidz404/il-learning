@@ -7,6 +7,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mission;
+use App\Models\Submission;
 use App\Models\Submitsubmission;
 
 class CourseController extends Controller
@@ -31,6 +32,7 @@ class CourseController extends Controller
             'course' => $course,
             'missions' => $missions,
             'submitSubmissions' => $submitSubmissions,
+            'submissionCount' => Submission::whereClassroomId(Auth::user()->classroom_id)->count()
         ]);
     }
 }

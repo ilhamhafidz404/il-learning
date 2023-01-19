@@ -119,8 +119,12 @@
                                 @if ($submitSubmissions->whereMissionId($mission->id)->count())    
                                     {{ 
                                         Str::limit($submitSubmissions->whereMissionId($mission->id)->count() /
-                                        $mission->submission->count() * 100 , 4, '')
+                                        $submissionCount * 100 , 4, '')
                                     }}
+                                    {{-- {{ 
+                                        Str::limit($submitSubmissions->whereMissionId($mission->id)->count() /
+                                        $mission->submission->count() * 100 , 4, '')
+                                    }} --}}
                                 @else
                                     0
                                 @endif
@@ -138,12 +142,14 @@
                                 block
                                 after:content-['']
                                 @if ($submitSubmissions->whereMissionId($mission->id)->count() > 0)    
-                                    @if ($submitSubmissions->whereMissionId($mission->id)->count()/ $mission->submission->count()*100 == 100)
+                                    @if (
+                                        $submitSubmissions->whereMissionId($mission->id)->count() / 
+                                        $submissionCount * 100 == 100)
                                         after:w-full
                                     @else
                                         after:w-[{{ 
                                             Str::limit($submitSubmissions->whereMissionId($mission->id)->count() /
-                                            $mission->submission->count() * 100 , 2, '')
+                                            $submissionCount * 100 , 2, '')
                                         }}%]
                                     @endif
                                 @else

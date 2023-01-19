@@ -129,7 +129,7 @@
                             @foreach ($submitSubmissions as $submitsubmission)    
                                 @if ($submission->id != $submitsubmission->submission_id)
                                     <li class="hover:bg-slate-700 px-5 py-3">
-                                        <a href="{{ route('submission.show', $submission->slug) }}"" class="flex items-center">
+                                        <a href="{{ route('submission.show', $submission->slug) }}" class="flex items-center">
                                             <span class="bg-indigo-500 inline-block p-1 rounded mr-3">
                                                 @include(
                                                     'components.icons.bookOpen-regular-icon',
