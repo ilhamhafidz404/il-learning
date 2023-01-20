@@ -9,9 +9,9 @@ class Classroom extends Model
 {
     use HasFactory;
 
-    public function User()
+    public function Student()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Student::class);
     }
 
     public function Submission()

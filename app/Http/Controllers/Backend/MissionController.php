@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Course;
+use App\Models\Student;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class MissionController extends Controller
 {
@@ -29,6 +31,7 @@ class MissionController extends Controller
             'lecturer' => Lecturer::whereEmail(Session::get('email'))->first(),
             'mission' => $mission,
             'submissions' => $submissions,
+            'student' => Student::whereUserId(Auth::user()->id)->first()
         ]);
     }
 

@@ -17,6 +17,11 @@ class LecturerSeeder extends Seeder
     {
         Lecturer::insert([
             [
+                'name' => "Dosen",
+                'email' => "dosen@gmail.com",
+                'password' => bcrypt('password')
+            ],
+            [
                 'name' => "Sherly Gina Supratman, M.Kom.",
                 'email' => "sherlyy@gmail.com",
                 'password' => bcrypt('password')

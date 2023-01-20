@@ -61,7 +61,7 @@
                                 rounded-full
                                 dark:border-gray-100">
                         <img 
-                            src="{{ asset('storage/'.Auth::user()->profile) }}" 
+                            src="{{ asset('storage/'.$student->profile) }}" 
                             alt="profile photo"
                             class="
                                 w-full 

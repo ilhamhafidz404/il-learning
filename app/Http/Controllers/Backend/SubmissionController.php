@@ -7,6 +7,7 @@ use App\Http\Requests\SubmissionRequest;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\Mission;
+use App\Models\Student;
 use App\Models\Submission;
 use App\Models\Submitsubmission;
 use App\Models\User;
@@ -86,6 +87,7 @@ class SubmissionController extends Controller
         return view('backend.student.submission.show', [
             'submission' => $submission,
             'submitSubmission' => $submitSubmission,
+            'student' => Student::whereUserId(Auth::user()->id)->first()
         ]);
     }
 

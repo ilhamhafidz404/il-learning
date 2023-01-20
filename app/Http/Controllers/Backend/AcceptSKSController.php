@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\ManyToMany\CourseUser;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,8 @@ class AcceptSKSController extends Controller
 
         return view('Backend.acceptsks', [
             'courses' => $courses,
-            'acceptCourse' => $acceptCourse
+            'acceptCourse' => $acceptCourse,
+            'student' => Student::whereUserId(Auth::user()->id)->first()
         ]);
     }
 

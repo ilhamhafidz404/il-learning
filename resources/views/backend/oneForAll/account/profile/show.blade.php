@@ -24,33 +24,33 @@
         "
     >
         <img 
-            src="{{ asset('storage/'.$user->profile) }}" 
+            src="{{ asset('storage/'.$student->profile) }}" 
             alt=""
             class="w-[250px] h-[250px] object-cover mr-10 rounded"
         >
-        <div class="flex justify-between gap-5 items-end">
+        <div class="flex justify-between gap-5 items-end w-full">
             <div class="w-[60%]">
                 <h2 class="uppercase text-2xl font-semibold">{{ $user->name }}</h2>
                 <small class="text-gray-800 dark:text-gray-300 text-base">20220810052</small>
-                <p class="text-sm mt-5 text-gray-800 dark:text-gray-300">{{ $user->about }}</p>
+                <p class="text-sm mt-5 text-gray-800 dark:text-gray-300">{{ $student->about }}</p>
                 <div class="flex mt-10 gap-10">
                     <div>
                         <h4 class="font-semibold mb-2">{{ $user->email }}</h4>
-                        @if ($user->phone)
-                            <h4 class="font-semibold">{{ $user->phone }}</h4>
+                        @if ($student->phone)
+                            <h4 class="font-semibold">{{ $student->phone }}</h4>
                         @else
                             <i class="text-gray-800 dark:text-gray-300">no phone number information</i>
                         @endif
                     </div>
                     <div>
-                        @if ($user->birthday)
-                            <h4 class="font-semibold mb-2">{{ $user->birthday }}</h4>
+                        @if ($student->birthday)
+                            <h4 class="font-semibold mb-2">{{ $student->birthday }}</h4>
                         @else
                             <i class="text-gray-800 dark:text-gray-300">no birtday information</i>
                         @endif
 
-                        @if ($user->address)
-                            <h4 class="font-semibold">{{ $user->address }}</h4>
+                        @if ($student->address)
+                            <h4 class="font-semibold">{{ $student->address }}</h4>
                         @else
                             <i class="text-gray-800 dark:text-gray-300">no address information</i>
                         @endif
@@ -67,21 +67,21 @@
                             ['class' => 'w-8']
                         )
                     </span>
-                    <h5 class="white-nowrap text-sm">{{ $user->classroom->name }}</h5>
+                    <h5 class="white-nowrap text-sm">{{ $student->classroom->name }}</h5>
                 </span>
                 <h6 class="font-bold mt-7">SOCIAL MEDIA</h6>
                 @if (
-                    !$user->facebook && 
-                    !$user->twitter && 
-                    !$user->instagram && 
-                    !$user->tiktok && 
-                    !$user->youtube && 
-                    !$user->github
+                    !$student->facebook && 
+                    !$student->twitter && 
+                    !$student->instagram && 
+                    !$student->tiktok && 
+                    !$student->youtube && 
+                    !$student->github
                 )
                     <i class="text-gray-300">no social media information</i>
                 @else
                     <span class="flex items-center mt-2">
-                        @if ($user->facebook)
+                        @if ($student->facebook)
                             <a class="bg-[#1773ea] inline-block rounded p-1 mr-2">
                                 <img 
                                     src="{{ asset('images/icon/facebook.png') }}" 
@@ -91,7 +91,7 @@
                             </a>
                         @endif
 
-                        @if ($user->twitter)
+                        @if ($student->twitter)
                             <a class="bg-[#1c9cea] inline-block rounded p-1 mr-2">
                                 <img 
                                     src="{{ asset('images/icon/twitter.png') }}" 
@@ -101,7 +101,7 @@
                             </a>
                         @endif
 
-                        @if ($user->instagram)    
+                        @if ($student->instagram)    
                             <a 
                                 class="inline-block rounded p-1 mr-2" 
                                 style="
@@ -123,7 +123,7 @@
                             </a>
                         @endif
                         
-                        @if ($user->tiktok)
+                        @if ($student->tiktok)
                             <a 
                                 class="bg-[#010101] inline-block rounded p-1 mr-2" 
                             >

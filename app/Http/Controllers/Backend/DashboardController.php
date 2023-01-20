@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Lecturer;
+use App\Models\Student;
 use App\Models\Submission;
 use App\Models\Submitsubmission;
 use Illuminate\Support\Facades\Session;
@@ -30,7 +31,8 @@ class DashboardController extends Controller
         return view('backend.dashboard', [
             'courses' => Course::all(),
             'submissions' => Submission::whereClassroomId(Auth::user()->classroom_id)->get(),
-            'submitSubmissions' => Submitsubmission::whereUserId(Auth::user()->id)->get()
+            'submitSubmissions' => Submitsubmission::whereUserId(Auth::user()->id)->get(),
+            'student' => Student::whereUserId(Auth::user()->id)->first()
         ]);
     }
 }

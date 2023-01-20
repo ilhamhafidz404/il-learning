@@ -99,7 +99,7 @@
             "
         >
             @forelse ($submissions as $index => $submission)
-                @if ($submission->classroom_id == Auth::user()->classroom_id)
+                @if ($submission->classroom_id == $student->classroom_id)
                     <a href="{{ route('submission.show', $submission->slug) }}">
                         <div 
                             class="

@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             // 
             ClassroomLecturerSeeder::class,
             // 
-            AdminSeeder::class
+            AdminSeeder::class,
+            StudentSeeder::class
         ]);
 
         CourseLecturer::insert([

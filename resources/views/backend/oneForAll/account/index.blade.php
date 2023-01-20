@@ -24,12 +24,12 @@
         "
     >
         <img 
-            src="{{ asset('storage/'.$user->profile) }}" 
+            src="{{ asset('storage/'.$student->profile) }}" 
             alt=""
             class="rounded-full w-[150px] h-[150px] object-cover mr-10"
         >
         <div>
-            <h2 class="uppercase text-2xl font-semibold">{{ $user->name }}</h2>
+            <h2 class="uppercase text-2xl font-semibold">{{ Auth::user()->name }}</h2>
             <small class="text-gray-800 dark:text-gray-300 text-base">20220810052</small>
         </div>
     </div>

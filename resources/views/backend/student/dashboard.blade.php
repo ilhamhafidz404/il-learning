@@ -8,7 +8,7 @@
         lg:pr-[70px]
     "
 >
-    @include('components.widgets')    
+    @include('components.widgets')
 
     <section class="grid grid-cols-6 gap-5 mt-10">
         <div class="col-span-6 md:col-span-4">
@@ -68,7 +68,7 @@
                             <span>
                                 @foreach ($course->lecturer as $lecturer)
                                     @foreach ($lecturer->classroom as $classroom)
-                                        @if ($classroom->name == Auth::user()->classroom->name)
+                                        @if ($classroom->name == $student->classroom->name)
                                             <small class="font-semibold dark:text-gray-100">
                                                 {{ $lecturer->name }}
                                             </small>
@@ -81,7 +81,7 @@
                         </div>
                     </a>
                 @empty
-                    <div class="text-center my-20">
+                    <div class="text-center my-20 pb-10">
                         <h2 class="text-8xl">☹️</h2>
                         <h3 class="text-2xl mt-4 text-gray-600 dark:text-gray-200">
                             you have not received credits
@@ -102,9 +102,9 @@
                 @elseif ($submitSubmissions->count() == 0 && $submissions->count() > 1)
                     <ul class="mt-3 text-gray-800 dark:text-white">
                         @foreach ($submissions as $submission)
-                            <li class="hover:bg-slate-700 px-5 py-3">
+                            <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-5 py-3">
                                 <a href="{{ route('submission.show', $submission->slug) }}" class="flex items-center">
-                                    <span class="bg-indigo-500 inline-block p-1 rounded mr-3">
+                                    <span class="bg-indigo-500  text-white inline-block p-1 rounded mr-3">
                                         @include(
                                             'components.icons.bookOpen-regular-icon',
                                             ['class' => 'w-8']
@@ -114,9 +114,11 @@
                                         <h5 class="font-bold text">
                                         {{ $submission->name }} -  {{ $submission->mission->name }}
                                         </h5>
-                                        <small class="text-gray-300 block -mt-1">{{ $submission->course->name }}</small>
-                                        <span class="absolute top-0 right-0 text-sm text-gray-200 italic">
-                                            {{ $submission->deadline }}
+                                        <small class="text-gray-700 dark:text-gray-300 block -mt-1">
+                                            {{ $submission->course->name }}
+                                        </small>
+                                        <span class="absolute top-0 right-0 text-sm text-gray-700 dark:text-gray-200 italic">
+                                            {{-- {{ $submission->deadline }} --}}
                                         </span>
                                     </div>
                                 </a>
@@ -128,9 +130,9 @@
                         @foreach ($submissions as $submission)
                             @foreach ($submitSubmissions as $submitsubmission)    
                                 @if ($submission->id != $submitsubmission->submission_id)
-                                    <li class="hover:bg-slate-700 px-5 py-3">
+                                    <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-5 py-3">
                                         <a href="{{ route('submission.show', $submission->slug) }}" class="flex items-center">
-                                            <span class="bg-indigo-500 inline-block p-1 rounded mr-3">
+                                            <span class="bg-indigo-500 text-white inline-block p-1 rounded mr-3">
                                                 @include(
                                                     'components.icons.bookOpen-regular-icon',
                                                     ['class' => 'w-8']
@@ -140,8 +142,10 @@
                                                 <h5 class="font-bold text">
                                                 {{ $submission->name }} -  {{ $submission->mission->name }}
                                                 </h5>
-                                                <small class="text-gray-300 block -mt-1">{{ $submission->course->name }}</small>
-                                                <span class="absolute top-0 right-0 text-sm text-gray-200 italic">
+                                                <small class="text-gray-700 dark:text-gray-300 block -mt-1">
+                                                    {{ $submission->course->name }}
+                                                </small>
+                                                <span class="absolute top-0 right-0 text-sm text-gray-700 dark:text-gray-200 italic">
                                                     {{ $submission->deadline }}
                                                 </span>
                                             </div>
