@@ -17,24 +17,24 @@ class LecturerLoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        // $credentials = $request->validate([
+        //     'email' => ['required', 'email'],
+        //     'password' => ['required'],
+        // ]);
 
-        if (Auth::guard('lecturer')->attempt($credentials)) {
-            $login = Lecturer::where('email', $credentials['email'])->first();
-            auth()->login($login);
+        // if (Auth::guard('lecturer')->attempt($credentials)) {
+        //     $login = Lecturer::where('email', $credentials['email'])->first();
+        //     auth()->login($login);
 
-            session()->put('lecturer', true);
-            session()->put('email', $request->email);
-            $request->session()->regenerate();
-            $request->session()->regenerateToken();
-            return redirect()->intended('dashboard');
-        }
+        //     session()->put('lecturer', true);
+        //     session()->put('email', $request->email);
+        //     $request->session()->regenerate();
+        //     $request->session()->regenerateToken();
+        //     return redirect()->intended('dashboard');
+        // }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        // return back()->withErrors([
+        //     'email' => 'The provided credentials do not match our records.',
+        // ])->onlyInput('email');
     }
 }

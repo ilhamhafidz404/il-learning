@@ -24,7 +24,7 @@
         "
     >
         <img 
-            src="{{ asset('storage/'.$student->profile) }}" 
+            src="{{ asset('storage/'.$user->profile) }}" 
             alt=""
             class="rounded-full w-[150px] h-[150px] object-cover mr-10"
         >
@@ -84,65 +84,67 @@
         </a>
     </section>
 
-    <section 
-        class="p-5 mt-10 bg-white dark:bg-slate-800 shadow-md rounded text-right"
-    >
-        @if (count($acceptCourse) > 0)
-            <h3 
-                class="
-                    text-left
-                    font-semibold
-                    text-xl
-                    mb-4
-                    tracking-wide
-                    dark:text-emerald-500
-                "
-            >
-                Mata Kuliah Saya
-            </h3>
-            <div class="overflow-auto pb-5 md:pb-0">
-                <table class="w-[800px] md:w-full text-left">
-                    <tr class="text-white bg-emerald-500">
-                        <th class="py-4 pl-5">Course</th>
-                        <th class="py-4 pl-5">SKS</th>
-                        <th>Lecturer</th>
-                    </tr>
-                    @foreach ($acceptCourse as $index => $course)
-                        <tr
-                            class="
-                                dark:text-white
-                                @if ($index%2 > 0)
-                                    bg-gray-100 dark:bg-slate-700
-                                @endif
-                            "
-                        >
-                            <td class="py-2 pl-5">{{ $course->name }}</td>
-                            <td>{{ $course->sks }}</td>
-                            <td>
-                                @foreach ($course->Lecturer as $lecturer)
-                                    {{ $lecturer->name }}
-                                @endforeach
-                            </td>
-                        </tr>
-                    @endforeach
-                </table>
-            </div>
-        @else
-            <div class="text-center col-span-2 py-10">
-                <h2 class="text-8xl">☹️</h2>
-                <h5 
-                class="
-                text-3xl 
-                mt-5 
-                tracking-wide
-                dark:text-white
-                "
+    @if (Auth::user()->hasRole('student'))
+        <section 
+            class="p-5 mt-10 bg-white dark:bg-slate-800 shadow-md rounded text-right"
+        >
+            @if (count($acceptCourse) > 0)
+                <h3 
+                    class="
+                        text-left
+                        font-semibold
+                        text-xl
+                        mb-4
+                        tracking-wide
+                        dark:text-emerald-500
+                    "
                 >
-                    Kamu Belum Mengisi SKS,
-                    <a href="{{ route('acceptsks.index') }}" class="text-indigo-500">isi SKS?</a>
-                </h5>
-            </div>
-        @endif
-    </section>
+                    Mata Kuliah Saya
+                </h3>
+                <div class="overflow-auto pb-5 md:pb-0">
+                    <table class="w-[800px] md:w-full text-left">
+                        <tr class="text-white bg-emerald-500">
+                            <th class="py-4 pl-5">Course</th>
+                            <th class="py-4 pl-5">SKS</th>
+                            <th>Lecturer</th>
+                        </tr>
+                        @foreach ($acceptCourse as $index => $course)
+                            <tr
+                                class="
+                                    dark:text-white
+                                    @if ($index%2 > 0)
+                                        bg-gray-100 dark:bg-slate-700
+                                    @endif
+                                "
+                            >
+                                <td class="py-2 pl-5">{{ $course->name }}</td>
+                                <td>{{ $course->sks }}</td>
+                                <td>
+                                    @foreach ($course->Lecturer as $lecturer)
+                                        {{ $lecturer->name }}
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            @else
+                <div class="text-center col-span-2 py-10">
+                    <h2 class="text-8xl">☹️</h2>
+                    <h5 
+                    class="
+                    text-3xl 
+                    mt-5 
+                    tracking-wide
+                    dark:text-white
+                    "
+                    >
+                        Kamu Belum Mengisi SKS,
+                        <a href="{{ route('acceptsks.index') }}" class="text-indigo-500">isi SKS?</a>
+                    </h5>
+                </div>
+            @endif
+        </section>
+    @endif
 </section>
 @endsection

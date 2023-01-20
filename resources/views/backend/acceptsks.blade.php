@@ -106,8 +106,8 @@
                                 {{ $course->sks }}
                             </td>
                             <td>
-                                @foreach ($course->Lecturer as $lecturer)
-                                    {{ $lecturer->name }}
+                                @foreach ($course->lecturer as $lecturer)
+                                    {{ $lecturer->user->name }}
                                 @endforeach
                             </td>
                         </tr>
@@ -204,7 +204,7 @@
                             <td>{{ $course->sks }}</td>
                             <td>
                                 @foreach ($course->Lecturer as $lecturer)
-                                    {{ $lecturer->name }}
+                                    {{ $lecturer->user->name }}
                                 @endforeach
                             </td>
                         </tr>

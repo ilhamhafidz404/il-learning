@@ -69,26 +69,29 @@ class SubmissionController extends Controller
 
     public function show($slug)
     {
-        if (Session::has('lecturer')) {
-            $lecturer = Lecturer::whereEmail(Session::get('email'))->first();
-            $submission = Submission::whereSlug($slug)->first();
-            $submitSubmissions = Submitsubmission::whereSubmissionId($submission->id)->get();
-            // 
-            $userCount = User::whereClassroomId($submission->classroom_id)->count();
-            return view('backend.lecturer.submission.show', [
-                'submission' => $submission,
-                'lecturer' => $lecturer,
-                'submitSubmissions' => $submitSubmissions,
-                'userCount' => $userCount
-            ]);
-        }
         $submission = Submission::whereSlug($slug)->first();
         $submitSubmission = Submitsubmission::whereUserId(Auth::user()->id)->whereSubmissionId($submission->id)->first();
-        return view('backend.student.submission.show', [
-            'submission' => $submission,
-            'submitSubmission' => $submitSubmission,
-            'student' => Student::whereUserId(Auth::user()->id)->first()
-        ]);
+
+        if (Auth::user()->hasRole('student')) {
+
+            $user = Student::whereUserId(Auth::user()->id)->first();
+            return view('backend.student.submission.show', [
+                'submission' => $submission,
+                'submitSubmission' => $submitSubmission,
+                'user' => $user
+            ]);
+        } else {
+
+            $user = Lecturer::whereUserId(Auth::user()->id)->first();
+            $submitSubmissions = Submitsubmission::whereSubmissionId($submission->id)->get();
+            $studentCount = Student::whereClassroomId($submission->classroom_id)->count();
+            return view('backend.lecturer.submission.show', [
+                'submission' => $submission,
+                'user' => $user,
+                'submitSubmissions' => $submitSubmissions,
+                'studentCount' => $studentCount
+            ]);
+        }
     }
 
     /**

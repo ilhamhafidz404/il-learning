@@ -59,7 +59,7 @@
         <div class="flex justify-between items-center">
             <h2 class=" text-2xl font-semibold">{{ $submission->name }}</h2>
             <span class="text-white text-sm bg-red-500 py-1 px-2 rounded-md">
-                {{ $submitSubmissions->count() }} / {{ $userCount }}
+                {{ $submitSubmissions->count() }} / {{ $studentCount }}
             </span>
         </div>
         <p>

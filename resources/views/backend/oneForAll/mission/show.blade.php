@@ -50,7 +50,7 @@
             >
                 Kembali
             </a>
-           @if (Session::has('lecturer'))
+           @if (Auth::user()->hasRole('lecturer'))
                 <div class="flex absolute right-0 bottom-[150px] ">
                     <a 
                         href="{{ route('mission.create', ['slug' => $mission->course->slug]) }}" 
@@ -98,8 +98,44 @@
                 -mt-[150px]
             "
         >
-            @forelse ($submissions as $index => $submission)
-                @if ($submission->classroom_id == $student->classroom_id)
+            @if (Auth::user()->hasRole('student'))
+                @forelse ($submissions as $index => $submission)
+                    @if ($submission->classroom_id == $user->classroom_id)
+                        <a href="{{ route('submission.show', $submission->slug) }}">
+                            <div 
+                                class="
+                                    bg-white 
+                                    dark:bg-slate-600
+                                    p-5 
+                                    rounded 
+                                    shadow
+                                    dark:text-gray-200
+                                "
+                            >
+                                <h3 class="font-bold">{{ $submission->name}}</h3>
+                                <small>{{ $submission->deadline }}</small>
+                                <br>
+                                <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
+                            </div>
+                        </a>
+                    @endif
+                @empty
+                    <div class="text-center col-span-2 py-10">
+                        <h2 class="text-8xl">😁</h2>
+                        <h5 
+                            class="
+                                text-3xl 
+                                mt-5 
+                                tracking-wide
+                                dark:text-white
+                            "
+                        >
+                            Belum ada tugas untukmu
+                        </h5>
+                    </div>
+                @endforelse
+            @else
+                @forelse ($submissions as $index => $submission)
                     <a href="{{ route('submission.show', $submission->slug) }}">
                         <div 
                             class="
@@ -117,19 +153,17 @@
                             <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
                         </div>
                     </a>
-                @endif
-            @empty
-                <div class="text-center col-span-2 py-10">
-                    <h2 class="text-8xl">😁</h2>
-                    <h5 
-                        class="
-                            text-3xl 
-                            mt-5 
-                            tracking-wide
-                            dark:text-white
-                        "
-                    >
-                        @if (Session::has('lecturer'))
+                @empty
+                    <div class="text-center col-span-2 py-10">
+                        <h2 class="text-8xl">😁</h2>
+                        <h5 
+                            class="
+                                text-3xl 
+                                mt-5 
+                                tracking-wide
+                                dark:text-white
+                            "
+                        >
                             Belum ada submission, 
                             <a 
                                 href="{{ route('submission.create', ['slug' => $mission->course->slug]) }}" 
@@ -137,12 +171,11 @@
                             >
                                 Buat Submission?
                             </a>
-                        @else
-                            Belum ada tugas untukmu
-                        @endif
-                    </h5>
-                </div>
-            @endforelse
+                        </h5>
+                    </div>
+                @endforelse
+
+            @endif
         </div>
     </section>
 @endsection

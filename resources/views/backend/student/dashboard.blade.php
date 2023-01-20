@@ -68,9 +68,9 @@
                             <span>
                                 @foreach ($course->lecturer as $lecturer)
                                     @foreach ($lecturer->classroom as $classroom)
-                                        @if ($classroom->name == $student->classroom->name)
+                                        @if ($classroom->name == $user->classroom->name)
                                             <small class="font-semibold dark:text-gray-100">
-                                                {{ $lecturer->name }}
+                                                {{ $lecturer->user->name }}
                                             </small>
                                         @endif
                                     @endforeach

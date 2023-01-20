@@ -26,4 +26,9 @@ class Lecturer extends Authenticatable
     {
         return $this->hasMany(Submission::class);
     }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

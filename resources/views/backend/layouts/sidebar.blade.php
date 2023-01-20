@@ -81,7 +81,7 @@
                 Course
             </a>
         </li>
-        @if (!Session::has('lecturer'))
+        @if (!Auth::user()->hasRole('lecturer'))
             <li>
                 <a 
                     href="{{ route('acceptsks.index') }}" 

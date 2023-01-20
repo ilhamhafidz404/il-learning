@@ -27,11 +27,17 @@ class MissionController extends Controller
     {
         $mission = Mission::whereSlug($slug)->first();
         $submissions = Submission::whereMissionId($mission->id)->get();
+
+        if (Auth::user()->hasRole('student')) {
+            $user = Student::whereUserId(Auth::user()->id)->first();
+        } else {
+            $user = Lecturer::whereUserId(Auth::user()->id)->first();
+        }
+
         return view('backend.oneForAll.mission.show', [
-            'lecturer' => Lecturer::whereEmail(Session::get('email'))->first(),
             'mission' => $mission,
             'submissions' => $submissions,
-            'student' => Student::whereUserId(Auth::user()->id)->first()
+            'user' => $user
         ]);
     }
 
