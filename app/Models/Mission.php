@@ -20,4 +20,9 @@ class Mission extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function Progres()
+    {
+        return $this->hasMany(Progres::class);
+    }
 }

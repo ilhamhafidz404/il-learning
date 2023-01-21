@@ -79,7 +79,7 @@
             >
                 @csrf
                 <input type="number" name="course" value="{{ $course->id }}" hidden>
-                <input type="number" name="lecturer" value="{{ $lecturer->id }}" hidden>
+                <input type="number" name="lecturer" value="{{ $user->id }}" hidden>
                 
                 <div class="mb-5">
                     <label 

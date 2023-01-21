@@ -7,6 +7,7 @@ use App\Http\Requests\SubmissionRequest;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\Mission;
+use App\Models\Progress;
 use App\Models\Student;
 use App\Models\Submission;
 use App\Models\Submitsubmission;
@@ -35,13 +36,13 @@ class SubmissionController extends Controller
      */
     public function create()
     {
-        $lecturer = Lecturer::whereEmail(Session::get('email'))->first();
+        $user = Lecturer::whereUserId(Auth::user()->id)->first();
         $course = Course::whereSlug($_GET['slug'])->first();
         $missions = Mission::whereCourseId($course->id)->get();
 
         return view('backend.lecturer.submission.add', [
             'course' => $course,
-            'lecturer' => $lecturer,
+            'user' => $user,
             'missions' => $missions
         ]);
     }

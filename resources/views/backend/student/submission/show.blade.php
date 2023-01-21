@@ -48,7 +48,12 @@
         ></span>
         <div class="text-white relative h-[300px]">
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $submission->mission->name }}</h1>
-            <p>{{ $submission->lecturer->name }}  | {{ $submission->course->name }}</p>
+            <p>
+                {{ $submission->lecturer->user->name }} 
+                <span class="sm:inline hidden">|</span>
+                <br class="sm:hidden block">
+                {{ $submission->course->name }}
+            </p>
             <a 
                 href="{{ route('mission.show', $submission->mission->slug) }}" 
                 class="text-white absolute bottom-[150px] z-30 left-0"
@@ -107,7 +112,7 @@
                 <div class="mb-3">
                     <label for="file">File : </label>
                     <img 
-                        src="{{ asset('images/icon/fileExtensions/'.$submitSubmission->extension.'.jpg') }}" 
+                        src="{{ asset('images/icon/fileExtensions/'.$submitSubmission->extension.'.png') }}" 
                         alt="{{ $submitSubmission->extension }}"
                         width="50"
                     >

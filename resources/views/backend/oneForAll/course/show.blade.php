@@ -45,7 +45,7 @@
         <div class="text-white relative h-[300px]">
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
             @foreach ($course->lecturer as $lecturer)
-                <span>{{ $lecturer->name }}</span>
+                <span>{{ $lecturer->user->name }}</span>
             @endforeach
             <a 
                 href="{{ route('dashboard') }}" 
@@ -53,7 +53,7 @@
             >
                 Kembali
             </a>
-           @if (Session::has('lecturer'))
+           @if (Auth::user()->hasRole('lecturer'))
                 <div class="flex absolute right-0 bottom-[150px] ">
                     <a 
                         href="{{ route('mission.create', ['slug' => $course->slug]) }}" 
@@ -116,18 +116,16 @@
                         <span class="flex justify-between items-center">
                             <h3 class="font-bold">{{ $mission->name}}</h3>
                             <h4 class="font-bold">
-                                @if ($submitSubmissions->whereMissionId($mission->id)->count())    
-                                    {{ 
-                                        Str::limit($submitSubmissions->whereMissionId($mission->id)->count() /
-                                        $submissionCount->whereMissionId($mission->id)->count() * 100 , 4, '')
-                                    }}
-                                    {{-- {{ 
-                                        Str::limit($submitSubmissions->whereMissionId($mission->id)->count() /
-                                        $mission->submission->count() * 100 , 4, '')
-                                    }} --}}
-                                @else
-                                    0
-                                @endif
+                                @foreach ($progresses as $progress)
+                                    @if ($progress->mission_id == $mission->id)
+                                        {{ 
+                                            Str::limit(
+                                                $progress->progress / $progress->submission_count * 100, 4, ''
+                                            )
+                                        }}
+                                        @break
+                                    @endif
+                                @endforeach
                                 %
                             </h4>
                         </span>
@@ -141,20 +139,6 @@
                                 bg-indigo-500/40
                                 block
                                 after:content-['']
-                                @if ($submitSubmissions->whereMissionId($mission->id)->count() > 0)    
-                                    @if (
-                                        $submitSubmissions->whereMissionId($mission->id)->count() / 
-                                        $submissionCount->whereMissionId($mission->id)->count() * 100 == 100)
-                                        after:w-full
-                                    @else
-                                        after:w-[{{ 
-                                            Str::limit($submitSubmissions->whereMissionId($mission->id)->count() /
-                                            $submissionCount->whereMissionId($mission->id)->count() * 100 , 2, '')
-                                        }}%]
-                                    @endif
-                                @else
-                                    after:w-[0%]
-                                @endif
                                 after:bg-indigo-500
                                 after:h-full
                                 after:absolute

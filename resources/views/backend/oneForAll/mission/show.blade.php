@@ -41,7 +41,9 @@
         <div class="text-white relative h-[300px]">
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $mission->name }}</h1>
             <span>
-                {{ $mission->course->lecturer[0]->name }} |
+                {{ $mission->course->lecturer[0]->user->name }}
+                <span class="sm:inline hidden">|</span>
+                <br class="sm:hidden block">
                 {{ $mission->course->name }}
             </span>
             <a 
