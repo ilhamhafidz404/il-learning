@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('submitsubmissions', function (Blueprint $table) {
             $table->id();
             $table->text('file');
-            $table->text('description');
+            $table->text('description')->default('-');
             $table->foreignId('user_id');
             $table->foreignId('mission_id');
             $table->foreignId('submission_id');

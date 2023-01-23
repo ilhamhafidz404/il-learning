@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\more;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubmitsubmissionRequest;
 use App\Models\Progres;
 use App\Models\Progress;
 use App\Models\Submission;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class SubmitSubmissionController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(SubmitsubmissionRequest $request)
     {
         Submitsubmission::create([
             'file' => $request->file('file')->store('complete_submission'),
@@ -24,7 +25,7 @@ class SubmitSubmissionController extends Controller
         ]);
 
 
-        $check = Progress::whereId(Auth::user()->id)->whereMission_id($request->mission)->first();
+        $check = Progress::whereUserId(Auth::user()->id)->whereMission_id($request->mission)->first();
         if ($check) {
             Progress::find($check->id)->update([
                 'progress' => $check->progress + 1,

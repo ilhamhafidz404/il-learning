@@ -99,7 +99,7 @@
                         <h6 class="text-6xl">😁</h6>
                         <p class="mt-5 font-bold text-xl">Tidak Ada Tugas Untukmu</p>
                     </div>
-                @elseif ($submitSubmissions->count() == 0 && $submissions->count() > 1)
+                @elseif ($submitSubmissions->count() == 0 || $submissions->count() > 1)
                     <ul class="mt-3 text-gray-800 dark:text-white">
                         @foreach ($submissions as $submission)
                             <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-5 py-3">
@@ -156,6 +156,13 @@
                         @endforeach
                     </ul>
                 @endif
+
+                {{-- @if ($submitSubmissions->count() == $submissions->count())
+                    <div class="text-center my-10 dark:text-white">
+                        <h6 class="text-6xl">😁</h6>
+                        <p class="mt-5 font-bold text-xl">Tidak Ada Tugas Untukmu</p>
+                    </div>
+                @endif --}}
             </div>
         </div>
     </section>

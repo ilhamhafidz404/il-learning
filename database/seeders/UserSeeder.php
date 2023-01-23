@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -15,13 +16,29 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'ilham hafidz',
-            'username' => 'xxhamz_',
-            'email' => 'xxspanzie@gmail.com',
-            'password' => bcrypt('password'),
-            'mode' => 'dark',
-        ])->assignRole('student');
+        $students = [
+            'Afri Prasutyo', "Aji Sundowo",
+            "Ananda Sayyidina Rahmat", "Aysyah Noor Shobah",
+            "Bagas Cahyawiguna", "Dera Sartika Dwiratna",
+            "Exsha Andara Santana", "Fadel Dwi Antoro",
+            "Farhan Maulana Basri", "Firdan Fauzan",
+            "Fitri Handayani", "Hasan Abdu Rahman",
+            "Havrizar Harja Semeru", "Helva Faizya",
+            "Ilham Hafidz", "Lilis Apriah",
+            "Mochamad Ilham Ariel Fadia", "Muhammad Faizal Yusuf",
+            "Muhammad Faizal Nurfauzy", "Muhammad Rizal Mutaqin",
+            "Putri Maharani", "Rizal Hamzah",
+            "Samuel Herdia Nugraha", "Wahyu",
+        ];
+        foreach ($students as $user) {
+            User::create([
+                'name' => $user,
+                'username' => Str::slug($user),
+                'email' => Str::slug($user) . '@gmail.com',
+                'password' => bcrypt('password'),
+                'mode' => 'dark',
+            ])->assignRole('student');
+        }
 
         User::create([
             'name' => 'Hamdan Alfarizi',

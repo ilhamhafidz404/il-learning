@@ -234,8 +234,18 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="file">File : </label>
+                        <label 
+                            for="file"
+                            class="
+                                @error('file')
+                                    text-red-500
+                                @enderror
+                            "
+                        >File : </label>
                         <input type="file" name="file" id="file" required>
+                        @error('file')
+                            <small class="text-red-500 block mt-3">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="flex justify-between mt-10">
                         <a 

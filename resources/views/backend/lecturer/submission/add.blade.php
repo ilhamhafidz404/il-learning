@@ -164,19 +164,35 @@
                 </div>
                 <div class="grid md:grid-cols-3 gap-5 mb-5">
                     <div>
-                        <label for="mission" class="block">Mission</label>
+                        <label 
+                            for="mission" 
+                            class="
+                                block
+                                font-bold
+                                mb-2
+                                @error('mission')
+                                    text-red-500
+                                @enderror
+                            "
+                        >Mission</label>
                         <select 
                             name="mission" 
                             id="mission" 
                             class="
                                 w-full 
                                 px-3 
-                                py-3 
+                                py-2 
                                 rounded 
                                 text-gray-800 
-                                bg-gray-100 
                                 dark:text-gray-200
-                                dark:bg-slate-700
+                                @error('deadline')
+                                    border-2
+                                    border-red-500
+                                    bg-red-500/10
+                                @else
+                                    bg-gray-100 
+                                    dark:bg-slate-700
+                                @enderror
                             "
                             required
                         >
@@ -190,19 +206,35 @@
                         @enderror
                     </div>
                     <div>
-                        <label for="classroom" class="block">Kelas</label>
+                        <label 
+                            for="classroom" 
+                            class="
+                                block
+                                font-bold
+                                mb-2
+                                @error('classroom')
+                                    text-red-500
+                                @enderror
+                            "
+                        >Kelas</label>
                         <select 
                             name="classroom" 
                             id="classroom" 
                             class="
                                 w-full 
                                 px-3 
-                                py-3 
+                                py-2 
                                 rounded 
                                 text-gray-800 
-                                bg-gray-100 
                                 dark:text-gray-200
-                                dark:bg-slate-700
+                                @error('deadline')
+                                    border-2
+                                    border-red-500
+                                    bg-red-500/10
+                                @else
+                                    bg-gray-100 
+                                    dark:bg-slate-700
+                                @enderror
                             "
                             required
                         >

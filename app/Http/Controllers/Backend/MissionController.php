@@ -7,6 +7,7 @@ use App\Models\Mission;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MissionRequest;
 use Illuminate\Support\Str;
 use App\Models\Course;
 use App\Models\Student;
@@ -18,7 +19,7 @@ class MissionController extends Controller
     public function create()
     {
         return view('backend.lecturer.mission.add', [
-            'lecturer' => Lecturer::whereEmail(Session::get('email'))->first(),
+            'user' => Lecturer::whereUserId(Auth::user()->id)->first(),
             'course' => Course::whereSlug($_GET['slug'])->first()
         ]);
     }
@@ -41,7 +42,7 @@ class MissionController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(MissionRequest $request)
     {
         Mission::create([
             'name' => $request->name,

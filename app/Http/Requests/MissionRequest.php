@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class SubmissionRequest extends FormRequest
+class MissionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,8 @@ class SubmissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:25',
-            'deadline' => 'required',
-            'lecturer' => 'required',
+            'name' => ['required', 'min:5', 'max:25'],
             'course' => 'required',
-            'classroom' => 'required',
-            'mission' => 'required',
         ];
     }
 }

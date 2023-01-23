@@ -129,9 +129,25 @@
                                 %
                             </h4>
                         </span>
-                        <span 
+                        <progress 
+                            value=" @foreach ($progresses as $progress)
+                                @if ($progress->mission_id == $mission->id)
+                                    {{$progress->progress / $progress->submission_count * 100}}@break
+                                @endif
+                            @endforeach" 
+                            max="100" 
                             class="
-                             relative
+                                relative
+                                mt-5
+                                w-full
+                                h-[5px]
+                                rounded
+                                bg-slate-300
+                            "
+                        ></progress>
+                        {{-- <span 
+                            class="
+                                relative
                                 mt-5
                                 w-full
                                 h-[5px]
@@ -144,7 +160,7 @@
                                 after:absolute
                                 after:rounded
                             "
-                        ></span>
+                        ></span> --}}
                     </div>
                 </a>
             @empty

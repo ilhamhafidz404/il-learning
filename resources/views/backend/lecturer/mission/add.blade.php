@@ -120,7 +120,16 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="course" class="block">Course</label>
+                    <label 
+                        for="course" 
+                        class="
+                            @error('course')
+                                text-red-500
+                            @enderror
+                            block
+                            font-semibold
+                        "
+                    >Course</label>
                     <select 
                         name="course" 
                         id="course" 
@@ -128,11 +137,16 @@
                             w-full 
                             px-3 
                             py-3 
-                            rounded 
-                            text-gray-800 
+                            rounded
                             bg-gray-100 
                             dark:text-gray-200
                             dark:bg-slate-700
+                            @error('course')
+                                text-red-500
+                                bg-red-500/10
+                            @else
+                                text-gray-800 
+                            @enderror
                         "
                         required
                     >

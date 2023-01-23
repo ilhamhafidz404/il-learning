@@ -47,7 +47,7 @@ class SubmissionController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(SubmissionRequest $request)
     {
         $mission = Mission::whereId($request->mission)->first();
         Submission::create([

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SubmitsubmissionRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class SubmitsubmissionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->hasRole('student');
     }
 
     /**
@@ -25,9 +26,6 @@ class SubmitsubmissionRequest extends FormRequest
     {
         return [
             'file' => 'required',
-            'description' => 'required',
-            'user_id' => 'required',
-            'submission_id' => 'required',
         ];
     }
 }

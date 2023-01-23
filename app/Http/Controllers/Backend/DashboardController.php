@@ -41,7 +41,7 @@ class DashboardController extends Controller
         }
 
         return view('backend.dashboard', compact('user', 'courses'), [
-            'submissions' => Submission::whereClassroomId(Auth::user()->classroom_id)->get(),
+            'submissions' => Submission::whereClassroomId($user->classroom_id)->get(),
             'submitSubmissions' => Submitsubmission::whereUserId(Auth::user()->id)->get(),
         ]);
     }
