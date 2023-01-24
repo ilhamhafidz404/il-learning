@@ -115,8 +115,7 @@
                                 "
                             >
                                 <h3 class="font-bold">{{ $submission->name}}</h3>
-                                {{-- {{ $submission->created_at->diffForHumans() }}  --}}
-                                <small>{{ $submission->deadline }}</small>
+                                <small>{{ \Carbon\Carbon::parse($submission->deadline)->diffForHumans() }}</small>
                                 <br>
                                 <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
                             </div>

@@ -95,7 +95,7 @@
           <img src="{{ asset('images/logo.png') }}" class="mx-auto mb-2 w-[70px] md:w-[50px] lg:w-[70px]">
           <h2 class="text-2xl md:text-xl lg:text-2xl font-semibold">ALOPE UNIVERSITY</h2>
         </div>
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('admin.login') }}">
           @csrf
           <div class="relative mb-5">
             <input 

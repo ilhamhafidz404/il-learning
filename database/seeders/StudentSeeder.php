@@ -48,8 +48,14 @@ class StudentSeeder extends Seeder
                     $profile = 'profile/man3.jpg';
                 }
             }
+            if ($index < 10) {
+                $nim = '2022081000' . $index + 1;
+            } else {
+                $nim = '202208100' . $index + 1;
+            }
             Student::insert([
                 [
+                    'nim' => $nim,
                     'user_id' => $index + 1,
                     'classroom_id' => 1,
                     'profile' => $profile,

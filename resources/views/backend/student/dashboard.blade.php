@@ -94,75 +94,43 @@
         <div class="col-span-6 md:col-span-2">
             <div class="bg-white dark:bg-slate-800 py-5 shadow-md rounded">
                 <h2 class="text-xl font-semibold text-gray-800 dark:text-indigo-500 mx-5">Upcoming Event</h2>
-                @if ($submitSubmissions->count() == $submissions->count())
-                    <div class="text-center my-10 dark:text-white">
-                        <h6 class="text-6xl">😁</h6>
-                        <p class="mt-5 font-bold text-xl">Tidak Ada Tugas Untukmu</p>
-                    </div>
-                @elseif ($submitSubmissions->count() == 0 || $submissions->count() > 1)
-                    <ul class="mt-3 text-gray-800 dark:text-white">
-                        @foreach ($submissions as $submission)
-                            <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-5 py-3">
-                                <a href="{{ route('submission.show', $submission->slug) }}" class="flex items-center">
-                                    <span class="bg-indigo-500  text-white inline-block p-1 rounded mr-3">
-                                        @include(
-                                            'components.icons.bookOpen-regular-icon',
-                                            ['class' => 'w-8']
-                                        )
-                                    </span>
-                                    <div class="relative w-full">
-                                        <h5 class="font-bold text">
-                                        {{ $submission->name }} -  {{ $submission->mission->name }}
-                                        </h5>
-                                        <small class="text-gray-700 dark:text-gray-300 block -mt-1">
-                                            {{ $submission->course->name }}
-                                        </small>
-                                        <span class="absolute top-0 right-0 text-sm text-gray-700 dark:text-gray-200 italic">
-                                            {{-- {{ $submission->deadline }} --}}
+                <ul class="mt-3 text-gray-800 dark:text-white">
+                    @forelse ($doesntCompletes as $index => $comingEvent)
+                        @foreach (Auth::user()->course as $course)
+                            @if($course->id == $comingEvent->submission->course->id)
+                                <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-5 py-3">
+                                    <a 
+                                        href="{{ route('submission.show', $comingEvent->submission->slug) }}" 
+                                        class="flex items-center"
+                                    >
+                                        <span class="bg-indigo-500  text-white inline-block p-1 rounded mr-3">
+                                            @include(
+                                                'components.icons.bookOpen-regular-icon',
+                                                ['class' => 'w-8']
+                                            )
                                         </span>
-                                    </div>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @else
-                    <ul class="mt-3 text-gray-800 dark:text-white">
-                        @foreach ($submissions as $submission)
-                            @foreach ($submitSubmissions as $submitsubmission)    
-                                @if ($submission->id != $submitsubmission->submission_id)
-                                    <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-5 py-3">
-                                        <a href="{{ route('submission.show', $submission->slug) }}" class="flex items-center">
-                                            <span class="bg-indigo-500 text-white inline-block p-1 rounded mr-3">
-                                                @include(
-                                                    'components.icons.bookOpen-regular-icon',
-                                                    ['class' => 'w-8']
-                                                )
+                                        <div class="relative w-full">
+                                            <h5 class="font-bold text">
+                                            {{ $comingEvent->submission->name }} -  {{ $comingEvent->submission->mission->name }}
+                                            </h5>
+                                            <small class="text-gray-700 dark:text-gray-300 block -mt-1">
+                                                {{ $comingEvent->submission->course->name }}
+                                            </small>
+                                            <span class="absolute top-0 right-0 text-sm text-gray-700 dark:text-gray-200 italic">
+                                                {{ \Carbon\Carbon::parse($comingEvent->submission->deadline)->diffForHumans() }}
                                             </span>
-                                            <div class="relative w-full">
-                                                <h5 class="font-bold text">
-                                                {{ $submission->name }} -  {{ $submission->mission->name }}
-                                                </h5>
-                                                <small class="text-gray-700 dark:text-gray-300 block -mt-1">
-                                                    {{ $submission->course->name }}
-                                                </small>
-                                                <span class="absolute top-0 right-0 text-sm text-gray-700 dark:text-gray-200 italic">
-                                                    {{ $submission->deadline }}
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
+                                        </div>
+                                    </a>
+                                </li>
+                            @endif
                         @endforeach
-                    </ul>
-                @endif
-
-                {{-- @if ($submitSubmissions->count() == $submissions->count())
-                    <div class="text-center my-10 dark:text-white">
-                        <h6 class="text-6xl">😁</h6>
-                        <p class="mt-5 font-bold text-xl">Tidak Ada Tugas Untukmu</p>
-                    </div>
-                @endif --}}
+                    @empty
+                        <div class="text-center my-10 dark:text-white">
+                            <h6 class="text-6xl">😁</h6>
+                            <p class="mt-5 font-bold text-xl">Tidak Ada Tugas Untukmu</p>
+                        </div>
+                    @endforelse
+                </ul>
             </div>
         </div>
     </section>

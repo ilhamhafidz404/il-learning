@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->string('nim')->unique()->max(11);
             $table->string('profile')->nullable();
             $table->foreignId('classroom_id');
             $table->text('about')->nullable();

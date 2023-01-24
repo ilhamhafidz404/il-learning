@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmissionRequest;
+use App\Models\Completed;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\Mission;
@@ -50,9 +51,10 @@ class SubmissionController extends Controller
     public function store(SubmissionRequest $request)
     {
         $deadline = $request->deadline . ' ' . $request->time_deadline . ':00';
+        $classroom = $request->classroom;
 
         $mission = Mission::whereId($request->mission)->first();
-        Submission::create([
+        $submission = Submission::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name),
             'description' => $request->description,
@@ -60,8 +62,17 @@ class SubmissionController extends Controller
             'mission_id' => $request->mission,
             'lecturer_id' => $request->lecturer,
             'course_id' => $request->course,
-            'classroom_id' => $request->classroom,
+            'classroom_id' => $classroom,
         ]);
+
+        $students = Student::whereClassroomId($classroom)->get();
+        foreach ($students as $student) {
+            Completed::create([
+                'user_id' => $student->id,
+                'submission_id' => $submission->id,
+                'status' => false
+            ]);
+        }
 
         return redirect()->back()->with([
             'success' => true,

@@ -1,8 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\{
+    AuthController,
+    ClassroomController,
+    CourseController as AdminCourseController,
+    DashboardController as AdminDashboardController,
+    LecturerController as AdminLecturerController,
+    StudentController
+};
 
-use App\Http\Controllers\Auth\LecturerLoginController as AuthLecturerLoginController;
 use App\Http\Controllers\Backend\AcceptSKSController;
 
 use App\Http\Controllers\Backend\Account\ProfileController;
@@ -37,10 +43,9 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    Route::get('/lecturer-login', [AuthLecturerLoginController::class, 'index'])->name('lecturer.login');
-    Route::post('/lecturer-login', [AuthLecturerLoginController::class, 'authenticate'])->name('lecturer.authenticate');
     // 
     Route::get('/admin/login', [AuthController::class, 'login'])->name('admin.login');
+    Route::post('/admin/login', [AuthController::class, 'authenticate'])->name('admin.authenticate');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -58,8 +63,8 @@ Route::middleware(['auth'])->group(function () {
     //     Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
     //     Route::delete('/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
     // });
-    Route::get('/mission/add', [MissionController::class, 'create'])->name('mission.create');
     Route::post('/mission', [MissionController::class, 'store'])->name('mission.store');
+    Route::get('/mission/add', [MissionController::class, 'create'])->name('mission.create');
     Route::get('/submission/add', [SubmissionController::class, 'create'])->name('submission.create');
     Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
     Route::delete('/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
@@ -77,6 +82,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account', MyAccountController::class)->name('myaccount');
     Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
 });
+
+Route::get('admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
+Route::get('admin/course', [AdminCourseController::class, 'index'])->name('admin.course.index');
+Route::get('admin/lecturer', [AdminLecturerController::class, 'index'])->name('admin.lecturer.index');
+Route::get('admin/student', [StudentController::class, 'index'])->name('admin.student.index');
+Route::get('admin/classroom', [ClassroomController::class, 'index'])->name('admin.classroom.index');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

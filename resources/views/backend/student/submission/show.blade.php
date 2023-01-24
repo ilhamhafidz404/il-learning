@@ -85,7 +85,7 @@
             </div>
             <small>
                 <span class="font-bold">Deadline :</span>
-                {{ $submission->deadline }}
+                {{ \Carbon\Carbon::parse($submission->deadline)->diffForHumans() }}
             </small>
             <hr class="my-3 border-slate-600">
             <p>{{ $submission->description }}</p>

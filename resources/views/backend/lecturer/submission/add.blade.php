@@ -58,6 +58,7 @@
             >
                 Kembali
             </a>
+            <button onclick="changeType()">Change Type</button>
         </div>
         <div 
             class="
@@ -76,6 +77,7 @@
                 action="{{ route('submission.store') }}" 
                 class="z-30 text-gray-800 dark:text-gray-200 col-span-2" 
                 method="POST"
+                enctype="multipart/form-data"
             >
                 @csrf
                 <input type="number" name="course" value="{{ $course->id }}" hidden>
@@ -258,6 +260,8 @@
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
+                </div>
+                <div id="forTugas" class="grid md:grid-cols-2 gap-5 mb-5">
                     <div>
                         <label 
                             for="deadline" 
@@ -341,55 +345,97 @@
                         @enderror
                     </div>
                 </div>
-                <div class="flex flex-wrap justify-between md:flex-row flex-col-reverse mt-10 items-center">
-                    <a 
-                        class="
-                            bg-gray-500 
-                            px-5 
-                            py-2 
-                            rounded 
-                            hover:bg-gray-400 
-                            text-white 
-                            md:w-auto 
-                            w-full 
-                            text-center
-                        "
-                        href="{{ route('course.show', $course->slug) }}" 
-                    >
-                        Kembali
-                    </a>
-                    <div class="flex gap-4 md:w-auto w-full md:mb-0 mb-3">
-                        <button 
-                            type="reset"
+                <div id="forMateri" class="hidden">
+                    <label 
+                            for="materi" 
                             class="
-                                bg-red-500 
+                                block
+                                font-bold
+                                mb-2
+                                @error('materi')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            Materi Pembelajaran
+                        </label>
+                        <input 
+                            type="file"
+                            name="materi" 
+                            id="materi" 
+                            class="
+                                w-full 
+                                px-3 
+                                py-2 
+                                rounded 
+                                text-gray-800 
+                                dark:text-gray-200
+                                @error('materi')
+                                    border-2
+                                    border-red-500
+                                    bg-red-500/10
+                                @else
+                                    bg-gray-100 
+                                    dark:bg-slate-700
+                                @enderror
+                            "
+                            required
+                            value="{{ old('materi') }}"
+                        >
+                        @error('materi')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="flex flex-wrap justify-between md:flex-row flex-col-reverse mt-10 items-center">
+                        <a 
+                            class="
+                                bg-gray-500 
                                 px-5 
                                 py-2 
                                 rounded 
-                                hover:bg-red-400
-                                text-white
-                                md:w-auto
-                                w-1/2
+                                hover:bg-gray-400 
+                                text-white 
+                                md:w-auto 
+                                w-full 
+                                text-center
                             "
+                            href="{{ route('course.show', $course->slug) }}" 
                         >
-                            Reset
-                        </button>
-                        <button 
-                            type="button"
-                            onclick="toggleConfirm()"
-                            class="
-                                bg-indigo-500 
-                                px-5 
-                                py-2 
-                                rounded 
-                                hover:bg-indigo-400
-                                text-white
-                                md:w-auto
-                                w-1/2
-                            "
-                        >
-                            Submit
-                        </button>
+                            Kembali
+                        </a>
+                        <div class="flex gap-4 md:w-auto w-full md:mb-0 mb-3">
+                            <button 
+                                type="reset"
+                                class="
+                                    bg-red-500 
+                                    px-5 
+                                    py-2 
+                                    rounded 
+                                    hover:bg-red-400
+                                    text-white
+                                    md:w-auto
+                                    w-1/2
+                                "
+                            >
+                                Reset
+                            </button>
+                            <button 
+                                type="button"
+                                onclick="toggleConfirm()"
+                                class="
+                                    bg-indigo-500 
+                                    px-5 
+                                    py-2 
+                                    rounded 
+                                    hover:bg-indigo-400
+                                    text-white
+                                    md:w-auto
+                                    w-1/2
+                                "
+                            >
+                                Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -399,6 +445,15 @@
 
 @section('script')
 <script>
+    const changeType = () =>{
+        const forTugas= document.getElementById('forTugas');
+        const forMateri= document.getElementById('forMateri');
+
+        forTugas.classList.toggle('hidden');
+        forMateri.classList.toggle('hidden');
+        forTugas.classList.toggle('grid');
+        forMateri.classList.toggle('grid');
+    }
     const hideNoty= ()=>{
         const noty = document.getElementById('noty')
         noty.classList.toggle('flex');
