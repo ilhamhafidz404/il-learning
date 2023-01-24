@@ -49,12 +49,14 @@ class SubmissionController extends Controller
 
     public function store(SubmissionRequest $request)
     {
+        $deadline = $request->deadline . ' ' . $request->time_deadline . ':00';
+
         $mission = Mission::whereId($request->mission)->first();
         Submission::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name),
             'description' => $request->description,
-            'deadline' => $request->deadline,
+            'deadline' => $deadline,
             'mission_id' => $request->mission,
             'lecturer_id' => $request->lecturer,
             'course_id' => $request->course,

@@ -114,37 +114,58 @@
                         "
                     >
                         <span class="flex justify-between items-center">
-                            <h3 class="font-bold">{{ $mission->name}}</h3>
+                            <div>
+                                <h3 class="font-bold">{{ $mission->name}}</h3>
+                                <small class="block">Has {{ $mission->submission->count() }} submission</small>
+                            </div>
                             <h4 class="font-bold">
-                                @foreach ($progresses as $progress)
-                                    @if ($progress->mission_id == $mission->id)
-                                        {{ 
-                                            Str::limit(
-                                                $progress->progress / $progress->submission_count * 100, 4, ''
-                                            )
-                                        }}
-                                        @break
+                                @if (Auth::user()->hasRole('student'))
+                                    @php
+                                        $onProgress =false;
+                                    @endphp
+                                    @foreach ($progresses as $progress)
+                                        @if ($progress->mission_id == $mission->id)
+                                            @php
+                                                $onProgress =true;
+                                            @endphp
+                                            {{ 
+                                                Str::limit(
+                                                    $progress->progress / $progress->submission_count * 100, 4, ''
+                                                )
+                                            }}
+                                            @break
+                                        @endif
+                                    @endforeach
+                                    @if (!$onProgress)
+                                        0
                                     @endif
-                                @endforeach
-                                %
+                                    %
+                                @endif
                             </h4>
                         </span>
-                        <progress 
-                            value=" @foreach ($progresses as $progress)
-                                @if ($progress->mission_id == $mission->id)
-                                    {{$progress->progress / $progress->submission_count * 100}}@break
+                        @if (Auth::user()->hasRole('student'))
+                            <progress   
+                                @if ($onProgress)
+                                    value=
+                                    "@foreach ($progresses as $progress)
+                                        @if ($progress->mission_id == $mission->id)
+                                            {{$progress->progress / $progress->submission_count * 100}}@break 
+                                        @endif 
+                                    @endforeach" 
+                                @else
+                                    value="0"
                                 @endif
-                            @endforeach" 
-                            max="100" 
-                            class="
-                                relative
-                                mt-5
-                                w-full
-                                h-[5px]
-                                rounded
-                                bg-slate-300
-                            "
-                        ></progress>
+                                max="100" 
+                                class="
+                                    relative
+                                    mt-5
+                                    w-full
+                                    h-[5px]
+                                    rounded
+                                    bg-slate-300
+                                "
+                            ></progress>
+                        @endif
                         {{-- <span 
                             class="
                                 relative

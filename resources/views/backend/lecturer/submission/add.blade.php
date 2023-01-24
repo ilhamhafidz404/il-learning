@@ -139,6 +139,7 @@
                     <textarea 
                         name="description" 
                         id="description"
+                        placeholder="-"
                         class="
                             w-full 
                             max-h-[100px] 
@@ -162,7 +163,7 @@
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="grid md:grid-cols-3 gap-5 mb-5">
+                <div class="grid md:grid-cols-2 gap-5 mb-5">
                     <div>
                         <label 
                             for="mission" 
@@ -185,7 +186,7 @@
                                 rounded 
                                 text-gray-800 
                                 dark:text-gray-200
-                                @error('deadline')
+                                @error('mission')
                                     border-2
                                     border-red-500
                                     bg-red-500/10
@@ -198,7 +199,12 @@
                         >
                             <option value="" hidden selected>Pilih Mission</option>
                             @foreach ($missions as $mission)
-                                <option value="{{ $mission->id }}">{{ $mission->name }}</option>
+                                <option 
+                                    {{ old('mission') == $mission->id ? "selected" : "" }}
+                                    value="{{ $mission->id }}"
+                                >
+                                    {{ $mission->name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('mission')
@@ -227,7 +233,7 @@
                                 rounded 
                                 text-gray-800 
                                 dark:text-gray-200
-                                @error('deadline')
+                                @error('classroom')
                                     border-2
                                     border-red-500
                                     bg-red-500/10
@@ -240,7 +246,12 @@
                         >
                             <option value="" hidden selected>Pilih Kelas</option>
                             @foreach ($lecturer->classroom as $classroom)
-                                <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                <option 
+                                    {{ old('lecturer') == $lecturer->id ? "selected" : "" }}
+                                    value="{{ $classroom->id }}"
+                                >
+                                    {{ $classroom->name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('classroom')
@@ -259,7 +270,7 @@
                                 @enderror
                             "
                         >
-                            Deadline Tugas
+                            Tanggal Deadline Tugas
                         </label>
                         <input 
                             type="date"
@@ -285,6 +296,47 @@
                             value="{{ old('deadline') }}"
                         >
                         @error('deadline')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div>
+                        <label 
+                            for="time_deadline" 
+                            class="
+                                block
+                                font-bold
+                                mb-2
+                                @error('time_deadline')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            Waktu Deadline Tugas
+                        </label>
+                        <input 
+                            type="time"
+                            name="time_deadline" 
+                            id="time_deadline" 
+                            class="
+                                w-full 
+                                px-3 
+                                py-2 
+                                rounded 
+                                text-gray-800 
+                                dark:text-gray-200
+                                @error('time_deadline')
+                                    border-2
+                                    border-red-500
+                                    bg-red-500/10
+                                @else
+                                    bg-gray-100 
+                                    dark:bg-slate-700
+                                @enderror
+                            "
+                            required
+                            value="{{ old('time_deadline') }}"
+                        >
+                        @error('time_deadline')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>

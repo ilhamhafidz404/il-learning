@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description')->default('-');
-            $table->date('deadline');
+            $table->timestamp('deadline');
             $table->foreignId('mission_id');
             $table->foreignId('lecturer_id');
             $table->foreignId('course_id');

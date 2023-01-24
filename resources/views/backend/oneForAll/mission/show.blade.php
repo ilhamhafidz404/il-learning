@@ -115,6 +115,7 @@
                                 "
                             >
                                 <h3 class="font-bold">{{ $submission->name}}</h3>
+                                {{-- {{ $submission->created_at->diffForHumans() }}  --}}
                                 <small>{{ $submission->deadline }}</small>
                                 <br>
                                 <small>Untuk <b>{{ $submission->classroom->name }}</b></small>

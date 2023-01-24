@@ -152,7 +152,12 @@
                     >
                         <option value="" hidden selected>Pilih Course</option>
                         @foreach ($lecturer->course as $course)
-                            <option value="{{ $course->id }}">{{ $course->name }}</option>
+                            <option 
+                                {{ old('course') == $course->id ? "selected" : "" }}
+                                value="{{ $course->id }}"
+                            >
+                                {{ $course->name }}
+                            </option>
                         @endforeach
                     </select>
                     @error('course')
