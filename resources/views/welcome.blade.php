@@ -1,4 +1,239 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- Google Font --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    @vite('resources/css/app.css')
+    <style>
+        *{
+        font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <nav class="bg-[#3b449f] py-5 text-white z-50 relative">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="{{ asset('images/logo.png') }}" alt="alope logo" class="w-[40px] mr-3">
+                <h3 class="font-semibold tracking-wider">IL-Learning</h3>
+            </div>
+            <div>
+                <a href="{{ route('login') }}">Login</a>
+            </div>
+        </div>
+    </nav>
+    <header class="container mx-auto flex gap-10 justify-between items-center h-[600px]">
+        <span class="absolute w-[1000px] h-[700px] rounded-full bg-gray-100 -rotate-45 -left-[300px] top-0"></span>
+        <div class="w-[45%] relative">
+            <h1 class="text-5xl font-semibold">THE BEST UNIVERSITY</h1>
+            <h2 class="text-4xl font-bold">In the World!</h2>
+            <p class="text-sm mt-10 text-gray-500">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque blanditiis molestias minus rem perspiciatis harum est maxime quisquam quod autem! Aut numquam dicta doloremque id iusto libero quidem natus suscipit!
+            </p>
+        </div>
+        <div class="w-[55%] relative h-full">
+            <div 
+                class="
+                    absolute
+                    bottom-[50px]
+                    right-[200px]
+                    after:content-['Lebih_dari_20_Mahasiswa']
+                    after:absolute
+                    after:p-3
+                    after:rounded
+                    after:bg-white
+                    after:top-1/2
+                    after:-right-[150px]
+                    after:-translate-y-1/2
+                    after:shadow-md
+                "
+            >
+                <img 
+                    src="{{ asset('storage/profile/man1.jpg') }}" 
+                    alt="" 
+                    class="
+                        rounded-full 
+                        w-[300px] 
+                    "
+                >
+            </div>
+            <div 
+                class="
+                    absolute
+                    bottom-0
+                    left-[100px]
+                    after:content-['Lebih_dari_20_Mahasiswa']
+                    after:absolute
+                    after:p-3
+                    after:rounded
+                    after:bg-white
+                    after:top-1/2
+                    after:-left-[150px]
+                    after:-translate-y-1/2
+                    after:shadow-md
+                "
+            >
+                <img 
+                    src="{{ asset('storage/profile/man2.jpg') }}" 
+                    alt="" 
+                    class="
+                        rounded-full 
+                        w-[200px] 
+                    "
+                >
+            </div>
+            <div 
+                class="
+                    absolute
+                    top-[100px]
+                    left-[150px]
+                    after:content-['Lebih_dari_20_Mahasiswa']
+                    after:absolute
+                    after:p-3
+                    after:rounded
+                    after:bg-white
+                    after:top-1/2
+                    after:-left-[150px]
+                    after:-translate-y-1/2
+                    after:shadow-md
+                "
+            >
+                <img 
+                    src="{{ asset('storage/profile/man3.jpg') }}" 
+                    alt="" 
+                    class="
+                        rounded-full 
+                        w-[270px] 
+                    "
+                >
+            </div>
+            <div 
+                class="
+                    absolute
+                    top-[100px]
+                    right-[230px]
+                    after:content-['Lebih_dari_20_Mahasiswa']
+                    after:absolute
+                    after:p-3
+                    after:rounded
+                    after:bg-white
+                    after:top-1/2
+                    after:-right-[150px]
+                    after:-translate-y-1/2
+                    after:shadow-md
+                "
+            >
+                <img 
+                    src="{{ asset('storage/profile/woman3.jpg') }}" 
+                    alt="" 
+                    class="
+                        rounded-full 
+                        w-[150px] 
+                    "
+                >
+            </div>
+        </div>
+    </header>
+    <section class="mt-[200px] container mx-auto relative">
+        <span class="absolute w-[700px] h-[400px] rounded-full bg-gray-100 rotate-[20deg] -right-[400px] top-0"></span>
+        <h2 class="text-3xl font-semibold text-center">How It Works</h2>
+        <div class="flex gap-10 relative">
+            <div class="mt-10">
+                <span class="bg-[#232323] inline-block text-white p-2 rounded-xl">
+                    @include(
+                        'components.icons.bookOpen-regular-icon',
+                        ['class' => 'w-10']
+                    )
+                </span>
+                <h5 class="text-xl font-semibold">Course</h5>
+                <p class="text-sm text-gray-500 mt-3">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem fugiat quam corporis laborum? Vel ducimus, quibusdam sequi deserunt enim repellat nisi sapiente amet cum, ipsum, tenetur corporis inventore nostrum sint!
+                </p>
+            </div>
+            <div class="mt-10">
+                <span class="bg-[#232323] inline-block text-white p-2 rounded-xl">
+                    @include(
+                        'components.icons.bookOpen-regular-icon',
+                        ['class' => 'w-10']
+                    )
+                </span>
+                <h5 class="text-xl font-semibold">Course</h5>
+                <p class="text-sm text-gray-500 mt-3">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem fugiat quam corporis laborum? Vel ducimus, quibusdam sequi deserunt enim repellat nisi sapiente amet cum, ipsum, tenetur corporis inventore nostrum sint!
+                </p>
+            </div>
+            <div class="mt-10">
+                <span class="bg-[#232323] inline-block text-white p-2 rounded-xl">
+                    @include(
+                        'components.icons.bookOpen-regular-icon',
+                        ['class' => 'w-10']
+                    )
+                </span>
+                <h5 class="text-xl font-semibold">Course</h5>
+                <p class="text-sm text-gray-500 mt-3">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem fugiat quam corporis laborum? Vel ducimus, quibusdam sequi deserunt enim repellat nisi sapiente amet cum, ipsum, tenetur corporis inventore nostrum sint!
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="container mx-auto mt-32 flex gap-10 items-center relative">
+        <span class="absolute w-[700px] h-[500px] rounded-full bg-[#f4c247]  -left-[400px] top-[-50px]"></span>
+        <img src="{{ asset('images/dashboard.png') }}" alt="dashboard" class="w-[700px] rounded relative">
+        <div>
+            <h3 class="text-3xl font-semibold">Easy Management</h3>
+            <p class="mt-5 text-gray-500">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, neque earum accusamus error dolores veniam, molestias ab voluptates autem impedit itaque. Consectetur nobis animi placeat beatae tempore quas quibusdam praesentium.
+            </p>
+        </div>
+    </section>
+    <section class="text-center bg-[#373e98] mt-20 py-16 text-white">
+        <h3 class="text-3xl font-semibold">GET STARTED TODAY</h3>
+        <p class="w-[70%] mx-auto text-gray-300 mt-5">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad iure excepturi eum illo minima eligendi porro in vel praesentium ipsa quaerat voluptas cumque deleniti, optio perspiciatis animi nesciunt delectus consequatur!
+        </p>
+        <button class="mt-10 bg-white text-[#373e98] px-16 py-3 rounded-full font-semibold">
+            Daftar
+        </button>
+    </section>
+    <footer class="bg-gray-200">
+        <div class="container mx-auto py-5 text-center text-gray-600">
+            Copyright &copy; by ALOPE
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -129,4 +364,5 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
+
