@@ -107,7 +107,12 @@
                             </td>
                             <td>
                                 @foreach ($course->lecturer as $lecturer)
-                                    {{ $lecturer->user->name }}
+                                    @foreach ($lecturer->classroom as $classroom)
+                                        @if ($classroom->id == $user->classroom_id)
+                                            {{ $lecturer->user->name }}
+                                            @break
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </td>
                         </tr>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('course_id');
             $table->foreignId('lecturer_id');
+            $table->timestamps();
         });
     }
 

@@ -85,7 +85,11 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 Route::get('admin/course', [AdminCourseController::class, 'index'])->name('admin.course.index');
+
 Route::get('admin/lecturer', [AdminLecturerController::class, 'index'])->name('admin.lecturer.index');
+Route::get('admin/lecturer/{username}', [AdminLecturerController::class, 'show'])->name('admin.lecturer.show');
+Route::post('admin/lecturer/', [AdminLecturerController::class, 'update'])->name('admin.lecturer.update');
+
 Route::get('admin/student', [StudentController::class, 'index'])->name('admin.student.index');
 Route::get('admin/classroom', [ClassroomController::class, 'index'])->name('admin.classroom.index');
 
