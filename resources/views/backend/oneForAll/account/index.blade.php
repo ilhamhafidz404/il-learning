@@ -51,7 +51,7 @@
         </a>
 
         <a 
-            href=""
+            href="{{ route('demo') }}"
             class="bg-[#ff1053] p-5 rounded text-white relative flex items-center min-h-[120px] overflow-hidden"
         >
             <div class="w-1/3">
@@ -68,7 +68,7 @@
         </a>
 
         <a 
-            href=""
+            href="{{ route('demo') }}"
             class="bg-[#00a78e] p-5 rounded text-white relative flex items-center min-h-[120px] overflow-hidden"
         >
             <div class="w-1/3">

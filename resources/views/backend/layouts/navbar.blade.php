@@ -122,7 +122,7 @@
                         </li>
                         <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-3 py-2">
                             <a 
-                                href=""
+                                href="{{ route('demo') }}"
                                 class="
                                     w-full 
                                     block 

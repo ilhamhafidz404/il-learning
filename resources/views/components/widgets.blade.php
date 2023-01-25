@@ -32,7 +32,7 @@
         </svg>
     </a>
     <a 
-        href=""
+        href="{{ route('demo') }}"
         class="
             w-full 
             bg-[#ff1053] 
@@ -54,7 +54,8 @@
         )
     </a>
     <a 
-        href="{{ route('lecturers') }}"
+        {{-- href="{{ route('lecturers') }}" --}}
+        href="{{ route('demo') }}"
         class="
             w-full 
             bg-[#00a78e] 
@@ -76,7 +77,7 @@
         )
     </a>
     <a 
-        href=""
+        href="{{ route('demo') }}"
         class="
             w-full 
             bg-[#ecd06f] 

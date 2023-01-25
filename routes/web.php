@@ -39,6 +39,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/demo', function () {
+    return view('demotest');
+})->name('demo');
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
@@ -93,6 +97,6 @@ Route::post('admin/lecturer/', [AdminLecturerController::class, 'update'])->name
 Route::get('admin/student', [StudentController::class, 'index'])->name('admin.student.index');
 Route::get('admin/classroom', [ClassroomController::class, 'index'])->name('admin.classroom.index');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
