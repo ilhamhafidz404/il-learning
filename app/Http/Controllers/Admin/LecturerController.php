@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\ManyToMany\ClassroomLecturer;
 use App\Models\ManyToMany\CourseLecturer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LecturerController extends Controller
@@ -60,6 +61,18 @@ class LecturerController extends Controller
             'success' => true,
             'title' => $title,
             'message' => $message
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        User::find($id)->delete();
+        Lecturer::whereUserId($id)->first()->delete();
+
+        return redirect()->back()->with([
+            'success' => true,
+            'title' => 'Berhasil Menghapus Lecturer',
+            'message' => 'Sekarang Lecturer telah dihapus'
         ]);
     }
 }

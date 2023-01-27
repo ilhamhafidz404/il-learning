@@ -88,12 +88,17 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
+
 Route::get('admin/course', [AdminCourseController::class, 'index'])->name('admin.course.index');
+Route::get('admin/course/add', [AdminCourseController::class, 'create'])->name('admin.course.create');
+Route::post('admin/course', [AdminCourseController::class, 'store'])->name('admin.course.store');
 Route::delete('admin/course/{id}', [AdminCourseController::class, 'destroy'])->name('admin.course.destroy');
 
 Route::get('admin/lecturer', [AdminLecturerController::class, 'index'])->name('admin.lecturer.index');
 Route::get('admin/lecturer/{username}', [AdminLecturerController::class, 'show'])->name('admin.lecturer.show');
+Route::get('admin/lecturer/add', [AdminLecturerController::class, 'create'])->name('admin.lecturer.create');
 Route::post('admin/lecturer/', [AdminLecturerController::class, 'update'])->name('admin.lecturer.update');
+Route::delete('admin/lecturer/{id}', [AdminLecturerController::class, 'destroy'])->name('admin.lecturer.destroy');
 
 Route::get('admin/student', [StudentController::class, 'index'])->name('admin.student.index');
 Route::get('admin/classroom', [ClassroomController::class, 'index'])->name('admin.classroom.index');

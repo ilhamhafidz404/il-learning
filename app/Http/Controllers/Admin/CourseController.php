@@ -9,6 +9,7 @@ use App\Models\ManyToMany\CourseUser;
 use App\Models\Mission;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
@@ -16,6 +17,27 @@ class CourseController extends Controller
     {
         $courses = Course::all();
         return view('backend.admin.course.index', compact('courses'));
+    }
+
+    public function create()
+    {
+        return view('backend.admin.course.add');
+    }
+
+    public function store(Request $request)
+    {
+        Course::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'sks' => $request->sks,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->back()->with([
+            'success' => true,
+            'title' => 'Berhasil Menambah Course',
+            'message' => 'Sekarang Course telah bertambah'
+        ]);
     }
 
     public function destroy($id)
