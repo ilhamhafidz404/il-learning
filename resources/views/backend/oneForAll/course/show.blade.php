@@ -206,7 +206,14 @@
                             tracking-wide
                             dark:text-white
                         "
-                    >Belum ada tugas untukmu</h5>
+                    >
+                        @if (Auth::user()->hasRole('student'))
+                            Belum ada tugas untukmu
+                        @else
+                            Anda belum menambahkan tugas untuk <br> 
+                            <span class="text-indigo-500">{{ $course->name }}</span>
+                        @endif
+                    </h5>
                 </div>
             @endforelse
         </div>

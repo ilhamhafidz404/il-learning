@@ -4,6 +4,7 @@ namespace App\Http\Controllers\more;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmitsubmissionRequest;
+use App\Models\Completed;
 use App\Models\Progres;
 use App\Models\Progress;
 use App\Models\Submission;
@@ -39,6 +40,10 @@ class SubmitSubmissionController extends Controller
                 'submission_count' => Submission::whereMissionId($request->mission)->count(),
             ]);
         }
+
+        Completed::whereUserId(Auth::user()->id)->whereSubmissionId($request->submission)->update([
+            'status' => true
+        ]);
 
         return redirect()->back()->with([
             'success' => true,

@@ -103,6 +103,7 @@
             @if (Auth::user()->hasRole('student'))
                 @forelse ($submissions as $index => $submission)
                     @if ($submission->classroom_id == $user->classroom_id)
+                    {{ $submission->completed }}
                         <a href="{{ route('submission.show', $submission->slug) }}">
                             <div 
                                 class="

@@ -89,6 +89,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 Route::get('admin/course', [AdminCourseController::class, 'index'])->name('admin.course.index');
+Route::delete('admin/course/{id}', [AdminCourseController::class, 'destroy'])->name('admin.course.destroy');
 
 Route::get('admin/lecturer', [AdminLecturerController::class, 'index'])->name('admin.lecturer.index');
 Route::get('admin/lecturer/{username}', [AdminLecturerController::class, 'show'])->name('admin.lecturer.show');

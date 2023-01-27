@@ -111,14 +111,14 @@
                                         </span>
                                         <div class="relative w-full">
                                             <h5 class="font-bold text">
-                                            {{ $comingEvent->submission->name }} -  {{ $comingEvent->submission->mission->name }}
+                                            {{ Str::limit($comingEvent->submission->name .' - '. $comingEvent->submission->mission->name, 22, '...') }}
                                             </h5>
                                             <small class="text-gray-700 dark:text-gray-300 block -mt-1">
                                                 {{ $comingEvent->submission->course->name }}
                                             </small>
-                                            <span class="absolute top-0 right-0 text-sm text-gray-700 dark:text-gray-200 italic">
+                                            <small class="absolute top-0 right-0 text-sm text-gray-700 dark:text-gray-200 italic">
                                                 {{ \Carbon\Carbon::parse($comingEvent->submission->deadline)->diffForHumans() }}
-                                            </span>
+                                            </small>
                                         </div>
                                     </a>
                                 </li>

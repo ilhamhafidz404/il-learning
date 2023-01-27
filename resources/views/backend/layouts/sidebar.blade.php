@@ -146,6 +146,11 @@
             </a>
         </li>
     </ul>
+    <div class="absolute bottom-[35px] w-full px-5 hidden sm:block">
+        <div class="bg-indigo-500/80 p-5 rounded text-gray-300 text-center font-semibold">
+            On Development
+        </div>
+    </div>
     <div class="absolute bottom-[35px] w-full px-5 block sm:hidden">
         <ul class="mt-auto">
             <li class="mb-3">

@@ -82,7 +82,9 @@
                 <div class="ml-8">
                     <h4 class="text-xl font-semibold">Tooling</h4>
                     <p class="text-sm text-gray-500 dark:text-gray-300 mt-2"> 
-                        Project ini dikerjangan dengan laravel, tailwind.
+                        Project ini dikerjangan dengan 
+                        <span class="text-[#ff2d20] font-semibold">laravel</span>, 
+                        <span class="text-[#06b6d4] font-semibold">tailwind</span>. 
                     </p>
                 </div>
             </div>
@@ -97,7 +99,7 @@
                 <div class="ml-8">
                     <h4 class="text-xl font-semibold">Report Bug dan saran</h4>
                     <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">
-                        Jika punya saran untuk project IL-Learning ini, bisa hubungi di instagram atau twitter. Atau jitka ingin ikut mengembangkan, bisa fork.
+                        Jika punya saran untuk project IL-Learning ini, bisa hubungi di instagram atau twitter. Atau jika ingin ikut mengembangkan, bisa fork.
                     </p>
                 </div>
             </div>

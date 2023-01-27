@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             LecturerSeeder::class,
             ClassroomSeeder::class,
-            SubmissionSeeder::class,
-            MissionSeeder::class,
+            // SubmissionSeeder::class,
+            // MissionSeeder::class,
             // 
             ClassroomLecturerSeeder::class,
             // 
