@@ -47,48 +47,23 @@ class LecturerController extends Controller
 
     public function show($username)
     {
-        $lecturer = Lecturer::whereHas('user', function ($q) {
-            $q->where('username', '=', 'sherly');
-        })->first();
-        $courses = Course::all();
+        // $lecturer = Lecturer::whereHas('user', function ($q) {
+        //     $q->where('username', '=', $username);
+        // })->first();
+
+        $user = User::whereUsername($username)->first();
+        $lecturer = Lecturer::whereUserId($user->id)->first();
+
+        $courses = Course::doesntHave('lecturer')->orWhereHas('lecturer', function ($q) {
+            $q->where('lecturer_id', '!=', 1);
+        })->get();
         $classrooms = Classroom::all();
 
-        return view('backend.admin.lecturer.show', compact('lecturer', 'courses', 'classrooms'));
+        return view(
+            'backend.admin.lecturer.show',
+            compact('lecturer', 'courses', 'classrooms')
+        );
     }
-
-    // public function update(Request $request)
-    // {
-    //     $lecturer = Lecturer::whereId($request->lecturer)->first();
-    //     $lecturerName = $lecturer->user->name;
-    //     if (isset($_GET['submit'])) {
-    //         $submit = $_GET['submit'];
-    //         if ($submit == 'course') {
-    //             foreach ($request->courses as $index => $course) {
-    //                 CourseLecturer::create([
-    //                     'course_id' => $request->courses[$index],
-    //                     'lecturer_id' => $request->lecturer
-    //                 ]);
-    //             }
-    //             $title = "Berhasil Menambah course ";
-    //             $message = "Course " . $lecturerName . ' telah ditambahkan!';
-    //         } elseif ($submit == 'classroom') {
-    //             foreach ($request->classrooms as $index => $classroom) {
-    //                 ClassroomLecturer::create([
-    //                     'classroom_id' => $request->classrooms[$index],
-    //                     'lecturer_id' => $request->lecturer
-    //                 ]);
-    //             }
-    //             $title = "Berhasil Menambah classroom ";
-    //             $message = "Classroom " . $lecturerName . ' telah ditambahkan!';
-    //         }
-    //     }
-
-    //     return redirect()->back()->with([
-    //         'success' => true,
-    //         'title' => $title,
-    //         'message' => $message
-    //     ]);
-    // }    
 
     public function edit($user)
     {

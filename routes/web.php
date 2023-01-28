@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\{
     CourseController as AdminCourseController,
     DashboardController as AdminDashboardController,
     LecturerController as AdminLecturerController,
+    MoreController,
     StudentController
 };
 
@@ -50,6 +51,8 @@ Route::name('admin.')->group(function () {
         Route::resource('admin/lecturer', AdminLecturerController::class, ['names' => 'lecturer']);
         Route::resource('admin/student', StudentController::class, ['names' => 'student']);
         Route::resource('admin/classroom', ClassroomController::class, ['names' => 'classroom']);
+        // 
+        Route::post('/addcoursetolecturer', [MoreController::class, 'addCourseToLecturer'])->name('addCourseToLecturer');
     });
 });
 

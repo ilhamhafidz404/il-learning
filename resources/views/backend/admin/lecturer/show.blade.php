@@ -3,12 +3,13 @@
 @section('content')
     @include('components.confirmModal' , 
         [ 
-            'title' => 'Yakin Menambah Submission', 
-            'subtitle' => 'Pastikan data/keterangan sudah sesuai',
-            'to' => 'addSubmission'
+            'title' => 'Apakah anda yakin?', 
+            'subtitle' => 'Data yang sudah terpilih tidak bisa di batalkan lagi.',
+            'to' => 'confirmDeleteLecturer'
         ]
     )
     @include('components.toast')
+    <span id="headerImg" class="absolute w-screen h-[400px] bg-[#5e72e4] top-0 left-0"></span>
     <section 
         class="
             py-16 
@@ -17,9 +18,19 @@
             col-span-5 
             lg:col-span-4 
             lg:pr-[70px]
+            relative
         "
     >
-        @include('components.widgets') 
+        <h1 class="text-4xl font-semibold text-white flex items-center">
+            <span class="bg-white p-2 rounded mr-3">
+                @include(
+                    'components.icons.userGroup-regular-icon',
+                    ['class' => 'w-10 text-indigo-500']
+                )
+            </span>
+            {{ $lecturer->user->name }}
+        </h1>
+
         <div 
             class="
                 bg-white 
@@ -28,192 +39,152 @@
                 md:col-span-4 
                 shadow-md 
                 rounded 
-                mt-5 
-                overflow-hidden
+                overflow-hidden 
+                mt-10
                 p-5
-                flex
-                gap-10
-                w-full
+                dark:text-gray-200
             "
         >
-            <div>
-                <img 
-                    src="{{ asset('storage/'. $lecturer->profile) }}" 
-                    alt=""
-                    class="w-[200px]"
+            <div class="flex gap-10 items-center">
+                <div>
+                    <img 
+                        src="{{ asset('storage/'.$lecturer->profile) }}" 
+                        alt="{{ $lecturer->user->username."profile" }}"
+                        class="w-[300px]"
+                    >
+                </div>
+                <div>
+                    <h2 class="text-gray-100 text-xl font-semibold">{{ $lecturer->user->name }}</h2>
+                    <small>{{ $lecturer->user->username }}</small>
+                </div>
+            </div>
+
+            <div class="relative">
+                <span class="absolute font-bold top-[-13px] pr-5 bg-slate-800">
+                    {{ $lecturer->course->count() }} Total Course
+                </span>
+                <hr class="my-10 border-slate-500"> 
+                <button 
+                    onclick="toggleAddCourseForm()"
+                    class="
+                        absolute 
+                        border-2
+                        border-slate-600 
+                        bg-slate-800
+                        px-5 
+                        py-2 
+                        rounded 
+                        -top-1/2 
+                        -translate-y-1/2 
+                        right-0
+                        text-indigo-500
+                        hover:bg-indigo-500
+                        hover:border-indigo-500
+                        hover:text-gray-200
+                    "
                 >
+                    Add Course for lecturer
+                </button>
             </div>
-            <div class="dark:text-white flex gap-10 justify-between w-full">
-                <div class="w-1/2"> 
-                    <h1 class="text-xl font-semibold ">{{ $lecturer->user->name }}</h1>
-                    <small class="text-gray-300 text-sm">{{ $lecturer->user->email }}</small>
-                </div>
-                <div class="w-1/2">   
-                    <h3 class="font-semibold flex mb-3">
-                        @include(
-                            'components.icons.bookOpen-regular-icon',
-                            ['class' => 'w-6 h-6 mr-3']
-                        )
-                        Mata Kuliah
-                    </h3>
-                    <ul class="list-disc text-gray-300 text-sm">
-                        @foreach ($lecturer->course as $course)
-                            <li>
+
+            <table class="w-full dark:text-gray-300 rounded overflow-hidden">
+                <tr class=" text-white bg-indigo-500">
+                    <th class="py-6">Name</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr class="bg-slate-900 hidden" id="addCourseCol">
+                    <td class="py-5 pl-7" colspan="2">
+                        <form 
+                            action="{{ route('admin.addCourseToLecturer') }}" 
+                            class="flex items-center gap-5" 
+                            method="POST"
+                        >
+                            @csrf
+                            <input type="text" value="{{ $lecturer->id }}" name="lecturer" hidden>
+                            <div class="w-[80%]">
+                                <select name="course" id="course" class="w-full px-3 py-2 rounded bg-slate-700">
+                                    <option value="" selected hidden>-Pilih Course-</option>
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <button
+                                    class="bg-indigo-500 hover:bg-indigo-400 text-white px-3 py-2 rounded"
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                @forelse ($lecturer->course as $index => $course)
+                    <tr
+                        class="
+                            @if ($index%2 == 0)
+                                bg-slate-700
+                            @endif
+                        "
+                    >
+                        <td class="py-5 pl-7 w-[80%]">
+                            <a href="">
                                 {{ $course->name }}
-                            </li>
-                        @endforeach
-                    </ul>
-                    <h3 class="font-semibold flex mb-3 mt-5">
-                        <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            stroke-width="1.5" 
-                            stroke="currentColor" 
-                            class="w-6 h- mr-3"
-                        >
-                            <path 
-                                stroke-linecap="round" 
-                                stroke-linejoin="round" 
-                                d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" 
-                            />
-                        </svg>
-                        Kelas
-                    </h3>
-                    <ul class="list-disc text-gray-300 text-sm">
-                        @foreach ($lecturer->classroom as $classroom)
-                            <li>
-                                {{ $classroom->name }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div 
-            class="
-                bg-white 
-                dark:bg-slate-800 
-                col-span-6 
-                md:col-span-4 
-                shadow-md 
-                rounded 
-                mt-5 
-                overflow-hidden
-                p-5
-            "
-        >
-            <h3 class="text-2xl font-semibold text-indigo-500 mb-5">Courses</h3>
-            <form 
-                action="{{ route('admin.lecturer.update', ['submit' => 'course']) }}" 
-                method="POST" 
-                class="dark:text-white grid grid-cols-3"
-            >
-                @csrf
-                <input type="text" name="lecturer" value="{{ $lecturer->id }}" hidden>
-                @foreach ($courses as $course)
-                    <div class="mb-3">
-                        <input 
-                            id="{{ $course->slug }}" 
-                            type="checkbox" 
-                            value="{{ $course->id }}" 
-                            name="courses[]"
-                        >
-                        <label 
-                            for="{{ $course->slug }}"
-                            class="ml-3 font-semibold"
-                        >
-                            {{ $course->name }}
-                        </label>
-                    </div>
-                @endforeach
-                <div class="col-span-3 mt-5">
-                    <button 
-                        {{-- type="button" --}}
-                        {{-- onclick="toggleConfirm()" --}}
-                        class="bg-indigo-500 hover:bg-indigo-500 px-5 py-2 rounded"
-                    >
-                        submit
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div 
-            class="
-                bg-white 
-                dark:bg-slate-800 
-                col-span-6 
-                md:col-span-4 
-                shadow-md 
-                rounded 
-                mt-5 
-                overflow-hidden
-                p-5
-            "
-        >
-            <h3 class="text-2xl font-semibold text-indigo-500 mb-5">Classroom</h3>
-            <form 
-                action="{{ route('admin.lecturer.update', ['submit' => 'classroom']) }}" 
-                method="POST" 
-                class="dark:text-white grid grid-cols-4"
-            >
-                @csrf
-                <input type="text" name="lecturer" value="{{ $lecturer->id }}" hidden>
-                @foreach ($classrooms as $classroom)
-                    <div class="mb-3">
-                        <input 
-                            id="{{ $classroom->id }}" 
-                            type="checkbox" 
-                            value="{{ $classroom->id }}" 
-                            name="classrooms[]"
-                        >
-                        <label 
-                            for="{{ $classroom->id }}"
-                            class="ml-3 font-semibold"
-                        >
-                            {{ $classroom->name }}
-                        </label>
-                    </div>
-                @endforeach
-                <div class="col-span-3 mt-5">
-                    <button 
-                        {{-- type="button" --}}
-                        {{-- onclick="toggleConfirm()" --}}
-                        class="bg-indigo-500 hover:bg-indigo-500 px-5 py-2 rounded"
-                    >
-                        submit
-                    </button>
-                </div>
-            </form>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <div class="flex items-center">
+                                <form 
+                                    {{-- action="{{ route('admin.lecturer.destroy', $lecturer->user->id) }}"  --}}
+                                    method="POST"
+                                    class="inline mr-2"
+                                >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        onclick="toggleConfirm($index)" 
+                                        class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
+                                    >
+                                        @include(
+                                            'components.icons.trash-solid-icon',
+                                            ['class' => 'w-6']
+                                        )
+                                    </button>
+                                </form>
+                                <a 
+                                    {{-- href="{{ route('admin.lecturer.edit', $lecturer->user->username) }}" --}}
+                                    class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
+                                >
+                                    @include(
+                                        'components.icons.edit-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="py-10">
+                            <h4 class="text-6xl text-center">☹️</h4>
+                            <h3 class="text-center mt-3 text-xl">
+                                Tidak ada mahasiswa dengan NIM 
+                                {{-- <span class="text-indigo-500">{{ $_GET['search'] }}</span> --}}
+                            </h3>
+                        </td>
+                    </tr>
+                @endforelse
+            </table>
         </div>
     </section>
 @endsection
 
 @section('script')
-    <script>
-        const modal = document.getElementById('modal');
-        const showModal= (student) => {
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-
-            document.getElementById('name').textContent = student.user.name
-            document.getElementById('nim').textContent = student.nim
-        }    
-        const hideModal= () => {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }    
-        const hideNoty= ()=>{
-            const noty = document.getElementById('noty')
-            noty.classList.toggle('flex');
-            noty.classList.toggle('hidden');
-        }
-
-        const toggleConfirm = () =>{
-            const cofirmModal= document.getElementById('confirmModal');
-            cofirmModal.classList.toggle('hidden');
-        }
-    </script> 
+<script>
+    const addCourseCol= document.getElementById('addCourseCol');
+    const toggleAddCourseForm = () => {
+        addCourseCol.classList.toggle('hidden');
+    }
+</script>
 @endsection

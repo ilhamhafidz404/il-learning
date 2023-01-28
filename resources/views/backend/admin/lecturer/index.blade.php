@@ -106,7 +106,11 @@
                             @endif
                         "
                     >
-                        <td class="py-5 pl-7 w-[80%]">{{ $lecturer->user->name }}</td>
+                        <td class="py-5 pl-7 w-[80%]">
+                            <a href="{{ route('admin.lecturer.show', $lecturer->user->username) }}">
+                                {{ $lecturer->user->name }}
+                            </a>
+                        </td>
                         <td class="text-center">
                             <div class="flex items-center">
                                 <form 
