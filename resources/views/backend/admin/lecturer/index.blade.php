@@ -108,32 +108,43 @@
                     >
                         <td class="py-5 pl-7 w-[80%]">{{ $lecturer->user->name }}</td>
                         <td class="text-center">
-                            <button
-                                onclick="toggleConfirm()" 
-                                class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
-                            >
-                                @include(
-                                    'components.icons.trash-solid-icon',
-                                    ['class' => 'w-6']
-                                )
-                            </button>
-                            <form 
-                                action="{{ route('admin.lecturer.destroy', $lecturer->user->id) }}" 
-                                id="confirmDeleteLecturer" 
-                                method="POST"
-                                class="hidden"
-                            >
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                            <button 
-                                class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
-                            >
-                                @include(
-                                    'components.icons.edit-solid-icon',
-                                    ['class' => 'w-6']
-                                )
-                            </button>
+                            <div class="flex items-center">
+                                <form 
+                                    action="{{ route('admin.lecturer.destroy', $lecturer->user->id) }}" 
+                                    method="POST"
+                                    class="inline mr-2"
+                                >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        onclick="toggleConfirm($index)" 
+                                        class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
+                                    >
+                                        @include(
+                                            'components.icons.trash-solid-icon',
+                                            ['class' => 'w-6']
+                                        )
+                                    </button>
+                                </form>
+                                {{-- <form 
+                                    action="{{ route('admin.lecturer.destroy', $lecturer->user->id) }}" 
+                                    id="{{'confirmDeleteLecturer'. $index}}" 
+                                    method="POST"
+                                    class="hidden"
+                                >
+                                    @csrf
+                                    @method('DELETE')
+                                </form> --}}
+                                <a 
+                                    href="{{ route('admin.lecturer.edit', $lecturer->user->username) }}"
+                                    class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
+                                >
+                                    @include(
+                                        'components.icons.edit-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 @empty

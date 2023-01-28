@@ -12,6 +12,8 @@ class Lecturer extends Authenticatable
 {
     use HasFactory, HasRoles;
 
+    protected $fillable = ['user_id', 'profile'];
+
     public function Course()
     {
         return $this->belongsToMany(Course::class);

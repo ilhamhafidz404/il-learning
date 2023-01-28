@@ -5,7 +5,7 @@
         [ 
             'title' => 'Apakah anda yakin?', 
             'subtitle' => 'Data yang sudah terpilih tidak bisa di batalkan lagi.',
-            'to' => 'confirmDeleteCourse'
+            'to' => 'confirmDeleteClassroom'
         ]
     )
     @include('components.toast')
@@ -125,7 +125,7 @@
             </div>
             <div>
                 <a 
-                    href="{{ route('admin.course.create') }}" 
+                    href="{{ route('admin.classroom.create') }}" 
                     class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
                 >
                     Create new Classroom
@@ -164,8 +164,8 @@
                                 )
                             </button>
                             <form 
-                                action="{{ route('admin.course.destroy', $classroom->id) }}" 
-                                id="confirmDeleteCourse" 
+                                action="{{ route('admin.classroom.destroy', $classroom->id) }}" 
+                                id="confirmDeleteClassroom" 
                                 method="POST"
                                 class="hidden"
                             >

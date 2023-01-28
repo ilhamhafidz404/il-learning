@@ -69,17 +69,24 @@ Route::middleware(['auth'])->group(function () {
     // });
     Route::post('/mission', [MissionController::class, 'store'])->name('mission.store');
     Route::get('/mission/add', [MissionController::class, 'create'])->name('mission.create');
+
     Route::get('/submission/add', [SubmissionController::class, 'create'])->name('submission.create');
     Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
     Route::delete('/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
+
     Route::post('/acceptsks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
     Route::get('/acceptsks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
+
     Route::delete('/submitsubmission/{id}', DeleteSubmitSubmission::class)->name('submitsubmission.destroy');
     Route::post('/submitsubmission', SubmitSubmissionController::class)->name('submitsubmission');
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/course', [CourseController::class, 'index'])->name('course.index');
     Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.show');
-    Route::get('/lecturers', LecturerController::class)->name('lecturers');
+
+    // Route::get('/lecturers', LecturerController::class)->name('lecturers');
+
     Route::get('/mission/{slug}', [MissionController::class, 'show'])->name('mission.show');
     Route::get('/submission/{slug}', [SubmissionController::class, 'show'])->name('submission.show');
     Route::post('/change-theme-mode', ThemeModeController::class)->name('change.theme.mode');
@@ -89,19 +96,10 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 
-Route::get('admin/course', [AdminCourseController::class, 'index'])->name('admin.course.index');
-Route::get('admin/course/add', [AdminCourseController::class, 'create'])->name('admin.course.create');
-Route::post('admin/course', [AdminCourseController::class, 'store'])->name('admin.course.store');
-Route::delete('admin/course/{id}', [AdminCourseController::class, 'destroy'])->name('admin.course.destroy');
-
-Route::get('admin/lecturer', [AdminLecturerController::class, 'index'])->name('admin.lecturer.index');
-Route::get('admin/lecturer/{username}', [AdminLecturerController::class, 'show'])->name('admin.lecturer.show');
-Route::get('admin/lecturer/add', [AdminLecturerController::class, 'create'])->name('admin.lecturer.create');
-Route::post('admin/lecturer/', [AdminLecturerController::class, 'update'])->name('admin.lecturer.update');
-Route::delete('admin/lecturer/{id}', [AdminLecturerController::class, 'destroy'])->name('admin.lecturer.destroy');
-
-Route::get('admin/student', [StudentController::class, 'index'])->name('admin.student.index');
-Route::get('admin/classroom', [ClassroomController::class, 'index'])->name('admin.classroom.index');
+Route::resource('admin/course', AdminCourseController::class, ['names' => 'admin.course']);
+Route::resource('admin/lecturer', AdminLecturerController::class, ['names' => 'admin.lecturer']);
+Route::resource('admin/student', StudentController::class, ['names' => 'admin.student']);
+Route::resource('admin/classroom', ClassroomController::class, ['names' => 'admin.classroom']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
