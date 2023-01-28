@@ -160,7 +160,7 @@
                             <hr class="dark:border-slate-700">
                             <li class="hover:bg-gray-200 dark:hover:bg-slate-700 px-3 py-2">
                                 <a 
-                                    href="{{ route('logout') }}"
+                                    href="{{ route('admin.logout') }}"
                                     class="
                                         w-full 
                                         block 

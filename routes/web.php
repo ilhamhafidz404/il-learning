@@ -27,46 +27,34 @@ use App\Http\Controllers\more\{
 };
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
 
 Route::get('/demo', function () {
     return view('demotest');
 })->name('demo');
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
+Route::name('admin.')->group(function () {
+    Route::get('/admin/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/admin/login', [AuthController::class, 'authenticate'])->name('authenticate');
+    Route::post('/admin/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::group(['middleware' => 'adminauth'], function () {
+
+        Route::get('admin/dashboard', AdminDashboardController::class)->name('dashboard');
+
+        Route::resource('admin/course', AdminCourseController::class, ['names' => 'course']);
+        Route::resource('admin/lecturer', AdminLecturerController::class, ['names' => 'lecturer']);
+        Route::resource('admin/student', StudentController::class, ['names' => 'student']);
+        Route::resource('admin/classroom', ClassroomController::class, ['names' => 'classroom']);
     });
-    // 
-    Route::get('/admin/login', [AuthController::class, 'login'])->name('admin.login');
-    Route::post('/admin/login', [AuthController::class, 'authenticate'])->name('admin.authenticate');
 });
 
 Route::middleware(['auth'])->group(function () {
 
-    // Route::middleware(['role:student'])->group(function () {
-    //     Route::post('/acceptsks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
-    //     Route::get('/acceptsks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
-    //     Route::delete('/submitsubmission/{id}', DeleteSubmitSubmission::class)->name('submitsubmission.destroy');
-    //     Route::post('/submitsubmission', SubmitSubmissionController::class)->name('submitsubmission');
-    // });
-    // Route::middleware(['role:lecturer'])->group(function () {
-    //     Route::get('/mission/add', [MissionController::class, 'create'])->name('mission.create');
-    //     Route::post('/mission', [MissionController::class, 'store'])->name('mission.store');
-    //     Route::get('/submission/add', [SubmissionController::class, 'create'])->name('submission.create');
-    //     Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
-    //     Route::delete('/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
-    // });
     Route::post('/mission', [MissionController::class, 'store'])->name('mission.store');
     Route::get('/mission/add', [MissionController::class, 'create'])->name('mission.create');
 
@@ -93,14 +81,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account', MyAccountController::class)->name('myaccount');
     Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
 });
-
-Route::get('admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
-
-Route::resource('admin/course', AdminCourseController::class, ['names' => 'admin.course']);
-Route::resource('admin/lecturer', AdminLecturerController::class, ['names' => 'admin.lecturer']);
-Route::resource('admin/student', StudentController::class, ['names' => 'admin.student']);
-Route::resource('admin/classroom', ClassroomController::class, ['names' => 'admin.classroom']);
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();

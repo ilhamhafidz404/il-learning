@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -16,24 +15,33 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $login = Admin::where('email', $credentials['email'])->first();
-            auth()->login($login);
-
+        if (
+            auth()->guard('admin')->attempt([
+                'email' => $request->input('email'),
+                'password' => $request->input('password')
+            ])
+        ) {
+            $user = auth()->guard('admin')->user();
             session()->put('admin', true);
             session()->put('email', $request->email);
             $request->session()->regenerate();
             $request->session()->regenerateToken();
-            return redirect()->intended('dashboard');
+            return redirect()->route('admin.dashboard');
+        } else {
+            return back()->with('error', 'Whoops! invalid email and password.');
         }
+    }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+    public function logout(Request $request)
+    {
+        auth()->guard('admin')->logout();
+        Session::flush();
+        Session::put('success', 'You are logout sucessfully');
+        return redirect(route('admin.login'));
     }
 }

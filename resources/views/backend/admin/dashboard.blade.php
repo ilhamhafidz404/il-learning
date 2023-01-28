@@ -17,6 +17,7 @@
     >
         <div class="col-span-2 bg-slate-800 rounded p-5 text-gray-200">
             <h3 class="text-xl font-semibold">Statistik</h3>
+            {{ Session::get('admin') }}
         </div>
         <div class="col-span-4 bg-slate-800 rounded p-5 text-gray-200">
             <h3 class="text-xl font-semibold">Statistik</h3>
