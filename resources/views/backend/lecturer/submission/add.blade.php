@@ -200,14 +200,16 @@
                             required
                         >
                             <option value="" hidden selected>Pilih Mission</option>
-                            @foreach ($missions as $mission)
+                            @forelse ($missions as $mission)
                                 <option 
                                     {{ old('mission') == $mission->id ? "selected" : "" }}
                                     value="{{ $mission->id }}"
                                 >
                                     {{ $mission->name }}
                                 </option>
-                            @endforeach
+                            @empty
+                                <option disabled>Anda belum membuat mission</option>
+                            @endforelse
                         </select>
                         @error('mission')
                             <small class="text-red-500">{{ $message }}</small>
@@ -247,14 +249,16 @@
                             required
                         >
                             <option value="" hidden selected>Pilih Kelas</option>
-                            @foreach ($lecturer->classroom as $classroom)
+                            @forelse ($lecturer->classroom as $classroom)
                                 <option 
                                     {{ old('lecturer') == $lecturer->id ? "selected" : "" }}
                                     value="{{ $classroom->id }}"
                                 >
                                     {{ $classroom->name }}
                                 </option>
-                            @endforeach
+                            @empty
+                                <option disabled>Anda belum ditugaskan dikelas manapun</option>
+                            @endforelse
                         </select>
                         @error('classroom')
                             <small class="text-red-500">{{ $message }}</small>

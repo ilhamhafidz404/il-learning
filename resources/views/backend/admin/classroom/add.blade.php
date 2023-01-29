@@ -41,9 +41,9 @@
                 </span>
                 Add Classroom
             </h1>
-            <div class="bg-white">
+            {{-- <div class="bg-white">
                 breadcrumbs
-            </div>
+            </div> --}}
         </div>
 
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">

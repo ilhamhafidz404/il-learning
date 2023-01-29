@@ -68,10 +68,19 @@ class SubmissionController extends Controller
         $students = Student::whereClassroomId($classroom)->get();
         foreach ($students as $student) {
             Completed::create([
-                'user_id' => $student->id,
+                'user_id' => $student->user->id,
                 'submission_id' => $submission->id,
                 'status' => false
             ]);
+        }
+
+        $progresses = Progress::whereMissionId($request->mission)->get();
+        if ($progresses->count() > 0) {
+            foreach ($progresses as $progress) {
+                $progress->update([
+                    'submission_count' => $progress->submission_count + 1
+                ]);
+            }
         }
 
         return redirect()->back()->with([

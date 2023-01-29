@@ -53,6 +53,7 @@ Route::name('admin.')->group(function () {
         Route::resource('admin/classroom', ClassroomController::class, ['names' => 'classroom']);
         // 
         Route::post('/addcoursetolecturer', [MoreController::class, 'addCourseToLecturer'])->name('addCourseToLecturer');
+        Route::post('/addclassroomtolecturer', [MoreController::class, 'addClassroomToLecturer'])->name('addClassroomToLecturer');
     });
 });
 

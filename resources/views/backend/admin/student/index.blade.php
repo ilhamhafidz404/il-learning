@@ -41,7 +41,7 @@
                 </span>
                 Students
             </h1>
-            <form action="">
+            <form action="" class="relative">
                 <input 
                     type="text" 
                     placeholder="search" 
@@ -51,14 +51,38 @@
                         value="{{ $_GET['search'] }}"
                     @endisset
                 >
-                <button class="bg-indigo-500 hover:bg-indigo-400 text-white py-2 px-3 rounded">Search</button>
                 @isset($_GET['search'])
                     <a 
                         href="{{ route('admin.student.index') }}" 
-                        class="bg-red-500 hover:bg-red-400 text-white py-3 px-3 rounded"
+                        class="
+                            text-red-500 
+                            hover:text-red-600 
+                            py-2
+                            px-3
+                            absolute
+                            right-0
+                        "
                     >
-                        cancel
+                        @include(
+                            'components.icons.close-icon',
+                            ['class' => 'w-6']
+                        )
                     </a>
+                @else
+                <button 
+                    class="
+                        text-indigo-500 
+                        hover:text-indigo-600 
+                        py-2 
+                        px-3
+                        absolute
+                        right-0
+                    "
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z" clip-rule="evenodd" />
+                    </svg>
+                </button>
                 @endisset
             </form>
         </div>
@@ -153,8 +177,10 @@
                         <td colspan="5" class="py-10">
                             <h4 class="text-6xl text-center">☹️</h4>
                             <h3 class="text-center mt-3 text-xl">
-                                Tidak ada mahasiswa dengan NIM 
-                                <span class="text-indigo-500">{{ $_GET['search'] }}</span>
+                                No Student Data, 
+                                <a href="{{ route('admin.student.create') }}" class="text-indigo-500">
+                                    Create Student Account?
+                                </a>
                             </h3>
                         </td>
                     </tr>

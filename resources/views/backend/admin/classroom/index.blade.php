@@ -192,8 +192,10 @@
                         <td colspan="5" class="py-10">
                             <h4 class="text-6xl text-center">☹️</h4>
                             <h3 class="text-center mt-3 text-xl">
-                                Tidak ada mahasiswa dengan NIM 
-                                <span class="text-indigo-500">{{ $_GET['search'] }}</span>
+                                No Classroom Data, 
+                                <a href="{{ route('admin.classroom.create') }}" class="text-indigo-500">
+                                    Create Classroom?
+                                </a>
                             </h3>
                         </td>
                     </tr>

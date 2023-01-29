@@ -48,9 +48,9 @@
             <div class="flex gap-10 items-center">
                 <div>
                     <img 
-                        src="{{ asset('storage/profile/man3.jpg') }}" 
+                        src="{{ asset('storage/'.$course->background) }}" 
                         {{-- alt="{{ $lecturer->user->username."profile" }}" --}}
-                        class="w-[300px]"
+                        class="w-[300px] h-[300px] object-cover object-center"
                     >
                 </div>
                 <div>
@@ -103,13 +103,15 @@
                             method="POST"
                         >
                             @csrf
-                            {{-- <input type="text" value="{{ $course->id }}" name="course" hidden> --}}
+                            <input type="text" value="{{ $course->id }}" name="course" hidden>
                             <div class="w-[80%]">
-                                <select name="course" id="course" class="w-full px-3 py-2 rounded bg-slate-700">
-                                    <option value="" selected hidden>-Pilih Course-</option>
-                                    @foreach ($lecturers as $lecturer)
+                                <select name="lecturer" id="lecturer" class="w-full px-3 py-2 rounded bg-slate-700">
+                                    <option value="" selected hidden>-Select Lecturer-</option>
+                                    @forelse ($lecturers as $lecturer)
                                         <option value="{{ $lecturer->id }}">{{ $lecturer->user->name }}</option>
-                                    @endforeach
+                                    @empty
+                                        <option disabled >No Lecturer data</option>
+                                    @endforelse
                                 </select>
                             </div>
                             <div>
@@ -176,8 +178,10 @@
                         <td colspan="5" class="py-10">
                             <h4 class="text-6xl text-center">☹️</h4>
                             <h3 class="text-center mt-3 text-xl">
-                                Tidak ada mahasiswa dengan NIM 
-                                {{-- <span class="text-indigo-500">{{ $_GET['search'] }}</span>  --}}
+                                No Lecturer on this Course, 
+                                <span onclick="toggleAddCourseForm()" class="text-indigo-500 cursor-pointer">
+                                    Add Lecturer for Course?
+                                </span>
                             </h3>
                         </td>
                     </tr>

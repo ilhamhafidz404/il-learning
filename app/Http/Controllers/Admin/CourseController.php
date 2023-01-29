@@ -31,6 +31,7 @@ class CourseController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'sks' => $request->sks,
+            'background' => $request->file('file')->store('course'),
             'description' => $request->description,
         ]);
 

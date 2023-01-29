@@ -49,7 +49,7 @@
                         "
                     >
                         <img 
-                            src="{{ asset('storage/course/'.$course->background) }}"
+                            src="{{ asset('storage/'.$course->background) }}"
                             class="w-full sm:w-[35%] h-[65%] sm:!h-full object-cover rounded "
                         >
                         <div class="w-full sm:w-[65%]">

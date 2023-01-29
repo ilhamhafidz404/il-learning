@@ -33,6 +33,8 @@ class LecturerController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        $user->assignRole('lecturer');
+
         Lecturer::create([
             'user_id' => $user->id,
             'profile' => $request->file('file')->store('profile')

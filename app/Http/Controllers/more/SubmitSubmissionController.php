@@ -25,7 +25,6 @@ class SubmitSubmissionController extends Controller
             'extension' => $request->file('file')->extension(),
         ]);
 
-
         $check = Progress::whereUserId(Auth::user()->id)->whereMission_id($request->mission)->first();
         if ($check) {
             Progress::find($check->id)->update([
@@ -41,9 +40,10 @@ class SubmitSubmissionController extends Controller
             ]);
         }
 
-        Completed::whereUserId(Auth::user()->id)->whereSubmissionId($request->submission)->update([
+        Completed::whereUserId(Auth::user()->id)->whereSubmissionId($request->submission)->first()->update([
             'status' => true
         ]);
+
 
         return redirect()->back()->with([
             'success' => true,

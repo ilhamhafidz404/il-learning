@@ -21,56 +21,56 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-            CourseSeeder::class,
-            UserSeeder::class,
-            LecturerSeeder::class,
-            ClassroomSeeder::class,
+            // CourseSeeder::class,
+            // UserSeeder::class,
+            // LecturerSeeder::class,
+            // ClassroomSeeder::class,
             // SubmissionSeeder::class,
             // MissionSeeder::class,
             // 
-            ClassroomLecturerSeeder::class,
+            // ClassroomLecturerSeeder::class,
             // 
             AdminSeeder::class,
-            StudentSeeder::class
+            // StudentSeeder::class
         ]);
 
-        CourseLecturer::insert([
-            [
-                'course_id' => 1,
-                'lecturer_id' => 1,
-            ],
-            [
-                'course_id' => 2,
-                'lecturer_id' => 2,
-            ],
-            [
-                'course_id' => 3,
-                'lecturer_id' => 3,
-            ],
-            [
-                'course_id' => 4,
-                'lecturer_id' => 4,
-            ],
-            [
-                'course_id' => 5,
-                'lecturer_id' => 5,
-            ],
-            [
-                'course_id' => 6,
-                'lecturer_id' => 5,
-            ],
-            [
-                'course_id' => 7,
-                'lecturer_id' => 6,
-            ],
-            [
-                'course_id' => 8,
-                'lecturer_id' => 7,
-            ],
-            [
-                'course_id' => 9,
-                'lecturer_id' => 8,
-            ],
-        ]);
+        // CourseLecturer::insert([
+        //     [
+        //         'course_id' => 1,
+        //         'lecturer_id' => 1,
+        //     ],
+        //     [
+        //         'course_id' => 2,
+        //         'lecturer_id' => 2,
+        //     ],
+        //     [
+        //         'course_id' => 3,
+        //         'lecturer_id' => 3,
+        //     ],
+        //     [
+        //         'course_id' => 4,
+        //         'lecturer_id' => 4,
+        //     ],
+        //     [
+        //         'course_id' => 5,
+        //         'lecturer_id' => 5,
+        //     ],
+        //     [
+        //         'course_id' => 6,
+        //         'lecturer_id' => 5,
+        //     ],
+        //     [
+        //         'course_id' => 7,
+        //         'lecturer_id' => 6,
+        //     ],
+        //     [
+        //         'course_id' => 8,
+        //         'lecturer_id' => 7,
+        //     ],
+        //     [
+        //         'course_id' => 9,
+        //         'lecturer_id' => 8,
+        //     ],
+        // ]);
     }
 }

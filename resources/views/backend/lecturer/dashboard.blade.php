@@ -10,7 +10,7 @@
 >
     @include('components.widgets')    
     <section class="grid grid-cols-6 gap-5 mt-10">
-        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded">
+        <div class="bg-white dark:bg-slate-800 col-span-6 shadow-md rounded">
             <h2 
                 class="
                     text-xl 
@@ -45,7 +45,7 @@
                     "
                 >
                     <img 
-                        src="{{ asset('storage/course/'.$course->background) }}"
+                        src="{{ asset('storage/'.$course->background) }}"
                         class="w-full sm:w-[35%] h-[65%] sm:!h-full object-cover rounded "
                     >
                     <div class="w-full sm:w-[65%]">
@@ -84,9 +84,6 @@
                     </h3>
                 </div>
             @endforelse
-        </div>
-        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-2 p-5 shadow-md rounded">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-indigo-500">Timeline</h2>
         </div>
     </section>
 </section>

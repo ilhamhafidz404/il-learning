@@ -4,7 +4,7 @@
     @include('components.confirmModal' , 
         [ 
             'title' => 'Apakah anda yakin?', 
-            'subtitle' => 'Data yang sudah terpilih tidak bisa di batalkan lagi.',
+            'subtitle' => 'Akun Student akan ditambhkan',
             'to' => 'confirmAddLecturer'
         ]
     )
@@ -31,26 +31,6 @@
                 </span>
                 Add Student
             </h1>
-            <form action="">
-                <input 
-                    type="text" 
-                    placeholder="search" 
-                    name="search" 
-                    class="py-2 rounded-full px-5 w-[300px] bg-white text-gray-800"
-                    @isset($_GET['search'])
-                        value="{{ $_GET['search'] }}"
-                    @endisset
-                >
-                <button class="bg-indigo-500 hover:bg-indigo-400 text-white py-2 px-3 rounded">Search</button>
-                @isset($_GET['search'])
-                    <a 
-                        href="{{ route('admin.student.index') }}" 
-                        class="bg-red-500 hover:bg-red-400 text-white py-3 px-3 rounded"
-                    >
-                        cancel
-                    </a>
-                @endisset
-            </form>
         </div>
 
         <div 
@@ -129,12 +109,14 @@
                         >
                     </div>
                     <div>
-                        <label for="classroom" class="font-bold">Nim :</label>
+                        <label for="classroom" class="font-bold">Classroom :</label>
                         <select name="classroom" id="classroom" class="w-full py-2 px-4 rounded dark:bg-slate-700">
-                            <option selected hidden>-Pilih Kelas-</option>
-                            @foreach ($classrooms as $classroom)
+                            <option selected hidden>-Select Classroom-</option>
+                            @forelse ($classrooms as $classroom)
                                 <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
-                            @endforeach
+                            @empty
+                                <option disabled>No Classroom Data</option>
+                            @endforelse
                         </select>
                     </div>
                 </div>

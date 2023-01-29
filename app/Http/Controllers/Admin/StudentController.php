@@ -35,6 +35,8 @@ class StudentController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        $user->assignRole('student');
+
         Student::create([
             'nim' => $request->nim,
             'user_id' => $user->id,

@@ -31,13 +31,18 @@
                 </span>
                 Add Course
             </h1>
-            <div class="bg-white">
+            {{-- <div class="bg-white">
                 breadcrumbs
-            </div>
+            </div> --}}
         </div>
 
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">
-            <form id="storeCourse" action="{{ route('admin.course.store') }}" method="POST">
+            <form 
+                id="storeCourse" 
+                action="{{ route('admin.course.store') }}" 
+                method="POST" 
+                enctype="multipart/form-data"
+            >
                 @csrf
                 <div class="grid grid-cols-2 gap-5 mb-5">
                     <div>
@@ -58,6 +63,15 @@
                             class="w-full rounded py-2 px-3 dark:bg-slate-700 dark:text-gray-100"
                         >
                     </div>
+                </div>
+                <div class="mb-5">
+                    <label for="file" class="block text-white font-semibold">Background :</label>
+                    <input 
+                        type="file" 
+                        name="file" 
+                        id="file" 
+                        class="w-full rounded py-2 px-3 dark:bg-slate-700 dark:text-gray-100"
+                    >
                 </div>
                 <div class="mb-5">
                     <label for="description" class="block text-white font-semibold">Description :</label>
