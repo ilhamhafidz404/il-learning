@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Lecturer;
 use App\Models\ManyToMany\CourseLecturer;
 use App\Models\ManyToMany\CourseUser;
 use App\Models\Mission;
@@ -38,6 +39,14 @@ class CourseController extends Controller
             'title' => 'Berhasil Menambah Course',
             'message' => 'Sekarang Course telah bertambah'
         ]);
+    }
+
+    public function show($slug)
+    {
+        $course = Course::whereSlug($slug)->first();
+        $lecturers = Lecturer::all();
+
+        return view('backend.admin.course.show', compact('course', 'lecturers'));
     }
 
     public function destroy($id)

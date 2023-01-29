@@ -142,7 +142,11 @@
                             @endif
                         "
                     >
-                        <td class="py-5 pl-7 w-[80%]">{{ $course->name }}</td>
+                        <td class="py-5 pl-7 w-[80%]">
+                            <a href="{{ route('admin.course.show', $course->slug) }}">
+                                {{ $course->name }}
+                            </a>
+                        </td>
                         <td class="text-center">
                             <button
                                 onclick="toggleConfirm()" 

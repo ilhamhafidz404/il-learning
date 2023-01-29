@@ -39,7 +39,7 @@
                         />
                     </svg>
                 </span>
-                Classrooms
+                {{ $classroom->name }}
             </h1>
             <form action="" class="relative">
                 <input 
@@ -128,13 +128,13 @@
                     href="{{ route('admin.classroom.create') }}" 
                     class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
                 >
-                    Create new Classroom
+                    Add new Classmate
                 </a>
             </div>
         </div>
 
         <small class="text-white">
-            <span class="font-semibold">{{ $classrooms->count() }}</span> 
+            <span class="font-semibold">{{ $students->count() }}</span> 
             Classroom published
         </small>
 
@@ -144,7 +144,7 @@
                     <th class="py-6">Name</th>
                     <th>Action</th>
                 </tr>
-                @forelse ($classrooms as $index => $classroom)
+                @forelse ($students as $index => $student)
                     <tr
                         class="
                             @if ($index%2 == 0)
@@ -152,38 +152,12 @@
                             @endif
                         "
                     >
-                        <td class="py-5 pl-7 w-[80%]">
-                            <a href="{{ route('admin.classroom.show', $classroom->name) }}">
-                                {{ $classroom->name }}
-                            </a>
-                        </td>
+                        <td class="py-5 pl-7 w-[80%]">{{ $student->user->name }}</td>
                         <td class="text-center">
-                            <button
-                                onclick="toggleConfirm()" 
-                                class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
-                            >
-                                @include(
-                                    'components.icons.trash-solid-icon',
-                                    ['class' => 'w-6']
-                                )
-                            </button>
-                            <form 
-                                action="{{ route('admin.classroom.destroy', $classroom->id) }}" 
-                                id="confirmDeleteClassroom" 
-                                method="POST"
-                                class="hidden"
-                            >
-                                @csrf
-                                @method('DELETE')
-                            </form>
                             <button 
-                                class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
-                                {{-- onclick="showModal({{$course}})" --}}
+                                class="bg-slate-500 hover:bg-slate-400 text-white px-3 py-2 rounded"
                             >
-                                @include(
-                                    'components.icons.edit-solid-icon',
-                                    ['class' => 'w-6']
-                                )
+                                Pindah Kelas
                             </button>
                         </td>
                     </tr>
@@ -192,12 +166,18 @@
                         <td colspan="5" class="py-10">
                             <h4 class="text-6xl text-center">☹️</h4>
                             <h3 class="text-center mt-3 text-xl">
-                                Tidak ada mahasiswa dengan NIM 
-                                <span class="text-indigo-500">{{ $_GET['search'] }}</span>
+                                Tidak ada mahasiswa dengan di Kelas {{ $classroom->name }}
                             </h3>
                         </td>
                     </tr>
                 @endforelse
+                <tr class="bg-indigo-500">
+                    <td colspan="2" class="px-10 pb-5 pt-1">
+                        <div class="mt-5 w-full text-white">
+                            {{$students->links()}}
+                        </div>
+                    </td>
+                </tr>
             </table>
         </div>
         {{-- <div class="mt-5 w-full">
