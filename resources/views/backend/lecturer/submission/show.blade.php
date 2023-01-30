@@ -85,7 +85,7 @@
                         items-center 
                         justify-around 
                         border-l-[5px] 
-                        @if ($submission->deadline < $subSubmission->created_at)
+                        @if ($submission->deadline < $subSubmission->created_at && !$submission->theory)
                             border-l-red-500 
                         @else
                             border-l-emerald-500 
@@ -99,24 +99,30 @@
                         <p class="mr-3">20220810052</p>
                         <p class="uppercase font-semibold">{{ $subSubmission->user->name }}</p>
                     </div>
-                    <p class="w-[15%]">
-                        {{ $subSubmission->created_at->diffForHumans() }}
-                        @if ($submission->deadline < $subSubmission->created_at)
-                            <span class="bg-red-500 text-white px-3 rounded">late</span>
-                        @endif
-                    </p>
-                    <p class="w-[50%]">
-                        {{ $subSubmission->description }}
-                    </p>
-                    <span>
-                        <a 
-                            target="_blank"
-                            href="{{ asset('storage/'. $subSubmission->file) }}" 
-                            class="w-[10%] bg-indigo-500 py-2 px-5 rounded hover:bg-indigo-400 text-white"
-                        >
-                            Download
-                        </a>
-                    </span>
+                    @if (!$submission->theory)
+                        <p class="w-[15%]">
+                            {{ $subSubmission->created_at->diffForHumans() }}
+                            @if ($submission->deadline < $subSubmission->created_at)
+                                <span class="bg-red-500 text-white px-3 rounded">late</span>
+                            @endif
+                        </p>
+                        <p class="w-[50%]">
+                            {{ $subSubmission->description }}
+                        </p>
+                        <span>
+                            <a 
+                                target="_blank"
+                                href="{{ asset('storage/'. $subSubmission->file) }}" 
+                                class="w-[10%] bg-indigo-500 py-2 px-5 rounded hover:bg-indigo-400 text-white"
+                            >
+                                Download
+                            </a>
+                        </span>
+                    @else
+                        <span class="bg-emerald-500 text-white px-2 rounded text-sm">
+                            sudah membaca materi
+                        </span>
+                    @endif
                 </div>
             @empty
                 <div class="text-center my-20">

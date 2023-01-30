@@ -58,7 +58,13 @@
             >
                 Kembali
             </a>
-            <button onclick="changeType()">Change Type</button>
+            <button 
+                onclick="changeType()" 
+                class="absolute bottom-[150px] right-0 bg-indigo-500 px-5 py-2 rounded mb-3"
+            >
+                <span id="upTheory">Upload Materi</span>
+                <span id="upWork" class="hidden">Upload Tugas</span>
+            </button>
         </div>
         <div 
             class="
@@ -351,7 +357,7 @@
                 </div>
                 <div id="forMateri" class="hidden">
                     <label 
-                            for="materi" 
+                            for="theory" 
                             class="
                                 block
                                 font-bold
@@ -365,8 +371,8 @@
                         </label>
                         <input 
                             type="file"
-                            name="materi" 
-                            id="materi" 
+                            name="theory" 
+                            id="theory" 
                             class="
                                 w-full 
                                 px-3 
@@ -374,7 +380,7 @@
                                 rounded 
                                 text-gray-800 
                                 dark:text-gray-200
-                                @error('materi')
+                                @error('theory')
                                     border-2
                                     border-red-500
                                     bg-red-500/10
@@ -384,9 +390,9 @@
                                 @enderror
                             "
                             required
-                            value="{{ old('materi') }}"
+                            value="{{ old('theory') }}"
                         >
-                        @error('materi')
+                        @error('theory')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
@@ -452,11 +458,16 @@
     const changeType = () =>{
         const forTugas= document.getElementById('forTugas');
         const forMateri= document.getElementById('forMateri');
+        const upWork= document.getElementById('upWork');
+        const upTheory= document.getElementById('upTheory');
 
         forTugas.classList.toggle('hidden');
         forMateri.classList.toggle('hidden');
         forTugas.classList.toggle('grid');
         forMateri.classList.toggle('grid');
+        // 
+        upWork.classList.toggle('hidden');
+        upTheory.classList.toggle('hidden');
     }
     const hideNoty= ()=>{
         const noty = document.getElementById('noty')

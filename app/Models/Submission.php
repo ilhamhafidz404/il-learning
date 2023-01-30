@@ -17,7 +17,8 @@ class Submission extends Model
         'mission_id',
         'lecturer_id',
         'course_id',
-        'classroom_id'
+        'classroom_id',
+        'theory'
     ];
 
     public function Course()

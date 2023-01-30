@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('description')->default('-');
-            $table->timestamp('deadline');
+            $table->string('description')->nullable()->default('-');
+            $table->timestamp('deadline')->nullable();
+            $table->string('theory')->nullable();
             $table->foreignId('mission_id');
             $table->foreignId('lecturer_id');
             $table->foreignId('course_id');

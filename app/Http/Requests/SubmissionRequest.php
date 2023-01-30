@@ -26,8 +26,8 @@ class SubmissionRequest extends FormRequest
     {
         return [
             'name' => 'required|max:25',
-            'deadline' => 'required',
-            'time_deadline' => 'required',
+            // 'deadline' => 'required',
+            // 'time_deadline' => 'required',
             'lecturer' => 'required',
             'course' => 'required',
             'classroom' => 'required',

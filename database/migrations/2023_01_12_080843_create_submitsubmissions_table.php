@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('submitsubmissions', function (Blueprint $table) {
             $table->id();
-            $table->text('file');
+            $table->text('file')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('user_id');
             $table->foreignId('mission_id');
             $table->foreignId('submission_id');
-            $table->string('extension');
+            $table->string('extension')->nullable();
             $table->timestamps();
         });
     }

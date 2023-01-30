@@ -25,7 +25,7 @@ class SubmitsubmissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => ['required', 'mimes:png,jpg,jpeg,txt,pdf,rar,zip,doc,docx,xls,xlxs,mp4'],
+            'file' => ['mimes:png,jpg,jpeg,txt,pdf,rar,zip,doc,docx,xls,xlxs,mp4'],
         ];
     }
 }

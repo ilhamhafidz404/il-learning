@@ -54,16 +54,30 @@ class SubmissionController extends Controller
         $classroom = $request->classroom;
 
         $mission = Mission::whereId($request->mission)->first();
-        $submission = Submission::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name),
-            'description' => $request->description,
-            'deadline' => $deadline,
-            'mission_id' => $request->mission,
-            'lecturer_id' => $request->lecturer,
-            'course_id' => $request->course,
-            'classroom_id' => $classroom,
-        ]);
+
+        if (!$request->theory) {
+            $submission = Submission::create([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name),
+                'description' => $request->description,
+                'deadline' => $deadline,
+                'mission_id' => $request->mission,
+                'lecturer_id' => $request->lecturer,
+                'course_id' => $request->course,
+                'classroom_id' => $classroom,
+            ]);
+        } else {
+            $submission = Submission::create([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name),
+                'description' => $request->description,
+                'theory' => $request->file('theory')->store('theory'),
+                'mission_id' => $request->mission,
+                'lecturer_id' => $request->lecturer,
+                'course_id' => $request->course,
+                'classroom_id' => $classroom,
+            ]);
+        }
 
         $students = Student::whereClassroomId($classroom)->get();
         foreach ($students as $student) {
