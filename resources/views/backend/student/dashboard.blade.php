@@ -69,9 +69,9 @@
                                 @foreach ($course->lecturer as $lecturer)
                                     @foreach ($lecturer->classroom as $classroom)
                                         @if ($classroom->name == $user->classroom->name)
-                                            <small class="font-semibold dark:text-gray-100">
-                                                {{ $lecturer->user->name }}
-                                            </small>
+                                        <small class="font-semibold dark:text-gray-100">
+                                            {{ $lecturer->user->name }}
+                                        </small>
                                         @endif
                                     @endforeach
                                 @endforeach
@@ -103,12 +103,31 @@
                                         href="{{ route('submission.show', $comingEvent->submission->slug) }}" 
                                         class="flex items-center"
                                     >
-                                        <span class="bg-indigo-500  text-white inline-block p-1 rounded mr-3">
-                                            @include(
-                                                'components.icons.bookOpen-regular-icon',
-                                                ['class' => 'w-8']
-                                            )
-                                        </span>
+                                        @if (!$comingEvent->submission->theory)
+                                            <span class="bg-indigo-500  text-white inline-block p-1 rounded mr-3">
+                                                @include(
+                                                    'components.icons.bookOpen-regular-icon',
+                                                    ['class' => 'w-8']
+                                                )
+                                            </span>
+                                        @else
+                                            <span class="bg-yellow-500  text-white inline-block p-1 rounded mr-3">
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    fill="none" 
+                                                    viewBox="0 0 24 24" 
+                                                    stroke-width="1.5" 
+                                                    stroke="currentColor" 
+                                                    class="w-8"
+                                                >
+                                                    <path 
+                                                        stroke-linecap="round" 
+                                                        stroke-linejoin="round" 
+                                                        d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776" 
+                                                    />
+                                                </svg>
+                                            </span>
+                                        @endif
                                         <div class="relative w-full">
                                             <h5 class="font-bold text">
                                             {{ Str::limit($comingEvent->submission->name .' - '. $comingEvent->submission->mission->name, 22, '...') }}
@@ -116,8 +135,24 @@
                                             <small class="text-gray-700 dark:text-gray-300 block -mt-1">
                                                 {{ $comingEvent->submission->course->name }}
                                             </small>
-                                            <small class="absolute top-0 right-0 text-sm text-gray-700 dark:text-gray-200 italic">
-                                                {{ \Carbon\Carbon::parse($comingEvent->submission->deadline)->diffForHumans() }}
+                                            <small 
+                                                class="
+                                                    absolute 
+                                                    top-0 
+                                                    right-0 
+                                                    text-sm 
+                                                    text-gray-700 
+                                                    dark:text-gray-200 
+                                                    italic
+                                                "
+                                            >
+                                                @if (!$comingEvent->submission->theory)
+                                                    {{ 
+                                                        \Carbon\Carbon::parse(
+                                                            $comingEvent->submission->deadline
+                                                        )->diffForHumans() 
+                                                    }}
+                                                @endif
                                             </small>
                                         </div>
                                     </a>

@@ -41,8 +41,10 @@
         <div class="text-white relative h-[300px]">
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $mission->name }}</h1>
             <span>
-                {{ $mission->course->lecturer[0]->user->name }}
-                <span class="sm:inline hidden">|</span>
+                @if (Auth::user()->hasRole('student'))
+                    {{ $mission->course->lecturer[0]->user->name }}
+                    <span class="sm:inline hidden">|</span>
+                @endif
                 <br class="sm:hidden block">
                 {{ $mission->course->name }}
             </span>
@@ -116,7 +118,11 @@
                                 "
                             >
                                 <h3 class="font-bold">{{ $submission->name}}</h3>
-                                <small>{{ \Carbon\Carbon::parse($submission->deadline)->diffForHumans() }}</small>
+                                @if (!$submission->theory)
+                                    <small>{{ \Carbon\Carbon::parse($submission->deadline)->diffForHumans() }}</small>
+                                @else
+                                    <small class="italic">Silahkan download materi-nya</small>
+                                @endif
                                 <br>
                                 <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
                             </div>
@@ -151,7 +157,11 @@
                             "
                         >
                             <h3 class="font-bold">{{ $submission->name}}</h3>
-                            <small>{{ $submission->deadline }}</small>
+                            @if (!$submission->theory)
+                                <small>{{ \Carbon\Carbon::parse($submission->deadline)->diffForHumans() }}</small>
+                            @else
+                                <small>Tidak ada batas waktu</small>
+                            @endif
                             <br>
                             <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
                         </div>

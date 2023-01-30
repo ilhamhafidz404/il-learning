@@ -49,9 +49,9 @@
         <div class="text-white relative h-[300px]">
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
             <span class="text-emerald-500 font-bold">ADD MISSION </span>
-            @foreach ($course->lecturer as $lecturer)
+            {{-- @foreach ($course->lecturer as $lecturer)
                 <span>| {{ $lecturer->name }}</span>
-            @endforeach
+            @endforeach --}}
             <a 
                 href="{{ route('course.show', $course->slug) }}" 
                 class="text-white absolute bottom-[150px] z-30 left-0"
@@ -90,7 +90,7 @@
                             @enderror
                         "
                     >
-                        Judul Tugas
+                        Judul Mission
                     </label>
                     <input 
                         type="text" 
@@ -151,7 +151,7 @@
                         required
                     >
                         <option value="" hidden selected>Pilih Course</option>
-                        @foreach ($lecturer->course as $course)
+                        @foreach ($user->course as $course)
                             <option 
                                 {{ old('course') == $course->id ? "selected" : "" }}
                                 value="{{ $course->id }}"

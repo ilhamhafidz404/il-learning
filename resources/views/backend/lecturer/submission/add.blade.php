@@ -49,9 +49,9 @@
         <div class="text-white relative h-[300px]">
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
             <span class="text-indigo-500 font-bold">ADD SUBMISSION </span>
-            @foreach ($course->lecturer as $lecturer)
-                <span>| {{ $lecturer->name }}</span>
-            @endforeach
+            {{-- @foreach ($course->lecturer as $lecturer)
+                <span>| {{ $lecturer->user->name }}</span>
+            @endforeach --}}
              <a 
                 href="{{ route('course.show', $course->slug) }}" 
                 class="text-white absolute bottom-[150px] z-30 left-0"
@@ -255,9 +255,9 @@
                             required
                         >
                             <option value="" hidden selected>Pilih Kelas</option>
-                            @forelse ($lecturer->classroom as $classroom)
+                            @forelse ($user->classroom as $classroom)
                                 <option 
-                                    {{ old('lecturer') == $lecturer->id ? "selected" : "" }}
+                                    {{ old('lecturer') == $user->id ? "selected" : "" }}
                                     value="{{ $classroom->id }}"
                                 >
                                     {{ $classroom->name }}

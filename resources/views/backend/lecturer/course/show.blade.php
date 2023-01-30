@@ -36,9 +36,9 @@
     ></span>
     <div class="text-white relative h-[300px]">
         <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
-        @foreach ($course->lecturer as $lecturer)
+        {{-- @foreach ($course->lecturer as $lecturer)
             <span>{{ $lecturer->name }}</span>
-        @endforeach
+        @endforeach --}}
         <a 
             href="{{ route('dashboard') }}" 
             class="text-white absolute bottom-[150px] z-50 left-0"

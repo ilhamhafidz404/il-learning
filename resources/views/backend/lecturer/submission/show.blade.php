@@ -38,8 +38,8 @@
         "
     ></span>
     <div class="text-white relative h-[300px]">
-        <h1 class="font-bold text-4xl uppercase mb-2 mt-20">Mission Name</h1>
-        <p>{{ $submission->lecturer->name }}  | {{ $submission->course->name }}</p>
+        <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $submission->mission->name }}</h1>
+        <p>{{ $submission->mission->course->name }}</p>
         <a onclick="history.back()" class="text-white absolute bottom-[150px] z-50 left-0 cursor-pointer">Kembali</a>
     </div>
     <div 
@@ -58,14 +58,31 @@
     >
         <div class="flex justify-between items-center">
             <h2 class=" text-2xl font-semibold">{{ $submission->name }}</h2>
-            <span class="text-white text-sm bg-red-500 py-1 px-2 rounded-md">
+            <span 
+                class="
+                    text-white 
+                    text-sm 
+                    @if ($submitSubmissions->count() == $studentCount)
+                        bg-emerald-500
+                    @else
+                        bg-red-500 
+                    @endif
+                    py-1 
+                    px-2 
+                    rounded-md
+                "
+            >
                 Mengumpulkan : <b>{{ $submitSubmissions->count() }}</b> / 
                 Dari : <b>{{ $studentCount }}</b> Mahasiswa
             </span>
         </div>
         <p>
             <span class="font-bold">Deadline :</span>
-            {{ $submission->deadline }}
+            @if (!$submission->theory)
+                {{ $submission->deadline }}
+            @else
+                <i>tidak ada batas waktu</i>
+            @endif
         </p>
         <h3 class="font-bold mt-3">Description :</h3>
         <p>{{ $submission->description }}</p>
