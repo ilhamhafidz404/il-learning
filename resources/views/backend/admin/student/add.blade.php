@@ -107,6 +107,7 @@
                             name="file"
                             type="file" 
                             class="w-full py-2 px-4 rounded dark:bg-slate-700"
+                            accept=".png, .jpg, .jpeg"
                         >
                     </div>
                     <div>

@@ -130,7 +130,22 @@
                                         @endif
                                         <div class="relative w-full">
                                             <h5 class="font-bold text">
-                                            {{ Str::limit($comingEvent->submission->name .' - '. $comingEvent->submission->mission->name, 22, '...') }}
+                                            @if (!$comingEvent->submission->theory)
+                                                {{ 
+                                                    Str::limit(
+                                                        $comingEvent->submission->name .' - '. 
+                                                        $comingEvent->submission->mission->name, 20, '...'
+                                                    ) 
+                                                }}
+                                            @else
+                                                {{ 
+                                                    Str::limit(
+                                                        $comingEvent->submission->name .' - '. 
+                                                        $comingEvent->submission->mission->name, 30, '...'
+                                                    ) 
+                                                }}
+                                                
+                                            @endif
                                             </h5>
                                             <small class="text-gray-700 dark:text-gray-300 block -mt-1">
                                                 {{ $comingEvent->submission->course->name }}

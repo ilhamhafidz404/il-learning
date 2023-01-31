@@ -71,6 +71,7 @@
                         name="file" 
                         id="file" 
                         class="w-full rounded py-2 px-3 dark:bg-slate-700 dark:text-gray-100"
+                        accept=".png, .jpg, .jpeg"
                     >
                 </div>
                 <div class="mb-5">
