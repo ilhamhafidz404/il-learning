@@ -26,6 +26,8 @@ use App\Http\Controllers\more\{
     MyAccountController,
     ThemeModeController
 };
+use App\Mail\NotificationMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function () {

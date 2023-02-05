@@ -13,6 +13,7 @@ use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MissionController extends Controller
 {

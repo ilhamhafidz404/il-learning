@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmissionRequest;
+use App\Mail\NotificationMail;
 use App\Models\Completed;
 use App\Models\Course;
 use App\Models\Lecturer;
@@ -16,6 +17,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class SubmissionController extends Controller
@@ -96,6 +98,12 @@ class SubmissionController extends Controller
                 ]);
             }
         }
+
+        foreach ($students as $student) {
+            Mail::to($student->user->email)
+                ->send(new NotificationMail);
+        }
+
 
         return redirect()->back()->with([
             'success' => true,
