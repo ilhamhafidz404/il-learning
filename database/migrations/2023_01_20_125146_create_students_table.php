@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
             $table->string('tiktok')->nullable();
             $table->string('youtube')->nullable();
             $table->string('github')->nullable();

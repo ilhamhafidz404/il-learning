@@ -84,8 +84,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mission/{slug}', [MissionController::class, 'show'])->name('mission.show');
     Route::get('/submission/{slug}', [SubmissionController::class, 'show'])->name('submission.show');
     Route::post('/change-theme-mode', ThemeModeController::class)->name('change.theme.mode');
+
     Route::get('/account', MyAccountController::class)->name('myaccount');
     Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile/{username}', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 Auth::routes();

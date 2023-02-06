@@ -54,14 +54,24 @@
                     onclick="showProfileDropdown()" 
                     class="flex items-center focus:border-0"
                 >
-                    <div class="w-[50px] h-[50px] mr-4 
-                                border-2 
-                                p-[2px] 
-                                border-black 
-                                rounded-full
-                                dark:border-gray-100">
+                    <div 
+                        class="
+                            w-[50px] 
+                            h-[50px] 
+                            mr-4 
+                            border-2 
+                            p-[2px] 
+                            border-black 
+                            rounded-full
+                            dark:border-gray-100
+                        "
+                    >
                         <img 
-                            src="{{ asset('storage/'.$user->profile) }}" 
+                            @if (!Route::is('profile*'))
+                                src="{{ asset('storage/'.$user->profile) }}" 
+                            @else
+                                src="{{ asset('storage/'.$user->student[0]->profile) }}" 
+                            @endif
                             alt="profile photo"
                             class="
                                 w-full 

@@ -84,7 +84,7 @@
                                     style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"
                                 >
                                     <img 
-                                        src="{{ asset('images/icon/instagram-white.png') }}"
+                                        src="{{ asset('images/icon/instagram.png') }}"
                                         class="w-[20px]"
                                     >
                                 </span>
@@ -95,7 +95,7 @@
                             <a href="" class="flex items-center hover:text-[#4867aa] hover:font-semibold">
                                 <span  class="bg-[#4867aa] mr-3 p-2 rounded-full">
                                     <img 
-                                        src="{{ asset('images/icon/facebook-white.png') }}"
+                                        src="{{ asset('images/icon/facebook.png') }}"
                                         class="w-[20px]"
                                     >
                                 </span>
@@ -106,7 +106,7 @@
                             <a href="" class="flex items-center hover:text-[#43bdf0] hover:font-semibold">
                                 <span class="bg-[#43bdf0] mr-3 p-2 rounded-full">
                                     <img 
-                                        src="{{ asset('images/icon/twitter-white.png') }}"
+                                        src="{{ asset('images/icon/twitter.png') }}"
                                         class="w-[20px]"
                                     >
                                 </span>
