@@ -49,14 +49,69 @@
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">
             <form id="storeClassroom" action="{{ route('admin.classroom.store') }}" method="POST">
                 @csrf
-                <div class="mb-10">
-                    <label for="name" class="block text-white font-semibold">Name :</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="name" 
-                        class="w-full rounded py-2 px-3 dark:bg-slate-700 dark:text-gray-100"
-                    >
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="mb-10">
+                        <label for="name" class="block text-white font-semibold">Name :</label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            id="name" 
+                            class="
+                                w-full 
+                                rounded 
+                                py-2 
+                                px-3 
+                                dark:bg-slate-700 
+                                dark:text-gray-100
+                                border-2
+                                border-transparent
+                                @error('name')
+                                    bg-red-200
+                                    dark:bg-red-500/50
+                                    !border-red-500
+                                @enderror
+                            "
+                        >
+                        @error('name')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-10">
+                        <label for="mentor" class="block text-white font-semibold">Name :</label>
+                        <select 
+                            name="mentor" 
+                            id="mentor" 
+                            class="
+                                w-full 
+                                rounded 
+                                py-2 
+                                px-3 
+                                dark:bg-slate-700 
+                                dark:text-gray-100
+                                border-2
+                                border-transparent
+                                @error('name')
+                                    bg-red-200
+                                    dark:bg-red-500/50
+                                    !border-red-500
+                                @enderror
+                            "
+                        >
+                            <option value="" selected hidden>- Select Mentor -</option>
+                            @forelse ($lecturers as $lecturer)
+                                <option value="{{ $lecturer->user->name }}">
+                                    {{ $lecturer->user->name }}
+                                </option>
+                            @empty
+                                <option disabled>
+                                    <i>No Lecturer Data</i>
+                                </option>
+                            @endforelse
+                        </select>
+                        @error('mentor')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
                 <div class="flex items-center justify-between">
                     <a 

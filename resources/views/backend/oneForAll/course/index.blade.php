@@ -16,7 +16,7 @@
         gap-5
     "
 >
-    @foreach ($courses as $index => $course)
+    @forelse ($courses as $index => $course)
         <div 
             class="
                 bg-white
@@ -99,7 +99,12 @@
                 </div>
             </section>
         </div>
-    @endforeach
+    @empty
+        <div class="text-center my-10 dark:text-white w-full col-span-3">
+            <h6 class="text-6xl">☹️</h6>
+            <p class="mt-5 font-bold text-2xl">Tidak Ada Data Course</p>
+        </div>
+    @endforelse
 </section>
 @endsection
 

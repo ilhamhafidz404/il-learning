@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
+use App\Models\Lecturer;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ClassroomController extends Controller
 {
@@ -17,13 +19,22 @@ class ClassroomController extends Controller
 
     public function create()
     {
-        return view('backend.admin.classroom.add');
+        $lecturers = Lecturer::all();
+        return view('backend.admin.classroom.add', compact('lecturers'));
     }
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'mentor' => 'required',
+        ]);
+
         Classroom::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'mentor' => $request->mentor
         ]);
 
         return redirect()->back()->with([

@@ -54,7 +54,6 @@
         )
     </a>
     <a 
-        {{-- href="{{ route('lecturers') }}" --}}
         href="{{ route('demo') }}"
         class="
             w-full 
@@ -77,7 +76,7 @@
         )
     </a>
     <a 
-        href="{{ route('demo') }}"
+        href="{{ route('classroom.show', Auth::user()->student[0]->classroom->slug) }}"
         class="
             w-full 
             bg-[#ecd06f] 

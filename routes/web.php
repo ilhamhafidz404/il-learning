@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\{
     AuthController,
-    ClassroomController,
+    ClassroomController as AdminClassroomController,
     CourseController as AdminCourseController,
     DashboardController as AdminDashboardController,
     LecturerController as AdminLecturerController,
@@ -13,11 +13,10 @@ use App\Http\Controllers\Admin\{
 use App\Http\Controllers\Backend\AcceptSKSController;
 
 use App\Http\Controllers\Backend\Account\ProfileController;
-
+use App\Http\Controllers\Backend\ClassroomController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SubmissionController;
-use App\Http\Controllers\Backend\LecturerController;
 use App\Http\Controllers\Backend\MissionController;
 
 use App\Http\Controllers\more\{
@@ -26,8 +25,6 @@ use App\Http\Controllers\more\{
     MyAccountController,
     ThemeModeController
 };
-use App\Mail\NotificationMail;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function () {
@@ -52,7 +49,7 @@ Route::name('admin.')->group(function () {
         Route::resource('admin/course', AdminCourseController::class, ['names' => 'course']);
         Route::resource('admin/lecturer', AdminLecturerController::class, ['names' => 'lecturer']);
         Route::resource('admin/student', StudentController::class, ['names' => 'student']);
-        Route::resource('admin/classroom', ClassroomController::class, ['names' => 'classroom']);
+        Route::resource('admin/classroom', AdminClassroomController::class, ['names' => 'classroom']);
         // 
         Route::post('/addcoursetolecturer', [MoreController::class, 'addCourseToLecturer'])->name('addCourseToLecturer');
         Route::post('/addclassroomtolecturer', [MoreController::class, 'addClassroomToLecturer'])->name('addClassroomToLecturer');
@@ -80,6 +77,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.show');
 
     // Route::get('/lecturers', LecturerController::class)->name('lecturers');
+
+    Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classroom.index');
+    Route::get('/classrooms/{slug}', [ClassroomController::class, 'show'])->name('classroom.show');
 
     Route::get('/mission/{slug}', [MissionController::class, 'show'])->name('mission.show');
     Route::get('/submission/{slug}', [SubmissionController::class, 'show'])->name('submission.show');
