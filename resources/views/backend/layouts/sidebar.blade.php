@@ -127,7 +127,7 @@
                     py-3 
                     border-l-[5px]
                     dark:text-white 
-                    @if (Route::is('myaccount*') || Route::is('profile*'))
+                    @if (Route::is('myaccount*') || Route::is('profile*') || Route::is('password*'))
                         border-indigo-500 
                         !text-indigo-500
                     @else

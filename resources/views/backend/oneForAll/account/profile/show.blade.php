@@ -209,7 +209,7 @@
         
                         <div class="md:flex mt-10 gap-10">
                             <div>
-                                <h4 class="font-semibold flex items-center md:mb-0 mb-2">
+                                <h4 class="font-semibold flex items-center mb-2">
                                     @include(
                                         'components.icons.email-regular-icon', 
                                         ['class' => 'w-6 mr-3']
@@ -218,7 +218,7 @@
                                 </h4>
 
                                 @if ($student->phone)
-                                    <h4 class="font-semibold flex items-center md:mb-0 mb-2">
+                                    <h4 class="font-semibold flex items-center mb-2">
                                         @include(
                                             'components.icons.phone-regular-icon', 
                                             ['class' => 'w-6 mr-3']
@@ -239,7 +239,7 @@
                             </div>
                             <div>
                                 @if ($student->birthday)
-                                    <h4 class="font-semibold mb-2 flex items-center md:mb-0 mb-2">
+                                    <h4 class="font-semibold mb-2 flex items-center mb-2">
                                         @include(
                                             'components.icons.cake-regular-icon', 
                                             ['class' => 'w-6 mr-3']

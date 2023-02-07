@@ -33,10 +33,22 @@
             <small class="text-gray-800 dark:text-gray-300 text-base">20220810052</small>
         </div>
     </div>
-    <section class="grid grid-cols-3 gap-5 mt-10">
+
+    <section class="grid lg:grid-cols-3 md:grid-cols-2 gap-5 mt-10">
         <a 
             href="{{ route('profile.show', Auth::user()->username) }}"
-            class="bg-[#2441e7] p-5 rounded text-white relative flex items-center min-h-[120px] overflow-hidden"
+            class="
+                bg-[#2441e7] 
+                p-5 rounded 
+                text-white 
+                relative 
+                flex 
+                items-center 
+                min-h-[120px] 
+                overflow-hidden 
+                md:col-span-2 
+                lg:col-span-1
+            "
         >
             <div class="w-1/3">
                 @include(
@@ -51,7 +63,7 @@
         </a>
 
         <a 
-            href="{{ route('demo') }}"
+            href="{{ route('password.request') }}"
             class="bg-[#ff1053] p-5 rounded text-white relative flex items-center min-h-[120px] overflow-hidden"
         >
             <div class="w-1/3">
