@@ -31,6 +31,7 @@
         <div class="overflow-auto pb-5 md:pb-0">
             <table class="w-[800px] md:w-full text-left">
                 <tr class="text-white bg-indigo-500">
+                    <th class="py-4 pl-5">#</th>
                     <th class="py-4 pl-5">Classroom</th>
                     <th>Mentor</th>
                     <th>Student Count</th>
@@ -44,6 +45,9 @@
                             @endif
                         "
                     >
+                        <td class="pl-5">
+                            {{ $index+1 }}
+                        </td>
                         <td class="py-3">
                             <a 
                                 href="{{ route('classroom.show', $classroom->slug) }}"

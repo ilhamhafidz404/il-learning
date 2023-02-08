@@ -66,31 +66,93 @@
                 @csrf
                 <div class="grid grid-cols-3 gap-5">
                     <div>
-                        <label for="name" class="font-bold">Name :</label>
+                        <label 
+                            for="name" 
+                            class="font-bold @error('name') text-red-500 @enderror"
+                        >
+                            Name :
+                        </label>
                         <input 
                             id="name"
                             name="name"
                             type="text" 
-                            class="w-full py-2 px-4 rounded dark:bg-slate-700"
+                            class="
+                                w-full 
+                                py-2 
+                                px-4 
+                                rounded 
+                                dark:bg-slate-700
+                                border-2
+                                border-transparent
+                                @error('name')
+                                    !border-red-500
+                                    !bg-red-500/40
+                                @enderror
+                            "
+                            value="{{ old('name') }}"
                         >
+                        @error('name')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
-                        <label for="email" class="font-bold">Email :</label>
+                        <label 
+                            for="email" 
+                            class="font-bold @error('email') text-red-500 @enderror"
+                        >
+                            Email :
+                        </label>
                         <input 
                             id="email"
                             name="email"
                             type="email" 
-                            class="w-full py-2 px-4 rounded dark:bg-slate-700"
+                            class="
+                                w-full 
+                                py-2 
+                                px-4 
+                                rounded 
+                                dark:bg-slate-700
+                                border-2
+                                border-transparent
+                                @error('email')
+                                    !border-red-500
+                                    !bg-red-500/40
+                                @enderror
+                            "
+                            value="{{ old('email') }}"
                         >
+                        @error('email')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
-                        <label for="password" class="font-bold">Password :</label>
+                        <label 
+                            for="password" 
+                            class="font-bold @error('password') text-red-500 @enderror"
+                        >
+                            Password :
+                        </label>
                         <input 
                             id="password"
                             name="password"
                             type="password" 
-                            class="w-full py-2 px-4 rounded dark:bg-slate-700"
+                            class="
+                                w-full 
+                                py-2 
+                                px-4 
+                                rounded 
+                                dark:bg-slate-700
+                                border-2
+                                border-transparent
+                                @error('password')
+                                    !border-red-500
+                                    !bg-red-500/40
+                                @enderror
+                            "
                         >
+                        @error('password')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
                 
@@ -101,34 +163,106 @@
 
                 <div class="mt-10 grid grid-cols-2 gap-5">
                     <div class="col-span-2">
-                        <label for="file" class="font-bold">File :</label>
+                        <label 
+                            for="file" 
+                            class="font-bold @error('file') text-red-500 @enderror"
+                        >
+                            File :
+                        </label>
                         <input 
                             id="file"
                             name="file"
                             type="file" 
-                            class="w-full py-2 px-4 rounded dark:bg-slate-700"
+                            class="
+                                w-full 
+                                py-2 
+                                px-4 
+                                rounded 
+                                dark:bg-slate-700
+                                border-2
+                                border-transparent
+                                @error('file')
+                                    !border-red-500
+                                    !bg-red-500/40
+                                @enderror
+                            "
                             accept=".png, .jpg, .jpeg"
                         >
+                        @error('file')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
-                        <label for="nim" class="font-bold">Nim :</label>
+                        <label 
+                            for="nim" 
+                            class="font-bold @error('nim') text-red-500 @enderror"
+                        >
+                            NIM :
+                        </label>
                         <input 
                             id="nim"
                             name="nim"
                             type="text" 
-                            class="w-full py-2 px-4 rounded dark:bg-slate-700"
+                            class="
+                                w-full 
+                                py-2 
+                                px-4 
+                                rounded 
+                                dark:bg-slate-700
+                                border-2
+                                border-transparent
+                                @error('nim')
+                                    !border-red-500
+                                    !bg-red-500/40
+                                @enderror
+                            "
+                            value="{{ old('nim') }}"
                         >
+                        @error('nim')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
-                        <label for="classroom" class="font-bold">Classroom :</label>
-                        <select name="classroom" id="classroom" class="w-full py-2 px-4 rounded dark:bg-slate-700">
-                            <option selected hidden>-Select Classroom-</option>
+                        <label 
+                            for="classroom" 
+                            class="font-bold @error('classroom') text-red-500 @enderror"
+                        >
+                            Classroom :
+                        </label>
+                        <select 
+                            name="classroom" 
+                            id="classroom" 
+                            class="
+                                w-full 
+                                py-2 
+                                px-4 
+                                rounded 
+                                dark:bg-slate-700
+                                border-2
+                                border-transparent
+                                @error('classroom')
+                                    !border-red-500
+                                    !bg-red-500/40
+                                @enderror
+                            "
+                        >
+                            <option value="" selected hidden>-Select Classroom-</option>
                             @forelse ($classrooms as $classroom)
-                                <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                <option 
+                                    value="{{ $classroom->id }}"
+                                    @if (old('classroom') == $classroom->id)
+                                        selected
+                                    @endif
+                                >
+                                    {{ $classroom->name }}
+                                </option>
                             @empty
                                 <option disabled>No Classroom Data</option>
                             @endforelse
                         </select>
+                        @error('classroom')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
                 <div class="flex justify-between mt-8">

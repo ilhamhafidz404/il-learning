@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StudentRequest;
 use App\Models\Classroom;
 use App\Models\Student;
 use App\Models\User;
@@ -26,7 +27,7 @@ class StudentController extends Controller
         return view('backend.admin.student.add', compact('classrooms'));
     }
 
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
         $user = User::create([
             'name' => $request->name,

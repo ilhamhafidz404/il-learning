@@ -51,7 +51,19 @@
                 @csrf
                 <div class="grid grid-cols-2 gap-5">
                     <div class="mb-10">
-                        <label for="name" class="block text-white font-semibold">Name :</label>
+                        <label 
+                            for="name" 
+                            class="
+                                block 
+                                text-white 
+                                font-semibold
+                                @error('name')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            Name :
+                        </label>
                         <input 
                             type="text" 
                             name="name" 
@@ -77,7 +89,19 @@
                         @enderror
                     </div>
                     <div class="mb-10">
-                        <label for="mentor" class="block text-white font-semibold">Name :</label>
+                        <label 
+                            for="mentor" 
+                            class="
+                                block 
+                                text-white 
+                                font-semibold
+                                @error('mentor')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            Mentor :
+                        </label>
                         <select 
                             name="mentor" 
                             id="mentor" 
@@ -90,7 +114,7 @@
                                 dark:text-gray-100
                                 border-2
                                 border-transparent
-                                @error('name')
+                                @error('mentor')
                                     bg-red-200
                                     dark:bg-red-500/50
                                     !border-red-500
@@ -99,7 +123,12 @@
                         >
                             <option value="" selected hidden>- Select Mentor -</option>
                             @forelse ($lecturers as $lecturer)
-                                <option value="{{ $lecturer->user->name }}">
+                                <option 
+                                    value="{{ $lecturer->user->name }}"
+                                    @if (old('mentor') == $lecturer->user->name)
+                                        selected
+                                    @endif
+                                >
                                     {{ $lecturer->user->name }}
                                 </option>
                             @empty

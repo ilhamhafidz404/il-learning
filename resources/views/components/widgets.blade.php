@@ -1,6 +1,6 @@
 <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
     <a
-        href="" 
+        href="{{ route('profile.show', Auth::user()->username) }}" 
         class="
             w-full 
             bg-[#2441e7] 

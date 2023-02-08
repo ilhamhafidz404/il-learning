@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ClassroomRequest;
 use App\Models\Classroom;
 use App\Models\Lecturer;
 use App\Models\Student;
@@ -23,14 +24,8 @@ class ClassroomController extends Controller
         return view('backend.admin.classroom.add', compact('lecturers'));
     }
 
-    public function store(Request $request)
+    public function store(ClassroomRequest $request)
     {
-
-        $request->validate([
-            'name' => 'required',
-            'mentor' => 'required',
-        ]);
-
         Classroom::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),

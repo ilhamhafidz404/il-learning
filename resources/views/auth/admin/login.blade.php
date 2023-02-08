@@ -94,6 +94,7 @@
         <div class="mb-10">
           <img src="{{ asset('images/logo.png') }}" class="mx-auto mb-2 w-[70px] md:w-[50px] lg:w-[70px]">
           <h2 class="text-2xl md:text-xl lg:text-2xl font-semibold">ALOPE UNIVERSITY</h2>
+          <span class="font-semibold text-indigo-500 uppercase">Login as Admin</span>
         </div>
         <form method="POST" action="{{ route('admin.login') }}">
           @csrf
@@ -325,6 +326,26 @@
               <hr>
               <small class="absolute top-[-10px] bg-white px-3 left-1/2 -translate-x-1/2">OR</small>
             </span>
+            <a 
+              href="{{ route('login') }}"
+              class="
+                border-[#4285f4] 
+                border 
+                bg-[#4285f4]
+                hover:bg-[#4285f4]/80 
+                w-full 
+                py-3 
+                rounded 
+                text-white 
+                flex 
+                justify-center 
+                text-sm 
+                items-center
+                mb-3
+              "
+            >
+              Login As User
+            </a>
             <button class="border-[#4285f4] border hover:bg-[#4285f4]/80 w-full py-3 rounded text-[#4285f4] hover:text-white flex justify-center text-sm items-center">
               <img src="{{ asset('images/icon/google.png') }}" width="25px" class="mr-3">
               {{-- <a href="https://www.flaticon.com/free-icons/google" title="google icons">Google icons created by Freepik - Flaticon</a> --}}

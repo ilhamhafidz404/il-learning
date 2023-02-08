@@ -31,9 +31,6 @@
                 </span>
                 Add Course
             </h1>
-            {{-- <div class="bg-white">
-                breadcrumbs
-            </div> --}}
         </div>
 
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">
@@ -46,41 +43,159 @@
                 @csrf
                 <div class="grid grid-cols-2 gap-5 mb-5">
                     <div>
-                        <label for="name" class="block text-white font-semibold">Name :</label>
+                        <label 
+                            for="name" 
+                            class="
+                                block 
+                                text-white 
+                                font-semibold
+                                @error('name')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            Name :
+                        </label>
                         <input 
                             type="text" 
                             name="name" 
                             id="name" 
-                            class="w-full rounded py-2 px-3 dark:bg-slate-700 dark:text-gray-100"
+                            class="
+                                w-full 
+                                rounded 
+                                py-2 
+                                px-3 
+                                dark:bg-slate-700 
+                                dark:text-gray-100
+                                border-2
+                                border-transparent
+                                @error('name')
+                                    bg-red-500/50
+                                    dark:bg-red-500/40
+                                    !border-red-500
+                                @enderror
+                            "
                         >
+                        @error('name')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
-                        <label for="sks" class="block text-white font-semibold">SKS :</label>
+                        <label 
+                            for="sks" 
+                            class="
+                                block 
+                                text-white 
+                                font-semibold
+                                @error('sks')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            SKS :
+                        </label>
                         <input 
                             type="number" 
                             name="sks" 
                             id="sks" 
-                            class="w-full rounded py-2 px-3 dark:bg-slate-700 dark:text-gray-100"
+                            class="
+                                w-full 
+                                rounded 
+                                py-2 
+                                px-3 
+                                dark:bg-slate-700 
+                                dark:text-gray-100
+                                border-2
+                                border-transparent
+                                @error('sks')
+                                    bg-red-500/50
+                                    dark:bg-red-500/40
+                                    !border-red-500
+                                @enderror
+                            "
                         >
+                        @error('sks')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-5">
-                    <label for="file" class="block text-white font-semibold">Background :</label>
+                    <label 
+                        for="file" 
+                        class="
+                            block 
+                            text-white 
+                            font-semibold
+                            @error('file')
+                                text-red-500
+                            @enderror
+                        "
+                    >
+                        Background :
+                    </label>
                     <input 
                         type="file" 
                         name="file" 
                         id="file" 
-                        class="w-full rounded py-2 px-3 dark:bg-slate-700 dark:text-gray-100"
+                        class="
+                            w-full 
+                            rounded 
+                            py-2 
+                            px-3 
+                            dark:bg-slate-700 
+                            dark:text-gray-100
+                            border-2
+                            border-transparent
+                            @error('file')
+                                bg-red-500/50
+                                dark:bg-red-500/40
+                                !border-red-500
+                            @enderror
+                        "
                         accept=".png, .jpg, .jpeg"
                     >
+                    @error('file')
+                        <small class="text-red-500 italic">{{ $message }}</small>
+                    @enderror
                 </div>
                 <div class="mb-5">
-                    <label for="description" class="block text-white font-semibold">Description :</label>
+                    <label 
+                        for="description" 
+                        class="
+                            block 
+                            text-white 
+                            font-semibold
+                            @error('description')
+                                text-red-500
+                            @enderror
+                        "
+                    >
+                        Description :
+                    </label>
                     <textarea 
                         name="description" 
                         id="description" 
-                        class="w-full min-h-[150px] rounded max-h-[150px] px-3 py-2 dark:bg-slate-700 dark:text-gray-100"
+                        class="
+                            w-full 
+                            min-h-[150px] 
+                            rounded 
+                            max-h-[150px] 
+                            px-3 
+                            py-2 
+                            dark:bg-slate-700 
+                            dark:text-gray-100
+                            border-2
+                            border-transparent
+                            @error('description')
+                                bg-red-500/50
+                                dark:bg-red-500/40
+                                !border-red-500
+                            @enderror
+                        "
                     ></textarea>
+                    @error('description')
+                        <small class="text-red-500 italic">{{ $message }}</small>
+                    @enderror
                 </div>
                 <div class="flex items-center justify-between">
                     <a 

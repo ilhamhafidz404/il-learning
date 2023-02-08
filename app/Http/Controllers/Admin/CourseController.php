@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CourseRequest;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\ManyToMany\CourseLecturer;
@@ -25,8 +26,16 @@ class CourseController extends Controller
         return view('backend.admin.course.add');
     }
 
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
+
+        // $request->validate([
+        //     'name' => 'required',
+        //     'sks' => 'required',
+        //     'file' => ['required', 'mimes:png,jpg,jpeg'],
+        //     'description' => 'required',
+        // ]);
+
         Course::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\LecturerRequest;
 use App\Models\Classroom;
 use App\Models\Course;
 use App\Models\Lecturer;
@@ -24,7 +25,7 @@ class LecturerController extends Controller
         return view('backend.admin.lecturer.add');
     }
 
-    public function store(Request $request)
+    public function store(LecturerRequest $request)
     {
         $user = User::create([
             'name' => $request->name,
