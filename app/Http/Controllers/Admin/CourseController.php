@@ -11,14 +11,23 @@ use App\Models\ManyToMany\CourseUser;
 use App\Models\Mission;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
-        return view('backend.admin.course.index', compact('courses'));
+        $data = Course::latest();
+
+        if (isset($_GET['search'])) {
+            $courses = $data->where('name', 'like', '%' . $_GET['search'] . '%')->paginate(10);
+        } else {
+            $courses = $data->paginate(10);
+        }
+        $courseCount = $data->count();
+
+        return view('backend.admin.course.index', compact('courses', 'courseCount'));
     }
 
     public function create()
@@ -28,14 +37,6 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request)
     {
-
-        // $request->validate([
-        //     'name' => 'required',
-        //     'sks' => 'required',
-        //     'file' => ['required', 'mimes:png,jpg,jpeg'],
-        //     'description' => 'required',
-        // ]);
-
         Course::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
@@ -48,6 +49,39 @@ class CourseController extends Controller
             'success' => true,
             'title' => 'Berhasil Menambah Course',
             'message' => 'Sekarang Course telah bertambah'
+        ]);
+    }
+
+    public function edit($slug)
+    {
+        $course = Course::whereSlug($slug)->first();
+        return view('backend.admin.course.edit', compact('course'));
+    }
+
+    public function update(Request $request, $slug)
+    {
+        $course = Course::whereSlug($slug)->first();
+
+        if (!$request->file) {
+            $course->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'sks' => $request->sks,
+                'description' => $request->description,
+            ]);
+        } else {
+            if (File::exists(public_path('storage/' . $course->background))) {
+                File::delete(public_path('storage/' . $course->background));
+            }
+
+            $course->update([
+                'background' => $request->file('file')->store('course'),
+            ]);
+        }
+        return redirect()->route('admin.course.edit', $course->slug)->with([
+            'success' => true,
+            'title' => 'Berhasil Mengedit Course',
+            'message' => 'Sekarang Data Course telah berubah'
         ]);
     }
 

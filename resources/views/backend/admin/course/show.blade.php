@@ -55,7 +55,12 @@
                 </div>
                 <div>
                     <h2 class="text-gray-100 text-xl font-semibold">{{ $course->name }}</h2>
-                    <small>{{ $course->slug }}</small>
+                    <small class="block -mt-1">{{ $course->slug }}</small>
+
+                    <h5 class="mt-5 font-semibold">Description:</h5>
+                    <p class="text-sm mt-1">
+                        {{ $course->description }}
+                    </p>
                 </div>
             </div>
 

@@ -43,7 +43,7 @@
                 >
                 @isset($_GET['search'])
                     <a 
-                        href="{{ route('admin.student.index') }}" 
+                        href="{{ route('admin.course.index') }}" 
                         class="
                             text-red-500 
                             hover:text-red-600 
@@ -79,12 +79,30 @@
         <div class="flex justify-between my-5">
             <div class="flex items-center">
                 <div class="bg-white py-1 px-2 rounded flex justify-between items-center">
-                    <button class="bg-[#5e72e4] text-white flex items-center justify-center p-1 rounded">
+
+                    <button 
+                        onclick="changeToTableView()"
+                        id="tableViewButton"
+                        class="
+                            bg-[#5e72e4] 
+                            text-white 
+                            flex 
+                            items-center 
+                            justify-center 
+                            p-1 
+                            rounded
+                            hover:bg-indigo-500 
+                            hover:!text-white 
+                        "
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path d="M5.625 3.75a2.625 2.625 0 100 5.25h12.75a2.625 2.625 0 000-5.25H5.625zM3.75 11.25a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75zM3 15.75a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75zM3.75 18.75a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75z" />
                         </svg>
                     </button>
+
                     <button 
+                        onclick="changeToGridView()"
+                        id="gridViewButton"
                         class="
                             ml-3 
                             hover:bg-indigo-500 
@@ -97,8 +115,17 @@
                             rounded
                         "
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                            <path fill-rule="evenodd" d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h17.25c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 18.375V5.625zM21 9.375A.375.375 0 0020.625 9h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zM10.875 18.75a.375.375 0 00.375-.375v-1.5a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5zM3.375 15h7.5a.375.375 0 00.375-.375v-1.5a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375zm0-3.75h7.5a.375.375 0 00.375-.375v-1.5A.375.375 0 0010.875 9h-7.5A.375.375 0 003 9.375v1.5c0 .207.168.375.375.375z" clip-rule="evenodd" />
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            viewBox="0 0 24 24" 
+                            fill="currentColor" 
+                            class="w-6 h-6"
+                        >
+                            <path 
+                                fill-rule="evenodd" 
+                                d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h17.25c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 18.375V5.625zM21 9.375A.375.375 0 0020.625 9h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zM10.875 18.75a.375.375 0 00.375-.375v-1.5a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5zM3.375 15h7.5a.375.375 0 00.375-.375v-1.5a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375zm0-3.75h7.5a.375.375 0 00.375-.375v-1.5A.375.375 0 0010.875 9h-7.5A.375.375 0 003 9.375v1.5c0 .207.168.375.375.375z" 
+                                clip-rule="evenodd" 
+                            />
                         </svg>
                     </button>
                 </div>
@@ -124,11 +151,136 @@
         </div>
 
         <small class="text-white">
-            <span class="font-semibold">{{ $courses->count() }}</span> 
-            Course published
+            <span class="font-semibold">{{ $courseCount }}</span> 
+            @isset($_GET['search'])
+                Course About "{{ $_GET['search'] }}"
+            @else
+                Course published
+            @endisset
         </small>
 
-        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden">
+        <div id="gridView" class="grid grid-cols-3 gap-5 hidden">
+            <style>
+                #card:hover #overlayCard{
+                    display: block !important;
+                }
+            </style>
+            @forelse ($courses as $course)
+                <div id="card" class="overflow-hidden rounded">
+                    <div class="relative">
+                        <img 
+                            src="{{ asset('storage/'.$course->background) }}" 
+                            alt="course background"
+                            class="h-[200px] w-full object-cover object-center"
+                        >
+                        <div 
+                            id="overlayCard"
+                            class="absolute inset-0 bg-black/40 hidden"
+                        >
+                            <div class="flex justify-center h-full items-center">
+                                <a 
+                                    href="{{ route('admin.course.show', $course->slug) }}"
+                                    class="
+                                        bg-indigo-500 
+                                        hover:bg-indigo-400 
+                                        text-white 
+                                        px-3 
+                                        py-2 
+                                        rounded
+                                        mr-3
+                                    "
+                                >
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        fill="none" 
+                                        viewBox="0 0 24 24" 
+                                        stroke-width="1.5" 
+                                        stroke="currentColor" 
+                                        class="w-6 h-6"
+                                    >
+                                        <path 
+                                            stroke-linecap="round" 
+                                            stroke-linejoin="round" 
+                                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" 
+                                        />
+                                        <path 
+                                            stroke-linecap="round" 
+                                            stroke-linejoin="round" 
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" 
+                                        />
+                                    </svg>
+                                </a>
+                                <button
+                                    onclick="toggleConfirm()" 
+                                    class="
+                                        bg-red-500 
+                                        hover:bg-red-400 
+                                        text-white 
+                                        px-3 
+                                        py-2 
+                                        rounded
+                                        mr-3
+                                    "
+                                >
+                                    @include(
+                                        'components.icons.trash-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </button>
+                                <a 
+                                    href="{{ route('admin.course.edit', $course->slug) }}"
+                                    class="
+                                        bg-yellow-500 
+                                        hover:bg-yellow-400 
+                                        text-white 
+                                        px-3 
+                                        py-2 
+                                        rounded
+                                    "
+                                >
+                                    @include(
+                                        'components.icons.edit-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-800 p-5">
+                        <h3 class="text-gray-100 font-semibold">{{ $course->name }}</h3>
+                        <small class="text-gray-400 block -mt-1">{{ $course->slug }}</small>
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-3 py-10 rounded bg-slate-800 text-gray-100">
+                    <h4 class="text-6xl text-center">☹️</h4>
+                        <h3 class="text-center mt-3 text-xl">
+                            No Course Data
+                            @isset($_GET['search'])
+                                About "{{ $_GET['search'] }}", <br>
+                            @else
+                                ,
+                            @endisset
+                            <a 
+                                href="{{ route('admin.course.create') }}" 
+                                class="text-indigo-500"
+                            >
+                                Create Course?
+                            </a>
+                        </h3>
+                    </h4>
+                </div>
+            @endforelse
+            <div class="col-span-3">
+                {{ $courses->links() }}
+            </div>
+        </div>
+
+        <div 
+            id="tableView" 
+            class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden"
+        >
             <table class="w-full dark:text-gray-300">
                 <tr class=" text-white">
                     <th class="py-6">Name</th>
@@ -148,33 +300,50 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            <button
-                                onclick="toggleConfirm()" 
-                                class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
-                            >
-                                @include(
-                                    'components.icons.trash-solid-icon',
-                                    ['class' => 'w-6']
-                                )
-                            </button>
-                            <form 
-                                action="{{ route('admin.course.destroy', $course->id) }}" 
-                                id="confirmDeleteCourse" 
-                                method="POST"
-                                class="hidden"
-                            >
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                            <button 
-                                class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
-                                onclick="showModal({{$course}})"
-                            >
-                                @include(
-                                    'components.icons.edit-solid-icon',
-                                    ['class' => 'w-6']
-                                )
-                            </button>
+                            <div class="flex items-center justify-center">
+                                <button
+                                    onclick="toggleConfirm()" 
+                                    class="
+                                        bg-red-500 
+                                        hover:bg-red-400 
+                                        text-white 
+                                        px-3 
+                                        py-2 
+                                        rounded
+                                        mr-3
+                                    "
+                                >
+                                    @include(
+                                        'components.icons.trash-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </button>
+                                <form 
+                                    action="{{ route('admin.course.destroy', $course->id) }}" 
+                                    id="confirmDeleteCourse" 
+                                    method="POST"
+                                    class="hidden"
+                                >
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <a 
+                                    href="{{ route('admin.course.edit', $course->slug) }}"
+                                    class="
+                                        bg-yellow-500 
+                                        hover:bg-yellow-400 
+                                        text-white 
+                                        px-3 
+                                        py-2 
+                                        rounded
+                                    "
+                                >
+                                    @include(
+                                        'components.icons.edit-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 @empty
@@ -182,17 +351,31 @@
                         <td colspan="5" class="py-10">
                             <h4 class="text-6xl text-center">☹️</h4>
                             <h3 class="text-center mt-3 text-xl">
-                                No Course Data,
-                                <a href="{{ route('admin.course.create') }}" class="text-indigo-500">Create Course?</a>
+                                No Course Data
+                                @isset($_GET['search'])
+                                    About "{{ $_GET['search'] }}", <br>
+                                @else
+                                    ,
+                                @endisset
+                                <a 
+                                    href="{{ route('admin.course.create') }}" 
+                                    class="text-indigo-500"
+                                >
+                                    Create Course?
+                                </a>
                             </h3>
                         </td>
                     </tr>
                 @endforelse
+                <tr class="bg-indigo-500">
+                    <td colspan="2" class="px-10 pb-5 pt-1">
+                        <div class="mt-5 w-full text-white">
+                            {{ $courses->links() }}
+                        </div>
+                    </td>
+                </tr>
             </table>
         </div>
-        {{-- <div class="mt-5 w-full">
-            {{$students->links()}}
-        </div> --}}
     </section>
 @endsection
 
@@ -207,6 +390,32 @@
     const toggleConfirm = () =>{
         const cofirmModal= document.getElementById('confirmModal');
         cofirmModal.classList.toggle('hidden');
+    }
+
+
+    const gridView= document.querySelector('#gridView')
+    const tableView= document.querySelector('#tableView')
+    const tableViewButton= document.querySelector('#tableViewButton')
+    const gridViewButton= document.querySelector('#gridViewButton')
+    const changeToGridView= ()=>{
+        gridView.classList.remove('hidden')
+        tableView.classList.add('hidden')
+
+        tableViewButton.classList.remove('bg-[#5e72e4]')
+        tableViewButton.classList.add('!text-indigo-500')
+
+        gridViewButton.classList.add('bg-[#5e72e4]')
+        gridViewButton.classList.add('!text-white')
+    }
+    const changeToTableView= ()=>{
+        gridView.classList.add('hidden')
+        tableView.classList.remove('hidden')
+
+        tableViewButton.classList.add('bg-[#5e72e4]')
+        tableViewButton.classList.remove('!text-indigo-500')
+
+        gridViewButton.classList.remove('bg-[#5e72e4]')
+        gridViewButton.classList.remove('!text-white')
     }
 </script>
 @endsection
