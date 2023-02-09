@@ -28,7 +28,9 @@ class LecturerRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'file' => 'required|mimes:png,jpg,jpeg',
+            'file' => 'mimes:png,jpg,jpeg',
+            'nip' => 'required|unique:lecturers',
+            'gender' => 'required',
         ];
     }
 }

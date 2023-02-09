@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('profile')->nullable();
+            $table->string('nip')->unique();
+            $table->enum('gender', ['man', 'woman']);
             $table->timestamps();
         });
     }

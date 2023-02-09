@@ -55,7 +55,7 @@
                 </div>
                 <div>
                     <h2 class="text-gray-100 text-xl font-semibold">{{ $lecturer->user->name }}</h2>
-                    <small>{{ $lecturer->user->username }}</small>
+                    <small>{{ $lecturer->user->email }}</small>
                 </div>
             </div>
 

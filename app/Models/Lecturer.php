@@ -12,7 +12,7 @@ class Lecturer extends Authenticatable
 {
     use HasFactory, HasRoles;
 
-    protected $fillable = ['user_id', 'profile'];
+    protected $fillable = ['user_id', 'profile', 'nip', 'gender'];
 
     public function Course()
     {

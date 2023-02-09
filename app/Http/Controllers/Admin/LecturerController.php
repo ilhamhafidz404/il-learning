@@ -16,8 +16,18 @@ class LecturerController extends Controller
 {
     public function index()
     {
-        $lecturers = Lecturer::all();
-        return view('backend.admin.lecturer.index', compact('lecturers'));
+        $data = Lecturer::latest();
+
+        if (isset($_GET['search'])) {
+            $lecturers = $data->whereHas('user', function ($q) {
+                $q->where('name', 'like', '%' . $_GET['search'] . '%');
+            })->paginate(10);
+        } else {
+            $lecturers = $data->paginate(10);
+        }
+        $lecturerCount = $data->count();
+
+        return view('backend.admin.lecturer.index', compact('lecturers', 'lecturerCount'));
     }
 
     public function create()
@@ -36,10 +46,21 @@ class LecturerController extends Controller
 
         $user->assignRole('lecturer');
 
-        Lecturer::create([
-            'user_id' => $user->id,
-            'profile' => $request->file('file')->store('profile')
-        ]);
+        if ($request->file) {
+            Lecturer::create([
+                'user_id' => $user->id,
+                'profile' => $request->file('file')->store('profile'),
+                'nip' => $request->nip,
+                'gender' => $request->gender,
+            ]);
+        } else {
+            Lecturer::create([
+                'user_id' => $user->id,
+                'profile' => 'profile/' . $request->gender . rand(1, 3) . '.jpg',
+                'nip' => $request->nip,
+                'gender' => $request->gender,
+            ]);
+        }
 
         return redirect()->back()->with([
             'success' => true,

@@ -159,12 +159,12 @@
             @endisset
         </small>
 
-        <div id="gridView" class="grid grid-cols-3 gap-5 hidden">
-            <style>
-                #card:hover #overlayCard{
-                    display: block !important;
-                }
-            </style>
+        <style>
+            #card:hover #overlayCard{
+                display: block !important;
+            }
+        </style>
+        <div id="gridView" class="grid grid-cols-2 md:grid-cols-3 gap-5 hidden">
             @forelse ($courses as $course)
                 <div id="card" class="overflow-hidden rounded">
                     <div class="relative">

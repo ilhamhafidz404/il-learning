@@ -161,41 +161,112 @@
                 </div>
 
                 <div class="mt-10">
+                    <div class="grid grid-cols-2 gap-5">
+                        <div class="mb-5">
+                            <label 
+                                for="nip" 
+                                class="font-bold @error('nip') text-red-500 @enderror"
+                            >
+                                NIP :
+                            </label>
+                            <input 
+                                id="nip"
+                                name="nip"
+                                type="text" 
+                                class="
+                                    w-full 
+                                    py-2 
+                                    px-4 
+                                    rounded 
+                                    dark:bg-slate-700
+                                    border-2
+                                    border-transparent
+                                    @error('nip')
+                                        !border-red-500
+                                        !bg-red-500/40
+                                        !border-red-500
+                                    @enderror
+                                "
+                                value="{{ old('nip') }}"
+                            >
+                            @error('nip')
+                                <small class="text-red-500 italic">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div>
+                            <label 
+                                for="file" 
+                                class="font-bold @error('file') text-red-500 @enderror"
+                            >
+                                Profile :
+                            </label>
+                            <input 
+                                id="file"
+                                name="file"
+                                type="file" 
+                                class="
+                                    w-full 
+                                    py-2 
+                                    px-4 
+                                    rounded 
+                                    dark:bg-slate-700
+                                    border-2
+                                    border-transparent
+                                    @error('file')
+                                        !border-red-500
+                                        !bg-red-500/40
+                                        !border-red-500
+                                    @enderror
+                                "
+                                accept=".png, .jpg, .jpeg"
+                            >
+                            @error('file')
+                                <small class="text-red-500 italic">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                    </div> 
                     <div>
                         <label 
-                            for="file" 
-                            class="font-bold @error('file') text-red-500 @enderror"
-                        >
-                            File :
-                        </label>
-                        <input 
-                            id="file"
-                            name="file"
-                            type="file" 
+                            for="gender" 
                             class="
-                                w-full 
-                                py-2 
-                                px-4 
-                                rounded 
-                                dark:bg-slate-700
-                                border-2
-                                border-transparent
-                                @error('file')
-                                    !border-red-500
-                                    !bg-red-500/40
-                                    !border-red-500
-                                @enderror
+                                font-bold 
+                                block 
+                                mb-3
                             "
-                            accept=".png, .jpg, .jpeg"
                         >
-                        @error('file')
-                            <small class="text-red-500 italic">
-                                {{ $message }}
-                            </small>
-                        @enderror
+                            Jenis Kelamin :
+                        </label>
+                        
+                        <span class="inline-block mr-10">
+                            <input 
+                                id="man"
+                                name="gender"
+                                type="radio" 
+                                value="man"
+                                checked
+                            >
+                            <label for="man">Laki-laki</label>
+                        </span>
+
+                        <span>
+                            <input 
+                                id="woman"
+                                name="gender"
+                                type="radio" 
+                                value="woman"
+                                @if (old('gender') == 'woman')
+                                    checked
+                                @endif
+                            >
+                            <label for="woman">Perempuan</label>
+                        </span>
                     </div>
                 </div>
-                <div class="flex justify-between mt-8">
+                <div class="flex justify-between mt-14">
                     <div>
                         <a
                             href="{{ route('admin.lecturer.index') }}" 
