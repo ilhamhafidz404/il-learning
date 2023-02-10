@@ -30,7 +30,8 @@ class StudentRequest extends FormRequest
             'password' => 'required',
             'nim' => 'required',
             'classroom' => 'required',
-            'file' => 'required|mimes:png,jpg,jpeg',
+            'file' => 'mimes:png,jpg,jpeg',
+            'gender' => 'required',
         ];
     }
 }

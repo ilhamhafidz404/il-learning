@@ -21,6 +21,14 @@ class StudentController extends Controller
         return view('backend.admin.student.index', compact('students'));
     }
 
+    public function show($username)
+    {
+        $user = User::whereUsername($username)->first();
+        $student = Student::whereUserId($user->id)->first();
+
+        return view('backend.admin.student.show', compact('student', 'user'));
+    }
+
     public function create()
     {
         $classrooms = Classroom::all();
@@ -38,12 +46,23 @@ class StudentController extends Controller
 
         $user->assignRole('student');
 
-        Student::create([
-            'nim' => $request->nim,
-            'user_id' => $user->id,
-            'classroom_id' => $request->classroom,
-            'profile' => $request->file('file')->store('profile'),
-        ]);
+        if ($request->file) {
+            Student::create([
+                'nim' => $request->nim,
+                'user_id' => $user->id,
+                'classroom_id' => $request->classroom,
+                'profile' => $request->file('file')->store('profile'),
+                'gender' => $request->gender
+            ]);
+        } else {
+            Student::create([
+                'nim' => $request->nim,
+                'user_id' => $user->id,
+                'classroom_id' => $request->classroom,
+                'profile' => 'profile/' . $request->gender . rand(1, 3) . '.jpg',
+                'gender' => $request->gender
+            ]);
+        }
 
         return redirect()->back()->with([
             'success' => true,

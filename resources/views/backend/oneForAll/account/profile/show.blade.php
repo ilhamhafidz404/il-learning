@@ -923,5 +923,12 @@
         document.querySelector('#profile').addEventListener('change', function () {
             changePhoto.submit()
         })
+
+        const hideNoty= ()=>{
+            const noty = document.getElementById('noty')
+            noty.classList.toggle('flex');
+            noty.classList.toggle('hidden');
+        }
+
     </script>
 @endsection

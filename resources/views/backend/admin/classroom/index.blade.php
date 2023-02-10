@@ -53,7 +53,7 @@
                 >
                 @isset($_GET['search'])
                     <a 
-                        href="{{ route('admin.student.index') }}" 
+                        href="{{ route('admin.classroom.index') }}" 
                         class="
                             text-red-500 
                             hover:text-red-600 
@@ -200,11 +200,15 @@
                         </td>
                     </tr>
                 @endforelse
+                <tr class="bg-indigo-500">
+                    <td colspan="2" class="px-10 pb-5 pt-1">
+                        <div class="mt-5 w-full text-white">
+                            {{ $classrooms->links() }}
+                        </div>
+                    </td>
+                </tr>
             </table>
         </div>
-        {{-- <div class="mt-5 w-full">
-            {{$students->links()}}
-        </div> --}}
     </section>
 @endsection
 

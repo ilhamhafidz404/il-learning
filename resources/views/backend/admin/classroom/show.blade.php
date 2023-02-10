@@ -125,6 +125,12 @@
             </div>
             <div>
                 <a 
+                    href="{{ route('admin.classroom.index') }}" 
+                    class="bg-slate-500 hover:bg-slate-500/80 text-white px-5 py-3 rounded font-semibold mr-3"
+                >
+                    Kembali
+                </a>
+                <a 
                     href="{{ route('admin.classroom.create') }}" 
                     class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
                 >

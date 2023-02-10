@@ -14,7 +14,13 @@ class ClassroomController extends Controller
 {
     public function index()
     {
-        $classrooms = Classroom::all();
+        $data = Classroom::latest();
+        if (isset($_GET['search'])) {
+            $classrooms = $data->where('name', 'like', '%' . $_GET['search'] . '%')->paginate(10);
+        } else {
+            $classrooms = $data->paginate(10);
+        }
+        $classroomCount = $data->count();
         return view('backend.admin.classroom.index', compact('classrooms'));
     }
 

@@ -21,15 +21,25 @@
             relative
         "
     >
-        <h1 class="text-4xl font-semibold text-white flex items-center">
-            <span class="bg-white p-2 rounded mr-3">
-                @include(
-                    'components.icons.userGroup-regular-icon',
-                    ['class' => 'w-10 text-indigo-500']
-                )
-            </span>
-            {{ $lecturer->user->name }}
-        </h1>
+        <div class="flex items-center justify-between">
+            <h1 class="text-4xl font-semibold text-white flex items-center">
+                <span class="bg-white p-2 rounded mr-3">
+                    @include(
+                        'components.icons.userGroup-regular-icon',
+                        ['class' => 'w-10 text-indigo-500']
+                    )
+                </span>
+                {{ $lecturer->user->name }}
+            </h1>
+            <div>
+                <a 
+                    href="{{ route('admin.lecturer.index') }}" 
+                    class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
+                >
+                    Kembali
+                </a>
+            </div>
+        </div>
 
         <div 
             class="

@@ -31,10 +31,21 @@ class ProfileController extends Controller
         $student = Student::find($id);
 
         if ($request->profile) {
+            $defaultProfiles = [
+                "profile/woman1.jpg",
+                "profile/woman2.jpg",
+                "profile/woman3.jpg",
+                "profile/man3.jpg",
+                "profile/man2.jpg",
+                "profile/man1.jpg"
+            ];
 
-            if (File::exists(public_path('storage/' . $student->profile))) {
-                File::delete(public_path('storage/' . $student->profile));
+            if (!array_search($student->profile, $defaultProfiles)) {
+                if (File::exists(public_path('storage/' . $student->profile))) {
+                    File::delete(public_path('storage/' . $student->profile));
+                }
             }
+
 
             $student->update([
                 'profile' => $request->file('profile')->store('profile'),

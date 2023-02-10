@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('nim')->unique()->max(11);
             $table->string('profile')->nullable();
+            $table->enum('gender', ['man', 'woman']);
             $table->foreignId('classroom_id');
             $table->text('about')->nullable();
             $table->string('birthday')->nullable();
