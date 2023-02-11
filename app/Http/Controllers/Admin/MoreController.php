@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\ManyToMany\ClassroomLecturer;
 use App\Models\ManyToMany\CourseLecturer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class MoreController extends Controller
 {
@@ -35,5 +37,20 @@ class MoreController extends Controller
             'title' => "Behasil Menambah Classroom untuk Lecturer",
             'message' => "Classroom untuk Lecturer sudah ditambahkan"
         ]);
+    }
+
+    public function changeThemeMode()
+    {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
+        $mode = 'light';
+
+        if ($admin->mode == 'light') {
+            $mode = 'dark';
+        }
+        $admin->update([
+            'mode' => $mode,
+        ]);
+
+        return back();
     }
 }

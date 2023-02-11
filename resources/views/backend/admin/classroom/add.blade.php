@@ -55,7 +55,8 @@
                             for="name" 
                             class="
                                 block 
-                                text-white 
+                                dark:text-white 
+                                text-gray-800
                                 font-semibold
                                 @error('name')
                                     text-red-500
@@ -74,13 +75,15 @@
                                 py-2 
                                 px-3 
                                 dark:bg-slate-700 
+                                bg-gray-200
                                 dark:text-gray-100
                                 border-2
                                 border-transparent
                                 @error('name')
-                                    bg-red-200
-                                    dark:bg-red-500/50
+                                    !bg-red-200
+                                    dark:bg-red-500/80
                                     !border-red-500
+                                    !text-gray-800
                                 @enderror
                             "
                         >
@@ -93,7 +96,8 @@
                             for="mentor" 
                             class="
                                 block 
-                                text-white 
+                                dark:text-white 
+                                text-gray-800 
                                 font-semibold
                                 @error('mentor')
                                     text-red-500

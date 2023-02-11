@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LecturerRequest;
+use App\Models\Admin;
 use App\Models\Classroom;
 use App\Models\Course;
 use App\Models\Lecturer;
@@ -11,11 +12,13 @@ use App\Models\ManyToMany\ClassroomLecturer;
 use App\Models\ManyToMany\CourseLecturer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LecturerController extends Controller
 {
     public function index()
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $data = Lecturer::latest();
 
         if (isset($_GET['search'])) {
@@ -27,12 +30,13 @@ class LecturerController extends Controller
         }
         $lecturerCount = $data->count();
 
-        return view('backend.admin.lecturer.index', compact('lecturers', 'lecturerCount'));
+        return view('backend.admin.lecturer.index', compact('lecturers', 'lecturerCount', 'admin'));
     }
 
     public function create()
     {
-        return view('backend.admin.lecturer.add');
+        $admin = Admin::whereEmail(Session::get('email'))->first();
+        return view('backend.admin.lecturer.add', compact('admin'));
     }
 
     public function store(LecturerRequest $request)
@@ -74,26 +78,28 @@ class LecturerController extends Controller
         // $lecturer = Lecturer::whereHas('user', function ($q) {
         //     $q->where('username', '=', $username);
         // })->first();
-
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $user = User::whereUsername($username)->first();
         $lecturer = Lecturer::whereUserId($user->id)->first();
 
-        $courses = Course::doesntHave('lecturer')->orWhereHas('lecturer', function ($q) {
-            $q->where('lecturer_id', '!=', 1);
-        })->get();
+        // $courses = Course::doesntHave('lecturer')->orWhereHas('lecturer', function ($q) {
+        //     $q->where('lecturer_id', '!=', 1);
+        // })->get();
+        $courses = Course::all();
         $classrooms = Classroom::all();
 
         return view(
             'backend.admin.lecturer.show',
-            compact('lecturer', 'courses', 'classrooms')
+            compact('lecturer', 'courses', 'classrooms', 'admin')
         );
     }
 
     public function edit($user)
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $user = User::whereUsername($user)->first();
         $lecturer = Lecturer::whereUserId($user->id)->first();
-        return view('backend.admin.lecturer.edit', compact('lecturer', 'user'));
+        return view('backend.admin.lecturer.edit', compact('lecturer', 'user', 'admin'));
     }
 
     public function update(Request $request)

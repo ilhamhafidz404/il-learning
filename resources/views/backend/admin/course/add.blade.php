@@ -47,10 +47,11 @@
                             for="name" 
                             class="
                                 block 
-                                text-white 
+                                dark:text-white 
+                                text-gray-800 
                                 font-semibold
                                 @error('name')
-                                    text-red-500
+                                    !text-red-500
                                 @enderror
                             "
                         >
@@ -67,10 +68,11 @@
                                 px-3 
                                 dark:bg-slate-700 
                                 dark:text-gray-100
+                                bg-gray-200
                                 border-2
                                 border-transparent
                                 @error('name')
-                                    bg-red-500/50
+                                    !bg-red-500/50
                                     dark:bg-red-500/40
                                     !border-red-500
                                 @enderror
@@ -85,10 +87,11 @@
                             for="sks" 
                             class="
                                 block 
-                                text-white 
+                                dark:text-white
+                                text-gray-800 
                                 font-semibold
                                 @error('sks')
-                                    text-red-500
+                                    !text-red-500
                                 @enderror
                             "
                         >
@@ -105,10 +108,11 @@
                                 px-3 
                                 dark:bg-slate-700 
                                 dark:text-gray-100
+                                bg-gray-200
                                 border-2
                                 border-transparent
                                 @error('sks')
-                                    bg-red-500/50
+                                    !bg-red-500/50
                                     dark:bg-red-500/40
                                     !border-red-500
                                 @enderror
@@ -124,10 +128,11 @@
                         for="file" 
                         class="
                             block 
-                            text-white 
+                            dark:text-white 
+                            text-gray-800 
                             font-semibold
                             @error('file')
-                                text-red-500
+                                !text-red-500
                             @enderror
                         "
                     >
@@ -144,10 +149,11 @@
                             px-3 
                             dark:bg-slate-700 
                             dark:text-gray-100
+                            bg-gray-200
                             border-2
                             border-transparent
                             @error('file')
-                                bg-red-500/50
+                                !bg-red-500/50
                                 dark:bg-red-500/40
                                 !border-red-500
                             @enderror
@@ -163,10 +169,11 @@
                         for="description" 
                         class="
                             block 
-                            text-white 
+                            dark:text-white 
+                            text-gray-800
                             font-semibold
                             @error('description')
-                                text-red-500
+                                !text-red-500
                             @enderror
                         "
                     >
@@ -184,10 +191,11 @@
                             py-2 
                             dark:bg-slate-700 
                             dark:text-gray-100
+                            bg-gray-200
                             border-2
                             border-transparent
                             @error('description')
-                                bg-red-500/50
+                                !bg-red-500/50
                                 dark:bg-red-500/40
                                 !border-red-500
                             @enderror

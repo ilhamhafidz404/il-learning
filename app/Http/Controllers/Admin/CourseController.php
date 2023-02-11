@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CourseRequest;
+use App\Models\Admin;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\ManyToMany\CourseLecturer;
@@ -12,12 +13,14 @@ use App\Models\Mission;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
     public function index()
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $data = Course::latest();
 
         if (isset($_GET['search'])) {
@@ -27,12 +30,13 @@ class CourseController extends Controller
         }
         $courseCount = $data->count();
 
-        return view('backend.admin.course.index', compact('courses', 'courseCount'));
+        return view('backend.admin.course.index', compact('courses', 'courseCount', 'admin'));
     }
 
     public function create()
     {
-        return view('backend.admin.course.add');
+        $admin = Admin::whereEmail(Session::get('email'))->first();
+        return view('backend.admin.course.add', compact('admin'));
     }
 
     public function store(CourseRequest $request)
@@ -54,8 +58,9 @@ class CourseController extends Controller
 
     public function edit($slug)
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $course = Course::whereSlug($slug)->first();
-        return view('backend.admin.course.edit', compact('course'));
+        return view('backend.admin.course.edit', compact('course', 'admin'));
     }
 
     public function update(Request $request, $slug)
@@ -87,10 +92,11 @@ class CourseController extends Controller
 
     public function show($slug)
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $course = Course::whereSlug($slug)->first();
         $lecturers = Lecturer::all();
 
-        return view('backend.admin.course.show', compact('course', 'lecturers'));
+        return view('backend.admin.course.show', compact('course', 'lecturers', 'admin'));
     }
 
     public function destroy($id)

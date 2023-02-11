@@ -17,7 +17,15 @@
     }
   </style>
 </head>
-<body class="dark bg-slate-600">    
+<body 
+    class="
+            @if ($admin->mode == 'dark')
+                dark bg-slate-600
+            @else
+                bg-gray-100
+            @endif
+        "
+    >    
     <section id="overlay" class="fixed inset-0 hidden z-10" onclick="showProfileDropdown()"></section>
 
     <nav class="py-3 bg-white dark:bg-slate-800 shadow fixed left-0 top-0 right-0 z-50">
@@ -64,7 +72,7 @@
 
                 <form 
                     id="changeThemeMode" 
-                    action="{{ route('change.theme.mode') }}" 
+                    action="{{ route('admin.change.theme.mode') }}" 
                     method="POST" 
                     class="d-none"
                 >
@@ -95,7 +103,7 @@
                         </div>
                         <span class="text-left">
                             <p class="font-semibold dark:text-gray-100 whitespace-nowrap">
-                                {{-- {{ Auth::user()->name }} --}}
+                                {{ $admin->username }}
                             </p>
                             <small 
                                 class="
@@ -106,7 +114,7 @@
                                     whitespace-nowrap
                                 "
                             >
-                                {{-- {{ Auth::user()->email }} --}}
+                                {{ Session::get('email') }}
                             </small>
                         </span>
                     </button>

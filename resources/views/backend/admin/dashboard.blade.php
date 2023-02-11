@@ -15,11 +15,10 @@
             gap-5
         "
     >
-        <div class="col-span-2 bg-slate-800 rounded p-5 text-gray-200">
-            <h3 class="text-xl font-semibold">Statistik</h3>
-            {{ Session::get('admin') }}
+        <div class="col-span-2 bg-white dark:bg-slate-800 rounded p-5 text-gray-200">
+            <h3 class="text-xl font-semibold dark:text-gray-100 text-gray-800">Statistik</h3>
         </div>
-        <div class="col-span-4 bg-slate-800 rounded p-5 text-gray-200">
+        <div class="col-span-4 dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
             <h3 class="text-xl font-semibold">Statistik</h3>
             <div class="grid grid-cols-4 gap-5">
                 <div class="mt-5 flex items-center">
@@ -31,7 +30,7 @@
                     </span>
                     <div>
                         <h4 class="text-2xl font-semibold">{{ $courses }}</h4>
-                        <small class="-mt-2 block">Courses</small>
+                        <small class="-mt-2 block text-gray-500 dark:text-gray-300">Courses</small>
                     </div>
                 </div>
                 <div class="mt-5 flex items-center">
@@ -43,7 +42,7 @@
                     </span>
                     <div>
                         <h4 class="text-2xl font-semibold">{{ $lecturers }}</h4>
-                        <small class="-mt-2 block">Lecturers</small>
+                        <small class="-mt-2 block text-gray-500 dark:text-gray-300">Lecturers</small>
                     </div>
                 </div>
                 <div class="mt-5 flex items-center">
@@ -65,7 +64,7 @@
                     </span>
                     <div>
                         <h4 class="text-2xl font-semibold">{{ $students }}</h4>
-                        <small class="-mt-2 block">Students</small>
+                        <small class="-mt-2 block text-gray-500 dark:text-gray-300">Students</small>
                     </div>
                 </div>
                 <div class="mt-5 flex items-center">
@@ -87,7 +86,7 @@
                     </span>
                     <div>
                         <h4 class="text-2xl font-semibold">{{ $classrooms }}</h4>
-                        <small class="-mt-2 block">Classrooms</small>
+                        <small class="-mt-2 block text-gray-500 dark:text-gray-300">Classrooms</small>
                     </div>
                 </div>
             </div>

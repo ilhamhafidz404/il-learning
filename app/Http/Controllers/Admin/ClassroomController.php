@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ClassroomRequest;
+use App\Models\Admin;
 use App\Models\Classroom;
 use App\Models\Lecturer;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class ClassroomController extends Controller
 {
     public function index()
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $data = Classroom::latest();
         if (isset($_GET['search'])) {
             $classrooms = $data->where('name', 'like', '%' . $_GET['search'] . '%')->paginate(10);
@@ -21,13 +24,14 @@ class ClassroomController extends Controller
             $classrooms = $data->paginate(10);
         }
         $classroomCount = $data->count();
-        return view('backend.admin.classroom.index', compact('classrooms'));
+        return view('backend.admin.classroom.index', compact('classrooms', 'admin'));
     }
 
     public function create()
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $lecturers = Lecturer::all();
-        return view('backend.admin.classroom.add', compact('lecturers'));
+        return view('backend.admin.classroom.add', compact('lecturers', 'admin'));
     }
 
     public function store(ClassroomRequest $request)
@@ -47,9 +51,10 @@ class ClassroomController extends Controller
 
     public function show($slug)
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $classroom = Classroom::whereName($slug)->first();
         $students = Student::whereClassroomId($classroom->id)->paginate(10);
-        return view('backend.admin.classroom.show', compact('students', 'classroom'));
+        return view('backend.admin.classroom.show', compact('students', 'classroom', 'admin'));
     }
 
     public function destroy($id)

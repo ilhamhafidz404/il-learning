@@ -4,35 +4,41 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StudentRequest;
+use App\Models\Admin;
 use App\Models\Classroom;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
     public function index()
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
+
         if (isset($_GET['search']) && $_GET['search'] != '') {
             $students = Student::where('nim', 'like', '%' . $_GET['search'] . '%')->paginate(10);
         } else {
             $students = Student::paginate(10);
         }
-        return view('backend.admin.student.index', compact('students'));
+        return view('backend.admin.student.index', compact('students', 'admin'));
     }
 
     public function show($username)
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $user = User::whereUsername($username)->first();
         $student = Student::whereUserId($user->id)->first();
 
-        return view('backend.admin.student.show', compact('student', 'user'));
+        return view('backend.admin.student.show', compact('student', 'user', 'admin'));
     }
 
     public function create()
     {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
         $classrooms = Classroom::all();
-        return view('backend.admin.student.add', compact('classrooms'));
+        return view('backend.admin.student.add', compact('classrooms', 'admin'));
     }
 
     public function store(StudentRequest $request)

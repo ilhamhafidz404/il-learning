@@ -53,6 +53,8 @@ Route::name('admin.')->group(function () {
         // 
         Route::post('/addcoursetolecturer', [MoreController::class, 'addCourseToLecturer'])->name('addCourseToLecturer');
         Route::post('/addclassroomtolecturer', [MoreController::class, 'addClassroomToLecturer'])->name('addClassroomToLecturer');
+        // 
+        Route::post('admin/change-theme-mode', [MoreController::class, 'changeThemeMode'])->name('change.theme.mode');
     });
 });
 

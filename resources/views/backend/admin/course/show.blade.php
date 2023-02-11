@@ -64,18 +64,18 @@
                     >
                 </div>
                 <div>
-                    <h2 class="text-gray-100 text-xl font-semibold">{{ $course->name }}</h2>
-                    <small class="block -mt-1">{{ $course->slug }}</small>
+                    <h2 class="dark:text-gray-100 text-gray-800 text-xl font-semibold">{{ $course->name }}</h2>
+                    <small class="block -mt-1 dark:text-gray-300 text-gray-500">{{ $course->slug }}</small>
 
                     <h5 class="mt-5 font-semibold">Description:</h5>
-                    <p class="text-sm mt-1">
+                    <p class="text-sm mt-1 dark:text-gray-300 text-gray-500">
                         {{ $course->description }}
                     </p>
                 </div>
             </div>
 
             <div class="relative">
-                <span class="absolute font-bold top-[-13px] pr-5 bg-slate-800">
+                <span class="absolute font-bold top-[-13px] pr-5 dark:bg-slate-800 bg-white">
                     {{-- {{ $lecturer->course->count() }} Total Course --}}
                     Lecturers
                 </span>
@@ -85,8 +85,10 @@
                     class="
                         absolute 
                         border-2
-                        border-slate-600 
-                        bg-slate-800
+                        dark:border-slate-600 
+                        border-gray-400 
+                        dark:bg-slate-800
+                        bg-white
                         px-5 
                         py-2 
                         rounded 
@@ -96,7 +98,8 @@
                         text-indigo-500
                         hover:bg-indigo-500
                         hover:border-indigo-500
-                        hover:text-gray-200
+                        dark:hover:text-gray-200
+                        hover:!text-gray-50
                     "
                 >
                     Add Lecturer for Course
@@ -110,7 +113,7 @@
                     <th>Action</th>
                 </tr>
 
-                <tr class="bg-slate-900 hidden" id="addCourseCol">
+                <tr class="dark:bg-slate-900 bg-gray-400 hidden" id="addCourseCol">
                     <td class="py-5 pl-7" colspan="3">
                         <form 
                             action="{{ route('admin.addCourseToLecturer') }}" 
@@ -120,7 +123,11 @@
                             @csrf
                             <input type="text" value="{{ $course->id }}" name="course" hidden>
                             <div class="w-[80%]">
-                                <select name="lecturer" id="lecturer" class="w-full px-3 py-2 rounded bg-slate-700">
+                                <select 
+                                    name="lecturer" 
+                                    id="lecturer" 
+                                    class="w-full px-3 py-2 rounded dark:bg-slate-700 bg-white"
+                                >
                                     <option value="" selected hidden>-Select Lecturer-</option>
                                     @forelse ($lecturers as $lecturer)
                                         <option value="{{ $lecturer->id }}">{{ $lecturer->user->name }}</option>
@@ -143,7 +150,8 @@
                     <tr
                         class="
                             @if ($index%2 == 0)
-                                bg-slate-700
+                                dark:bg-slate-700
+                                bg-gray-200
                             @endif
                         "
                     >
@@ -211,6 +219,12 @@
     const addCourseCol= document.getElementById('addCourseCol');
     const toggleAddCourseForm = () => {
         addCourseCol.classList.toggle('hidden');
+    }
+
+    const hideNoty= ()=>{
+        const noty = document.getElementById('noty')
+        noty.classList.toggle('flex');
+        noty.classList.toggle('hidden');
     }
 </script>
 @endsection

@@ -58,7 +58,12 @@
                     <div>
                         <label 
                             for="name" 
-                            class="font-bold @error('name') text-red-500 @enderror"
+                            class="
+                                font-bold 
+                                @error('name') text-red-500 @enderror 
+                                dark:text-gray-100 
+                                text-gray-800
+                            "
                         >
                             Name :
                         </label>
@@ -72,6 +77,7 @@
                                 px-4 
                                 rounded 
                                 dark:bg-slate-700
+                                bg-gray-200
                                 border-2
                                 border-transparent
                                 @error('name')
@@ -91,7 +97,12 @@
                     <div>
                         <label 
                             for="email" 
-                            class="font-bold @error('email') text-red-500 @enderror"
+                            class="
+                                font-bold 
+                                @error('email') text-red-500 @enderror 
+                                dark:text-gray-100 
+                                text-gray-800
+                            "
                         >
                             Email :
                         </label>
@@ -105,6 +116,7 @@
                                 px-4 
                                 rounded 
                                 dark:bg-slate-700
+                                bg-gray-200
                                 border-2
                                 border-transparent
                                 @error('email')
@@ -124,7 +136,12 @@
                     <div>
                         <label 
                             for="password" 
-                            class="font-bold @error('password') text-red-500 @enderror"
+                            class="
+                                font-bold 
+                                @error('password') text-red-500 @enderror 
+                                dark:text-gray-100 
+                                text-gray-800
+                            "
                         >
                             Password :
                         </label>
@@ -138,6 +155,7 @@
                                 px-4 
                                 rounded 
                                 dark:bg-slate-700
+                                bg-gray-200
                                 border-2
                                 border-transparent
                                 @error('password')
@@ -157,7 +175,20 @@
                 
                 <div class="relative mt-10">
                     <hr class="border-slate-500">
-                    <span class="absolute -top-[12px] font-bold bg-slate-800 pr-5 text-gray-200">BIODATA</span>
+                    <span 
+                        class="
+                            absolute 
+                            -top-[12px] 
+                            font-bold 
+                            dark:bg-slate-800 
+                            bg-white 
+                            pr-5 
+                            dark:text-gray-200
+                            text-gray-800
+                        "
+                    >
+                        BIODATA
+                    </span>
                 </div>
 
                 <div class="mt-10">
@@ -165,7 +196,12 @@
                         <div class="mb-5">
                             <label 
                                 for="nip" 
-                                class="font-bold @error('nip') text-red-500 @enderror"
+                                class="
+                                font-bold 
+                                @error('nip') text-red-500 @enderror 
+                                dark:text-gray-100 
+                                text-gray-800
+                            "
                             >
                                 NIP :
                             </label>
@@ -179,6 +215,7 @@
                                     px-4 
                                     rounded 
                                     dark:bg-slate-700
+                                    bg-gray-200
                                     border-2
                                     border-transparent
                                     @error('nip')
@@ -198,7 +235,12 @@
                         <div>
                             <label 
                                 for="file" 
-                                class="font-bold @error('file') text-red-500 @enderror"
+                                class="
+                                font-bold 
+                                @error('file') text-red-500 @enderror 
+                                dark:text-gray-100 
+                                text-gray-800
+                            "
                             >
                                 Profile :
                             </label>
@@ -212,6 +254,9 @@
                                     px-4 
                                     rounded 
                                     dark:bg-slate-700
+                                    bg-gray-200
+                                    dark:text-gray-200
+                                    text-gray-800
                                     border-2
                                     border-transparent
                                     @error('file')
@@ -236,6 +281,8 @@
                                 font-bold 
                                 block 
                                 mb-3
+                                dark:text-gray-100 
+                                text-gray-800
                             "
                         >
                             Jenis Kelamin :
@@ -249,7 +296,7 @@
                                 value="man"
                                 checked
                             >
-                            <label for="man">Laki-laki</label>
+                            <label for="man" class="dark:text-gray-200 text-gray-800">Laki-laki</label>
                         </span>
 
                         <span>
@@ -262,7 +309,7 @@
                                     checked
                                 @endif
                             >
-                            <label for="woman">Perempuan</label>
+                            <label for="woman" class="dark:text-gray-200 text-gray-800">Perempuan</label>
                         </span>
                     </div>
                 </div>

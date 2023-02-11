@@ -118,7 +118,7 @@
 
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden">
             <table class="w-full dark:text-gray-300">
-                <tr class=" text-white">
+                <tr class="dark:text-white text-gray-800">
                     <th class="py-6">Name</th>
                     <th>Action</th>
                 </tr>
@@ -126,7 +126,8 @@
                     <tr
                         class="
                             @if ($index%2 == 0)
-                                bg-slate-700
+                                dark:bg-slate-700
+                                bg-gray-200
                             @endif
                         "
                     >

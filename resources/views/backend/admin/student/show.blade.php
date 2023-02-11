@@ -64,13 +64,15 @@
                     >
                 </div>
                 <div>
-                    <h2 class="text-gray-100 text-xl font-semibold">{{ $student->user->name }}</h2>
-                    <small>{{ $student->user->email }}</small>
+                    <h2 class="dark:text-gray-100 text-gray-800 text-xl font-semibold">
+                        {{ $student->user->name }}
+                    </h2>
+                    <small class="text-gray-500 dark:text-gray-200">{{ $student->user->email }}</small>
                 </div>
             </div>
 
             <div class="relative">
-                <span class="absolute font-bold top-[-13px] pr-5 bg-slate-800">
+                <span class="absolute font-bold top-[-13px] pr-5 dark:bg-slate-800 bg-white">
                     {{ $user->course->count() }} Total Course
                 </span>
                 <hr class="my-10 border-slate-500">
@@ -86,7 +88,8 @@
                     <tr
                         class="
                             @if ($index%2 == 0)
-                                bg-slate-700
+                                dark:bg-slate-700
+                                bg-gray-200
                             @endif
                         "
                     >
