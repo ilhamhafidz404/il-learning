@@ -67,3 +67,10 @@ php artisan serve
 ```sh
 npm run dev
 ```
+
+7). For an initial account, first log in with the admin role, please log in with the following account:
+
+```sh
+email: admin@gmail.com
+password: password
+```

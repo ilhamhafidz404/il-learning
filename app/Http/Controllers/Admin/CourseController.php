@@ -68,6 +68,13 @@ class CourseController extends Controller
         $course = Course::whereSlug($slug)->first();
 
         if (!$request->file) {
+
+            $request->validate([
+                'name' => 'required',
+                'sks' => 'required',
+                'description' => 'required',
+            ]);
+
             $course->update([
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
@@ -75,6 +82,10 @@ class CourseController extends Controller
                 'description' => $request->description,
             ]);
         } else {
+            $request->validate([
+                'file' => 'required',
+            ]);
+
             if (File::exists(public_path('storage/' . $course->background))) {
                 File::delete(public_path('storage/' . $course->background));
             }

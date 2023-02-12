@@ -1,3 +1,6 @@
+@section('title')
+    Dashboard
+@endsection
 <section 
     class="
         py-16 

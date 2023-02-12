@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    {{ $course->name }}
+@endsection
 @section('content')
     {{-- @if (Session::has('lecturer') and Session::get('lecturer'))
         @include('backend.lecturer.course.show')
@@ -203,7 +205,7 @@
                     <h2 class="text-8xl">😁</h2>
                     <h5 
                         class="
-                            text-3xl 
+                            text-2xl 
                             mt-5 
                             tracking-wide
                             dark:text-white
@@ -212,8 +214,8 @@
                         @if (Auth::user()->hasRole('student'))
                             Belum ada tugas untukmu
                         @else
-                            Anda belum menambahkan tugas untuk <br> 
-                            <span class="text-indigo-500">{{ $course->name }}</span>
+                            Anda belum menambahkan tugas untuk <br>
+                            <span class="text-indigo-500 text-3xl uppercase">{{ $course->name }}</span>
                         @endif
                     </h5>
                 </div>

@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-
+@section('title', 'Add Student')
 @section('content')
     @include('components.confirmModal' , 
         [ 
@@ -88,6 +88,8 @@
                                 rounded 
                                 dark:bg-slate-700
                                 bg-gray-200
+                                text-gray-800
+                                dark:text-gray-100
                                 border-2
                                 border-transparent
                                 @error('name')
@@ -124,6 +126,8 @@
                                 rounded 
                                 dark:bg-slate-700
                                 bg-gray-200
+                                text-gray-800
+                                dark:text-gray-100
                                 border-2
                                 border-transparent
                                 @error('email')
@@ -160,6 +164,8 @@
                                 rounded 
                                 dark:bg-slate-700
                                 bg-gray-200
+                                text-gray-800
+                                dark:text-gray-100
                                 border-2
                                 border-transparent
                                 @error('password')
@@ -216,6 +222,8 @@
                                 rounded 
                                 dark:bg-slate-700
                                 bg-gray-200
+                                text-gray-800
+                                dark:text-gray-100
                                 border-2
                                 border-transparent
                                 @error('nim')

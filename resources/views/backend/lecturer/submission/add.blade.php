@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Add Submission
+@endsection
 @section('content')
 
     @include('components.confirmModal' , 

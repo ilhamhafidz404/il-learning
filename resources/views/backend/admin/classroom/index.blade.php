@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-
+@section('title', 'Classroom')
 @section('content')
     @include('components.confirmModal' , 
         [ 
@@ -158,34 +158,36 @@
                                 {{ $classroom->name }}
                             </a>
                         </td>
-                        <td class="text-center">
-                            <button
-                                onclick="toggleConfirm()" 
-                                class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
-                            >
-                                @include(
-                                    'components.icons.trash-solid-icon',
-                                    ['class' => 'w-6']
-                                )
-                            </button>
-                            <form 
-                                action="{{ route('admin.classroom.destroy', $classroom->id) }}" 
-                                id="confirmDeleteClassroom" 
-                                method="POST"
-                                class="hidden"
-                            >
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                            <button 
-                                class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
-                                {{-- onclick="showModal({{$course}})" --}}
-                            >
-                                @include(
-                                    'components.icons.edit-solid-icon',
-                                    ['class' => 'w-6']
-                                )
-                            </button>
+                        <td>
+                            <div class="flex items-center justify-center">
+                                <button
+                                    onclick="toggleConfirm()" 
+                                    class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded mr-3"
+                                >
+                                    @include(
+                                        'components.icons.trash-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </button>
+                                <form 
+                                    action="{{ route('admin.classroom.destroy', $classroom->id) }}" 
+                                    id="confirmDeleteClassroom" 
+                                    method="POST"
+                                    class="hidden"
+                                >
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <a 
+                                    href="{{ route('admin.classroom.edit', $classroom->slug) }}"
+                                    class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
+                                >
+                                    @include(
+                                        'components.icons.edit-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 @empty

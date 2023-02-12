@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Course
+@endsection
 @section('content')
 <section 
     class="

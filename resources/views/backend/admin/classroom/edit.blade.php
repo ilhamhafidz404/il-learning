@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-@section('title', 'Add Classroom')
+@section('title', 'Edit Classroom')
 @section('content')
     @include('components.confirmModal' , 
         [ 
@@ -39,15 +39,15 @@
                         />
                     </svg>
                 </span>
-                Add Classroom
+                Edit Classroom
             </h1>
-            {{-- <div class="bg-white">
-                breadcrumbs
-            </div> --}}
         </div>
-
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">
-            <form id="storeClassroom" action="{{ route('admin.classroom.store') }}" method="POST">
+            <form 
+                id="storeClassroom" action="{{ route('admin.classroom.update', $classroom->id) }}" 
+                method="POST"
+            >
+                @method("PUT")
                 @csrf
                 <div class="grid grid-cols-2 gap-5">
                     <div class="mb-10">
@@ -86,7 +86,7 @@
                                     !text-gray-800
                                 @enderror
                             "
-                            value="{{ old('name') }}"
+                            value="{{ old('name') ?? $classroom->name }}"
                         >
                         @error('name')
                             <small class="text-red-500">{{ $message }}</small>
@@ -131,6 +131,9 @@
                                 <option 
                                     value="{{ $lecturer->user->name }}"
                                     @if (old('mentor') == $lecturer->user->name)
+                                        selected
+                                    @endif
+                                    @if ($lecturer->user->name == $classroom->mentor)
                                         selected
                                     @endif
                                 >

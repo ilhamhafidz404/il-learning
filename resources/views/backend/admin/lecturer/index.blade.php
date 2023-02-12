@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-
+@section('title', 'Lecturer')
 @section('content')
     @include('components.confirmModal' , 
         [ 
@@ -137,7 +137,7 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            <div class="flex items-center">
+                            <div class="flex items-center justify-center">
                                 <form 
                                     action="{{ route('admin.lecturer.destroy', $lecturer->user->id) }}" 
                                     method="POST"
@@ -155,24 +155,6 @@
                                         )
                                     </button>
                                 </form>
-                                {{-- <form 
-                                    action="{{ route('admin.lecturer.destroy', $lecturer->user->id) }}" 
-                                    id="{{'confirmDeleteLecturer'. $index}}" 
-                                    method="POST"
-                                    class="hidden"
-                                >
-                                    @csrf
-                                    @method('DELETE')
-                                </form> --}}
-                                <a 
-                                    href="{{ route('admin.lecturer.edit', $lecturer->user->username) }}"
-                                    class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
-                                >
-                                    @include(
-                                        'components.icons.edit-solid-icon',
-                                        ['class' => 'w-6']
-                                    )
-                                </a>
                             </div>
                         </td>
                     </tr>

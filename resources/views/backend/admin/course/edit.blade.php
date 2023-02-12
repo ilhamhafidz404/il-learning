@@ -1,5 +1,7 @@
 @extends('backend.admin.master')
-
+@section('title')
+    Edit {{ $course->name }}
+@endsection
 @section('content')
     @include('components.confirmModal' , 
         [ 
@@ -92,7 +94,8 @@
                                 for="name" 
                                 class="
                                     block 
-                                    text-white 
+                                    dark:text-white 
+                                    text-gray-800
                                     font-semibold
                                     @error('name')
                                         text-red-500
@@ -111,6 +114,7 @@
                                     py-2 
                                     px-3 
                                     dark:bg-slate-700 
+                                    bg-gray-200 
                                     dark:text-gray-100
                                     border-2
                                     border-transparent
@@ -120,7 +124,7 @@
                                         !border-red-500
                                     @enderror
                                 "
-                                value="{{ $course->name }}"
+                                value="{{ old('name') ?? $course->name }}"
                             >
                             @error('name')
                                 <small class="text-red-500 italic">{{ $message }}</small>
@@ -131,7 +135,8 @@
                                 for="sks" 
                                 class="
                                     block 
-                                    text-white 
+                                    dark:text-white 
+                                    text-gray-800
                                     font-semibold
                                     @error('sks')
                                         text-red-500
@@ -150,6 +155,7 @@
                                     py-2 
                                     px-3 
                                     dark:bg-slate-700 
+                                    bg-gray-200
                                     dark:text-gray-100
                                     border-2
                                     border-transparent
@@ -159,7 +165,7 @@
                                         !border-red-500
                                     @enderror
                                 "
-                                value="{{ $course->sks }}"
+                                value="{{ old('sks') ?? $course->sks }}"
                             >
                             @error('sks')
                                 <small class="text-red-500 italic">{{ $message }}</small>
@@ -171,7 +177,8 @@
                             for="description" 
                             class="
                                 block 
-                                text-white 
+                                dark:text-white 
+                                text-gray-800 
                                 font-semibold
                                 @error('description')
                                     text-red-500
@@ -191,6 +198,7 @@
                                 px-3 
                                 py-2 
                                 dark:bg-slate-700 
+                                bg-gray-200
                                 dark:text-gray-100
                                 border-2
                                 border-transparent
@@ -200,7 +208,7 @@
                                     !border-red-500
                                 @enderror
                             "
-                        >{{ $course->description }}</textarea>
+                        >{{ old('description') ?? $course->description }}</textarea>
                         @error('description')
                             <small class="text-red-500 italic">{{ $message }}</small>
                         @enderror

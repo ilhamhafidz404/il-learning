@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    {{ $student->user->name }}
+@endsection
 @section('content')
 
 @include('components.toast')

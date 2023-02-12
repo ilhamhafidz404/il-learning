@@ -1,3 +1,6 @@
+@section('title')
+    Dashboard
+@endsection
 <section 
     class="
         py-16 
@@ -64,11 +67,6 @@
                         <span>
                             @foreach ($course->lecturer as $lecturer)
                                 @foreach ($lecturer->classroom as $classroom)
-                                    {{-- @if ($classroom->name == $user->classroom->name)
-                                        <small class="font-semibold dark:text-gray-100">
-                                            {{ $lecturer->name }}
-                                        </small>
-                                    @endif --}}
                                 @endforeach
                             @endforeach
                             <small class="dark:text-gray-100"> | </small>

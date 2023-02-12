@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Add Mission
+@endsection
 @section('content')
 
     @include('components.confirmModal' , 

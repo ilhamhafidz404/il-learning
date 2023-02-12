@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Reset Password
+@endsection
 @section('content')
 <section 
     class="

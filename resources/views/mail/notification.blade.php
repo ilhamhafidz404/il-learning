@@ -8,7 +8,7 @@
 </head>
 <body>
     <center>
-        <img src="{{ asset('images/new-logo.png') }}">
+        <img src="{{ asset('images/new-logo.png') }}"> 
         <h2>IL-Learning</h2>
     </center>
     <p>

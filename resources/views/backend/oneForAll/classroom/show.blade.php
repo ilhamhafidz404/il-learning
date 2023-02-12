@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    {{ $classroom->name }}
+@endsection
 @section('content')
     <section 
     class="

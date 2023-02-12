@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-
+@section('title', 'Add Lecturer')
 @section('content')
     @include('components.confirmModal' , 
         [ 
@@ -79,6 +79,8 @@
                                 dark:bg-slate-700
                                 bg-gray-200
                                 border-2
+                                text-gray-800
+                                dark:text-gray-100
                                 border-transparent
                                 @error('name')
                                     !border-red-500
@@ -117,6 +119,8 @@
                                 rounded 
                                 dark:bg-slate-700
                                 bg-gray-200
+                                text-gray-800
+                                dark:text-gray-100
                                 border-2
                                 border-transparent
                                 @error('email')
@@ -156,6 +160,8 @@
                                 rounded 
                                 dark:bg-slate-700
                                 bg-gray-200
+                                text-gray-800
+                                dark:text-gray-100
                                 border-2
                                 border-transparent
                                 @error('password')
@@ -216,6 +222,8 @@
                                     rounded 
                                     dark:bg-slate-700
                                     bg-gray-200
+                                text-gray-800
+                                dark:text-gray-100
                                     border-2
                                     border-transparent
                                     @error('nip')

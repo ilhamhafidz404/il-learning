@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-
+@section('title', $student->user->name)
 @section('content')
     @include('components.confirmModal' , 
         [ 

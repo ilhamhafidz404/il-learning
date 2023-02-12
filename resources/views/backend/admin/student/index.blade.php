@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-
+@section('title', 'Student')
 @section('content')
     @include('components.confirmModal' , 
         [ 
@@ -147,7 +147,7 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            <div class="flex items-center">
+                            <div class="flex items-center justify-center">
                                 <form 
                                     action="{{ route('admin.student.destroy', $student->user->id) }}" 
                                     method="POST"
@@ -165,15 +165,6 @@
                                         )
                                     </button>
                                 </form>
-                                <a 
-                                    href="{{ route('admin.student.edit', $student->user->username) }}"
-                                    class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
-                                >
-                                    @include(
-                                        'components.icons.edit-solid-icon',
-                                        ['class' => 'w-6']
-                                    )
-                                </a>
                             </div>
                         </td>
                     </tr>

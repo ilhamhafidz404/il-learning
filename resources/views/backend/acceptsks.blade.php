@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Accept SKS
+@endsection
 @section('content')
 @include('components.confirmModal' , 
     [ 

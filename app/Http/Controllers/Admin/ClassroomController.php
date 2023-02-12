@@ -57,6 +57,31 @@ class ClassroomController extends Controller
         return view('backend.admin.classroom.show', compact('students', 'classroom', 'admin'));
     }
 
+    public function edit($slug)
+    {
+        $admin = Admin::whereEmail(Session::get('email'))->first();
+        $lecturers = Lecturer::all();
+        $classroom = Classroom::whereSlug($slug)->first();
+
+        return view('backend.admin.classroom.edit', compact('admin', 'lecturers', 'classroom'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $classroom = Classroom::find($id);
+        $classroom->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'mentor' => $request->mentor,
+        ]);
+
+        return redirect()->route('admin.classroom.edit', $classroom->slug)->with([
+            'success' => true,
+            'title' => 'Berhasil Mengedit Classroom',
+            'message' => 'Sekarang Data Classroom telah berubah'
+        ]);
+    }
+
     public function destroy($id)
     {
 

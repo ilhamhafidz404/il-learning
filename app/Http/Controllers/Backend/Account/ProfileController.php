@@ -15,9 +15,6 @@ class ProfileController extends Controller
     public function show($username)
     {
         $user = User::whereUsername($username)->first();
-        // $student = Student::whereHas('user', function ($q) {
-        //     $q->where('username', '=', $username);
-        // })->first();
         $acceptCourse = Course::whereHas('user', function ($q) {
             $q->where('user_id', '=', Auth::user()->id);
         })->get();

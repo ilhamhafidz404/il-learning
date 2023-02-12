@@ -76,7 +76,9 @@
         )
     </a>
     <a 
-        href="{{ route('classroom.show', Auth::user()->student[0]->classroom->slug) }}"
+        @if (Auth::user()->hasRole('student'))
+            href="{{ route('classroom.show', Auth::user()->student[0]->classroom->slug) }}"
+        @endif
         class="
             w-full 
             bg-[#ecd06f] 
