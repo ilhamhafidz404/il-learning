@@ -36,7 +36,7 @@
                     dark:text-indigo-500
                 "
             >
-                List Mata Kuliah
+                List of courses
             </h3>
             <div class="text-sm dark:text-white flex items-center">
                 @if (count($acceptCourse) < 1)
@@ -64,7 +64,7 @@
                             duration-300
                             hover:font-semibold
                         "
-                    >lihat mata kuliah anda >> </a>
+                    >See your Course >> </a>
                 @endif
             </div>
         </div>
@@ -124,7 +124,7 @@
                                 <span class="text-center">
                                     <h4 class="text-7xl mt-10">🤩</h4>
                                     <h3 class="text-2xl mt-5 mb-10 dark:text-indigo-500">
-                                        Anda sudah mengambil semua mata Kuliah
+                                        You have taken all courses
                                     </h3>
                                 </span>
                             </td>
@@ -189,7 +189,7 @@
                     dark:text-emerald-500
                 "
             >
-                Mata Kuliah Saya
+                My Courses
             </h3>
             <div class="overflow-auto pb-5 md:pb-0">
                 <table class="w-[800px] md:w-full text-left">

@@ -77,6 +77,7 @@
                                     !border-red-500
                                 @enderror
                             "
+                            value="{{ old('name') }}"
                         >
                         @error('name')
                             <small class="text-red-500 italic">{{ $message }}</small>
@@ -117,6 +118,7 @@
                                     !border-red-500
                                 @enderror
                             "
+                            value="{{ old('sks') }}"
                         >
                         @error('sks')
                             <small class="text-red-500 italic">{{ $message }}</small>
@@ -162,6 +164,12 @@
                     >
                     @error('file')
                         <small class="text-red-500 italic">{{ $message }}</small>
+                    @else
+                        @if (old('name') || old('sks') || old('description'))
+                            <small class="text-emerald-500 italic">
+                                the image has been validated, but Please input the image again!
+                            </small>
+                        @endif
                     @enderror
                 </div>
                 <div class="mb-5">
@@ -200,7 +208,7 @@
                                 !border-red-500
                             @enderror
                         "
-                    ></textarea>
+                    >{{ old('description') }}</textarea>
                     @error('description')
                         <small class="text-red-500 italic">{{ $message }}</small>
                     @enderror

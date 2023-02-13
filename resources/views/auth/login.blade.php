@@ -50,7 +50,8 @@
         >
           <h1 class="text-3xl font-bold tracking-wider">ALOPE UNIVERSITY Learning</h1>
           <p class="text-sm mt-3">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident voluptate, corporis at autem laboriosam magnam et quis minima quidem ipsa totam optio, placeat officiis? Neque earum illum placeat magnam unde.
+            Improve the quality of your learning with the Digital Class Alope University . <br>
+            With Digital Classes, the learning process becomes easier and accessible to everyone, anywhere and anytime.
           </p>
         </div>
       </div>

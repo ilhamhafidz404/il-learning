@@ -38,7 +38,7 @@
                     "
                     onclick="toggleConfirm()"
                 >
-                    Batalkan
+                    Cancel
                 </button>
                 <button 
                     class="
@@ -54,7 +54,7 @@
                         document.getElementById('{{ $to }}').submit();
                     "
                 >
-                    Yakin
+                    Yes
                 </button>
             </div>
         </div>

@@ -42,7 +42,7 @@
     <div class="text-white relative h-[300px]">
         <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $submission->mission->name }}</h1>
         <p>{{ $submission->mission->course->name }}</p>
-        <a onclick="history.back()" class="text-white absolute bottom-[150px] z-50 left-0 cursor-pointer">Kembali</a>
+        <a onclick="history.back()" class="text-white absolute bottom-[150px] z-50 left-0 cursor-pointer">Go Back</a>
     </div>
     <div 
         class="
@@ -74,8 +74,8 @@
                     rounded-md
                 "
             >
-                Mengumpulkan : <b>{{ $submitSubmissions->count() }}</b> / 
-                Dari : <b>{{ $studentCount }}</b> Mahasiswa
+                Collect : <b>{{ $submitSubmissions->count() }}</b> / 
+                of : <b>{{ $studentCount }}</b> stundents
             </span>
         </div>
         <p>

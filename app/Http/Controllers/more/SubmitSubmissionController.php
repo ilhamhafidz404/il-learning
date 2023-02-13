@@ -68,8 +68,8 @@ class SubmitSubmissionController extends Controller
         if ($request->file) {
             return redirect()->back()->with([
                 'success' => true,
-                'title' => 'Berhasil Meng-upload Tugas',
-                'message' => 'Anda sudah meng-upload tugas'
+                'title' => 'Submission upload successfully',
+                'message' => 'You have uploaded the file for this Submission'
             ]);
         } else {
             $submission = Submission::whereId($request->submission)->first();

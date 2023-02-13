@@ -6,8 +6,8 @@
 
     @include('components.confirmModal' , 
         [ 
-            'title' => 'Yakin Menambah Mission', 
-            'subtitle' => 'Pastikan data/keterangan sudah sesuai',
+            'title' => 'Are you sure?', 
+            'subtitle' => 'Make sure the data/information is correct',
             'to' => 'addMission'
         ]
     )
@@ -51,15 +51,6 @@
         <div class="text-white relative h-[300px]">
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
             <span class="text-emerald-500 font-bold">ADD MISSION </span>
-            {{-- @foreach ($course->lecturer as $lecturer)
-                <span>| {{ $lecturer->name }}</span>
-            @endforeach --}}
-            <a 
-                href="{{ route('course.show', $course->slug) }}" 
-                class="text-white absolute bottom-[150px] z-30 left-0"
-            >
-                Kembali
-            </a>
         </div>
         <div 
             class="
@@ -92,7 +83,7 @@
                             @enderror
                         "
                     >
-                        Judul Mission
+                        Mission Title
                     </label>
                     <input 
                         type="text" 
@@ -152,7 +143,7 @@
                         "
                         required
                     >
-                        <option value="" hidden selected>Pilih Course</option>
+                        <option value="" hidden selected>Select Course</option>
                         @foreach ($user->course as $course)
                             <option 
                                 {{ old('course') == $course->id ? "selected" : "" }}
@@ -181,7 +172,7 @@
                         "
                         href="{{ route('course.show', $course->slug) }}" 
                     >
-                        Kembali
+                        Go Back
                     </a>
                     <div class="flex gap-4 md:w-auto w-full md:mb-0 mb-3">
                         <button 

@@ -54,7 +54,7 @@
                 href="{{ route('course.show', $mission->course->slug) }}" 
                 class="text-white absolute bottom-[150px] z-30 left-0"
             >
-                Kembali
+                Go Back
             </a>
            @if (Auth::user()->hasRole('lecturer'))
                 <div class="flex absolute right-0 bottom-[150px] ">
@@ -126,7 +126,7 @@
                                     <small class="italic">Silahkan download materi-nya</small>
                                 @endif
                                 <br>
-                                <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
+                                <small>For <b>{{ $submission->classroom->name }}</b></small>
                             </div>
                         </a>
                     @endif
@@ -141,7 +141,7 @@
                                 dark:text-white
                             "
                         >
-                            Belum ada tugas untukmu
+                            There are no submission for you yet
                         </h5>
                     </div>
                 @endforelse
@@ -165,7 +165,7 @@
                                 <small>Tidak ada batas waktu</small>
                             @endif
                             <br>
-                            <small>Untuk <b>{{ $submission->classroom->name }}</b></small>
+                            <small>For <b>{{ $submission->classroom->name }}</b></small>
                         </div>
                     </a>
                 @empty

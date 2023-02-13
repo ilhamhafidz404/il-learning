@@ -15,8 +15,8 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
+        $request->validate([
+            'email' => 'required|email|exists:admins',
             'password' => 'required',
         ]);
 

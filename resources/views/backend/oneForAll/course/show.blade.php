@@ -55,7 +55,7 @@
                 href="{{ route('dashboard') }}" 
                 class="text-white absolute bottom-[150px] z-30 left-0"
             >
-                Kembali
+                Go Back
             </a>
            @if (Auth::user()->hasRole('lecturer'))
                 <div class="flex absolute right-0 bottom-[150px] ">
@@ -212,7 +212,7 @@
                         "
                     >
                         @if (Auth::user()->hasRole('student'))
-                            Belum ada tugas untukmu
+                            There are no assignments for you yet
                         @else
                             Anda belum menambahkan tugas untuk <br>
                             <span class="text-indigo-500 text-3xl uppercase">{{ $course->name }}</span>

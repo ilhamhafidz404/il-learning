@@ -93,5 +93,112 @@
                 </div>
             </div>
         </div>
+
+        {{--  --}}
+        <div class="col-span-3 dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
+            <div id="studentChart"></div>
+        </div>
+        <div class="col-span-3 dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
+            <div id="lecturerChart"></div>
+        </div>
     </section>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript">
+        var studentData = {{ json_encode($studentData)}};
+        Highcharts.chart('studentChart', {
+            title: {
+                text: 'Student Statistik'
+            },
+            subtitle: {
+                text: 'Tahun 2023'
+            },
+            xAxis: {
+                categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                    'October', 'November', 'December'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Student'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                    allowPointSelect: true
+                }
+            },
+            series: [{
+                name: 'New Student',
+                data: studentData
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+        
+        var studentData = {{ json_encode($studentData)}};
+        Highcharts.chart('lecturerChart', {
+            title: {
+                text: 'Lecturer Statistik'
+            },
+            subtitle: {
+                text: 'Tahun 2023'
+            },
+            xAxis: {
+                categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                    'October', 'November', 'December'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Lecturer'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                    allowPointSelect: true
+                }
+            },
+            series: [{
+                name: 'New Student',
+                data: studentData
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+    </script>
 @endsection

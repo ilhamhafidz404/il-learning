@@ -132,7 +132,7 @@
                                             </span>
                                         @endif
                                         <div class="relative w-full">
-                                            <h5 class="font-bold text">
+                                            <h5 class="font-semibold text">
                                             @if (!$comingEvent->submission->theory)
                                                 {{ 
                                                     Str::limit(
@@ -158,7 +158,6 @@
                                                     absolute 
                                                     top-0 
                                                     right-0 
-                                                    text-sm 
                                                     text-gray-700 
                                                     dark:text-gray-200 
                                                     italic

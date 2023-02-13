@@ -107,8 +107,8 @@ class SubmissionController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => 'Berhasil Meng-upload Submission',
-            'message' => 'Mahasiswa anda mendapat tugas baru'
+            'title' => 'Successful Upload Submission',
+            'message' => 'Your student has a new submission'
         ]);
     }
 

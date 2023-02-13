@@ -8,8 +8,8 @@ use App\Models\Classroom;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -21,6 +21,14 @@ class DashboardController extends Controller
         $students = Student::count();
         $classrooms = Classroom::count();
 
-        return view('backend.admin.dashboard', compact('courses', 'lecturers', 'students', 'classrooms', 'admin'));
+        $studentData = Student::select(DB::raw("COUNT(*) as count"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("Month(created_at)"))
+            ->pluck('count');
+
+        return view(
+            'backend.admin.dashboard',
+            compact('courses', 'lecturers', 'students', 'classrooms', 'admin', 'studentData')
+        );
     }
 }

@@ -5,8 +5,8 @@
 @section('content')
 @include('components.confirmModal' , 
     [ 
-        'title' => 'Yakin upload tugas?', 
-        'subtitle' => 'Tugas akan dikumpulkan jika anda tekan yakin',
+        'title' => 'Are you sure?', 
+        'subtitle' => 'Tasks will be collected if you press YES',
         'to' => 'upload_submission'
     ]
 )
@@ -56,12 +56,6 @@
                 <br class="sm:hidden block">
                 {{ $submission->course->name }}
             </p>
-            <a 
-                href="{{ route('mission.show', $submission->mission->slug) }}" 
-                class="text-white absolute bottom-[150px] z-30 left-0"
-            >
-                Kembali
-            </a>
         </div>
         <div 
             class="
@@ -80,25 +74,45 @@
             <div class="flex items-center justify-between">
                 <h2 class=" text-2xl font-semibold">{{ $submission->name }}</h2>
                 @if ($submitSubmission)
-                    @if (!$submission->theory)
-                        <span class="text-white text-sm bg-emerald-500 py-1 px-2 rounded-md">
-                            Sudah mengumpulkan
-                        </span>
-                    @else
-                        <span class="text-white text-sm bg-emerald-500 py-1 px-2 rounded-md">
-                            Sudah mepelajari
-                        </span>
-                    @endif
+                    <span class="text-white text-sm bg-emerald-500 py-1 px-2 rounded-md flex items-center">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            viewBox="0 0 24 24" 
+                            fill="currentColor" 
+                            class="w-5 mr-1"
+                        >
+                            <path 
+                                fill-rule="evenodd" 
+                                d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" 
+                                clip-rule="evenodd" 
+                            />
+                        </svg>
+                        @if (!$submission->theory)
+                            Already collected
+                        @else
+                            Already studied
+                        @endif
+                    </span>
                 @else
-                    @if (!$submission->theory)
-                        <span class="text-white text-sm bg-red-500 py-1 px-2 rounded-md">
-                            Belum mengumpulkan
-                        </span>
-                    @else
-                        <span class="text-white text-sm bg-red-500 py-1 px-2 rounded-md">
-                            Belum mepelajari
-                        </span>
-                    @endif
+                    <span class="text-white text-sm bg-red-500 py-1 px-2 rounded-md flex items-center">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            viewBox="0 0 24 24" 
+                            fill="currentColor" 
+                            class="w-5 mr-1"
+                        >
+                            <path 
+                                fill-rule="evenodd" 
+                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" 
+                                clip-rule="evenodd" 
+                            />
+                        </svg>
+                        @if (!$submission->theory)
+                            Haven't collected yet
+                        @else
+                            Haven't studied
+                        @endif
+                    </span>
                 @endif
             </div>
             <small>
@@ -132,13 +146,15 @@
                             readonly
                         >{{ $submitSubmission->description }}</textarea>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 flex items-center">
                         <label for="file">File : </label>
                         <img 
                             src="{{ asset('images/icon/fileExtensions/'.$submitSubmission->extension.'.png') }}" 
                             alt="{{ $submitSubmission->extension }}"
                             width="50"
+                            class="mx-5"
                         >
+                        <small>you send the {{ $submitSubmission->extension }} file in this submission</small>
                     </div>
                     <div class="flex flex-col-reverse md:flex-row justify-between mt-10">
                         <a 
@@ -154,7 +170,7 @@
                                 text-center
                             "
                         >
-                            Kembali
+                            Go Back
                         </a>
                         <div class="flex md:w-auto w-full mb-5 md:mb-0">
                             <a
@@ -265,7 +281,23 @@
                                     @enderror
                                 "
                             >File : </label>
-                            <input type="file" name="file" id="file" required>
+                            <input 
+                                type="file" 
+                                name="file" 
+                                id="file" 
+                                required 
+                                class="
+                                    file:mr-4 
+                                    file:py-2 
+                                    file:px-4
+                                    file:rounded 
+                                    file:border-0
+                                    file:text-sm 
+                                    file:font-semibold
+                                    file:bg-indigo-500 
+                                    file:text-white
+                                    hover:file:bg-indigo-400"
+                            >
                             @error('file')
                                 <small class="text-red-500 block mt-3">{{ $message }}</small>
                             @enderror
@@ -275,7 +307,7 @@
                                 href="{{ route('mission.show', $submission->mission->slug) }}"
                                 class="bg-gray-500 hover:bg-gray-400 px-5 py-2 rounded text-white"
                             >
-                                Kembali
+                                Go Back
                             </a>
                             <div>
                                 <button

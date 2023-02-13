@@ -6,8 +6,8 @@
 
     @include('components.confirmModal' , 
         [ 
-            'title' => 'Yakin Menambah Submission', 
-            'subtitle' => 'Pastikan data/keterangan sudah sesuai',
+            'title' => 'Are you sure?', 
+            'subtitle' => 'Make sure the data/information is correct',
             'to' => 'addSubmission'
         ]
     )
@@ -51,21 +51,12 @@
         <div class="text-white relative h-[300px]">
             <h1 class="font-bold text-4xl uppercase mb-2 mt-20">{{ $course->name }}</h1>
             <span class="text-indigo-500 font-bold">ADD SUBMISSION </span>
-            {{-- @foreach ($course->lecturer as $lecturer)
-                <span>| {{ $lecturer->user->name }}</span>
-            @endforeach --}}
-             <a 
-                href="{{ route('course.show', $course->slug) }}" 
-                class="text-white absolute bottom-[150px] z-30 left-0"
-            >
-                Kembali
-            </a>
             <button 
                 onclick="changeType()" 
                 class="absolute bottom-[150px] right-0 bg-indigo-500 px-5 py-2 rounded mb-3"
             >
-                <span id="upTheory">Upload Materi</span>
-                <span id="upWork" class="hidden">Upload Tugas</span>
+                <span id="upTheory">Upload theory</span>
+                <span id="upWork" class="hidden">Upload assignment</span>
             </button>
         </div>
         <div 
@@ -103,7 +94,7 @@
                             @enderror
                         "
                     >
-                        Judul Tugas
+                        Title Submission
                     </label>
                     <input 
                         type="text" 
@@ -144,7 +135,7 @@
                             @enderror
                         "
                     >
-                        Keterangan Tugas
+                        Description
                     </label>
                     <textarea 
                         name="description" 
@@ -207,7 +198,7 @@
                             "
                             required
                         >
-                            <option value="" hidden selected>Pilih Mission</option>
+                            <option value="" hidden selected>Select Mission</option>
                             @forelse ($missions as $mission)
                                 <option 
                                     {{ old('mission') == $mission->id ? "selected" : "" }}
@@ -234,7 +225,7 @@
                                     text-red-500
                                 @enderror
                             "
-                        >Kelas</label>
+                        >Classroom</label>
                         <select 
                             name="classroom" 
                             id="classroom" 
@@ -256,7 +247,7 @@
                             "
                             required
                         >
-                            <option value="" hidden selected>Pilih Kelas</option>
+                            <option value="" hidden selected>Select Kelas</option>
                             @forelse ($user->classroom as $classroom)
                                 <option 
                                     {{ old('lecturer') == $user->id ? "selected" : "" }}
@@ -286,7 +277,7 @@
                                 @enderror
                             "
                         >
-                            Tanggal Deadline Tugas
+                            Deadline Date
                         </label>
                         <input 
                             type="date"
@@ -327,7 +318,7 @@
                                 @enderror
                             "
                         >
-                            Waktu Deadline Tugas
+                            Deadline Time
                         </label>
                         <input 
                             type="time"
@@ -413,7 +404,7 @@
                             "
                             href="{{ route('course.show', $course->slug) }}" 
                         >
-                            Kembali
+                            Go Back
                         </a>
                         <div class="flex gap-4 md:w-auto w-full md:mb-0 mb-3">
                             <button 
