@@ -99,9 +99,16 @@ class SubmissionController extends Controller
             }
         }
 
+        $mailData = [
+            'title' => 'New Submission For You: ' . $submission->name,
+            'body' => "There is a new submission for you in the course " . $submission->course->name . " on mission " . $mission->name,
+            'footer' => "Let's check and get to work. before the deadline time " . $deadline
+
+        ];
+
         foreach ($students as $student) {
             Mail::to($student->user->email)
-                ->send(new NotificationMail);
+                ->send(new NotificationMail($mailData));
         }
 
 
