@@ -54,7 +54,9 @@ class ClassroomController extends Controller
         $admin = Admin::whereEmail(Session::get('email'))->first();
         $classroom = Classroom::whereName($slug)->first();
         $students = Student::whereClassroomId($classroom->id)->paginate(10);
-        return view('backend.admin.classroom.show', compact('students', 'classroom', 'admin'));
+        $classrooms = Classroom::latest()->get();
+
+        return view('backend.admin.classroom.show', compact('students', 'classroom', 'admin', 'classrooms'));
     }
 
     public function edit($slug)

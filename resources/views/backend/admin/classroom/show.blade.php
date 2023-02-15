@@ -162,6 +162,7 @@
                         <td class="py-5 pl-7 w-[80%]">{{ $student->user->name }}</td>
                         <td class="text-center">
                             <button 
+                                onclick="toggleSelectClassroom({{ $student->id }})"
                                 class="bg-slate-500 hover:bg-slate-400 text-white px-3 py-2 rounded"
                             >
                                 Change Class
@@ -187,9 +188,64 @@
                 </tr>
             </table>
         </div>
-        {{-- <div class="mt-5 w-full">
-            {{$students->links()}}
-        </div> --}}
+    </section>
+
+    <section id="changeClassroomModal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
+        <div class="bg-white p-5 rounded shadow w-[500px] max-w-[90%]">
+            <h2 class="text-xl text-indigo-500 font-semibold">Select Classroom</h2>
+            <form action="{{ route('admin.student.update', 1) }}" method="POST">
+                @method('PUT')
+                @csrf
+                <input id="studentId" type="text" value="" name="student">
+                <select 
+                    name="classroom" 
+                    class="
+                        w-full 
+                        rounded 
+                        py-2 
+                        px-3 
+                        dark:bg-slate-700 
+                        dark:text-gray-100
+                        border-2
+                        border-transparent
+                        @error('mentor')
+                            bg-red-200
+                            dark:bg-red-500/50
+                            !border-red-500
+                        @enderror
+                    "
+                    required
+                >
+                    <option value="" selected hidden>- Select Classroom -</option>
+                    @forelse ($classrooms as $classroom)
+                        <option 
+                            value="{{ $classroom->id }}"
+                        >
+                            {{ $classroom->name }}
+                        </option>
+                    @empty
+                        <option disabled>
+                            <i>No Lecturer Data</i>
+                        </option>
+                    @endforelse
+                </select>
+                <div class="mt-10 flex justify-end items-center">
+                    <button 
+                        onclick="toggleSelectClassroom(0)"
+                        type="button"
+                        class="bg-slate-500 hover:bg-slate-400 text-white px-6 py-2 rounded mr-3"
+                    >
+                        Close
+                    </button>
+                    <button 
+                        type="submit"
+                        class="bg-indigo-500 hover:bg-indigo-400 text-white px-10 py-2 rounded"
+                    >
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
     </section>
 @endsection
 
@@ -204,6 +260,11 @@
     const toggleConfirm = () =>{
         const cofirmModal= document.getElementById('confirmModal');
         cofirmModal.classList.toggle('hidden');
+    }
+
+    const toggleSelectClassroom = (id) =>{
+        document.getElementById('changeClassroomModal').classList.toggle('hidden');
+        document.getElementById('studentId').value = id;
     }
 </script>
 @endsection

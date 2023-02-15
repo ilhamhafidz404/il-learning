@@ -63,7 +63,7 @@ Route::name('admin.')->group(function () {
 
         Route::resource('admin/student', StudentController::class, [
             'names' => 'student',
-            'only' => ['index', 'show', 'destroy', 'create', 'store']
+            'only' => ['index', 'show', 'destroy', 'create', 'store', 'update']
         ]);
 
         Route::resource('admin/classroom', AdminClassroomController::class, ['names' => 'classroom']);

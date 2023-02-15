@@ -77,9 +77,21 @@ class StudentController extends Controller
         ]);
     }
 
-    public function edit($username)
+    public function update(Request $request, $username)
     {
-        # code...
+        $request->validate([
+            'classroom' => 'required'
+        ]);
+        $student = Student::whereId($request->student)->first();
+        $student->update([
+            'classroom_id' => $request->classroom
+        ]);
+
+        return redirect()->back()->with([
+            'success' => true,
+            'title' => "Berhasil menambah Student",
+            'message' => "Student sudah ditambhkan"
+        ]);
     }
 
     public function destroy($id)

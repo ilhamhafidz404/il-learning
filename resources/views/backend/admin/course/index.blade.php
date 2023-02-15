@@ -247,8 +247,8 @@
                         </div>
                     </div>
                     
-                    <div class="bg-slate-800 p-5">
-                        <h3 class="text-gray-100 font-semibold">{{ $course->name }}</h3>
+                    <div class="bg-white dark:bg-slate-800 p-5">
+                        <h3 class="dark:text-gray-100 text-gray-800 font-semibold">{{ $course->name }}</h3>
                         <small class="text-gray-400 block -mt-1">{{ $course->slug }}</small>
                     </div>
                 </div>
