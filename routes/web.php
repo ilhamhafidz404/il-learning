@@ -56,6 +56,15 @@ Route::name('admin.')->group(function () {
             'names' => 'student',
             'only' => ['index', 'show', 'destroy', 'create', 'store']
         ]);
+        Route::resource('admin/lecturer', AdminLecturerController::class, [
+            'names' => 'lecturer',
+            'only' => ['index', 'show', 'destroy', 'create', 'store']
+        ]);
+
+        Route::resource('admin/student', StudentController::class, [
+            'names' => 'student',
+            'only' => ['index', 'show', 'destroy', 'create', 'store']
+        ]);
 
         Route::resource('admin/classroom', AdminClassroomController::class, ['names' => 'classroom']);
         // 
@@ -63,6 +72,16 @@ Route::name('admin.')->group(function () {
         Route::post('/addclassroomtolecturer', [MoreController::class, 'addClassroomToLecturer'])->name('addClassroomToLecturer');
         // 
         Route::post('admin/change-theme-mode', [MoreController::class, 'changeThemeMode'])->name('change.theme.mode');
+        // 
+        Route::delete(
+            '/admin/deletelecturerforcourse/{lecturer}/{course}',
+            [MoreController::class, 'deleteLecturerForCourse']
+        )->name('deletelecturerforcourse');
+
+        Route::delete(
+            '/admin/deleteclassroomforlecturer/{lecturer}/{classroom}',
+            [MoreController::class, 'deleteClassroomForLecturer']
+        )->name('deleteclassroomforcourse');
     });
 });
 

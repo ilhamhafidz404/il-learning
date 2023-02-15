@@ -27,7 +27,7 @@ class CourseRequest extends FormRequest
         return [
             'name' => 'required',
             'sks' => 'required',
-            'file' => ['required', 'mimes:png,jpg,jpeg'],
+            'file' => ['required', 'mimes:png,jpg,jpeg,svg'],
             'description' => 'required',
         ];
     }

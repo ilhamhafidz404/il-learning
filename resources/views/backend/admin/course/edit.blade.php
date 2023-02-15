@@ -258,7 +258,7 @@
                                     !border-red-500
                                 @enderror
                             "
-                            accept=".png, .jpg, .jpeg"
+                            accept=".png, .jpg, .jpeg, .svg"
                         >
                         @error('file')
                             <small class="text-red-500 italic">{{ $message }}</small>

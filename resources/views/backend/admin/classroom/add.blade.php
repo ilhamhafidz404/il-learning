@@ -152,7 +152,7 @@
                         href="{{ route('admin.classroom.index') }}" 
                         class="bg-gray-400 hover:bg-gray-300 rounded px-5 py-2 text-white"
                     >
-                        Kembali
+                        Go Back
                     </a>
                     <div>
                         <button type="reset" class="bg-red-500 hover:bg-red-400 rounded px-5 py-2 text-white">

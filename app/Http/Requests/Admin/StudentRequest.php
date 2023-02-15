@@ -28,7 +28,7 @@ class StudentRequest extends FormRequest
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'nim' => 'required',
+            'nim' => 'required|unique:students',
             'classroom' => 'required',
             'file' => 'mimes:png,jpg,jpeg',
             'gender' => 'required',

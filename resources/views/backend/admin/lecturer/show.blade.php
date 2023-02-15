@@ -36,7 +36,7 @@
                     href="{{ route('admin.lecturer.index') }}" 
                     class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
                 >
-                    Kembali
+                    Go Back
                 </a>
             </div>
         </div>
@@ -154,16 +154,21 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            <div class="flex items-center">
+                            <div class="flex items-center justify-center">
                                 <form 
-                                    {{-- action="{{ route('admin.lecturer.destroy', $lecturer->user->id) }}"  --}}
+                                    action="{{ 
+                                        route('admin.deletelecturerforcourse', [
+                                            'lecturer' => $lecturer->id, 
+                                            'course' => $course->id
+                                        ]) 
+                                    }}" 
                                     method="POST"
                                     class="inline mr-2"
                                 >
                                     @csrf
                                     @method('DELETE')
                                     <button
-                                        onclick="toggleConfirm($index)" 
+                                        onclick="return confirm('Are you sure delete course for this lecturer?')" 
                                         class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
                                     >
                                         @include(
@@ -172,15 +177,6 @@
                                         )
                                     </button>
                                 </form>
-                                <a 
-                                    {{-- href="{{ route('admin.lecturer.edit', $lecturer->user->username) }}" --}}
-                                    class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
-                                >
-                                    @include(
-                                        'components.icons.edit-solid-icon',
-                                        ['class' => 'w-6']
-                                    )
-                                </a>
                             </div>
                         </td>
                     </tr>
@@ -283,16 +279,21 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            <div class="flex items-center">
+                            <div class="flex items-center justify-center">
                                 <form 
-                                    {{-- action="{{ route('admin.lecturer.destroy', $lecturer->user->id) }}"  --}}
+                                    action="{{ 
+                                        route('admin.deleteclassroomforcourse', [
+                                            'lecturer' => $lecturer->id, 
+                                            'classroom' => $course->id
+                                        ]) 
+                                    }}" 
                                     method="POST"
                                     class="inline mr-2"
                                 >
                                     @csrf
                                     @method('DELETE')
                                     <button
-                                        onclick="toggleConfirm($index)" 
+                                        onclick="return confirm('Are you sure delete course for this lecturer?')" 
                                         class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
                                     >
                                         @include(
@@ -301,15 +302,6 @@
                                         )
                                     </button>
                                 </form>
-                                <a 
-                                    {{-- href="{{ route('admin.lecturer.edit', $lecturer->user->username) }}" --}}
-                                    class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
-                                >
-                                    @include(
-                                        'components.icons.edit-solid-icon',
-                                        ['class' => 'w-6']
-                                    )
-                                </a>
                             </div>
                         </td>
                     </tr>

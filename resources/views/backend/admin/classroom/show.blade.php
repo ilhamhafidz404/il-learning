@@ -128,7 +128,7 @@
                     href="{{ route('admin.classroom.index') }}" 
                     class="bg-slate-500 hover:bg-slate-500/80 text-white px-5 py-3 rounded font-semibold mr-3"
                 >
-                    Kembali
+                    Go Back
                 </a>
                 <a 
                     href="{{ route('admin.classroom.create') }}" 
@@ -164,7 +164,7 @@
                             <button 
                                 class="bg-slate-500 hover:bg-slate-400 text-white px-3 py-2 rounded"
                             >
-                                Pindah Kelas
+                                Change Class
                             </button>
                         </td>
                     </tr>

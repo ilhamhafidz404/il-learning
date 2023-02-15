@@ -20,8 +20,8 @@ class MoreController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => "Behasil Menambah Course untuk Lecturer",
-            'message' => "Course untuk Lecturer sudah ditambahkan"
+            'title' => "Successfully Added Course for Lecturers",
+            'message' => "Now this lecturer is teaching a new course"
         ]);
     }
 
@@ -34,8 +34,8 @@ class MoreController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => "Behasil Menambah Classroom untuk Lecturer",
-            'message' => "Classroom untuk Lecturer sudah ditambahkan"
+            'title' => "Successfully Added Classrooms for Lecturers",
+            'message' => "Now this lecturer is teaching a new classroom"
         ]);
     }
 
@@ -52,5 +52,31 @@ class MoreController extends Controller
         ]);
 
         return back();
+    }
+
+    // 
+
+    public function deleteLecturerForCourse($lecturer, $course)
+    {
+        $result = CourseLecturer::whereCourseId($course)->whereLecturerId($lecturer)->first();
+        $result->delete();
+
+        return redirect()->back()->with([
+            'success' => true,
+            'title' => "Successfully delete",
+            'message' => "The lecturer is no longer teaching this course"
+        ]);
+    }
+
+    public function deleteClassroomForLecturer($lecturer, $classroom)
+    {
+        $result = ClassroomLecturer::whereClassroomId($classroom)->whereLecturerId($lecturer)->first();
+        $result->delete();
+
+        return redirect()->back()->with([
+            'success' => true,
+            'title' => "Successfully delete",
+            'message' => "The lecturer is no longer teaching this classroom"
+        ]);
     }
 }
