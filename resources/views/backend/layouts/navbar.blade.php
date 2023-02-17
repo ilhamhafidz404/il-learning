@@ -67,11 +67,7 @@
                         "
                     >
                         <img 
-                            @if (!Route::is('profile*'))
-                                src="{{ asset('storage/'.$user->profile) }}" 
-                            @else
-                                src="{{ asset('storage/'.$user->student[0]->profile) }}" 
-                            @endif
+                            src="{{ asset('storage/'.$user->profile) }}" 
                             alt="profile photo"
                             class="
                                 w-full 

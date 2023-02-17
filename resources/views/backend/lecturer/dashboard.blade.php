@@ -65,11 +65,6 @@
                             {{ $course->name }}
                         </h2>
                         <span>
-                            @foreach ($course->lecturer as $lecturer)
-                                @foreach ($lecturer->classroom as $classroom)
-                                @endforeach
-                            @endforeach
-                            <small class="dark:text-gray-100"> | </small>
                             <small class="dark:text-gray-100">TINFC-2022-01</small>
                         </span>
                     </div>

@@ -13,7 +13,6 @@ use App\Models\Progress;
 use App\Models\Student;
 use App\Models\Submission;
 use App\Models\Submitsubmission;
-use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -177,5 +176,23 @@ class SubmissionController extends Controller
      */
     public function destroy($id)
     {
+        $submission = Submission::find($id);
+
+        $progresses = Progress::whereMissionId($submission->mission->id)->get();
+        if ($progresses->count() > 0) {
+            foreach ($progresses as $progress) {
+                $progress->update([
+                    'submission_count' => $progress->submission_count - 1
+                ]);
+            }
+        }
+
+        $submission->delete();
+
+        return redirect()->back()->with([
+            'success' => true,
+            'title' => 'Successful Delete Submission',
+            'message' => 'Your students will need more submission'
+        ]);
     }
 }
