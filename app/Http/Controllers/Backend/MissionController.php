@@ -5,15 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Lecturer;
 use App\Models\Mission;
 use App\Models\Submission;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MissionRequest;
 use Illuminate\Support\Str;
 use App\Models\Course;
 use App\Models\Student;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class MissionController extends Controller
 {
@@ -53,8 +50,8 @@ class MissionController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => 'Berhasil Membuat Mission',
-            'message' => 'Mission Baru untuk Mahasiswa'
+            'title' => 'Successfully Made Missions',
+            'message' => 'New Mission for Students'
         ]);
     }
 }

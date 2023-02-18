@@ -68,8 +68,8 @@ class LecturerController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => "Berhasil menambah Lecturer",
-            'message' => "Lecturer sudah ditambhkan"
+            'title' => "Successfully added Lecturer",
+            'message' => "Lecturer has been added"
         ]);
     }
 
@@ -115,8 +115,8 @@ class LecturerController extends Controller
                         'lecturer_id' => $request->lecturer
                     ]);
                 }
-                $title = "Berhasil Menambah course ";
-                $message = "Course " . $lecturerName . ' telah ditambahkan!';
+                $title = "Successfully Added course ";
+                $message = "Course " . $lecturerName . ' has been added!';
             } elseif ($submit == 'classroom') {
                 foreach ($request->classrooms as $index => $classroom) {
                     ClassroomLecturer::create([
@@ -124,8 +124,8 @@ class LecturerController extends Controller
                         'lecturer_id' => $request->lecturer
                     ]);
                 }
-                $title = "Berhasil Menambah classroom ";
-                $message = "Classroom " . $lecturerName . ' telah ditambahkan!';
+                $title = "Successfully Added classroom ";
+                $message = "Classroom " . $lecturerName . ' has been added!';
             }
         }
 
@@ -143,8 +143,8 @@ class LecturerController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => 'Berhasil Menghapus Lecturer',
-            'message' => 'Sekarang Lecturer telah dihapus'
+            'title' => 'Successfully Removed Lecturer',
+            'message' => 'One Lecturer data has been deleted'
         ]);
     }
 }

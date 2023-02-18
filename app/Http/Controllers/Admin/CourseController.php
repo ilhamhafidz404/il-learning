@@ -51,8 +51,8 @@ class CourseController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => 'Berhasil Menambah Course',
-            'message' => 'Sekarang Course telah bertambah'
+            'title' => 'Successfully added course',
+            'message' => 'Now the Course has been added'
         ]);
     }
 
@@ -96,8 +96,8 @@ class CourseController extends Controller
         }
         return redirect()->route('admin.course.edit', $course->slug)->with([
             'success' => true,
-            'title' => 'Berhasil Mengedit Course',
-            'message' => 'Sekarang Data Course telah berubah'
+            'title' => 'Successfully Editing Course',
+            'message' => 'Now the Data Course has changed'
         ]);
     }
 
@@ -136,8 +136,8 @@ class CourseController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => 'Berhasil Menghapus Course',
-            'message' => 'Sekarang Course telah dihapus'
+            'title' => 'Successfully Deleted Course',
+            'message' => 'Now Course has been removed'
         ]);
     }
 }

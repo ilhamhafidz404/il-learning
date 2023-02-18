@@ -72,8 +72,8 @@ class StudentController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => "Berhasil menambah Student",
-            'message' => "Student sudah ditambhkan"
+            'title' => "Successfully added Student",
+            'message' => "Student has been added"
         ]);
     }
 

@@ -176,8 +176,10 @@ class SubmissionController extends Controller
      */
     public function destroy($id)
     {
+        // cari submission yang dimaksud
         $submission = Submission::find($id);
 
+        // cari progres mission dari submission yang dimaksud
         $progresses = Progress::whereMissionId($submission->mission->id)->get();
         if ($progresses->count() > 0) {
             foreach ($progresses as $progress) {
@@ -185,6 +187,11 @@ class SubmissionController extends Controller
                     'submission_count' => $progress->submission_count - 1
                 ]);
             }
+        }
+
+        $completes = Completed::whereSubmissionId($submission->id)->get();
+        foreach ($completes as $complete) {
+            $complete->delete();
         }
 
         $submission->delete();

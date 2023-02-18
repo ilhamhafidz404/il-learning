@@ -327,7 +327,7 @@
                             href="{{ route('admin.lecturer.index') }}" 
                             class="bg-gray-500 hover:bg-gray-400 px-5 py-2 rounded"
                         >
-                            Kembali
+                            Go Back
                         </a>
                     </div>
                     <div>

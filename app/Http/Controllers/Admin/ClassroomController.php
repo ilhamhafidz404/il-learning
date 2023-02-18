@@ -44,8 +44,8 @@ class ClassroomController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => 'Berhasil Menambah Classroom',
-            'message' => 'Sekarang Classroom telah bertambah'
+            'title' => 'Successfully Added Classroom',
+            'message' => 'Now Classroom has expanded'
         ]);
     }
 
@@ -79,8 +79,8 @@ class ClassroomController extends Controller
 
         return redirect()->route('admin.classroom.edit', $classroom->slug)->with([
             'success' => true,
-            'title' => 'Berhasil Mengedit Classroom',
-            'message' => 'Sekarang Data Classroom telah berubah'
+            'title' => 'Successfully Edit Classroom',
+            'message' => 'Now Data Classroom has changed'
         ]);
     }
 

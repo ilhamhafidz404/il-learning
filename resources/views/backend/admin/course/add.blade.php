@@ -3,8 +3,8 @@
 @section('content')
     @include('components.confirmModal' , 
         [ 
-            'title' => 'Apakah anda yakin?', 
-            'subtitle' => 'Data course akan mulai ditambahkan',
+            'title' => 'Are you Sure?', 
+            'subtitle' => 'The course data will be added if press yes',
             'to' => 'storeCourse'
         ]
     )
@@ -218,7 +218,7 @@
                         href="{{ route('admin.course.index') }}" 
                         class="bg-gray-400 hover:bg-gray-300 rounded px-5 py-2 text-white"
                     >
-                        Kembali
+                        Go Back
                     </a>
                     <div>
                         <button type="reset" class="bg-red-500 hover:bg-red-400 rounded px-5 py-2 text-white">

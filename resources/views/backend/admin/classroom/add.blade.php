@@ -3,8 +3,8 @@
 @section('content')
     @include('components.confirmModal' , 
         [ 
-            'title' => 'Apakah anda yakin?', 
-            'subtitle' => 'Data course akan mulai ditambahkan',
+            'title' => 'Are you sure?', 
+            'subtitle' => 'Class data will be added if you press yes',
             'to' => 'storeClassroom'
         ]
     )

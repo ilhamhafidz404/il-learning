@@ -3,7 +3,7 @@
 @section('content')
     @include('components.confirmModal' , 
         [ 
-            'title' => 'Apakah anda yakin?', 
+            'title' => 'Are you sure?', 
             'subtitle' => 'Data yang sudah terpilih tidak bisa di batalkan lagi.',
             'to' => 'confirmDeleteClassroom'
         ]
