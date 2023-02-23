@@ -117,6 +117,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account', MyAccountController::class)->name('myaccount');
     Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile/{username}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/lecturer-profile/{username}', [ProfileController::class, 'showLecturer'])->name('lecturer.profile.show');
 });
 
 Auth::routes();

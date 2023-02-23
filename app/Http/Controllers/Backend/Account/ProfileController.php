@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Account;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Lecturer;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,14 @@ class ProfileController extends Controller
         })->get();
         return view('backend.oneForAll.account.profile.show', compact('user', 'acceptCourse'), [
             'student' => Student::whereUserId(Auth::user()->id)->first()
+        ]);
+    }
+
+    public function showLecturer($username)
+    {
+        return view('backend.lecturer.profile.show', [
+            'lecturer' => Lecturer::whereUserId(Auth::user()->id)->first(),
+            'user' => User::whereUsername($username)->first()
         ]);
     }
 

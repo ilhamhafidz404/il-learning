@@ -163,7 +163,12 @@
                     py-3 
                     border-l-[5px]
                     dark:text-white 
-                    @if (Route::is('myaccount*') || Route::is('profile*') || Route::is('password*'))
+                    @if (
+                        Route::is('myaccount*') || 
+                        Route::is('profile*') || 
+                        Route::is('lecturer.profile*') || 
+                        Route::is('password*')
+                    )
                         border-indigo-500 
                         !text-indigo-500
                     @else
@@ -182,11 +187,11 @@
             </a>
         </li>
     </ul>
-    {{-- <div class="absolute bottom-[35px] w-full px-5 hidden sm:block">
+    <div class="absolute bottom-[35px] w-full px-5 hidden sm:block">
         <div class="bg-indigo-500/80 p-5 rounded text-gray-300 text-center font-semibold">
             On Development
         </div>
-    </div> --}}
+    </div>
     <div class="absolute bottom-[35px] w-full px-5 block sm:hidden">
         <ul class="mt-auto">
             <li class="mb-3">

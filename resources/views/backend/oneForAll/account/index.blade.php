@@ -38,7 +38,11 @@
 
     <section class="grid lg:grid-cols-3 md:grid-cols-2 gap-5 mt-10">
         <a 
-            href="{{ route('profile.show', Auth::user()->username) }}"
+            @if (Auth::user()->hasRole('student'))
+                href="{{ route('profile.show', Auth::user()->username) }}"
+            @else
+                href="{{ route('lecturer.profile.show', Auth::user()->username) }}"
+            @endif
             class="
                 bg-[#2441e7] 
                 p-5 rounded 
