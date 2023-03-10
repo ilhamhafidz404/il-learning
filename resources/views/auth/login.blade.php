@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
   @vite('resources/css/app.css')
+  <link rel="icon" href="{{ asset('images/favicon/favicon-16x16.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('images/favicon/favicon-32x32.png') }}" type="image/png">
+  <title>Login</title>
   <style>
     *{
       font-family: 'Poppins', sans-serif;
@@ -346,7 +349,22 @@
             >
               Login As Admin
             </a>
-            <button class="border-[#4285f4] border hover:bg-[#4285f4]/80 w-full py-3 rounded text-[#4285f4] hover:text-white flex justify-center text-sm items-center">
+            <button 
+              class="
+                border-[#4285f4] 
+                border 
+                hover:bg-[#4285f4]/80 
+                w-full 
+                py-3 
+                rounded 
+                text-[#4285f4] 
+                hover:text-white 
+                flex 
+                justify-center 
+                text-sm 
+                items-center
+              "
+            >
               <img src="{{ asset('images/icon/google.png') }}" width="25px" class="mr-3">
               {{-- <a href="https://www.flaticon.com/free-icons/google" title="google icons">Google icons created by Freepik - Flaticon</a> --}}
               Login Using Google Account

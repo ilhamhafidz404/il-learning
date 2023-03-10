@@ -188,7 +188,7 @@
         </li>
     </ul>
     <div class="absolute bottom-[35px] w-full px-5 hidden sm:block">
-        <div class="bg-indigo-500/80 p-5 rounded text-gray-300 text-center font-semibold">
+        <div class="bg-indigo-500/80 p-5 rounded text-gray-100 text-center font-semibold">
             On Development
         </div>
     </div>

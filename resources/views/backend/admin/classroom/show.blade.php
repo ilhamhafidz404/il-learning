@@ -131,7 +131,7 @@
                     Go Back
                 </a>
                 <a 
-                    href="{{ route('admin.classroom.create') }}" 
+                    href="{{ route('demo') }}" 
                     class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
                 >
                     Add new Classmate

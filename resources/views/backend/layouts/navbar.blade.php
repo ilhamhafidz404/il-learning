@@ -66,16 +66,29 @@
                             dark:border-gray-100
                         "
                     >
-                        <img 
-                            src="{{ asset('storage/'.$user->profile) }}" 
-                            alt="profile photo"
-                            class="
-                                w-full 
-                                h-full
-                                object-cover 
-                                rounded-full
-                            "
-                        >
+                        @if (Route::is('profile.show'))    
+                            <img 
+                                src="{{ asset('storage/'.$student->profile) }}" 
+                                alt="profile photo"
+                                class="
+                                    w-full 
+                                    h-full
+                                    object-cover 
+                                    rounded-full
+                                "
+                            >
+                        @else
+                            <img 
+                                src="{{ asset('storage/'.$user->profile) }}" 
+                                alt="profile photo"
+                                class="
+                                    w-full 
+                                    h-full
+                                    object-cover 
+                                    rounded-full
+                                "
+                            >
+                        @endif
                     </div>
                     <span class="text-left">
                         <p class="font-semibold dark:text-gray-100 whitespace-nowrap">

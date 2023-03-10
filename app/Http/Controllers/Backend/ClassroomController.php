@@ -13,10 +13,15 @@ class ClassroomController extends Controller
 {
     public function index()
     {
+        // ambil data classroom
         $classrooms = Classroom::all();
+
+        // jika yang login role-nya student, maka 
         if (Auth::user()->hasRole('student')) {
+            // variabel user diisi dengan data user yang user idnya sesuai dengan id dari user yang login
             $user = Student::whereUserId(Auth::user()->id)->first();
         } else {
+            // variabel lecturer diisi dengan data user yang user idnya sesuai dengan id dari user yang login
             $user = Lecturer::whereUserId(Auth::user()->id)->first();
         }
         return view('backend.oneForAll.classroom.index', compact('classrooms', 'user'));

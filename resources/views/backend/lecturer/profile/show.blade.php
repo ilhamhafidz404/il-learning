@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-    {{ $lecturer->user->name }}
+    {{ $user->user->name }}
 @endsection
 @section('content')
 
@@ -29,143 +29,128 @@
         "
     >
         <div class="lg:flex items-center">
-            <button 
-                type="button"
-                id="toEditButton"
-                class="
-                    absolute 
-                    top-0 
-                    right-0 
-                    text-sm 
-                    bg-indigo-500 
-                    hover:bg-indigo-400 
-                    px-4 
-                    py-2 
-                    rounded
-                    m-4
-                    flex 
-                    items-center
-                    text-white
-                "
-                onclick="toggleEdit()"
-            >
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke-width="1.5" 
-                    stroke="currentColor" 
-                    class="w-6 h-6 md:mr-3"
-                >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" 
-                    />
-                </svg>
-                <span class="md:inline hidden">
-                    Edit my Profile
-                </span>
-            </button>
-
-            <button 
-                type="button"
-                id="closeEditButton"
-                class="
-                    absolute 
-                    top-0 
-                    right-0 
-                    text-sm 
-                    bg-red-500 
-                    hover:bg-red-400 
-                    px-4 
-                    py-2 
-                    rounded
-                    m-4
-                    flex 
-                    items-center
-                    hidden
-                    text-white
-                "
-                onclick="toggleEdit()"
-            >
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" v
-                    iewBox="0 0 24 24" 
-                    stroke-width="1.5" 
-                    stroke="currentColor" 
-                    class="w-6 h-6 md:mr-3"
-                >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        d="M6 18L18 6M6 6l12 12" 
-                    />
-                </svg>
-                <span class="md:inline hidden">
-                    Close Edit
-                </span>
-            </button>
-            
             <div class="mr-10 lg:mb-0 mb-10">
                 <div class="flex items-center">
-                    <img 
-                        src="{{ asset('storage/'.$lecturer->profile) }}" 
-                        alt=""
-                        class="w-[250px] h-[250px] object-cover rounded"
-                    >
+                    <div>
+                        <img 
+                            src="{{ asset('storage/'.$user->profile) }}" 
+                            alt=""
+                            class="w-[250px] h-[250px] object-cover rounded"
+                        >
+                        <form
+                            id="changePhoto" 
+                            action="{{ route('profile.update', $user->id) }}" 
+                            method="POST" 
+                            enctype="multipart/form-data"
+                        >
+                            @csrf
+                            @method('PUT')
+                            <label 
+                                for="profile"
+                                class="
+                                    w-full
+                                    text-sm 
+                                    bg-indigo-500 
+                                    hover:bg-indigo-400 
+                                    px-4 
+                                    py-2 
+                                    rounded
+                                    mt-4
+                                    flex 
+                                    items-center
+                                    justify-center
+                                    text-white
+                                    lg:w-auto
+                                    w-[250px]
+                                "
+                            >
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    fill="none" 
+                                    viewBox="0 0 24 24" 
+                                    stroke-width="1.5" 
+                                    stroke="currentColor" 
+                                    class="w-6 h-6 mr-3"
+                                >
+                                    <path 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round" 
+                                        d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" 
+                                    />
+                                    <path 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round" 
+                                        d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" 
+                                    />
+                                </svg>
+                                Change Photo
+                            </label>
+                            <input 
+                                type="file" 
+                                id="profile" 
+                                name="profile" 
+                                class="hidden" 
+                                accept="image/png, image/gif, image/jpeg"
+                            >
+                        </form>
+                    </div>
 
                     <div class="ml-5">
-                        <h2 class="uppercase text-2xl font-semibold">{{ $user->name }}</h2>
-                        <small class="text-gray-800 dark:text-gray-300 text-base">20220810052</small>
+                        <h2 class="uppercase text-2xl font-semibold">{{ $user->user->name }}</h2>
+                        <small class="text-gray-800 dark:text-gray-300 text-base">{{ $user->nip }}</small>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+    <section 
+        id="myCourse"
+        class="p-5 mt-10 bg-white dark:bg-slate-800 shadow-md rounded text-right"
+    >
+        <h3 
+            class="
+                text-left
+                font-semibold
+                text-xl
+                mb-4
+                tracking-wide
+                dark:text-emerald-500
+            "
+        >
+            Courses
+        </h3>
+        <div class="overflow-auto pb-5 md:pb-0">
+            <table class="w-[800px] md:w-full text-left">
+                <tr class="text-white bg-emerald-500">
+                    <th class="py-4 pl-5">Course</th>
+                    <th class="py-4 pl-5">SKS</th>
+                </tr>
+                @foreach ($user->course as $index => $course)
+                    <tr
+                        class="
+                            dark:text-white
+                            @if ($index%2 > 0)
+                                bg-gray-100 dark:bg-slate-700
+                            @endif
+                        "
+                    >
+                        <td class="py-2 pl-5">{{ $course->name }}</td>
+                        <td>{{ $course->sks }}</td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+    </section>
 </section>
 @endsection
 
 @section('script')
     <script>
         const changePhoto= document.querySelector('#changePhoto');
-        const toggleEdit= ()=>{
-            const showSection= document.querySelector('#show');
-            const editSection= document.querySelector('#edit');
-            const cardProfile= document.querySelector('#cardProfile');
-            const showSocialMedia= document.querySelector('#showSocialMedia');
-            const editSocialMedia= document.querySelector('#editSocialMedia');
-            const toEditButton= document.querySelector('#toEditButton');
-            
-            document.querySelector('#closeEditButton').classList.toggle('hidden');
-            document.querySelector('#classroom').classList.toggle('hidden');
-            document.querySelector('#buttonSubmitEdit').classList.toggle('hidden');
-
-
-            showSection.classList.toggle('hidden');
-            editSection.classList.toggle('hidden');
-            cardProfile.classList.toggle('items-end');
-            cardProfile.classList.toggle('items-center');
-            showSocialMedia.classList.toggle('hidden');
-
-            editSocialMedia.classList.toggle('hidden');
-            editSocialMedia.classList.toggle('md:grid');
-            editSocialMedia.classList.toggle('lg:block');
-            toEditButton.classList.toggle('hidden');
-            changePhoto.classList.toggle('hidden');
-        }
 
         document.querySelector('#profile').addEventListener('change', function () {
             changePhoto.submit()
         })
-
-        const hideNoty= ()=>{
-            const noty = document.getElementById('noty')
-            noty.classList.toggle('flex');
-            noty.classList.toggle('hidden');
-        }
-
     </script>
 @endsection

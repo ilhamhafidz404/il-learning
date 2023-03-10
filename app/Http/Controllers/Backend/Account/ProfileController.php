@@ -19,7 +19,7 @@ class ProfileController extends Controller
         $acceptCourse = Course::whereHas('user', function ($q) {
             $q->where('user_id', '=', Auth::user()->id);
         })->get();
-        return view('backend.oneForAll.account.profile.show', compact('user', 'acceptCourse'), [
+        return view('backend.student.profile.show', compact('user', 'acceptCourse'), [
             'student' => Student::whereUserId(Auth::user()->id)->first()
         ]);
     }
@@ -27,14 +27,17 @@ class ProfileController extends Controller
     public function showLecturer($username)
     {
         return view('backend.lecturer.profile.show', [
-            'lecturer' => Lecturer::whereUserId(Auth::user()->id)->first(),
-            'user' => User::whereUsername($username)->first()
+            'user' => Lecturer::whereUserId(Auth::user()->id)->first(),
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        $student = Student::find($id);
+        if (Auth::user()->hasRole('student')) {
+            $user = Student::find($id);
+        } else {
+            $user = Lecturer::find($id);
+        }
 
         if ($request->profile) {
             $defaultProfiles = [
@@ -46,18 +49,18 @@ class ProfileController extends Controller
                 "profile/man1.jpg"
             ];
 
-            if (!array_search($student->profile, $defaultProfiles)) {
-                if (File::exists(public_path('storage/' . $student->profile))) {
-                    File::delete(public_path('storage/' . $student->profile));
+            if (!array_search($user->profile, $defaultProfiles)) {
+                if (File::exists(public_path('storage/' . $user->profile))) {
+                    File::delete(public_path('storage/' . $user->profile));
                 }
             }
 
 
-            $student->update([
+            $user->update([
                 'profile' => $request->file('profile')->store('profile'),
             ]);
         } else {
-            $student->update([
+            $user->update([
                 'phone' => $request->phone,
                 'birthday' => $request->birthday,
                 'address' => $request->address,

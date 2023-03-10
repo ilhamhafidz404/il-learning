@@ -65,7 +65,7 @@
                     </p>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-xl">Support</h3>
+                    <h3 class="font-semibold text-xl">Guideline</h3>
                     <ul class="mt-5 text-sm">
                         <li class="mb-3">
                             <a href="{{ route('demo') }}" class="hover:font-semibold">
@@ -83,7 +83,11 @@
                     <h3 class="font-semibold text-xl">Contact</h3>
                     <ul class="mt-5 text-sm lg:block flex">
                         <li class="mb-5 lg:mr-0 mr-5">
-                            <a href="" class="flex items-center hover:text-[#bc1888] hover:font-semibold">
+                            <a 
+                                href="https://www.instagram.com/alope.world/" 
+                                class="flex items-center hover:text-[#bc1888] hover:font-semibold"
+                                target="_blank"
+                            >
                                 <span 
                                     class="instagramColor mr-3 p-2 rounded-full" 
                                     style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"

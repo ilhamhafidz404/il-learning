@@ -5,11 +5,9 @@ namespace App\Http\Controllers\more;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmitsubmissionRequest;
 use App\Models\Completed;
-use App\Models\Progres;
 use App\Models\Progress;
 use App\Models\Submission;
 use App\Models\Submitsubmission;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SubmitSubmissionController extends Controller

@@ -13,11 +13,13 @@ use App\Http\Controllers\Admin\{
 use App\Http\Controllers\Backend\AcceptSKSController;
 
 use App\Http\Controllers\Backend\Account\ProfileController;
-use App\Http\Controllers\Backend\ClassroomController;
-use App\Http\Controllers\Backend\CourseController;
-use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\SubmissionController;
-use App\Http\Controllers\Backend\MissionController;
+use App\Http\Controllers\Backend\{
+    ClassroomController,
+    CourseController,
+    DashboardController,
+    SubmissionController,
+    MissionController
+};
 
 use App\Http\Controllers\more\{
     SubmitSubmissionController,
@@ -105,8 +107,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/course', [CourseController::class, 'index'])->name('course.index');
     Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.show');
 
-    // Route::get('/lecturers', LecturerController::class)->name('lecturers');
-
     Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classroom.index');
     Route::get('/classrooms/{slug}', [ClassroomController::class, 'show'])->name('classroom.show');
 
@@ -120,4 +120,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lecturer-profile/{username}', [ProfileController::class, 'showLecturer'])->name('lecturer.profile.show');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
