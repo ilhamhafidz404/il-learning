@@ -7,7 +7,8 @@ use App\Http\Controllers\Admin\{
     DashboardController as AdminDashboardController,
     LecturerController as AdminLecturerController,
     MoreController,
-    StudentController
+    StudentController,
+    ExportExcelController
 };
 
 use App\Http\Controllers\Backend\AcceptSKSController;
@@ -84,6 +85,15 @@ Route::name('admin.')->group(function () {
             '/admin/deleteclassroomforlecturer/{lecturer}/{classroom}',
             [MoreController::class, 'deleteClassroomForLecturer']
         )->name('deleteclassroomforcourse');
+
+
+
+
+        // 
+        Route::get('/downloadExcelLecturer', [ExportExcelController::class, 'exportLecturer'])->name('lecturerExportExcel');
+        Route::get('/downloadExcelStudent', [ExportExcelController::class, 'exportStudent'])->name('studentExportExcel');
+        Route::get('/downloadExcelCourse', [ExportExcelController::class, 'exportCourse'])->name('courseExportExcel');
+        Route::get('/downloadExcelClassroom', [ExportExcelController::class, 'exportClassroom'])->name('classroomExportExcel');
     });
 });
 
