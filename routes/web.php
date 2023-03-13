@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\{
     ClassroomController as AdminClassroomController,
     CourseController as AdminCourseController,
     DashboardController as AdminDashboardController,
+    ExcelController,
     LecturerController as AdminLecturerController,
     MoreController,
     StudentController,
@@ -94,6 +95,8 @@ Route::name('admin.')->group(function () {
         Route::get('/downloadExcelStudent', [ExportExcelController::class, 'exportStudent'])->name('studentExportExcel');
         Route::get('/downloadExcelCourse', [ExportExcelController::class, 'exportCourse'])->name('courseExportExcel');
         Route::get('/downloadExcelClassroom', [ExportExcelController::class, 'exportClassroom'])->name('classroomExportExcel');
+        // 
+        Route::post('/importExcellecturer', [ExcelController::class, 'importLecturer'])->name('lecturerImportExcel');
     });
 });
 

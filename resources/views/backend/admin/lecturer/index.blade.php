@@ -11,6 +11,7 @@
     @include('components.toast')
     <span id="headerImg" class="absolute w-screen h-[400px] bg-[#5e72e4] top-0 left-0"></span>
     <section 
+        x-data="{ 'modal': false }"
         class="
             py-16 
             px-5
@@ -102,26 +103,196 @@
                         </svg>
                     </button>
                 </div>
-                <a
-                    href="{{ route('admin.lecturerExportExcel') }}" 
+
+                <div
+                    x-data="{
+                        open: false,
+                        toggle() {
+                            if (this.open) {
+                                return this.close()
+                            }
+
+                            this.$refs.button.focus()
+
+                            this.open = true
+                        },
+                        close(focusAfter) {
+                            if (! this.open) return
+
+                            this.open = false
+
+                            focusAfter && focusAfter.focus()
+                        }
+                    }"
+                    x-on:keydown.escape.prevent.stop="close($refs.button)"
+                    x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                    x-id="['dropdown-button']"
+                    class="relative ml-3"
+                >
+                    <!-- Button -->
+                    <button
+                        x-ref="button"
+                        x-on:click="toggle()"
+                        :aria-expanded="open"
+                        :aria-controls="$id('dropdown-button')"
+                        type="button"
+                        class="
+                            flex 
+                            items-center 
+                            gap-2 
+                            bg-emerald-500 
+                            hover:bg-emerald-400 
+                            px-5 
+                            rounded-md
+                            h-full
+                            text-white
+                        "
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
+                        </svg>
+                        Excel
+
+                        <!-- Heroicon: chevron-down -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-200" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <!-- Panel -->
+                    <div
+                        x-ref="panel"
+                        x-show="open"
+                        x-transition.origin.top.left
+                        x-on:click.outside="close($refs.button)"
+                        :id="$id('dropdown-button')"
+                        style="display: none;"
+                        class="absolute left-0 mt-2 w-40 rounded-md bg-white shadow-md"
+                    >
+                        <a 
+                            href="{{ route('admin.lecturerExportExcel') }}" 
+                            class="
+                                flex 
+                                items-center 
+                                w-full 
+                                first-of-type:rounded-t-md 
+                                last-of-type:rounded-b-md 
+                                px-4 
+                                py-2.5 
+                                text-left 
+                                text-sm 
+                                hover:bg-gray-200 
+                                disabled:text-gray-500
+                            "
+                        >
+                            Export Data
+                        </a>
+
+                        <a 
+                            @click="modal = true" 
+                            class="
+                                flex 
+                                items-center 
+                                w-full 
+                                first-of-type:rounded-t-md 
+                                last-of-type:rounded-b-md 
+                                px-4 
+                                py-2.5 
+                                text-left 
+                                text-sm 
+                                hover:bg-gray-200 
+                                disabled:text-gray-500
+                            "
+                        >
+                            Import Data
+                        </a>
+                        
+                        <a 
+                            href="{{ asset('./excel/template.xlsx') }}"
+                            class="
+                                flex 
+                                items-center 
+                                w-full 
+                                first-of-type:rounded-t-md 
+                                last-of-type:rounded-b-md 
+                                px-4 
+                                py-2.5 
+                                text-left 
+                                text-sm 
+                                hover:bg-gray-200 
+                                disabled:text-gray-500
+                                cursor-pointer
+                            "
+                            
+                        >
+                            Excel Template
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    id="importModal"
                     class="
-                        hover:bg-emerald-400
-                        bg-emerald-500
-                        ml-3 
+                        hidden
+                        fixed 
+                        inset-0 
+                        z-50 
                         flex 
                         items-center 
                         justify-center 
-                        p-1 
-                        rounded
-                        text-white
-                        px-5
+                        overflow-auto 
+                        bg-black/70
                     "
+                    x-show="modal"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-3">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
-                    </svg>
-                    Export Excel
-                </a>
+                    <div 
+                        class="
+                            bg-gray-200 
+                            dark:bg-slate-800 
+                            dark:text-white 
+                            rounded 
+                            px-10 
+                            py-3
+                            border-t-[5px]
+                            border-indigo-500
+                        "
+                    >
+                        <form action="{{ route('admin.lecturerImportExcel') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <label for="" class="block mb-2 mt-5">Upload your excel file :</label>
+                            <input type="file" name="file" accept=".xlsx,.xls,.csv">
+                            <div class="flex justify-between mt-10">
+                                <button 
+                                    @click="modal = false"
+                                    type="button"
+                                    class="
+                                        px-5 
+                                        py-2 
+                                        rounded 
+                                        bg-red-500 
+                                        hover:bg-red-400 
+                                        text-white
+                                    "
+                                >
+                                    Close
+                                </button>
+                                <button 
+                                    type="submit"
+                                    class="
+                                        px-5 
+                                        py-2 
+                                        rounded 
+                                        bg-indigo-500 
+                                        hover:bg-indigo-400 
+                                        text-white
+                                    "
+                                >
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div>
                 <a 
@@ -202,14 +373,14 @@
                 </tr>
             </table>
         </div>
-        {{-- <div class="mt-5 w-full">
-            {{$students->links()}}
-        </div> --}}
     </section>
 @endsection
 
 @section('script')
 <script>
+    setTimeout(() => {
+        document.getElementById('importModal').classList.remove('hidden');
+    }, 1000);
     const hideNoty= ()=>{
         const noty = document.getElementById('noty')
         noty.classList.toggle('flex');
