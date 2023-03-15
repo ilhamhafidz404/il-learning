@@ -27,6 +27,8 @@ class ClassroomRequest extends FormRequest
         return [
             'name' => 'required',
             'mentor' => 'required',
+            'level' => 'required',
+            'program' => 'required',
         ];
     }
 }

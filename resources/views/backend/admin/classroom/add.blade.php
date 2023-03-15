@@ -41,16 +41,13 @@
                 </span>
                 Add Classroom
             </h1>
-            {{-- <div class="bg-white">
-                breadcrumbs
-            </div> --}}
         </div>
 
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">
             <form id="storeClassroom" action="{{ route('admin.classroom.store') }}" method="POST">
                 @csrf
                 <div class="grid grid-cols-2 gap-5">
-                    <div class="mb-10">
+                    <div class="mb-3">
                         <label 
                             for="name" 
                             class="
@@ -92,6 +89,96 @@
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
+                    
+                    <div class="grid grid-cols-4 gap-5">
+                        <div class="mb-3 col-span-3">
+                            <label 
+                                for="program" 
+                                class="
+                                    block 
+                                    dark:text-white 
+                                    text-gray-800
+                                    font-semibold
+                                    @error('program')
+                                        text-red-500
+                                    @enderror
+                                "
+                            >
+                                Study Program :
+                            </label>
+                            <input 
+                                type="text" 
+                                name="program" 
+                                id="program" 
+                                class="
+                                    w-full 
+                                    rounded 
+                                    py-2 
+                                    px-3 
+                                    dark:bg-slate-700 
+                                    bg-gray-200
+                                    dark:text-gray-100
+                                    border-2
+                                    border-transparent
+                                    @error('program')
+                                        !bg-red-200
+                                        dark:bg-red-500/80
+                                        !border-red-500
+                                        !text-gray-800
+                                    @enderror
+                                "
+                                value="{{ old('program') }}"
+                            >
+                            @error('program')
+                                <small class="text-red-500">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3 col-span-1">
+                            <label 
+                                for="name" 
+                                class="
+                                    block 
+                                    dark:text-white 
+                                    text-gray-800
+                                    font-semibold
+                                    @error('name')
+                                        text-red-500
+                                    @enderror
+                                "
+                            >
+                                Level :
+                            </label>
+                            <select 
+                                name="level" 
+                                id="level" 
+                                class="
+                                    w-full 
+                                    rounded 
+                                    py-2 
+                                    px-3 
+                                    dark:bg-slate-700 
+                                    dark:text-gray-100
+                                    border-2
+                                    border-transparent
+                                    @error('level')
+                                        bg-red-200
+                                        dark:bg-red-500/50
+                                        !border-red-500
+                                    @enderror
+                                "
+                            >
+                                <option value="" selected hidden>select</option>
+                                <option value="s1">S1</option>
+                                <option value="s2">S2</option>
+                                <option value="s3">S3</option>
+                                <option value="d3">D3</option>
+                            </select>
+                            @error('level')
+                                <small class="text-red-500">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="mb-10">
                         <label 
                             for="mentor" 

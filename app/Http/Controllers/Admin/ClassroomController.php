@@ -39,7 +39,9 @@ class ClassroomController extends Controller
         Classroom::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-            'mentor' => $request->mentor
+            'mentor' => $request->mentor,
+            'program' => $request->program,
+            'level' => $request->level,
         ]);
 
         return redirect()->back()->with([

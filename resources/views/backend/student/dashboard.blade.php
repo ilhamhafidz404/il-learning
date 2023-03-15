@@ -79,7 +79,7 @@
                                     @endforeach
                                 @endforeach
                                 <small class="dark:text-gray-100"> | </small>
-                                <small class="dark:text-gray-100">TINFC-2022-01</small>
+                                <small class="dark:text-gray-100">{{ Auth::user()->student[0]->classroom->name }}</small>
                             </span>
                         </div>
                     </a>
