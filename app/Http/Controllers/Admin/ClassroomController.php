@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\ClassroomRequest;
 use App\Models\Admin;
 use App\Models\Classroom;
 use App\Models\Lecturer;
+use App\Models\Program;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -24,6 +25,7 @@ class ClassroomController extends Controller
             $classrooms = $data->paginate(10);
         }
         $classroomCount = $data->count();
+
         return view('backend.admin.classroom.index', compact('classrooms', 'admin'));
     }
 
@@ -31,7 +33,9 @@ class ClassroomController extends Controller
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
         $lecturers = Lecturer::all();
-        return view('backend.admin.classroom.add', compact('lecturers', 'admin'));
+        $programs = Program::all();
+
+        return view('backend.admin.classroom.add', compact('lecturers', 'admin', 'programs'));
     }
 
     public function store(ClassroomRequest $request)
@@ -40,8 +44,7 @@ class ClassroomController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'mentor' => $request->mentor,
-            'program' => $request->program,
-            'level' => $request->level,
+            'program_id' => $request->program,
         ]);
 
         return redirect()->back()->with([

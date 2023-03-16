@@ -9,7 +9,7 @@ class Classroom extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'mentor', 'program', 'level'];
+    protected $fillable = ['name', 'slug', 'mentor', 'program_id'];
 
     public function Student()
     {
@@ -24,5 +24,10 @@ class Classroom extends Model
     public function Lecturer()
     {
         return $this->belongsToMany(Lecturer::class);
+    }
+
+    public function Program()
+    {
+        return $this->belongsTo(Program::class);
     }
 }

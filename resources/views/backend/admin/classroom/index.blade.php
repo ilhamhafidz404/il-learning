@@ -160,7 +160,7 @@
                             </a>
                         </td>
                         <td class="py-5 pl-7 w-[40%]">
-                            {{ $classroom->program ." (". $classroom->level .")" }}
+                            {{ $classroom->program->name ." (". $classroom->program->level .")" }}
                         </td>
                         <td>
                             <div class="flex items-center justify-center">
