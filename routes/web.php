@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\{
     DashboardController as AdminDashboardController,
     LecturerController as AdminLecturerController,
     MoreController,
+    ProgramController,
     StudentController
 };
 
@@ -48,27 +49,22 @@ Route::name('admin.')->group(function () {
 
         Route::get('admin/dashboard', AdminDashboardController::class)->name('dashboard');
 
-        Route::resource('admin/course', AdminCourseController::class, ['names' => 'course']);
-        Route::resource('admin/lecturer', AdminLecturerController::class, [
+        Route::resource('admin/courses', AdminCourseController::class, ['names' => 'course']);
+
+        Route::resource('admin/lecturers', AdminLecturerController::class, [
             'names' => 'lecturer',
             'only' => ['index', 'show', 'destroy', 'create', 'store']
         ]);
 
-        Route::resource('admin/student', StudentController::class, [
+        Route::resource('admin/students', StudentController::class, [
             'names' => 'student',
             'only' => ['index', 'show', 'destroy', 'create', 'store']
         ]);
-        Route::resource('admin/lecturer', AdminLecturerController::class, [
-            'names' => 'lecturer',
-            'only' => ['index', 'show', 'destroy', 'create', 'store']
-        ]);
 
-        Route::resource('admin/student', StudentController::class, [
-            'names' => 'student',
-            'only' => ['index', 'show', 'destroy', 'create', 'store', 'update']
-        ]);
+        Route::resource('admin/classrooms', AdminClassroomController::class, ['names' => 'classroom']);
 
-        Route::resource('admin/classroom', AdminClassroomController::class, ['names' => 'classroom']);
+        Route::resource('admin/programs', ProgramController::class, ['names' => 'program']);
+
         // 
         Route::post('/addcoursetolecturer', [MoreController::class, 'addCourseToLecturer'])->name('addCourseToLecturer');
         Route::post('/addclassroomtolecturer', [MoreController::class, 'addClassroomToLecturer'])->name('addClassroomToLecturer');
