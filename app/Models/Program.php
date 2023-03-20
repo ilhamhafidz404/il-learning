@@ -9,6 +9,8 @@ class Program extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug', 'level'];
+
     public function Classroom()
     {
         return $this->hasMany(Classroom::class);

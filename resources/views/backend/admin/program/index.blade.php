@@ -152,6 +152,24 @@
                         </td>
                         <td class="text-center">
                             <div class="flex items-center justify-center">
+                                <a 
+                                    href="{{ route('admin.program.edit', $program->slug) }}"
+                                    class="
+                                        bg-yellow-500 
+                                        hover:bg-yellow-400 
+                                        text-white 
+                                        px-3 
+                                        py-2 
+                                        rounded
+                                        mr-3
+                                    "
+                                >
+                                    @include(
+                                        'components.icons.edit-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </a>
+
                                 <form 
                                     id="confirmDeletePrody"
                                     action="{{ route('admin.program.destroy', $program->id) }}" 
