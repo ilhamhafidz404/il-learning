@@ -10,6 +10,7 @@ use App\Models\Lecturer;
 use App\Models\ManyToMany\CourseLecturer;
 use App\Models\ManyToMany\CourseUser;
 use App\Models\Mission;
+use App\Models\Program;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -36,7 +37,9 @@ class CourseController extends Controller
     public function create()
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
-        return view('backend.admin.course.add', compact('admin'));
+        $programs = Program::all();
+
+        return view('backend.admin.course.add', compact('admin', 'programs'));
     }
 
     public function store(CourseRequest $request)
@@ -47,6 +50,7 @@ class CourseController extends Controller
             'sks' => $request->sks,
             'background' => $request->file('file')->store('course'),
             'description' => $request->description,
+            'program_id' => $request->program
         ]);
 
         return redirect()->back()->with([
@@ -60,7 +64,9 @@ class CourseController extends Controller
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
         $course = Course::whereSlug($slug)->first();
-        return view('backend.admin.course.edit', compact('course', 'admin'));
+        $programs = Program::all();
+
+        return view('backend.admin.course.edit', compact('course', 'admin', 'programs'));
     }
 
     public function update(Request $request, $slug)
@@ -73,6 +79,7 @@ class CourseController extends Controller
                 'name' => 'required',
                 'sks' => 'required',
                 'description' => 'required',
+                'program' => 'required'
             ]);
 
             $course->update([
@@ -80,6 +87,7 @@ class CourseController extends Controller
                 'slug' => Str::slug($request->name),
                 'sks' => $request->sks,
                 'description' => $request->description,
+                "program_id" => $request->program
             ]);
         } else {
             $request->validate([

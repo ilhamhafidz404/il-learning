@@ -88,8 +88,8 @@
                 @method("PUT")
                 @csrf
                 <div id="editInfo">
-                    <div class="grid grid-cols-2 gap-5 mb-5">
-                        <div>
+                    <div class="grid grid-cols-5 gap-5 mb-5">
+                        <div class="col-span-2">
                             <label 
                                 for="name" 
                                 class="
@@ -128,6 +128,63 @@
                             >
                             @error('name')
                                 <small class="text-red-500 italic">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="col-span-2">
+                            <label 
+                                for="program" 
+                                class="
+                                    block 
+                                    dark:text-white 
+                                    text-gray-800
+                                    font-semibold
+                                    @error('program')
+                                        text-red-500
+                                    @enderror
+                                "
+                            >
+                                Study Program :
+                            </label>
+                            <select 
+                                name="program" 
+                                id="program" 
+                                class="
+                                    w-full 
+                                    rounded 
+                                    py-2 
+                                    px-3 
+                                    dark:bg-slate-700 
+                                    dark:text-gray-100
+                                    border-2
+                                    border-transparent
+                                    @error('program')
+                                        bg-red-200
+                                        dark:bg-red-500/50
+                                        !border-red-500
+                                    @enderror
+                                "
+                            >
+                                <option value="" selected hidden>- Select Program -</option>
+                                @forelse ($programs as $program)
+                                    <option 
+                                        value="{{ $program->id }}"
+                                        @if (
+                                            old('program') == $program->id || 
+                                            $course->program->id == $program->id
+                                        )
+                                            selected
+                                        @endif
+                                    >
+                                        {{ $program->name . " (". $program->level .")" }}
+                                    </option>
+                                @empty
+                                    <option disabled>
+                                        <i>No Program Data</i>
+                                    </option>
+                                @endforelse
+                            </select>
+                            @error('program')
+                                <small class="text-red-500">{{ $message }}</small>
                             @enderror
                         </div>
                         <div>
@@ -261,7 +318,7 @@
                             accept=".png, .jpg, .jpeg, .svg"
                         >
                         @error('file')
-                            <small class="text-red-500 italic">{{ $message }} </small>
+                            <small class="text-red-500 italic">{{ $message }}</small>
                         @enderror
                     </div>
                 </div>

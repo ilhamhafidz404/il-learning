@@ -125,53 +125,112 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mb-5">
-                    <label 
-                        for="file" 
-                        class="
-                            block 
-                            dark:text-white 
-                            text-gray-800 
-                            font-semibold
-                            @error('file')
-                                !text-red-500
-                            @enderror
-                        "
-                    >
-                        Background :
-                    </label>
-                    <input 
-                        type="file" 
-                        name="file" 
-                        id="file" 
-                        class="
-                            w-full 
-                            rounded 
-                            py-2 
-                            px-3 
-                            dark:bg-slate-700 
-                            dark:text-gray-100
-                            bg-gray-200
-                            border-2
-                            border-transparent
-                            @error('file')
-                                !bg-red-500/50
-                                dark:bg-red-500/40
-                                !border-red-500
-                            @enderror
-                        "
-                        accept=".png, .jpg, .jpeg, .svg"
-                    >
-                    @error('file')
-                        <small class="text-red-500 italic">{{ $message }}</small>
-                    @else
-                        @if (old('name') || old('sks') || old('description'))
-                            <small class="text-emerald-500 italic">
-                                the image has been validated, but Please input the image again!
-                            </small>
-                        @endif
-                    @enderror
+                
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="mb-5">
+                        <label 
+                            for="file" 
+                            class="
+                                block 
+                                dark:text-white 
+                                text-gray-800 
+                                font-semibold
+                                @error('file')
+                                    !text-red-500
+                                @enderror
+                            "
+                        >
+                            Background :
+                        </label>
+                        <input 
+                            type="file" 
+                            name="file" 
+                            id="file" 
+                            class="
+                                w-full 
+                                rounded 
+                                py-2 
+                                px-3 
+                                dark:bg-slate-700 
+                                dark:text-gray-100
+                                bg-gray-200
+                                border-2
+                                border-transparent
+                                @error('file')
+                                    !bg-red-500/50
+                                    dark:bg-red-500/40
+                                    !border-red-500
+                                @enderror
+                            "
+                            accept=".png, .jpg, .jpeg, .svg"
+                        >
+                        @error('file')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @else
+                            @if (old('name') || old('sks') || old('description'))
+                                <small class="text-emerald-500 italic">
+                                    the image has been validated, but Please input the image again!
+                                </small>
+                            @endif
+                        @enderror
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label 
+                            for="program" 
+                            class="
+                                block 
+                                dark:text-white 
+                                text-gray-800
+                                font-semibold
+                                @error('program')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            Study Program :
+                        </label>
+                        <select 
+                            name="program" 
+                            id="program" 
+                            class="
+                                w-full 
+                                rounded 
+                                py-2 
+                                px-3 
+                                dark:bg-slate-700 
+                                dark:text-gray-100
+                                border-2
+                                border-transparent
+                                @error('program')
+                                    bg-red-200
+                                    dark:bg-red-500/50
+                                    !border-red-500
+                                @enderror
+                            "
+                        >
+                            <option value="" selected hidden>- Select Program -</option>
+                            @forelse ($programs as $program)
+                                <option 
+                                    value="{{ $program->id }}"
+                                    @if (old('program') == $program->id)
+                                        selected
+                                    @endif
+                                >
+                                    {{ $program->name . " (". $program->level .")" }}
+                                </option>
+                            @empty
+                                <option disabled>
+                                    <i>No Program Data</i>
+                                </option>
+                            @endforelse
+                        </select>
+                        @error('program')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
+
                 <div class="mb-5">
                     <label 
                         for="description" 
