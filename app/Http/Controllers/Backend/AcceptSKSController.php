@@ -17,7 +17,8 @@ class AcceptSKSController extends Controller
         $acceptCourse = Course::whereHas('user', function ($q) {
             $q->where('user_id', '=', Auth::user()->id);
         })->get();
-        $courses = Course::doesntHave('user')->orWhereHas('user', function ($q) {
+
+        $courses = Course::doesntHave('user')->where('program_id', '=', Auth::user()->student[0]->classroom->program->id)->orWhereHas('user', function ($q) {
             $q->where('user_id', '!=', Auth::user()->id);
         })->get();
 
