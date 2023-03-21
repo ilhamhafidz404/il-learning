@@ -261,7 +261,7 @@
                             accept=".png, .jpg, .jpeg, .svg"
                         >
                         @error('file')
-                            <small class="text-red-500 italic">{{ $message }}</small>
+                            <small class="text-red-500 italic">{{ $message }} </small>
                         @enderror
                     </div>
                 </div>
