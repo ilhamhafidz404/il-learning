@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-@section('title', 'Add Classroom')
+@section('title', 'Edit Program Study')
 @section('content')
     @include('components.confirmModal' , 
         [ 

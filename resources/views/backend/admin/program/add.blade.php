@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-@section('title', 'Add Classroom')
+@section('title', 'Add Program Study')
 @section('content')
     @include('components.confirmModal' , 
         [ 
@@ -131,7 +131,7 @@
                             <option value="S3">S3</option>
                             <option value="D3">D3</option>
                         </select>
-                        @error('program')
+                        @error('level')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>

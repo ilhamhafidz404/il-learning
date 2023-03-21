@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ProgramRequest;
 use App\Models\Admin;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class ProgramController extends Controller
         return view('backend.admin.program.add', compact('admin'));
     }
 
-    public function store(Request $request)
+    public function store(ProgramRequest $request)
     {
         Program::create([
             'name' => $request->name,
@@ -49,7 +50,7 @@ class ProgramController extends Controller
         return view('backend.admin.program.edit', compact('admin', 'program'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ProgramRequest $request, $id)
     {
         $program = Program::find($id);
         $program->update([
