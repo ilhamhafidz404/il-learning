@@ -9,7 +9,7 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'sks', 'description', 'background'];
+    protected $fillable = ['name', 'slug', 'sks', 'description', 'background', 'program_id'];
 
     public function Lecturer()
     {
@@ -29,5 +29,10 @@ class Course extends Model
     public function Mission()
     {
         return $this->hasMany(Mission::class);
+    }
+
+    public function Program()
+    {
+        return $this->belongsTo(Program::class);
     }
 }

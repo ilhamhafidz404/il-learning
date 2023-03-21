@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('background');
             $table->text('description');
             $table->integer('sks');
+            $table->foreignId('program_id');
             $table->timestamps();
         });
     }

@@ -284,6 +284,7 @@
             <table class="w-full dark:text-gray-300 text-gray-800">
                 <tr class="dark:text-white text-gray-800">
                     <th class="py-6">Name</th>
+                    <th>For</th>
                     <th>Action</th>
                 </tr>
                 @forelse ($courses as $index => $course)
@@ -295,9 +296,14 @@
                             @endif
                         "
                     >
-                        <td class="py-5 pl-7 w-[80%]">
+                        <td class="py-5 pl-7 w-[50%]">
                             <a href="{{ route('admin.course.show', $course->slug) }}">
                                 {{ $course->name }}
+                            </a>
+                        </td>
+                        <td class="py-5 pl-7 w-[30%]">
+                            <a href="{{ route('admin.course.show', $course->slug) }}">
+                                {{ $course->program->name . " (" . $course->program->level .")" }}
                             </a>
                         </td>
                         <td class="text-center">
@@ -369,7 +375,7 @@
                     </tr>
                 @endforelse
                 <tr class="bg-indigo-500">
-                    <td colspan="2" class="px-10 pb-5 pt-1">
+                    <td colspan="3" class="px-10 pb-5 pt-1">
                         <div class="mt-5 w-full text-white">
                             {{ $courses->links() }}
                         </div>

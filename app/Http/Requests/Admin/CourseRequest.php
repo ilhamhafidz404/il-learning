@@ -29,6 +29,7 @@ class CourseRequest extends FormRequest
             'sks' => 'required',
             'file' => ['required', 'mimes:png,jpg,jpeg,svg'],
             'description' => 'required',
+            'program' => 'required'
         ];
     }
 }

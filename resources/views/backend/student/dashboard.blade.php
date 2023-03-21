@@ -56,7 +56,9 @@
                             class="w-full sm:w-[35%] h-[65%] sm:!h-full object-cover rounded "
                         >
                         <div class="w-full sm:w-[65%]">
-                            <small class="dark:text-gray-100">TEKNIK INFORMATIKA S1</small>
+                            <small class="uppercase dark:text-gray-100">
+                                {{ $course->program->name . " " . $course->program->level }}
+                            </small>
                             <h2 
                                 class="
                                     text-xl 
