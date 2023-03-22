@@ -196,7 +196,7 @@
             <form action="{{ route('admin.student.update', 1) }}" method="POST">
                 @method('PUT')
                 @csrf
-                <input id="studentId" type="text" value="" name="student">
+                <input id="studentId" type="text" value="" name="student" class="invisible">
                 <select 
                     name="classroom" 
                     class="
