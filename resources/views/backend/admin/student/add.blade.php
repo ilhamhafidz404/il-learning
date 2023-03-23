@@ -179,7 +179,7 @@
                         @enderror
                     </div>
                 </div>
-                
+
                 <div class="relative mt-10">
                     <hr class="border-slate-500">
                     <span 
@@ -199,6 +199,102 @@
                 </div>
 
                 <div class="mt-10 grid grid-cols-2 gap-5">
+                    <div>
+                        <label 
+                            for="classroom" 
+                            class="
+                                font-bold 
+                                @error('classroom') text-red-500 @enderror
+                                dark:text-gray-200
+                                text-gray-800
+                            "
+                        >
+                            Select Program Study :
+                        </label>
+                        <select 
+                            name="program" 
+                            id="program" 
+                            class="
+                                w-full 
+                                py-2 
+                                px-4 
+                                rounded 
+                                dark:bg-slate-700
+                                bg-gray-200
+                                border-2
+                                border-transparent
+                                dark:text-gray-200
+                                text-gray-800
+                                @error('program')
+                                    !border-red-500
+                                    !bg-red-500/40
+                                @enderror
+                            "
+                        >
+                            <option value="" selected hidden>-Select Program Study-</option>
+                            @forelse ($programs as $program)
+                                <option 
+                                    value="{{ $program->id }}"
+                                    @if (old('program') == $program->id)
+                                        selected
+                                    @endif
+                                    data-code="{{ $program->code }}"
+                                    data-faculty="Fakultas {{ $program->faculty->name }}"
+                                    code-faculty="{{ $program->faculty->code }}"
+                                    code-year="{{ now()->year }}"
+                                    code-order="{{ ($studentCount) ? $lastIdStudent->id+1 : 1 }}"
+                                >
+                                    {{ $program->name }}
+                                </option>
+                            @empty
+                                <option disabled>No Program Study Data</option>
+                            @endforelse
+                        </select>
+                        @error('program')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label 
+                            for="faculty" 
+                            class="
+                                font-bold 
+                                @error('faculty') text-red-500 @enderror
+                                dark:text-gray-200
+                                text-gray-800
+                            "
+                        >
+                            Faculty :
+                        </label>
+                        <input 
+                            id="faculty"
+                            name="faculty"
+                            type="text" 
+                            class="
+                                w-full 
+                                py-2 
+                                px-4 
+                                rounded 
+                                dark:bg-slate-700
+                                bg-gray-300
+                                text-gray-800
+                                dark:text-gray-100
+                                border-2
+                                border-transparent
+                                @error('faculty')
+                                    !border-red-500
+                                    !bg-red-500/40
+                                @enderror
+                            "
+                            value="{{ old('faculty') ?? "Select Program Study First" }}"
+                            disabled
+                        >
+                        @error('faculty')
+                            <small class="text-red-500 italic">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     <div>
                         <label 
                             for="nim" 
@@ -221,7 +317,7 @@
                                 px-4 
                                 rounded 
                                 dark:bg-slate-700
-                                bg-gray-200
+                                bg-gray-300
                                 text-gray-800
                                 dark:text-gray-100
                                 border-2
@@ -232,6 +328,7 @@
                                 @enderror
                             "
                             value="{{ old('nim') }}"
+                            disabled
                         >
                         @error('nim')
                             <small class="text-red-500 italic">{{ $message }}</small>
@@ -408,5 +505,26 @@
         const cofirmModal= document.getElementById('confirmModal');
         cofirmModal.classList.toggle('hidden');
     }
+
+    const program = document.getElementById("program");
+    const faculty = document.getElementById("faculty");
+    const nim = document.getElementById("nim");
+    program.addEventListener("change", function() {
+        const selectedOption = program.options[program.selectedIndex];
+        programCode = selectedOption.getAttribute("data-code");
+        facultyCode = selectedOption.getAttribute("code-faculty");
+        yearCode = selectedOption.getAttribute("code-year");
+        orderCode = selectedOption.getAttribute("code-order");
+
+        if(orderCode.length == 1){
+            nim.value = `${yearCode}${facultyCode}${programCode}00${orderCode}`
+        } else if(orderCode.length == 2){
+            nim.value = `${yearCode}${facultyCode}${programCode}0${orderCode}`
+        } else{
+            nim.value = `${yearCode}${facultyCode}${programCode}${orderCode}`
+        }
+
+        faculty.value = selectedOption.getAttribute("data-faculty");
+    });
 </script>
 @endsection

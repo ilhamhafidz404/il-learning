@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
             // ClassroomLecturerSeeder::class,
             // 
             AdminSeeder::class,
-            ProgramSeeder::class
+            ProgramSeeder::class,
+            FacultySeeder::class
             // StudentSeeder::class
         ]);
 

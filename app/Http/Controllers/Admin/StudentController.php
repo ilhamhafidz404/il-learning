@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StudentRequest;
 use App\Models\Admin;
 use App\Models\Classroom;
+use App\Models\Program;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,7 +39,12 @@ class StudentController extends Controller
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
         $classrooms = Classroom::all();
-        return view('backend.admin.student.add', compact('classrooms', 'admin'));
+        $programs = Program::all();
+
+        $studentCount = Student::count();
+        $lastIdStudent = Student::orderBy('id', 'DESC')->select('id')->first();
+
+        return view('backend.admin.student.add', compact('classrooms', 'admin', 'programs', 'lastIdStudent', 'studentCount'));
     }
 
     public function store(StudentRequest $request)

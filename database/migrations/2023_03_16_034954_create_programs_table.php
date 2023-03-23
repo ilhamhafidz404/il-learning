@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->enum('level', ['S1', 'S2', 'S3', 'D3']);
             $table->string('code')->unique();
+            $table->foreignId('faculty_id');
             $table->timestamps();
         });
     }
