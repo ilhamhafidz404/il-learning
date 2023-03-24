@@ -201,10 +201,10 @@
                 <div class="mt-10 grid grid-cols-2 gap-5">
                     <div>
                         <label 
-                            for="classroom" 
+                            for="program" 
                             class="
                                 font-bold 
-                                @error('classroom') text-red-500 @enderror
+                                @error('program') text-red-500 @enderror
                                 dark:text-gray-200
                                 text-gray-800
                             "
@@ -239,6 +239,7 @@
                                         selected
                                     @endif
                                     data-code="{{ $program->code }}"
+                                    id-program="{{ $program->id }}"
                                     data-faculty="Fakultas {{ $program->faculty->name }}"
                                     code-faculty="{{ $program->faculty->code }}"
                                     code-year="{{ now()->year }}"
@@ -355,7 +356,7 @@
                                 px-4 
                                 rounded 
                                 dark:bg-slate-700
-                                bg-gray-200
+                                bg-gray-300
                                 border-2
                                 border-transparent
                                 dark:text-gray-200
@@ -365,11 +366,13 @@
                                     !bg-red-500/40
                                 @enderror
                             "
+                            disabled
                         >
-                            <option value="" selected hidden>-Select Classroom-</option>
+                            <option value="" selected hidden id="selectClassroom">Select Program Study First</option>
                             @forelse ($classrooms as $classroom)
                                 <option 
                                     value="{{ $classroom->id }}"
+                                    id-program="{{ $classroom->program_id }}"
                                     @if (old('classroom') == $classroom->id)
                                         selected
                                     @endif
@@ -377,8 +380,9 @@
                                     {{ $classroom->name }}
                                 </option>
                             @empty
-                                <option disabled>No Classroom Data</option>
+                                <option disabled selected>No Classroom Data</option>
                             @endforelse
+                            <option class="hidden" id="ifNoClassOnPrody">No Classroom Data</option>
                         </select>
                         @error('classroom')
                             <small class="text-red-500 italic">{{ $message }}</small>
@@ -495,6 +499,7 @@
 
 @section('script')
 <script>
+
     const hideNoty= ()=>{
         const noty = document.getElementById('noty')
         noty.classList.toggle('flex');
@@ -507,11 +512,20 @@
     }
 
     const program = document.getElementById("program");
+    const classroom = document.getElementById("classroom");
     const faculty = document.getElementById("faculty");
     const nim = document.getElementById("nim");
+
+    const defaultSelectInClassroom = document.getElementById('selectClassroom')
+
     program.addEventListener("change", function() {
+
+        defaultSelectInClassroom.innerHTML = "-Select Classroom-"
+
         const selectedOption = program.options[program.selectedIndex];
         programCode = selectedOption.getAttribute("data-code");
+        programId = selectedOption.getAttribute("id-program");
+
         facultyCode = selectedOption.getAttribute("code-faculty");
         yearCode = selectedOption.getAttribute("code-year");
         orderCode = selectedOption.getAttribute("code-order");
@@ -523,6 +537,26 @@
         } else{
             nim.value = `${yearCode}${facultyCode}${programCode}${orderCode}`
         }
+
+        // hilangkan efek disabled untuk select classroom ketika select prodi sudah dipilih
+        classroom.disabled = false
+        classroom.classList.add('bg-gray-200')
+        classroom.classList.remove('bg-gray-300')
+        
+        // ambil semua data option dari classroom-nya
+        for(let i= 0; i < classroom.options.length; i++){
+            // hapus semua class hidden optionyya terlebuh dahulu sebelum di cek
+            classroom.options[i].classList.remove('hidden');
+
+            // cek jika data id-program pada option tersebut tidak sama dengan id program dari option program
+            if(classroom.options[i].getAttribute("id-program") != programId){
+                // hilangkan/hapus option tersebut
+                classroom.options[i].classList.add('hidden');
+            }
+        }
+
+        defaultSelectInClassroom.selected = true
+        
 
         faculty.value = selectedOption.getAttribute("data-faculty");
     });
