@@ -25,13 +25,14 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
+            'name' => 'required|unique:users',
+            'email' => 'required|unique:users',
             'password' => 'required',
             'nim' => 'required|unique:students',
             'classroom' => 'required',
             'file' => 'mimes:png,jpg,jpeg',
             'gender' => 'required',
+            'faculty' => 'required'
         ];
     }
 }

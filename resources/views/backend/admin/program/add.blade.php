@@ -135,7 +135,58 @@
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
+                    
+                    <div class="mb-3">
+                        <label 
+                            for="level" 
+                            class="
+                                block 
+                                dark:text-white 
+                                text-gray-800
+                                font-semibold
+                                @error('level')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            Faculty :
+                        </label>
+                        <select 
+                            name="faculty" 
+                            id="faculty" 
+                            class="
+                                w-full 
+                                rounded 
+                                py-2 
+                                px-3 
+                                dark:bg-slate-700 
+                                dark:text-gray-100
+                                bg-gray-200
+                                border-2
+                                border-transparent
+                                @error('faculty')
+                                    bg-red-200
+                                    dark:bg-red-500/50
+                                    !border-red-500
+                                @enderror
+                            "
+                        >
+                            <option value="" selected hidden>- Select Faculty -</option>
+                            @foreach ($faculties as $faculty)
+                                <option 
+                                    @if (old('faculty') == $faculty->id)
+                                        selected
+                                    @endif
+                                    value="{{ $faculty->id }}"
+                                >{{ "Fakultas " . $faculty->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('faculty')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
+
                 <div class="flex items-center justify-between">
                     <a 
                         href="{{ route('admin.program.index') }}" 

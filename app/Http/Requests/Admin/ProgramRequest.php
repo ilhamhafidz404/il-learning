@@ -27,6 +27,7 @@ class ProgramRequest extends FormRequest
         return [
             'name' => 'required',
             'level' => 'required|in:S1,S2,S3,D3',
+            'faculty' => 'required'
         ];
     }
 }

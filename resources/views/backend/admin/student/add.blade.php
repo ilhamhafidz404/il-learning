@@ -287,9 +287,11 @@
                                     !border-red-500
                                     !bg-red-500/40
                                 @enderror
+                                placeholder:text-gray-800
                             "
-                            value="{{ old('faculty') ?? "Select Program Study First" }}"
-                            disabled
+                            value="{{ old('faculty') }}"
+                            placeholder="Select Program Study First"
+                            readonly
                         >
                         @error('faculty')
                             <small class="text-red-500 italic">{{ $message }}</small>
@@ -329,7 +331,7 @@
                                 @enderror
                             "
                             value="{{ old('nim') }}"
-                            disabled
+                            readonly
                         >
                         @error('nim')
                             <small class="text-red-500 italic">{{ $message }}</small>
