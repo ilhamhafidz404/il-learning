@@ -21,7 +21,7 @@ use App\Http\Controllers\Backend\{
     SubmissionController,
     MissionController
 };
-
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\more\{
     SubmitSubmissionController,
     DeleteSubmitSubmission,
@@ -61,6 +61,8 @@ Route::name('admin.')->group(function () {
         Route::resource('admin/classrooms', AdminClassroomController::class, ['names' => 'classroom']);
 
         Route::resource('admin/programs', ProgramController::class, ['names' => 'program']);
+
+        Route::resource('admin/levels', LevelController::class, ['names' => 'level']);
 
         // 
         Route::post('/addcoursetolecturer', [MoreController::class, 'addCourseToLecturer'])->name('addCourseToLecturer');

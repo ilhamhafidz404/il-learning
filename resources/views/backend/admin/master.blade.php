@@ -435,6 +435,42 @@
                         Study Program
                     </a>
                 </li>
+                <li>
+                    <a 
+                        href="{{ route('admin.level.index') }}" 
+                        class="
+                            px-5 
+                            py-3 
+                            border-l-[5px]
+                            dark:text-white 
+                            @if (Route::is('admin.level*'))
+                                border-indigo-500 
+                                !text-indigo-500
+                            @else
+                                border-transparent 
+                            @endif
+                            flex 
+                            items-center 
+                            hover:text-indigo-500 
+                        " 
+                    >
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-6 mr-3"
+                        >
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12" 
+                            />
+                        </svg>
+                        Level
+                    </a>
+                </li>
             </ul>
             <div class="absolute bottom-[35px] w-full px-5 block sm:hidden">
                 <ul class="mt-auto">

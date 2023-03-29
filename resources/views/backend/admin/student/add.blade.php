@@ -368,7 +368,7 @@
                                     !bg-red-500/40
                                 @enderror
                             "
-                            disabled
+                            readonly
                         >
                             <option value="" selected hidden id="selectClassroom">Select Program Study First</option>
                             @forelse ($classrooms as $classroom)
@@ -540,8 +540,8 @@
             nim.value = `${yearCode}${facultyCode}${programCode}${orderCode}`
         }
 
-        // hilangkan efek disabled untuk select classroom ketika select prodi sudah dipilih
-        classroom.disabled = false
+        // hilangkan efek readonly untuk select classroom ketika select prodi sudah dipilih
+        classroom.readonly = false
         classroom.classList.add('bg-gray-200')
         classroom.classList.remove('bg-gray-300')
         
