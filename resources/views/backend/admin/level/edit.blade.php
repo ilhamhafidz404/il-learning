@@ -5,7 +5,7 @@
         [ 
             'title' => 'Are you sure?', 
             'subtitle' => 'Class data will be added if you press yes',
-            'to' => 'storeLevel'
+            'to' => 'updateLevel'
         ]
     )
     @include('components.toast')
@@ -39,12 +39,13 @@
                         />
                     </svg>
                 </span>
-                Add Level
+                Edit Level
             </h1>
         </div>
 
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">
-            <form id="storeLevel" action="{{ route('admin.level.store') }}" method="POST">
+            <form id="updateLevel" action="{{ route('admin.level.update', $level->id) }}" method="POST">
+                @method('PUT')
                 @csrf
                 <div class="mb-3">
                     <label 
@@ -82,7 +83,7 @@
                                 !text-gray-800
                             @enderror
                         "
-                        value="{{ old('name') }}"
+                        value="{{ old('name') ?? $level->name }}"
                     >
                     @error('name')
                         <small class="text-red-500">{{ $message }}</small>
@@ -124,7 +125,7 @@
                                 !border-red-500
                             @enderror
                         "
-                    >{{ old('description') }}</textarea>
+                    >{{ old('name') ?? $level->description }}</textarea>
                     @error('description')
                         <small class="text-red-500 italic">{{ $message }}</small>
                     @enderror
