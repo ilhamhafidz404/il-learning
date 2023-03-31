@@ -126,10 +126,16 @@
                             "
                         >
                             <option value="" selected hidden>- Select Level -</option>
-                            <option value="S1">S1</option>
-                            <option value="S2">S2</option>
-                            <option value="S3">S3</option>
-                            <option value="D3">D3</option>
+                            @forelse ($levels as $level)
+                                <option 
+                                    @if (old('level') == $level->name)
+                                        selected
+                                    @endif
+                                    value="{{ $level->name }}"
+                                >{{ $level->name }}</option>
+                            @empty
+                                <option disabled>No Level Data</option>
+                            @endforelse
                         </select>
                         @error('level')
                             <small class="text-red-500">{{ $message }}</small>

@@ -24,7 +24,6 @@ class ClassroomController extends Controller
         } else {
             $classrooms = $data->paginate(10);
         }
-        $classroomCount = $data->count();
 
         return view('backend.admin.classroom.index', compact('classrooms', 'admin'));
     }

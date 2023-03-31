@@ -1,11 +1,11 @@
 @extends('backend.admin.master')
-@section('title', 'Classroom')
+@section('title', 'Level')
 @section('content')
     @include('components.confirmModal' , 
         [ 
             'title' => 'Are you sure?', 
             'subtitle' => 'Data yang sudah terpilih tidak bisa di batalkan lagi.',
-            'to' => 'confirmDeleteClassroom'
+            'to' => 'confirmDeleteLevel'
         ]
     )
     @include('components.toast')
@@ -35,11 +35,11 @@
                         <path 
                             stroke-linecap="round" 
                             stroke-linejoin="round" 
-                            d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" 
+                            d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12" 
                         />
                     </svg>
                 </span>
-                Classrooms
+                Levels
             </h1>
             <form action="" class="relative">
                 <input 
@@ -53,7 +53,7 @@
                 >
                 @isset($_GET['search'])
                     <a 
-                        href="{{ route('admin.classroom.index') }}" 
+                        href="{{ route('admin.level.index') }}" 
                         class="
                             text-red-500 
                             hover:text-red-600 
@@ -125,27 +125,26 @@
             </div>
             <div>
                 <a 
-                    href="{{ route('admin.classroom.create') }}" 
+                    href="{{ route('admin.level.create') }}" 
                     class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
                 >
-                    Create new Classroom
+                    Create new Level
                 </a>
             </div>
         </div>
 
         <small class="text-white">
-            <span class="font-semibold">{{ $classrooms->count() }}</span> 
-            Classroom published
+            <span class="font-semibold">{{ $levels->count() }}</span> 
+            Level published
         </small>
 
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden">
             <table class="w-full dark:text-gray-300">
                 <tr class="dark:text-white text-gray-800">
                     <th class="py-6">Name</th>
-                    <th class="py-6">Study Program (Level)</th>
                     <th>Action</th>
                 </tr>
-                @forelse ($classrooms as $index => $classroom)
+                @forelse ($levels as $index => $level)
                     <tr
                         class="
                             @if ($index%2 == 0)
@@ -155,12 +154,9 @@
                         "
                     >
                         <td class="py-5 pl-7 w-[40%]">
-                            <a href="{{ route('admin.classroom.show', $classroom->name) }}">
-                                {{ $classroom->name }}
+                            <a href="{{ route('admin.level.show', $level->name) }}">
+                                {{ $level->name }}
                             </a>
-                        </td>
-                        <td class="py-5 pl-7 w-[40%]">
-                            {{ $classroom->program->name ." (". $classroom->program->level .")" }}
                         </td>
                         <td>
                             <div class="flex items-center justify-center">
@@ -174,8 +170,8 @@
                                     )
                                 </button>
                                 <form 
-                                    action="{{ route('admin.classroom.destroy', $classroom->id) }}" 
-                                    id="confirmDeleteClassroom" 
+                                    action="{{ route('admin.level.destroy', $level->id) }}" 
+                                    id="confirmDeleteLevel" 
                                     method="POST"
                                     class="hidden"
                                 >
@@ -183,7 +179,7 @@
                                     @method('DELETE')
                                 </form>
                                 <a 
-                                    href="{{ route('admin.classroom.edit', $classroom->slug) }}"
+                                    href="{{ route('admin.level.edit', $level->slug) }}"
                                     class="bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded"
                                 >
                                     @include(
@@ -199,9 +195,9 @@
                         <td colspan="5" class="py-10">
                             <h4 class="text-6xl text-center">☹️</h4>
                             <h3 class="text-center mt-3 text-xl">
-                                No Classroom Data, 
-                                <a href="{{ route('admin.classroom.create') }}" class="text-indigo-500">
-                                    Create Classroom?
+                                No Level Data, 
+                                <a href="{{ route('admin.level.create') }}" class="text-indigo-500">
+                                    Create Level?
                                 </a>
                             </h3>
                         </td>
@@ -210,7 +206,7 @@
                 <tr class="bg-indigo-500">
                     <td colspan="3" class="px-10 pb-5 pt-1">
                         <div class="mt-5 w-full text-white">
-                            {{ $classrooms->links() }}
+                            {{-- {{ $levels->links() }} --}}
                         </div>
                     </td>
                 </tr>

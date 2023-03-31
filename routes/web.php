@@ -8,7 +8,8 @@ use App\Http\Controllers\Admin\{
     LecturerController as AdminLecturerController,
     MoreController,
     ProgramController,
-    StudentController
+    StudentController,
+    LevelController
 };
 
 use App\Http\Controllers\Backend\AcceptSKSController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\Backend\{
     SubmissionController,
     MissionController
 };
-use App\Http\Controllers\LevelController;
+
 use App\Http\Controllers\more\{
     SubmitSubmissionController,
     DeleteSubmitSubmission,

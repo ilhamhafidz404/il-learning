@@ -4,10 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\ManyToMany\CourseLecturer;
-use Database\Seeders\ManyToMany\ClassroomLecturerSeeder;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 
 
 class DatabaseSeeder extends Seeder
@@ -32,7 +29,8 @@ class DatabaseSeeder extends Seeder
             // 
             AdminSeeder::class,
             ProgramSeeder::class,
-            FacultySeeder::class
+            FacultySeeder::class,
+            LevelSeeder::class
             // StudentSeeder::class
         ]);
 

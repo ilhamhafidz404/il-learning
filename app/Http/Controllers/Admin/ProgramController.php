@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProgramRequest;
 use App\Models\Admin;
 use App\Models\Faculty;
+use App\Models\Level;
 use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -25,8 +26,9 @@ class ProgramController extends Controller
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
         $faculties = Faculty::all();
+        $levels = Level::all();
 
-        return view('backend.admin.program.add', compact('admin', 'faculties'));
+        return view('backend.admin.program.add', compact('admin', 'faculties', 'levels'));
     }
 
     public function store(ProgramRequest $request)
