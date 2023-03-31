@@ -160,15 +160,6 @@
                         </td>
                         <td>
                             <div class="flex items-center justify-center">
-                                <button
-                                    onclick="toggleConfirm()" 
-                                    class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded mr-3"
-                                >
-                                    @include(
-                                        'components.icons.trash-solid-icon',
-                                        ['class' => 'w-6']
-                                    )
-                                </button>
                                 <form 
                                     action="{{ route('admin.level.destroy', $level->id) }}" 
                                     id="confirmDeleteLevel" 
@@ -187,6 +178,15 @@
                                         ['class' => 'w-6']
                                     )
                                 </a>
+                                <button
+                                    onclick="toggleConfirm()" 
+                                    class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded ml-3"
+                                >
+                                    @include(
+                                        'components.icons.trash-solid-icon',
+                                        ['class' => 'w-6']
+                                    )
+                                </button>
                             </div>
                         </td>
                     </tr>

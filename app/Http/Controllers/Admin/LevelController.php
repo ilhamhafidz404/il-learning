@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\LevelRequest;
 use App\Models\Admin;
 use App\Models\Level;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class LevelController extends Controller
         return view('Backend.admin.level.add', compact('admin'));
     }
 
-    public function store(Request $request)
+    public function store(LevelRequest $request)
     {
         Level::create([
             'name' => $request->name,
@@ -50,7 +51,7 @@ class LevelController extends Controller
         return view('Backend.admin.level.edit', compact('level', 'admin'));
     }
 
-    public function update(Request $request, $id)
+    public function update(LevelRequest $request, $id)
     {
         $level = Level::find($id);
         $level->update([
