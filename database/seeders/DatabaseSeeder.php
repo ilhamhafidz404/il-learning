@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 
 class DatabaseSeeder extends Seeder
@@ -18,59 +19,45 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-            // CourseSeeder::class,
-            // UserSeeder::class,
-            // LecturerSeeder::class,
-            // ClassroomSeeder::class,
-            // SubmissionSeeder::class,
-            // MissionSeeder::class,
-            // 
-            // ClassroomLecturerSeeder::class,
-            // 
+            CourseSeeder::class,
+            UserSeeder::class,
+            StudentSeeder::class,
+            LecturerSeeder::class,
+            ClassroomSeeder::class,
             AdminSeeder::class,
             ProgramSeeder::class,
             FacultySeeder::class,
-            LevelSeeder::class
-            // StudentSeeder::class
+            LevelSeeder::class,
         ]);
 
-        // CourseLecturer::insert([
-        //     [
-        //         'course_id' => 1,
-        //         'lecturer_id' => 1,
-        //     ],
-        //     [
-        //         'course_id' => 2,
-        //         'lecturer_id' => 2,
-        //     ],
-        //     [
-        //         'course_id' => 3,
-        //         'lecturer_id' => 3,
-        //     ],
-        //     [
-        //         'course_id' => 4,
-        //         'lecturer_id' => 4,
-        //     ],
-        //     [
-        //         'course_id' => 5,
-        //         'lecturer_id' => 5,
-        //     ],
-        //     [
-        //         'course_id' => 6,
-        //         'lecturer_id' => 5,
-        //     ],
-        //     [
-        //         'course_id' => 7,
-        //         'lecturer_id' => 6,
-        //     ],
-        //     [
-        //         'course_id' => 8,
-        //         'lecturer_id' => 7,
-        //     ],
-        //     [
-        //         'course_id' => 9,
-        //         'lecturer_id' => 8,
-        //     ],
-        // ]);
+        DB::table('course_lecturer')->insert([
+            [
+                'course_id' => 1,
+                'lecturer_id' => 1
+            ],
+            [
+                'course_id' => 2,
+                'lecturer_id' => 2
+            ],
+            [
+                'course_id' => 3,
+                'lecturer_id' => 1
+            ],
+        ]);
+
+        DB::table('classroom_lecturer')->insert([
+            [
+                'classroom_id' => 1,
+                'lecturer_id' => 1
+            ],
+            [
+                'classroom_id' => 2,
+                'lecturer_id' => 1
+            ],
+            [
+                'classroom_id' => 1,
+                'lecturer_id' => 2
+            ],
+        ]);
     }
 }

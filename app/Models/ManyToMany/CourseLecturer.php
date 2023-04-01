@@ -11,4 +11,5 @@ class CourseLecturer extends Model
 
     protected $table = 'course_lecturer';
     protected $fillable = ['course_id', 'lecturer_id'];
+    protected $timestamps = false;
 }

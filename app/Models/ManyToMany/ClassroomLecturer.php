@@ -10,4 +10,5 @@ class ClassroomLecturer extends Model
     use HasFactory;
     protected $table = 'classroom_lecturer';
     protected $fillable = ['classroom_id', 'lecturer_id'];
+    protected $timestamps = false;
 }

@@ -15,23 +15,19 @@ class LecturerSeeder extends Seeder
      */
     public function run()
     {
-        $lecturer = [
-            0, 1, 1, 1, 0, 1, 0, 1
-        ];
-        $j = 0;
-        for ($i = 26; $i <= 33; $i++) {
-            if ($lecturer[$j]) {
-                $profile = 'profile/man1.jpg';
-            } else {
-                $profile = 'profile/woman1.jpg';
-            }
-            Lecturer::insert([
-                [
-                    'user_id' => $i,
-                    'profile' => $profile,
-                ],
-            ]);
-            $j++;
-        }
+        Lecturer::insert([
+            [
+                'user_id' => 3,
+                'profile' => 'profile/woman3.jpg',
+                'nip' => '2022080876',
+                'gender' => 'woman'
+            ],
+            [
+                'user_id' => 4,
+                'profile' => 'profile/man2.jpg',
+                'nip' => '2022088896',
+                'gender' => 'man'
+            ],
+        ]);
     }
 }
