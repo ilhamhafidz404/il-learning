@@ -147,7 +147,7 @@
                 <div class="text-center my-20">
                     <h2 class="text-8xl">☹️</h2>
                     <h3 class="text-2xl mt-4 text-gray-600 dark:text-gray-200">
-                        Belum ada yang mengumpulkan tugas
+                        No one has submitted assignment
                         <span class="font-semibold text-indigo-500">{{ $submission->name }}</span>
                     </h3>
                 </div>

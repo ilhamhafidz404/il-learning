@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('description')->nullable()->default('-');
             $table->timestamp('deadline')->nullable();
             $table->string('theory')->nullable();

@@ -17,7 +17,6 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 
 class SubmissionController extends Controller
 {
@@ -59,7 +58,7 @@ class SubmissionController extends Controller
         if (!$request->theory) {
             $submission = Submission::create([
                 'name' => $request->name,
-                'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name),
+                'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name) . '_' . Str::slug($classroom),
                 'description' => $request->description,
                 'deadline' => $deadline,
                 'mission_id' => $request->mission,
@@ -70,7 +69,7 @@ class SubmissionController extends Controller
         } else {
             $submission = Submission::create([
                 'name' => $request->name,
-                'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name),
+                'slug' => Str::slug($request->name) . '-' . Str::slug($mission->name) . '_' . Str::slug($classroom),
                 'description' => $request->description,
                 'theory' => $request->file('theory')->store('theory'),
                 'mission_id' => $request->mission,

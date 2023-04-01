@@ -215,18 +215,18 @@
                         <h2 class="text-8xl">😁</h2>
                         <h5 
                             class="
-                                text-3xl 
+                                text-2xl 
                                 mt-5 
                                 tracking-wide
                                 dark:text-white
                             "
                         >
-                            Belum ada submission, 
+                            No Submission yet, 
                             <a 
                                 href="{{ route('submission.create', ['slug' => $mission->course->slug]) }}" 
                                 class="text-indigo-500"
                             >
-                                Buat Submission?
+                                create submission?
                             </a>
                         </h5>
                     </div>

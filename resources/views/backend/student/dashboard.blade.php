@@ -181,7 +181,7 @@
                     @empty
                         <div class="text-center my-10 dark:text-white">
                             <h6 class="text-6xl">😁</h6>
-                            <p class="mt-5 font-bold text-xl">Tidak Ada Tugas Untukmu</p>
+                            <p class="mt-5 font-bold text-xl">No assignments for you</p>
                         </div>
                     @endforelse
                 </ul>

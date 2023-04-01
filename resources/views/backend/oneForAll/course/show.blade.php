@@ -214,7 +214,7 @@
                         @if (Auth::user()->hasRole('student'))
                             There are no assignments for you yet
                         @else
-                            Anda belum menambahkan tugas untuk <br>
+                            You haven't added a task for <br>
                             <span class="text-indigo-500 text-3xl uppercase">{{ $course->name }}</span>
                         @endif
                     </h5>
