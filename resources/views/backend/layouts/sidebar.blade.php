@@ -117,7 +117,10 @@
                 Classroom
             </a>
         </li>
-        @if (!Auth::user()->hasRole('lecturer'))
+        @if (
+            !Auth::user()->hasRole('lecturer') &&
+            App\Models\Setting::select('sks_countdown')->first()->sks_countdown > now()
+        )
             <li>
                 <a 
                     href="{{ route('acceptsks.index') }}" 

@@ -166,7 +166,7 @@
                         </td>
                         <td class="w-[30%]">
                             @foreach ($lecturer->classroom as $classroom)
-                                {{ $classroom->name }}
+                                {{ $classroom->name }}, 
                             @endforeach
                         </td>
                         <td class="text-center">

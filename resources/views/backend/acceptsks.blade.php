@@ -5,8 +5,8 @@
 @section('content')
 @include('components.confirmModal' , 
     [ 
-        'title' => 'Apakah anda yakin?', 
-        'subtitle' => 'Data yang sudah terpilih tidak bisa di batalkan lagi.',
+        'title' => 'Are you sure?', 
+        'subtitle' => 'Data that has been selected cannot be canceled again.',
         'to' => 'confirmSKS'
     ]
 )
@@ -210,8 +210,13 @@
                             <td class="py-2 pl-5">{{ $course->name }}</td>
                             <td>{{ $course->sks }}</td>
                             <td>
-                                @foreach ($course->Lecturer as $lecturer)
-                                    {{ $lecturer->user->name }}
+                                @foreach ($course->lecturer as $lecturer)
+                                    @foreach ($lecturer->classroom as $classroom)
+                                        @if ($classroom->id == $user->classroom_id)
+                                            {{ $lecturer->user->name }}
+                                            @break
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </td>
                         </tr>

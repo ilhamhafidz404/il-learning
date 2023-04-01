@@ -144,12 +144,12 @@
                         required
                     >
                         <option value="" hidden selected>Select Course</option>
-                        @foreach ($user->course as $course)
+                        @foreach ($user->course as $c)
                             <option 
-                                {{ old('course') == $course->id ? "selected" : "" }}
-                                value="{{ $course->id }}"
+                                {{ old('course') == $c->id ? "selected" : "" }}
+                                value="{{ $c->id }}"
                             >
-                                {{ $course->name }}
+                                {{ $c->name }}
                             </option>
                         @endforeach
                     </select>

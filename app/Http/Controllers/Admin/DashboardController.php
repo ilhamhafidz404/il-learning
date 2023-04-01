@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\Classroom;
 use App\Models\Course;
 use App\Models\Lecturer;
+use App\Models\Setting;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -20,6 +21,7 @@ class DashboardController extends Controller
         $lecturers = Lecturer::count();
         $students = Student::count();
         $classrooms = Classroom::count();
+        $setting = Setting::first();
 
         $studentData = Student::select(DB::raw("COUNT(*) as count"))
             ->whereYear('created_at', date('Y'))
@@ -28,7 +30,7 @@ class DashboardController extends Controller
 
         return view(
             'backend.admin.dashboard',
-            compact('courses', 'lecturers', 'students', 'classrooms', 'admin', 'studentData')
+            compact('courses', 'lecturers', 'students', 'classrooms', 'admin', 'studentData', 'setting')
         );
     }
 }

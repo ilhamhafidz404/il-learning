@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\ManyToMany\CourseUser;
+use App\Models\Setting;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,13 +15,21 @@ class AcceptSKSController extends Controller
 {
     public function index()
     {
-        $acceptCourse = Course::whereHas('user', function ($q) {
-            $q->where('user_id', '=', Auth::user()->id);
-        })->get();
+        $setting = Setting::select('sks_countdown')->first();
+        if ($setting->sks_countdown < now()) {
+            return redirect()->route('dashboard');
+        }
+        //variabel untuk menampung data course yang sudah diambil
+        $acceptCourse = Course::whereHas('user', function ($q) { // cek many to many course user
+            $q->where('user_id', '=', Auth::user()->id); // jika dalam many to many usernya ada user_id yang sama
+        })->get(); // maka ambil data course-nya
 
-        $courses = Course::doesntHave('user')->where('program_id', '=', Auth::user()->student[0]->classroom->program->id)->orWhereHas('user', function ($q) {
-            $q->where('user_id', '!=', Auth::user()->id);
-        })->get();
+        // variabel untuk memanggil semua data course
+        $courses = Course::doesntHave('user') // cek yang data coursenya tidak mempunya many to many dengan user
+            ->orWhereHas('user', function ($q) { // atau jika cek many to many course user
+                $q->where('user_id', '!=', Auth::user()->id); // jika user_id nya tidak sama dengan id login maka
+            })->where('program_id', '=', Auth::user()->student[0]->classroom->program->id) // cek apakah prodi user login cocok dengan course-nya
+            ->get();
 
         $user = Student::whereUserId(Auth::user()->id)->first();
 
@@ -36,8 +45,8 @@ class AcceptSKSController extends Controller
         if (count($request->all()) <= 1) {
             return redirect()->back()->with([
                 'error' => true,
-                'title' => 'Gagal Daftar SKS',
-                'message' => 'Gagal Mengambil SKS'
+                'title' => 'Failed to take SKS',
+                'message' => 'please try or contact the operator'
             ]);
         }
         foreach ($request->select as $index => $select) {
@@ -48,8 +57,8 @@ class AcceptSKSController extends Controller
         }
         return redirect()->back()->with([
             'success' => true,
-            'title' => 'Berhasil Daftar SKS',
-            'message' => 'Berhasil Mengambil SKS'
+            'title' => 'Success to take SKS',
+            'message' => 'study hard and make your parents proud'
         ]);
     }
 }

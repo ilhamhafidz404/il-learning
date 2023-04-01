@@ -11,5 +11,5 @@ class CourseUser extends Model
 
     protected $table = 'course_user';
     protected $fillable = ['course_id', 'user_id'];
-    protected $timestamps = false;
+    public $timestamps = false;
 }

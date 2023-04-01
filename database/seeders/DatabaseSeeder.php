@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -58,6 +59,10 @@ class DatabaseSeeder extends Seeder
                 'classroom_id' => 1,
                 'lecturer_id' => 2
             ],
+        ]);
+
+        Setting::create([
+            'sks_countdown' => null
         ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\ManyToMany\ClassroomLecturer;
 use App\Models\ManyToMany\CourseLecturer;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -78,5 +79,15 @@ class MoreController extends Controller
             'title' => "Successfully delete",
             'message' => "The lecturer is no longer teaching this classroom"
         ]);
+    }
+
+    public function sksCountdown(Request $request)
+    {
+        $countdown = $request->date . ' ' . $request->time . ':00';
+        Setting::first()->update([
+            'sks_countdown' => $countdown
+        ]);
+
+        return redirect()->back();
     }
 }
