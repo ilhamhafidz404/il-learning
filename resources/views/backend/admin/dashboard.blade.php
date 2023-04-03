@@ -18,16 +18,7 @@
         "
     >
         <div class="col-span-2 bg-white dark:bg-slate-800 rounded p-5 text-gray-200">
-            <h3 class="text-xl font-semibold dark:text-gray-100 text-gray-800">Setting deadline SKS</h3>
-            @if ($setting->sks_countdown == null)
-                Belum ada pengaturan countdown
-            @endif
-            <form action="{{ route('admin.change.sksCountdown') }}" method="POST">
-                @csrf
-                <input type="date" name="date">
-                <input type="time" name="time">
-                <button>Submit</button>
-            </form>
+            <h3 class="text-xl font-semibold dark:text-gray-100 text-gray-800 mb-5">More Stats</h3>
         </div>
         <div class="col-span-4 dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
             <h3 class="text-xl font-semibold">Statistik</h3>

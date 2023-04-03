@@ -17,7 +17,9 @@ class AcceptSKSController extends Controller
     {
         $setting = Setting::select('sks_countdown')->first();
         if ($setting->sks_countdown < now()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard')->with([
+                'error' => 'The time for taking SKS is too late'
+            ]);
         }
         //variabel untuk menampung data course yang sudah diambil
         $acceptCourse = Course::whereHas('user', function ($q) { // cek many to many course user
@@ -33,7 +35,7 @@ class AcceptSKSController extends Controller
 
         $user = Student::whereUserId(Auth::user()->id)->first();
 
-        return view('Backend.acceptsks', compact('user'), [
+        return view('Backend.acceptsks', compact('user', 'setting'), [
             'courses' => $courses,
             'acceptCourse' => $acceptCourse,
         ]);

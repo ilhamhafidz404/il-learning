@@ -12,6 +12,29 @@
     "
 >
     @include('components.widgets')
+    
+    @if (Session::has('error'))
+        <div 
+            id="errorAlert"
+            class="
+                fixed 
+                w-[90%] 
+                bg-red-500/80 
+                border-2 
+                border-red-500 
+                left-1/2 
+                -translate-x-1/2 
+                top-[0]
+                z-50
+                text-white
+                p-5
+                rounded
+                text-center
+            "
+        >
+            {{ Session::get('error') }}
+        </div>
+    @endif
 
     <section class="grid grid-cols-6 gap-5 mt-10">
         <div class="col-span-6 md:col-span-4">
@@ -189,3 +212,12 @@
         </div>
     </section>
 </section>
+@section('script')
+    <script>
+        const errorAlert= document.getElementById('errorAlert');
+
+        setTimeout(() => {
+            errorAlert.classList.toggle('hidden');
+        }, 5000);
+    </script>
+@endsection

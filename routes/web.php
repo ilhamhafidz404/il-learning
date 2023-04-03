@@ -9,10 +9,12 @@ use App\Http\Controllers\Admin\{
     MoreController,
     ProgramController,
     StudentController,
-    LevelController
+    LevelController,
+    SettingController
 };
 
 use App\Http\Controllers\Backend\AcceptSKSController;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Backend\Account\ProfileController;
 use App\Http\Controllers\Backend\{
@@ -69,7 +71,6 @@ Route::name('admin.')->group(function () {
         Route::post('/addcoursetolecturer', [MoreController::class, 'addCourseToLecturer'])->name('addCourseToLecturer');
         Route::post('/addclassroomtolecturer', [MoreController::class, 'addClassroomToLecturer'])->name('addClassroomToLecturer');
         Route::post('admin/change-theme-mode', [MoreController::class, 'changeThemeMode'])->name('change.theme.mode');
-        Route::post('admin/sks-countdown', [MoreController::class, 'sksCountdown'])->name('change.sksCountdown');
         // 
         Route::delete(
             '/admin/deletelecturerforcourse/{lecturer}/{course}',
@@ -80,17 +81,32 @@ Route::name('admin.')->group(function () {
             '/admin/deleteclassroomforlecturer/{lecturer}/{classroom}',
             [MoreController::class, 'deleteClassroomForLecturer']
         )->name('deleteclassroomforcourse');
+
+        // 
+        Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+        Route::post('admin/sks-countdown', [SettingController::class, 'sksCountdown'])->name('setting.sksCountdown');
     });
 });
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::post('/mission', [MissionController::class, 'store'])->name('mission.store');
-    Route::get('/mission/add', [MissionController::class, 'create'])->name('mission.create');
+    Route::resource('/missions', MissionController::class, [
+        'names' => 'mission',
+        'only' => ['store', 'create', 'show']
+    ]);
 
-    Route::get('/submission/add', [SubmissionController::class, 'create'])->name('submission.create');
-    Route::post('/submission', [SubmissionController::class, 'store'])->name('submission.store');
-    Route::delete('/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
+    Route::resource('/submission', SubmissionController::class, [
+        'names' => 'submission',
+        'only' => ['create', 'store', 'destroy', 'show']
+    ]);
+
+    Route::resource('/classroom', ClassroomController::class, [
+        'names' => 'classroom',
+        'only' => ['index', 'show']
+    ]);
+
+    Route::get('/course', [CourseController::class, 'index'])->name('course.index');
+    Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.show');
 
     Route::post('/acceptsks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
     Route::get('/acceptsks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
@@ -100,14 +116,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/course', [CourseController::class, 'index'])->name('course.index');
-    Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.show');
 
-    Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classroom.index');
-    Route::get('/classrooms/{slug}', [ClassroomController::class, 'show'])->name('classroom.show');
-
-    Route::get('/mission/{slug}', [MissionController::class, 'show'])->name('mission.show');
-    Route::get('/submission/{slug}', [SubmissionController::class, 'show'])->name('submission.show');
     Route::post('/change-theme-mode', ThemeModeController::class)->name('change.theme.mode');
 
     Route::get('/account', MyAccountController::class)->name('myaccount');

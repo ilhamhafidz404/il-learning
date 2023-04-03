@@ -80,14 +80,4 @@ class MoreController extends Controller
             'message' => "The lecturer is no longer teaching this classroom"
         ]);
     }
-
-    public function sksCountdown(Request $request)
-    {
-        $countdown = $request->date . ' ' . $request->time . ':00';
-        Setting::first()->update([
-            'sks_countdown' => $countdown
-        ]);
-
-        return redirect()->back();
-    }
 }

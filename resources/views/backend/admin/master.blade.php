@@ -476,13 +476,13 @@
                 </li>
                 <li>
                     <a 
-                        href="{{ route('admin.level.index') }}" 
+                        href="{{ route('admin.setting') }}" 
                         class="
                             px-5 
                             py-3 
                             border-l-[5px]
                             dark:text-white 
-                            @if (Route::is('admin.level*'))
+                            @if (Route::is('admin.setting*'))
                                 border-indigo-500 
                                 !text-indigo-500
                             @else
@@ -512,7 +512,7 @@
                                 d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" 
                             />
                         </svg>
-                        Setting Accept SKS
+                        Setting
                     </a>
                 </li>
             </ul>

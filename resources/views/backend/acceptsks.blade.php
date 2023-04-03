@@ -25,7 +25,11 @@
 
     @include('components.widgets')
 
-    <section class="p-5 mt-10 bg-white dark:bg-slate-800 shadow-md rounded text-right">
+    <div class="bg-indigo-500/40 border-2 border-indigo-500 p-5 rounded text-white text-center mt-10">
+        <p>The last accepted SKS is {{ date('l - d F Y', strtotime($setting->sks_countdown)); }}</p>
+    </div>
+
+    <section class="p-5 mt-5 bg-white dark:bg-slate-800 shadow-md rounded text-right">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
             <h3 
                 class="
