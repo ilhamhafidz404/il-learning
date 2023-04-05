@@ -17,7 +17,7 @@ class ProgramController extends Controller
     public function index()
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
-        $programs = Program::paginate(10);
+        $programs = Program::with('faculty')->paginate(10);
 
         return view('backend.admin.program.index', compact('admin', 'programs'));
     }
@@ -25,7 +25,7 @@ class ProgramController extends Controller
     public function create()
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
-        $faculties = Faculty::all();
+        $faculties = Faculty::select('id', 'name')->get();
         $levels = Level::all();
 
         return view('backend.admin.program.add', compact('admin', 'faculties', 'levels'));

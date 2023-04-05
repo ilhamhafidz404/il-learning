@@ -22,7 +22,7 @@ class CourseController extends Controller
     public function index()
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
-        $data = Course::latest();
+        $data = Course::select('id', 'name', 'slug', 'program_id')->with('program')->latest();
 
         if (isset($_GET['search'])) {
             $courses = $data->where('name', 'like', '%' . $_GET['search'] . '%')->paginate(10);

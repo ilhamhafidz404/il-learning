@@ -19,9 +19,11 @@ class StudentController extends Controller
         $admin = Admin::whereEmail(Session::get('email'))->first();
 
         if (isset($_GET['search']) && $_GET['search'] != '') {
-            $students = Student::where('nim', 'like', '%' . $_GET['search'] . '%')->paginate(10);
+            $students = Student::select('user_id', 'nim')->with('user')
+                ->where('nim', 'like', '%' . $_GET['search'] . '%')
+                ->paginate(10);
         } else {
-            $students = Student::paginate(10);
+            $students = Student::with('user')->paginate(10);
         }
         return view('backend.admin.student.index', compact('students', 'admin'));
     }
@@ -38,8 +40,9 @@ class StudentController extends Controller
     public function create()
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
-        $classrooms = Classroom::all();
-        $programs = Program::all();
+
+        $classrooms = Classroom::select('id', 'name', 'program_id')->with('program')->get();
+        $programs = Program::select('id', 'name', 'code', 'faculty_id')->with('faculty')->get();
 
         $studentCount = Student::count();
         $lastIdStudent = Student::orderBy('id', 'DESC')->select('id')->first();

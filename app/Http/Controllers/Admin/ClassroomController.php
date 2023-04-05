@@ -18,7 +18,7 @@ class ClassroomController extends Controller
     public function index()
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
-        $data = Classroom::latest();
+        $data = Classroom::select('id', 'name', 'slug', 'program_id')->with('program');
         if (isset($_GET['search'])) {
             $classrooms = $data->where('name', 'like', '%' . $_GET['search'] . '%')->paginate(10);
         } else {
@@ -31,8 +31,8 @@ class ClassroomController extends Controller
     public function create()
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
-        $lecturers = Lecturer::all();
-        $programs = Program::all();
+        $lecturers = Lecturer::select('name')->get();
+        $programs = Program::select('name', 'id')->get();
 
         return view('backend.admin.classroom.add', compact('lecturers', 'admin', 'programs'));
     }
