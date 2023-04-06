@@ -31,8 +31,8 @@ class ClassroomController extends Controller
     public function create()
     {
         $admin = Admin::whereEmail(Session::get('email'))->first();
-        $lecturers = Lecturer::select('name')->get();
-        $programs = Program::select('name', 'id')->get();
+        $lecturers = Lecturer::with('user')->get();
+        $programs = Program::select('name', 'id', 'level')->get();
 
         return view('backend.admin.classroom.add', compact('lecturers', 'admin', 'programs'));
     }
@@ -68,17 +68,19 @@ class ClassroomController extends Controller
         $admin = Admin::whereEmail(Session::get('email'))->first();
         $lecturers = Lecturer::all();
         $classroom = Classroom::whereSlug($slug)->first();
+        $programs = Program::all();
 
-        return view('backend.admin.classroom.edit', compact('admin', 'lecturers', 'classroom'));
+        return view('backend.admin.classroom.edit', compact('admin', 'lecturers', 'classroom', 'programs'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ClassroomRequest $request, $id)
     {
         $classroom = Classroom::find($id);
         $classroom->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'mentor' => $request->mentor,
+            'program_id' => $request->program
         ]);
 
         return redirect()->route('admin.classroom.edit', $classroom->slug)->with([

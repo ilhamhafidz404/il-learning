@@ -50,7 +50,7 @@
                 @method("PUT")
                 @csrf
                 <div class="grid grid-cols-2 gap-5">
-                    <div class="mb-10">
+                    <div class="mb-3">
                         <label 
                             for="name" 
                             class="
@@ -92,6 +92,65 @@
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label 
+                            for="name" 
+                            class="
+                                block 
+                                dark:text-white 
+                                text-gray-800
+                                font-semibold
+                                @error('name')
+                                    text-red-500
+                                @enderror
+                            "
+                        >
+                            Study Program :
+                        </label>
+                        <select 
+                            name="program" 
+                            id="program" 
+                            class="
+                                w-full 
+                                rounded 
+                                py-2 
+                                px-3 
+                                dark:bg-slate-700 
+                                dark:text-gray-100
+                                border-2
+                                border-transparent
+                                @error('program')
+                                    bg-red-200
+                                    dark:bg-red-500/50
+                                    !border-red-500
+                                @enderror
+                            "
+                        >
+                            <option value="" selected hidden>- Select Program -</option>
+                            @forelse ($programs as $program)
+                                <option 
+                                    value="{{ $program->id }}"
+                                    @if (
+                                        old('program') == $program->id ||
+                                        $classroom->program_id == $program->id
+                                    )
+                                        selected
+                                    @endif
+                                >
+                                    {{ $program->name . " (". $program->level .")" }}
+                                </option>
+                            @empty
+                                <option disabled>
+                                    <i>No Program Data</i>
+                                </option>
+                            @endforelse
+                        </select>
+                        @error('program')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     <div class="mb-10">
                         <label 
                             for="mentor" 
@@ -126,14 +185,14 @@
                                 @enderror
                             "
                         >
-                            <option value="" selected hidden>- Select Mentor -</option>
+                        <option value="" selected hidden>- Select Mentor -</option>
                             @forelse ($lecturers as $lecturer)
                                 <option 
                                     value="{{ $lecturer->user->name }}"
-                                    @if (old('mentor') == $lecturer->user->name)
-                                        selected
-                                    @endif
-                                    @if ($lecturer->user->name == $classroom->mentor)
+                                    @if (
+                                        old('mentor') == $lecturer->user->name ||
+                                        $lecturer->user->name == $classroom->mentor
+                                    )
                                         selected
                                     @endif
                                 >
