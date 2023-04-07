@@ -21,8 +21,8 @@
             relative
         "
     >
-        <div class="flex justify-between">
-            <h1 class="text-4xl font-semibold text-white flex items-center">
+        <div class="flex-row md:flex justify-between">
+            <h1 class="text-4xl font-semibold text-white flex items-center md:mb-0 mb-5">
                 <span class="bg-white p-2 rounded mr-3">
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -46,7 +46,7 @@
                     type="text" 
                     placeholder="search" 
                     name="search" 
-                    class="py-2 rounded-full px-5 w-[300px] bg-white text-gray-800"
+                    class="py-2 rounded-full px-5 w-full :w-[300px] bg-white text-gray-800"
                     @isset($_GET['search'])
                         value="{{ $_GET['search'] }}"
                     @endisset
@@ -86,9 +86,9 @@
                 @endisset
             </form>
         </div>
-        <div class="flex justify-between my-5">
-            <div class="flex items-center">
-                <div class="bg-white py-1 px-2 rounded flex justify-between items-center">
+        <div class="flex justify-between items-center my-5">
+            <div class="flex-row md:flex items-center">
+                <div class="bg-white py-1 px-2 rounded md:flex inline-flex justify-between items-center">
                     <button class="bg-[#5e72e4] text-white flex items-center justify-center p-1 rounded">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path d="M5.625 3.75a2.625 2.625 0 100 5.25h12.75a2.625 2.625 0 000-5.25H5.625zM3.75 11.25a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75zM3 15.75a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75zM3.75 18.75a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75z" />
@@ -112,7 +112,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="ml-10">
+                <div class="md:ml-10 ml-0 md:mt-0 mt-5">
                     <form action="">
                         <label for="" class="text-white">Sort by : </label>
                         <select name="" id="" class="px-3 rounded bg-transparent text-gray-300">
@@ -123,7 +123,7 @@
                     </form>
                 </div>
             </div>
-            <div>
+            <div class="flex items-center">
                 <a 
                     href="{{ route('admin.classroom.index') }}" 
                     class="bg-slate-500 hover:bg-slate-500/80 text-white px-5 py-3 rounded font-semibold mr-3"
@@ -132,9 +132,33 @@
                 </a>
                 <a 
                     href="{{ route('demo') }}" 
-                    class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
+                    class="
+                        bg-white 
+                        hover:bg-white/80 
+                        text-indigo-500 
+                        md:px-5 
+                        px-3
+                        md:py-3 
+                        py-2
+                        rounded 
+                        font-semibold 
+                        inline-flex 
+                        items-center
+                    "
                 >
-                    Add new Classmate
+                    <span class="sm:hidden inline-block">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-7"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </span>
+                    <span class="sm:inline-block hidden">Create new Classmate</span>
                 </a>
             </div>
         </div>
@@ -144,49 +168,51 @@
             Classroom published
         </small>
 
-        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden">
-            <table class="w-full dark:text-gray-300">
-                <tr class="dark:text-white text-gray-800">
-                    <th class="py-6">Name</th>
-                    <th>Action</th>
-                </tr>
-                @forelse ($students as $index => $student)
-                    <tr
-                        class="
-                            @if ($index%2 == 0)
-                                dark:bg-slate-700
-                                bg-gray-200
-                            @endif
-                        "
-                    >
-                        <td class="py-5 pl-7 w-[80%]">{{ $student->user->name }}</td>
-                        <td class="text-center">
-                            <button 
-                                onclick="toggleSelectClassroom({{ $student->id }})"
-                                class="bg-slate-500 hover:bg-slate-400 text-white px-3 py-2 rounded"
-                            >
-                                Change Class
-                            </button>
+        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-auto">
+            <div>
+                <table class="w-full dark:text-gray-300">
+                    <tr class="dark:text-white text-gray-800">
+                        <th class="py-6 min-w-[300px]">Name</th>
+                        <th class="min-w-[200px]">Action</th>
+                    </tr>
+                    @forelse ($students as $index => $student)
+                        <tr
+                            class="
+                                @if ($index%2 == 0)
+                                    dark:bg-slate-700
+                                    bg-gray-200
+                                @endif
+                            "
+                        >
+                            <td class="py-5 pl-7 w-[80%]">{{ $student->user->name }}</td>
+                            <td class="text-center">
+                                <button 
+                                    onclick="toggleSelectClassroom({{ $student->id }})"
+                                    class="bg-slate-500 hover:bg-slate-400 text-white px-3 py-2 rounded"
+                                >
+                                    Change Class
+                                </button>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="py-10">
+                                <h4 class="text-6xl text-center">☹️</h4>
+                                <h3 class="text-center mt-3 text-xl">
+                                    Tidak ada mahasiswa dengan di Kelas {{ $classroom->name }}
+                                </h3>
+                            </td>
+                        </tr>
+                    @endforelse
+                    <tr class="bg-indigo-500">
+                        <td colspan="2" class="px-10 pb-5 pt-1">
+                            <div class="mt-5 w-full text-white">
+                                {{$students->links()}}
+                            </div>
                         </td>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="py-10">
-                            <h4 class="text-6xl text-center">☹️</h4>
-                            <h3 class="text-center mt-3 text-xl">
-                                Tidak ada mahasiswa dengan di Kelas {{ $classroom->name }}
-                            </h3>
-                        </td>
-                    </tr>
-                @endforelse
-                <tr class="bg-indigo-500">
-                    <td colspan="2" class="px-10 pb-5 pt-1">
-                        <div class="mt-5 w-full text-white">
-                            {{$students->links()}}
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                </table>
+            </div>
         </div>
     </section>
 

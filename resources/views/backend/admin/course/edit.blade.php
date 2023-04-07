@@ -88,7 +88,7 @@
                 @method("PUT")
                 @csrf
                 <div id="editInfo">
-                    <div class="grid grid-cols-5 gap-5 mb-5">
+                    <div class="grid grid-cols-1 g md:grid-cols-5 gap-5 mb-5">
                         <div class="col-span-2">
                             <label 
                                 for="name" 

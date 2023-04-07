@@ -49,7 +49,7 @@
             >
                 @method("PUT")
                 @csrf
-                <div class="grid grid-cols-2 gap-5">
+                <div class="grid md:grid-cols-2 gap-5">
                     <div class="mb-3">
                         <label 
                             for="name" 

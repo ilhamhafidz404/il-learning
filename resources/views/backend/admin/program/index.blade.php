@@ -21,8 +21,8 @@
             relative
         "
     >
-        <div class="flex justify-between">
-            <h1 class="text-4xl font-semibold text-white flex items-center">
+        <div class="flex-row md:flex justify-between">
+            <h1 class="text-4xl font-semibold text-white flex items-center md:mb-0 mb-5">
                 <span class="bg-white p-2 rounded mr-3">
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -46,7 +46,7 @@
                     type="text" 
                     placeholder="search" 
                     name="search" 
-                    class="py-2 rounded-full px-5 w-[300px] bg-white text-gray-800"
+                    class="py-2 rounded-full px-5 md:w-[300px] w-full bg-white text-gray-800"
                     @isset($_GET['search'])
                         value="{{ $_GET['search'] }}"
                     @endisset
@@ -86,7 +86,7 @@
                 @endisset
             </form>
         </div>
-        <div class="flex justify-between my-5">
+        <div class="flex justify-between items-center my-5">
             <div class="bg-white py-1 px-2 rounded flex justify-between items-center">
                 <button class="bg-[#5e72e4] text-white flex items-center justify-center p-1 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -114,9 +114,33 @@
             <div>
                 <a 
                     href="{{ route('admin.program.create') }}" 
-                    class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
+                    class="
+                        bg-white 
+                        hover:bg-white/80 
+                        text-indigo-500 
+                        md:px-5 
+                        md:py-3 
+                        px-3
+                        py-2
+                        rounded 
+                        font-semibold 
+                        flex 
+                        items-center
+                    "
                 >
-                    Create new Program Study
+                    <span class="sm:hidden inline-block">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-7"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </span>
+                    <span class="sm:inline-block hidden">Create new Program Study</span>
                 </a>
             </div>
         </div>
@@ -126,92 +150,94 @@
             Program Study now
         </small>
 
-        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden">
-            <table class="w-full dark:text-gray-300">
-                <tr class="dark:text-white text-gray-800">
-                    <th class="py-6">Name</th>
-                    <th class="py-6">Level</th>
-                    <th>Action</th>
-                </tr>
-                @forelse ($programs as $index => $program)
-                    <tr
-                        class="
-                            @if ($index%2 == 0)
-                                dark:bg-slate-700
-                                bg-gray-200
-                            @endif
-                        "
-                    >
-                        <td class="py-5 pl-7 w-[70%]">
-                            <a href="#">
-                                {{ $program->name }}
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            {{ $program->level }}
-                        </td>
-                        <td class="text-center">
-                            <div class="flex items-center justify-center">
-                                <a 
-                                    href="{{ route('admin.program.edit', $program->slug) }}"
-                                    class="
-                                        bg-yellow-500 
-                                        hover:bg-yellow-400 
-                                        text-white 
-                                        px-3 
-                                        py-2 
-                                        rounded
-                                        mr-3
-                                    "
-                                >
-                                    @include(
-                                        'components.icons.edit-solid-icon',
-                                        ['class' => 'w-6']
-                                    )
+        <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-auto">
+            <div>
+                <table class="w-full dark:text-gray-300">
+                    <tr class="dark:text-white text-gray-800">
+                        <th class="py-6 min-w-[300px]">Name</th>
+                        <th class="py-6 min-w-[100px]">Level</th>
+                        <th class="min-w-[150px]">Action</th>
+                    </tr>
+                    @forelse ($programs as $index => $program)
+                        <tr
+                            class="
+                                @if ($index%2 == 0)
+                                    dark:bg-slate-700
+                                    bg-gray-200
+                                @endif
+                            "
+                        >
+                            <td class="py-5 pl-7 w-[70%]">
+                                <a href="#">
+                                    {{ $program->name }}
                                 </a>
-
-                                <form 
-                                    id="confirmDeletePrody"
-                                    action="{{ route('admin.program.destroy', $program->id) }}" 
-                                    method="POST"
-                                    class="inline mr-2"
-                                >
-                                    @csrf
-                                    @method('DELETE')
-                                    <button
-                                        onclick="toggleConfirm($index)" 
-                                        class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
+                            </td>
+                            <td class="text-center">
+                                {{ $program->level }}
+                            </td>
+                            <td class="text-center">
+                                <div class="flex items-center justify-center">
+                                    <a 
+                                        href="{{ route('admin.program.edit', $program->slug) }}"
+                                        class="
+                                            bg-yellow-500 
+                                            hover:bg-yellow-400 
+                                            text-white 
+                                            px-3 
+                                            py-2 
+                                            rounded
+                                            mr-3
+                                        "
                                     >
                                         @include(
-                                            'components.icons.trash-solid-icon',
+                                            'components.icons.edit-solid-icon',
                                             ['class' => 'w-6']
                                         )
-                                    </button>
-                                </form>
+                                    </a>
+
+                                    <form 
+                                        id="confirmDeletePrody"
+                                        action="{{ route('admin.program.destroy', $program->id) }}" 
+                                        method="POST"
+                                        class="inline mr-2"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button
+                                            onclick="toggleConfirm($index)" 
+                                            class="bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded"
+                                        >
+                                            @include(
+                                                'components.icons.trash-solid-icon',
+                                                ['class' => 'w-6']
+                                            )
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="py-10">
+                                <h4 class="text-6xl text-center">☹️</h4>
+                                <h3 class="text-center mt-3 text-xl">
+                                    No Program Study Data, 
+                                    <a href="{{ route('admin.program.create') }}" class="text-indigo-500">
+                                        Create Program Study?
+                                    </a>
+                                </h3>
+                            </td>
+                        </tr>
+                    @endforelse
+                    <tr class="bg-indigo-500">
+                        <td colspan="3" class="px-10 pb-5 pt-1">
+                            <div class="mt-5 w-full text-white">
+                                {{$programs->links()}}
                             </div>
                         </td>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="py-10">
-                            <h4 class="text-6xl text-center">☹️</h4>
-                            <h3 class="text-center mt-3 text-xl">
-                                No Program Study Data, 
-                                <a href="{{ route('admin.program.create') }}" class="text-indigo-500">
-                                    Create Program Study?
-                                </a>
-                            </h3>
-                        </td>
-                    </tr>
-                @endforelse
-                <tr class="bg-indigo-500">
-                    <td colspan="3" class="px-10 pb-5 pt-1">
-                        <div class="mt-5 w-full text-white">
-                            {{$programs->links()}}
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                </table>
+            </div>
         </div>
     </section>
 @endsection

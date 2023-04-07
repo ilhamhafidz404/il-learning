@@ -46,7 +46,7 @@
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">
             <form id="storeClassroom" action="{{ route('admin.classroom.store') }}" method="POST">
                 @csrf
-                <div class="grid grid-cols-2 gap-5">
+                <div class="grid md:grid-cols-2 gap-5">
                     <div class="mb-3">
                         <label 
                             for="name" 

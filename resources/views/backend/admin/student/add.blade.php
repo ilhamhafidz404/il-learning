@@ -64,7 +64,7 @@
                 enctype="multipart/form-data"
             >
                 @csrf
-                <div class="grid grid-cols-3 gap-5">
+                <div class="grid md:grid-cols-3 gap-5">
                     <div>
                         <label 
                             for="name" 
@@ -198,8 +198,8 @@
                     </span>
                 </div>
 
-                <div class="mt-10 grid grid-cols-2 gap-5">
-                    <div>
+                <div class="mt-10 md:grid md:grid-cols-2 gap-5">
+                    <div class="mb-3">
                         <label 
                             for="program" 
                             class="
@@ -256,7 +256,7 @@
                         @enderror
                     </div>
 
-                    <div>
+                    <div class="mb-3">
                         <label 
                             for="faculty" 
                             class="
@@ -288,6 +288,7 @@
                                     !bg-red-500/40
                                 @enderror
                                 placeholder:text-gray-800
+                                dark:placeholder:text-gray-200
                             "
                             value="{{ old('faculty') }}"
                             placeholder="Select Program Study First"
@@ -298,7 +299,7 @@
                         @enderror
                     </div>
 
-                    <div>
+                    <div class="mb-3">
                         <label 
                             for="nim" 
                             class="
@@ -337,7 +338,8 @@
                             <small class="text-red-500 italic">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div>
+
+                    <div class="mb-3">
                         <label 
                             for="classroom" 
                             class="
@@ -369,6 +371,7 @@
                                 @enderror
                             "
                             readonly
+                            disabled
                         >
                             <option value="" selected hidden id="selectClassroom">Select Program Study First</option>
                             @forelse ($classrooms as $classroom)
@@ -391,7 +394,7 @@
                         @enderror
                     </div>
                     
-                    <div class="col-span-2">
+                    <div class="col-span-2 mb-3">
                         <label 
                             for="file" 
                             class="
@@ -522,7 +525,8 @@
 
     program.addEventListener("change", function() {
 
-        defaultSelectInClassroom.innerHTML = "-Select Classroom-"
+        defaultSelectInClassroom.innerHTML = "-Select Classroom-";
+        
 
         const selectedOption = program.options[program.selectedIndex];
         programCode = selectedOption.getAttribute("data-code");

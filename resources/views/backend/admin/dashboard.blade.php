@@ -17,17 +17,17 @@
             gap-5
         "
     >
-        <div class="col-span-2 bg-white dark:bg-slate-800 rounded p-5 text-gray-200">
+        <div class="col-span-6 lg:col-span-2 bg-white dark:bg-slate-800 rounded p-5 text-gray-200">
             <h3 class="text-xl font-semibold dark:text-gray-100 text-gray-800 mb-5">More Stats</h3>
         </div>
-        <div class="col-span-4 dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
-            <h3 class="text-xl font-semibold">Statistik</h3>
-            <div class="grid grid-cols-4 gap-5">
-                <div class="mt-5 flex items-center">
-                    <span class="bg-indigo-500/40 inline-block p-3 rounded-full mr-3">
+        <div class="col-span-6 lg:col-span-4 dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
+            <h3 class="text-xl font-semibold mb-5">Statistik</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-5">
+                <div class="flex items-center">
+                    <span class="bg-indigo-500/40 inline-block p-2 md:p-3 rounded-full mr-3">
                         @include(
                             'components.icons.bookOpen-regular-icon',
-                            ['class' => 'w-10 text-indigo-500']
+                            ['class' => 'w-8 md:w-10 text-indigo-500']
                         )
                     </span>
                     <div>
@@ -35,11 +35,11 @@
                         <small class="-mt-2 block text-gray-500 dark:text-gray-300">Courses</small>
                     </div>
                 </div>
-                <div class="mt-5 flex items-center">
-                    <span class="bg-emerald-500/40 inline-block p-3 rounded-full mr-3">
+                <div class="flex items-center">
+                    <span class="bg-emerald-500/40 inline-block p-2 md:p-3 rounded-full mr-3">
                         @include(
                             'components.icons.userGroup-regular-icon',
-                            ['class' => 'w-10 text-emerald-500']
+                            ['class' => 'w-8 md:w-10 text-emerald-500']
                         )
                     </span>
                     <div>
@@ -47,15 +47,15 @@
                         <small class="-mt-2 block text-gray-500 dark:text-gray-300">Lecturers</small>
                     </div>
                 </div>
-                <div class="mt-5 flex items-center">
-                    <span class="bg-yellow-500/40 inline-block p-3 rounded-full mr-3">
+                <div class="flex items-center">
+                    <span class="bg-yellow-500/40 inline-block p-2 md:p-3 rounded-full mr-3">
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
                             fill="none" 
                             viewBox="0 0 24 24" 
                             stroke-width="1.5" 
                             stroke="currentColor" 
-                            class="w-10 text-yellow-500"
+                            class="w-8 md:w-10 text-yellow-500"
                         >
                             <path 
                                 stroke-linecap="round" 
@@ -69,15 +69,15 @@
                         <small class="-mt-2 block text-gray-500 dark:text-gray-300">Students</small>
                     </div>
                 </div>
-                <div class="mt-5 flex items-center">
-                    <span class="bg-red-500/40 inline-block p-3 rounded-full mr-3">
+                <div class="flex items-center">
+                    <span class="bg-red-500/40 inline-block p-2 md:p-3 rounded-full mr-3">
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
                             fill="none" 
                             viewBox="0 0 24 24" 
                             stroke-width="1.5" 
                             stroke="currentColor" 
-                            class="w-10 text-red-500"
+                            class="w-8 md:w-10 text-red-500"
                         >
                             <path 
                                 stroke-linecap="round" 
@@ -95,12 +95,14 @@
         </div>
 
         {{--  --}}
-        <div class="col-span-3 dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
-            <div id="studentChart"></div>
-        </div>
-        <div class="col-span-3 dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
-            <div id="lecturerChart"></div>
-        </div>
+        {{-- <div class="grid md:grid-cols-2 col-span-6 gap-5">
+            <div class="dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
+                <div id="studentChart"></div>
+            </div>
+            <div class="dark:bg-slate-800 bg-white rounded p-5 dark:text-gray-100 text-gray-800">
+                <div id="lecturerChart"></div>
+            </div>
+        </div> --}}
     </section>
 
     <script src="https://code.highcharts.com/highcharts.js"></script>

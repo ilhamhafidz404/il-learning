@@ -54,7 +54,7 @@
                 enctype="multipart/form-data"
             >
                 @csrf
-                <div class="grid grid-cols-3 gap-5">
+                <div class="grid md:grid-cols-3 gap-5">
                     <div>
                         <label 
                             for="name" 
@@ -198,7 +198,7 @@
                 </div>
 
                 <div class="mt-10">
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid md:grid-cols-2 gap-5">
                         <div class="mb-5">
                             <label 
                                 for="nip" 
@@ -240,7 +240,7 @@
                                 </small>
                             @enderror
                         </div>
-                        <div>
+                        <div class="md:mb-0 mb-3">
                             <label 
                                 for="file" 
                                 class="
@@ -321,7 +321,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="flex justify-between mt-14">
+                <div class="flex justify-between items-center mt-14">
                     <div>
                         <a
                             href="{{ route('admin.lecturer.index') }}" 

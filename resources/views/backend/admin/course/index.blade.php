@@ -21,8 +21,8 @@
             relative
         "
     >
-        <div class="flex justify-between">
-            <h1 class="text-4xl font-semibold text-white flex items-center">
+        <div class="flex-row sm:flex justify-between">
+            <h1 class="text-4xl font-semibold text-white flex items-center sm:mb-0 mb-5">
                 <span class="bg-white p-2 rounded mr-3">
                     @include(
                         'components.icons.bookOpen-regular-icon',
@@ -36,7 +36,7 @@
                     type="text" 
                     placeholder="search" 
                     name="search" 
-                    class="py-2 rounded-full px-5 w-[300px] bg-white text-gray-800"
+                    class="py-2 rounded-full px-5 sm:w-[300px] w-full bg-white text-gray-800"
                     @isset($_GET['search'])
                         value="{{ $_GET['search'] }}"
                     @endisset
@@ -77,9 +77,8 @@
             </form>
         </div>
         <div class="flex justify-between my-5">
-            <div class="flex items-center">
-                <div class="bg-white py-1 px-2 rounded flex justify-between items-center">
-
+            <div class="flex-row sm:flex items-center">
+                <div class="bg-white py-1 px-2 rounded inline-flex justify-between items-center">
                     <button 
                         onclick="changeToTableView()"
                         id="tableViewButton"
@@ -129,7 +128,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="ml-10">
+                <div class="sm:ml-10 sm:mt-0 mt-5">
                     <form action="">
                         <label for="" class="text-white">Sort by : </label>
                         <select name="" id="" class="px-3 rounded bg-transparent text-gray-300">
@@ -143,9 +142,33 @@
             <div>
                 <a 
                     href="{{ route('admin.course.create') }}" 
-                    class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
+                    class="
+                        bg-white 
+                        hover:bg-white/80 
+                        text-indigo-500 
+                        sm:px-5 
+                        sm:py-3
+                        px-3
+                        py-2 
+                        rounded 
+                        font-semibold 
+                        flex 
+                        items-center
+                    "
                 >
-                    Create new Course
+                    <span class="sm:hidden inline-block">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-7"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </span>
+                    <span class="sm:inline-block hidden">Create new Course</span>
                 </a>
             </div>
         </div>
@@ -279,13 +302,13 @@
 
         <div 
             id="tableView" 
-            class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden"
+            class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-auto"
         >
             <table class="w-full dark:text-gray-300 text-gray-800">
                 <tr class="dark:text-white text-gray-800">
-                    <th class="py-6">Name</th>
-                    <th>For</th>
-                    <th>Action</th>
+                    <th class="py-6 min-w-[300px]">Name</th>
+                    <th class="min-w-[250px]">For</th>
+                    <th class="min-w-[150px]">Action</th>
                 </tr>
                 @forelse ($courses as $index => $course)
                     <tr

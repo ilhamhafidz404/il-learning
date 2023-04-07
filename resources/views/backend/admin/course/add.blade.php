@@ -41,7 +41,7 @@
                 enctype="multipart/form-data"
             >
                 @csrf
-                <div class="grid grid-cols-2 gap-5 mb-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                     <div>
                         <label 
                             for="name" 
@@ -124,9 +124,6 @@
                             <small class="text-red-500 italic">{{ $message }}</small>
                         @enderror
                     </div>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-5">
                     <div class="mb-5">
                         <label 
                             for="file" 

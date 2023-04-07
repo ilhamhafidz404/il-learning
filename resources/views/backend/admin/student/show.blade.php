@@ -21,17 +21,18 @@
             relative
         "
     >
-        <div class="flex items-center justify-between">
-            <h1 class="text-4xl font-semibold text-white flex items-center">
-                <span class="bg-white p-2 rounded mr-3">
+        <div class="flex-row md:flex items-center justify-between">
+            <h1 class="text-4xl font-semibold text-white md:flex items-center">
+                <span class="bg-white p-2 rounded mr-3 inline-block">
                     @include(
                         'components.icons.userGroup-regular-icon',
                         ['class' => 'w-10 text-indigo-500']
                     )
                 </span>
+                <br>
                 {{ $student->user->name }}
             </h1>
-            <div>
+            <div class="md:mt-0 mt-10">
                 <a 
                     href="{{ route('admin.student.index') }}" 
                     class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
@@ -55,15 +56,15 @@
                 dark:text-gray-200
             "
         >
-            <div class="flex gap-10 items-center">
+            <div class="flex-row md:flex gap-10 items-center md:text-left text-center">
                 <div>
                     <img 
                         src="{{ asset('storage/'.$student->profile) }}" 
                         alt="{{ $student->user->username."profile" }}"
-                        class="w-[300px] h-[300px] object-cover object-center"
+                        class="w-[300px] h-[300px] object-cover object-center md:mx-0 mx-auto"
                     >
                 </div>
-                <div>
+                <div class="md:mt-0 mt-10">
                     <h2 class="dark:text-gray-100 text-gray-800 text-xl font-semibold">
                         {{ $student->user->name }}
                     </h2>
@@ -78,50 +79,54 @@
                 <hr class="my-10 border-slate-500">
             </div>
 
-            <table class="w-full dark:text-gray-300 rounded overflow-hidden">
-                <tr class=" text-white bg-indigo-500">
-                    <th class="py-6">Name</th>
-                    <th>Lecturer</th>
-                    <th>SKS</th>
-                </tr>
-                @forelse ($user->course as $index => $course)
-                    <tr
-                        class="
-                            @if ($index%2 == 0)
-                                dark:bg-slate-700
-                                bg-gray-200
-                            @endif
-                        "
-                    >
-                        <td class="py-5 pl-7 w-[50%]">
-                            <a href="">
-                                {{ $course->name }}
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            @foreach ($course->lecturer as $lecturer)
-                                @foreach ($lecturer->classroom as $classroom)
-                                    @if ($classroom->id == $student->classroom_id)
-                                        {{ $lecturer->user->name }}
+            <div class="overflow-auto">
+                <div>
+                    <table class="w-full dark:text-gray-300 rounded overflow-hidden">
+                        <tr class=" text-white bg-indigo-500">
+                            <th class="py-6 min-w-[350px]">Name</th>
+                            <th class="min-w-[300px]">Lecturer</th>
+                            <th class="min-w-[100px]">SKS</th>
+                        </tr>
+                        @forelse ($user->course as $index => $course)
+                            <tr
+                                class="
+                                    @if ($index%2 == 0)
+                                        dark:bg-slate-700
+                                        bg-gray-200
                                     @endif
-                                @endforeach
-                            @endforeach
-                        </td>
-                        <td class="text-center">
-                            {{ $course->sks }}
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="py-10">
-                            <h4 class="text-6xl text-center">☹️</h4>
-                            <h3 class="text-center mt-3 text-xl">
-                                No Course Data for This Stundent
-                            </h3>
-                        </td>
-                    </tr>
-                @endforelse
-            </table>
+                                "
+                            >
+                                <td class="py-5 pl-7 w-[50%]">
+                                    <a href="">
+                                        {{ $course->name }}
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    @foreach ($course->lecturer as $lecturer)
+                                        @foreach ($lecturer->classroom as $classroom)
+                                            @if ($classroom->id == $student->classroom_id)
+                                                {{ $lecturer->user->name }}
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                </td>
+                                <td class="text-center">
+                                    {{ $course->sks }}
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="py-10">
+                                    <h4 class="text-6xl text-center">☹️</h4>
+                                    <h3 class="text-center mt-3 text-xl">
+                                        No Course Data for This Stundent
+                                    </h3>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
 @endsection

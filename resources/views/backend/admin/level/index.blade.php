@@ -21,8 +21,8 @@
             relative
         "
     >
-        <div class="flex justify-between">
-            <h1 class="text-4xl font-semibold text-white flex items-center">
+        <div class="flex-row md:flex justify-between">
+            <h1 class="text-4xl font-semibold text-white flex items-center md:mb-0 mb-5">
                 <span class="bg-white p-2 rounded mr-3">
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -46,7 +46,7 @@
                     type="text" 
                     placeholder="search" 
                     name="search" 
-                    class="py-2 rounded-full px-5 w-[300px] bg-white text-gray-800"
+                    class="py-2 rounded-full px-5 w-full md:w-[300px] bg-white text-gray-800"
                     @isset($_GET['search'])
                         value="{{ $_GET['search'] }}"
                     @endisset
@@ -86,9 +86,9 @@
                 @endisset
             </form>
         </div>
-        <div class="flex justify-between my-5">
-            <div class="flex items-center">
-                <div class="bg-white py-1 px-2 rounded flex justify-between items-center">
+        <div class="flex justify-between items-center my-5">
+            <div class="flex-row md:flex items-center">
+                <div class="bg-white py-1 px-2 rounded md:flex inline-flex justify-between items-center">
                     <button class="bg-[#5e72e4] text-white flex items-center justify-center p-1 rounded">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path d="M5.625 3.75a2.625 2.625 0 100 5.25h12.75a2.625 2.625 0 000-5.25H5.625zM3.75 11.25a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75zM3 15.75a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75zM3.75 18.75a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75z" />
@@ -112,7 +112,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="ml-10">
+                <div class="md:ml-10 md:mt-0 mt-5">
                     <form action="">
                         <label for="" class="text-white">Sort by : </label>
                         <select name="" id="" class="px-3 rounded bg-transparent text-gray-300">
@@ -126,9 +126,33 @@
             <div>
                 <a 
                     href="{{ route('admin.level.create') }}" 
-                    class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
+                    class="
+                        bg-white 
+                        hover:bg-white/80 
+                        text-indigo-500 
+                        md:px-5 
+                        md:py-3 
+                        px-3
+                        py-2
+                        rounded 
+                        font-semibold 
+                        flex 
+                        items-center
+                    "
                 >
-                    Create new Level
+                    <span class="sm:hidden inline-block">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-7"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </span>
+                    <span class="sm:inline-block hidden">Create new Level</span>
                 </a>
             </div>
         </div>

@@ -46,7 +46,7 @@
         <div class="bg-white dark:bg-slate-800 col-span-6 md:col-span-4 shadow-md rounded overflow-hidden mt-10 p-5">
             <form id="storeProgramStudy" action="{{ route('admin.program.store') }}" method="POST">
                 @csrf
-                <div class="grid grid-cols-2 gap-5">
+                <div class="grid md:grid-cols-2 gap-5">
                     <div class="mb-3">
                         <label 
                             for="name" 
@@ -193,7 +193,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between mt-10">
                     <a 
                         href="{{ route('admin.program.index') }}" 
                         class="bg-gray-400 hover:bg-gray-300 rounded px-5 py-2 text-white"

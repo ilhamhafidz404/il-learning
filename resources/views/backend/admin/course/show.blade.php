@@ -25,7 +25,7 @@
             relative
         "
     >
-        <div class="flex items-center justify-between">
+        <div class="flex-row md:flex items-center justify-between">
             <h1 class="text-4xl font-semibold text-white flex items-center">
                 <span class="bg-white p-2 rounded mr-3">
                     @include(
@@ -35,7 +35,7 @@
                 </span>
                 {{ $course->name }}
             </h1>
-            <div>
+            <div class="md:mt-0 mt-10">
                 <a 
                     href="{{ route('admin.course.index') }}" 
                     class="bg-white hover:bg-white/80 text-indigo-500 px-5 py-3 rounded font-semibold"
@@ -59,7 +59,7 @@
                 dark:text-gray-200
             "
         >
-            <div class="flex gap-10 items-center">
+            <div class="flex-row md:flex gap-10 items-center">
                 <div>
                     <img 
                         src="{{ asset('storage/'.$course->background) }}" 
@@ -68,7 +68,7 @@
                     >
                 </div>
                 <div>
-                    <h2 class="dark:text-gray-100 text-gray-800 text-xl font-semibold">{{ $course->name }}</h2>
+                    <h2 class="dark:text-gray-100 text-gray-800 text-xl font-semibold md:mt-0 mt-5">{{ $course->name }}</h2>
                     <small class="block -mt-1 dark:text-gray-300 text-gray-500">{{ $course->slug }}</small>
 
                     <h5 class="mt-5 font-semibold">Description:</h5>

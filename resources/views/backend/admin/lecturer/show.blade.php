@@ -21,14 +21,16 @@
             relative
         "
     >
-        <div class="flex items-center justify-between">
-            <h1 class="text-4xl font-semibold text-white flex items-center">
-                <span class="bg-white p-2 rounded mr-3">
-                    @include(
-                        'components.icons.userGroup-regular-icon',
-                        ['class' => 'w-10 text-indigo-500']
-                    )
-                </span>
+        <div class="flex-row md:flex items-center justify-between">
+            <h1 class="text-4xl font-semibold text-white md:flex flex-row items-center md:mb-0 mb-10">
+                <div>
+                    <span class="bg-white p-2 rounded mr-3 inline-block">
+                        @include(
+                            'components.icons.userGroup-regular-icon',
+                            ['class' => 'w-10 text-indigo-500']
+                        )
+                    </span>
+                </div>
                 {{ $lecturer->user->name }}
             </h1>
             <div>
@@ -55,16 +57,18 @@
                 dark:text-gray-200
             "
         >
-            <div class="flex gap-10 items-center">
+            <div class="flex-row md:flex gap-10 items-center">
                 <div>
                     <img 
                         src="{{ asset('storage/'.$lecturer->profile) }}" 
                         alt="{{ $lecturer->user->username."profile" }}"
-                        class="w-[300px] h-[300px] object-cover object-center"
+                        class="w-[300px] h-[300px] object-cover object-center mx-auto"
                     >
                 </div>
-                <div>
-                    <h2 class="dark:text-gray-100 text-gray-800 text-xl font-semibold">{{ $lecturer->user->name }}</h2>
+                <div class="text-center md:text-left">
+                    <h2 class="dark:text-gray-100 text-gray-800 text-xl font-semibold mt-5">
+                        {{ $lecturer->user->name }}
+                    </h2>
                     <small>{{ $lecturer->user->email }}</small>
                 </div>
             </div>

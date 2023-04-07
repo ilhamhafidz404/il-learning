@@ -51,7 +51,7 @@
             >
                 @method("PUT")
                 @csrf
-                <div class="grid grid-cols-2 gap-5">
+                <div class="grid md:grid-cols-2 gap-5">
                     <div class="mb-3">
                         <label 
                             for="name" 
@@ -160,7 +160,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between mt-10">
                     <a 
                         href="{{ route('admin.program.index') }}" 
                         class="bg-gray-400 hover:bg-gray-300 rounded px-5 py-2 text-white"
