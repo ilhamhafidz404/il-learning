@@ -583,7 +583,7 @@
                             id="logout-form" 
                             action="{{ route('logout') }}" 
                             method="POST" 
-                            class="d-none"
+                            class="d-none m-0"
                         >
                             @csrf
                         </form>

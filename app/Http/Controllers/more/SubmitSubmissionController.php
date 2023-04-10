@@ -21,6 +21,7 @@ class SubmitSubmissionController extends Controller
             ->whereMissionId($request->mission)
             ->count();
 
+        // cek jika user kirim file (bukan tugas teory)
         if ($request->file) {
             Submitsubmission::create([
                 'file' => $request->file('file')->store('complete_submission'),
@@ -30,6 +31,7 @@ class SubmitSubmissionController extends Controller
                 'submission_id' => $request->submission,
                 'extension' => $request->file('file')->extension(),
             ]);
+            // jika submittugas teory, maka 
         } else {
             if (!$submitSubmmission) {
                 Submitsubmission::create([
