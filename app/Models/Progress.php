@@ -9,7 +9,7 @@ class Progress extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['progress', 'user_id', 'mission_id', 'submission_count'];
+    protected $fillable = ['progress', 'user_id', 'mission_id', 'submission_count', 'classroom_id'];
 
     public function User()
     {
@@ -19,5 +19,10 @@ class Progress extends Model
     public function Mission()
     {
         return $this->belongsTo(Mission::class);
+    }
+
+    public function Classroom()
+    {
+        return $this->belongsTo(Classroom::class);
     }
 }

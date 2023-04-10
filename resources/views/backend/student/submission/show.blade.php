@@ -234,6 +234,7 @@
                         @csrf
                         <input type="text" hidden value="{{ $submission->mission->id }}" name="mission">
                         <input type="text" hidden value="{{ $submission->id }}" name="submission">
+                        <input type="text" hidden value="{{ Auth::user()->student[0]->classroom_id }}" name="classroom">
                         <div class="mb-5">
                             <label 
                                 for="description" 

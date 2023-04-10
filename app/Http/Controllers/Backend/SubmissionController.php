@@ -88,7 +88,7 @@ class SubmissionController extends Controller
             ]);
         }
 
-        $progresses = Progress::whereMissionId($request->mission)->get();
+        $progresses = Progress::whereMissionId($request->mission)->whereClassroomId($classroom)->get();
         if ($progresses->count() > 0) {
             foreach ($progresses as $progress) {
                 $progress->update([

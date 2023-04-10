@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('progress');
             $table->foreignId('user_id');
             $table->foreignId('mission_id');
+            $table->foreignId('classroom_id');
             $table->integer('submission_count');
             $table->timestamps();
         });

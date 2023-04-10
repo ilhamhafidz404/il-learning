@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->foreignId('course_id');
-            $table->foreignId('classroom_id');
             $table->timestamps();
         });
     }

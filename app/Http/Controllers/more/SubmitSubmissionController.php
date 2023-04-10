@@ -42,21 +42,35 @@ class SubmitSubmissionController extends Controller
             }
         }
 
-        $check = Progress::whereUserId(Auth::user()->id)->whereMission_id($request->mission)->first();
+        // cek apakah ada progres dari user yang login dengan mission dan classroom yang di request (submit)
+        $check = Progress::whereUserId(Auth::user()->id)
+            ->whereMission_id($request->mission)
+            ->whereClassroomId($request->classroom)
+            ->first();
+
+        // jika ada berarti akan melakukan update pada progresnya (tambah progres)
         if ($check) {
-            $subCount = Submission::whereMissionId($request->mission)->count();
+            $subCount = Submission::whereMissionId($request->mission)
+                ->whereClassroomId($request->classroom)
+                ->count();
+
             if ($check->progress != $subCount && !$submitSubmmission) {
                 Progress::find($check->id)->update([
                     'progress' => $check->progress + 1,
                     'submission_count' => $subCount,
+                    'classroom_id' => $request->classroom
                 ]);
             }
+            // jika tidak ada berarti progressnya dibuat terlebih dahulu
         } else {
             Progress::create([
                 'progress' => 1,
                 'user_id' => Auth::user()->id,
                 'mission_id' => $request->mission,
-                'submission_count' => Submission::whereMissionId($request->mission)->count(),
+                'submission_count' => Submission::whereMissionId($request->mission)
+                    ->whereClassroomId($request->classroom)
+                    ->count(),
+                'classroom_id' => $request->classroom
             ]);
         }
 
