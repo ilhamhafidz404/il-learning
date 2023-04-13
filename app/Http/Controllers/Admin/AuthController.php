@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -19,6 +21,16 @@ class AuthController extends Controller
             'email' => 'required|email|exists:admins',
             'password' => 'required',
         ]);
+
+        $admin = Admin::whereEmail($request->email)->first();
+
+        // cek hash dari password
+        if (!password_verify($request->password, $admin->password)) {
+            return redirect()->back()->with([
+                'error' => "Passwords do not match",
+                'email' => $request->email
+            ]);
+        }
 
         if (
             auth()->guard('admin')->attempt([

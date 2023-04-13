@@ -27,7 +27,7 @@
         @endauth
     "
 >
-    <main class="grid grid-cols-2 gap-16 container mx-auto h-screen items-center">
+    <main class="grid md:grid-cols-2 md:py-0 py-10 md:px-0 px-5 gap-16 container mx-auto h-screen items-center">
         <section>
             <img 
                 src="{{ asset('images/logo.png') }}" 
@@ -37,7 +37,7 @@
             <h1 class="text-4xl tracking-wider uppercase dark:text-white"> 
                 On Development!
             </h1>
-            <p class="text-gray-500 dark:text-gray-300 mt-5 mb-10 w-[75%]">
+            <p class="text-gray-500 dark:text-gray-300 mt-5 mb-10 md:w-[75%] w-full">
                 Project IL-Learning masih dalam tahap development, sejauh ini bagaimana IL-Learningnya? apakah mengesankan?
             </p>
             

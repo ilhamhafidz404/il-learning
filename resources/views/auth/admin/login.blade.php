@@ -127,7 +127,7 @@
                   border-red-500
                 @enderror
               "
-              value="{{old("email")}}"
+              value="{{ old("email") ?? Session::get('email')}}"
               placeholder=" " 
             />
             <span 
@@ -179,6 +179,7 @@
                 peer-focus:scale-[0.9] 
                 peer-focus:-translate-y-4 
                 left-1
+                cursor-text
               "
             >
               Email
@@ -205,11 +206,11 @@
                 focus:border-blue-600 
                 peer 
                 bg-[#f9fafe]
-                @error('email')
+                @error('password')
                   border-red-500
                 @enderror
               "
-              placeholder=" " 
+              placeholder=" "
             />
             {{-- lock --}}
             <span 
@@ -222,7 +223,7 @@
                 peer-focus:text-blue-600 
                 peer-placeholder-shown:block 
                 hidden
-                @error('email')
+                @error('password')
                   text-red-500
                 @enderror
               "
@@ -253,7 +254,7 @@
                 peer-placeholder-shown:hidden 
                 block 
                 cursor-pointer
-                @error('email')
+                @error('password')
                   text-red-500
                 @enderror
               " 
@@ -302,6 +303,7 @@
                 peer-focus:scale-[0.9] 
                 peer-focus:-translate-y-4 
                 left-1
+                cursor-text
               "
             >
               Password
@@ -318,6 +320,11 @@
                 @error('password')
                   {{ $message }}
                 @enderror
+              </small>
+              <small class="text-red-500 block">
+                @if(Session::has('error'))
+                  {{ Session::get('error') }}
+                @endif
               </small>
             </div>
             <a href="" class="text-gray-600 text-[13px]">Lupa password?</a>

@@ -178,6 +178,7 @@
                 peer-focus:scale-[0.9] 
                 peer-focus:-translate-y-4 
                 left-1
+                cursor-text
               "
             >
               Email
@@ -301,6 +302,7 @@
                 peer-focus:scale-[0.9] 
                 peer-focus:-translate-y-4 
                 left-1
+                cursor-text
               "
             >
               Password

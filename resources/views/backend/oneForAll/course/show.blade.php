@@ -73,8 +73,13 @@
                     >
                         Add Mission
                     </a>
+
                     <a 
-                        href="{{ route('submission.create', ['slug' => $course->slug]) }}" 
+                        @if ($missions->count())
+                            href="{{ route('submission.create', ['slug' => $course->slug]) }}" 
+                        @else
+                            href="#"
+                        @endif
                         class="
                             bg-indigo-500 
                             hover:bg-indigo-400 
@@ -82,6 +87,9 @@
                             py-2 
                             rounded 
                             mb-3
+                            @if (!$missions->count())
+                                cursor-not-allowed
+                            @endif
                         "
                     >
                         Add Submission
