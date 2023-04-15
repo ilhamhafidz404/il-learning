@@ -55,7 +55,7 @@
             )
         </a>
         <a 
-            href="{{ route('demo') }}"
+            href="{{ route('lecturer.index') }}"
             class="
                 w-full 
                 bg-[#00a78e] 

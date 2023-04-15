@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\{
     ClassroomController,
     CourseController,
     DashboardController,
+    LecturerController,
     SubmissionController,
     MissionController
 };
@@ -43,6 +44,8 @@ Route::get('/demo', function () {
     return view('demotest');
 })->name('demo');
 
+
+// route admin
 Route::name('admin.')->group(function () {
     Route::get('/admin/login', [AuthController::class, 'login'])->name('login');
     Route::post('/admin/login', [AuthController::class, 'authenticate'])->name('authenticate');
@@ -88,34 +91,44 @@ Route::name('admin.')->group(function () {
     });
 });
 
+
+// route user login
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // mission
     Route::resource('/missions', MissionController::class, [
         'names' => 'mission',
         'only' => ['store', 'create', 'show']
     ]);
 
+    // submission
     Route::resource('/submission', SubmissionController::class, [
         'names' => 'submission',
         'only' => ['create', 'store', 'destroy', 'show']
     ]);
 
+    // classroom
     Route::resource('/classroom', ClassroomController::class, [
         'names' => 'classroom',
         'only' => ['index', 'show']
     ]);
 
+    // course
     Route::get('/course', [CourseController::class, 'index'])->name('course.index');
     Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.show');
 
+    // accept sks
     Route::post('/acceptsks', [AcceptSKSController::class, 'store'])->name('acceptsks.store');
     Route::get('/acceptsks', [AcceptSKSController::class, 'index'])->name('acceptsks.index');
 
+    // submission
     Route::delete('/submitsubmission/{id}', DeleteSubmitSubmission::class)->name('submitsubmission.destroy');
     Route::post('/submitsubmission', SubmitSubmissionController::class)->name('submitsubmission');
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    // lecturer
+    Route::get('/lecturers', LecturerController::class)->name('lecturer.index');
 
     Route::post('/change-theme-mode', ThemeModeController::class)->name('change.theme.mode');
 
