@@ -3,6 +3,46 @@
     Leturers
 @endsection
 @section('content')
+
+
+
+    <section 
+        id="lecturerDetailModal" 
+        class="
+            fixed 
+            inset-0 
+            bg-black/70 
+            z-50 
+            flex 
+            items-center 
+            justify-center 
+            hidden
+            duration-500
+        "
+    >
+        <span class="absolute top-0 right-0 m-20 cursor-pointer" onclick="toggleModalLecturerDetail()">
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke-width="1.5" 
+                stroke="currentColor" 
+                class="w-10 text-white"
+            >
+                <path 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    d="M6 18L18 6M6 6l12 12" 
+                />
+            </svg>
+
+        </span>
+        <div id="modalContent" class="bg-white p-10 rounded shadow">
+            <h1 id="lecturerName">Lecturer Name</h1>
+        </div>
+    </section>
+
+
     <section 
         class="
             col-span-5 
@@ -86,15 +126,35 @@
             @foreach ($lecturers as $lecturer)
                 <div 
                     class="
+                        relative
                         bg-white 
                         dark:bg-slate-800 
                         shadow
                         p-5 
                         rounded 
                         text-gray-800
+                        cursor-pointer
                         dark:text-gray-100 
                         text-center
+                        hover:after:scale-100
+                        after:content-['SeeMore']
+                        after:flex
+                        after:items-center
+                        after:justify-center
+                        after:text-white
+                        after:w-[95%]
+                        after:h-[95%]
+                        after:bg-black/30
+                        after:absolute
+                        after:top-1/2
+                        after:left-1/2
+                        after:-translate-x-1/2
+                        after:-translate-y-1/2
+                        after:duration-300
+                        after:scale-0
+                        
                     "
+                    onclick="toggleModalLecturerDetail()"
                 >
                     <img 
                         src="{{ asset('storage/'.$lecturer->profile) }}" 
@@ -111,10 +171,10 @@
 
 @section('script')
 <script>
-    const hideNoty= ()=>{
-        const noty = document.getElementById('noty')
-        noty.classList.toggle('flex');
-        noty.classList.toggle('hidden');
+    const toggleModalLecturerDetail= ()=>{
+        const lecturerDetailModal= document.getElementById('lecturerDetailModal');
+
+        lecturerDetailModal.classList.toggle('hidden');
     }
 </script>
 @endsection
