@@ -19,26 +19,57 @@
             hidden
             duration-500
         "
+        {{-- onclick="toggleModalLecturerDetail()" --}}
     >
-        <span class="absolute top-0 right-0 m-20 cursor-pointer" onclick="toggleModalLecturerDetail()">
-            <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke-width="1.5" 
-                stroke="currentColor" 
-                class="w-10 text-white"
-            >
-                <path 
-                    stroke-linecap="round" 
-                    stroke-linejoin="round" 
-                    d="M6 18L18 6M6 6l12 12" 
-                />
-            </svg>
+        <div 
+            id="modalContent" 
+            class="bg-white p-7 rounded shadow grid grid-cols-3 w-[70%] items-center relative"
+        >
 
-        </span>
-        <div id="modalContent" class="bg-white p-10 rounded shadow">
-            <h1 id="lecturerName">Lecturer Name</h1>
+            <span 
+                class="absolute top-0 right-0 m-7 cursor-pointer"
+                onclick="toggleModalLecturerDetail()"
+            >
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke-width="1.5" 
+                    stroke="currentColor" 
+                    class="w-10 text-indigo-500"
+                >
+                    <path 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" 
+                        d="M6 18L18 6M6 6l12 12" 
+                    />
+                </svg>
+            </span>
+
+            <div>
+                <img src="" alt="" id="lecturerImg" class="w-[300px] h-[300px] object-cover">
+            </div>
+            <div class="col-span-2">
+                <h1 id="lecturerName" class="text-2xl font-bold text-gray-800">Lecturer Name</h1>
+                <small id="lecturerNIP" class="text-sm text-gray-500"></small>
+
+                <p class="mt-10 flex items-center">
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke-width="1.5" 
+                        stroke="currentColor" 
+                        class="w-8 text-indigo-500 mr-3"
+                    >
+                        <path 
+                            stroke-linecap="round" 
+                            d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" 
+                        />
+                    </svg>
+                    <span id="lecturerEmail" class="text-gray-600"></span>
+                </p>
+            </div>
         </div>
     </section>
 
@@ -154,7 +185,12 @@
                         after:scale-0
                         
                     "
-                    onclick="toggleModalLecturerDetail()"
+                    onclick="toggleModalLecturerDetail(
+                        `{{ $lecturer->user->name }}`,
+                        `{{ $lecturer->profile }}`,
+                        `{{ $lecturer->nip }}`,
+                        `{{ $lecturer->user->email }}`,
+                    )"
                 >
                     <img 
                         src="{{ asset('storage/'.$lecturer->profile) }}" 
@@ -171,10 +207,15 @@
 
 @section('script')
 <script>
-    const toggleModalLecturerDetail= ()=>{
+    const toggleModalLecturerDetail= (name, img, nip, email)=>{
         const lecturerDetailModal= document.getElementById('lecturerDetailModal');
-
         lecturerDetailModal.classList.toggle('hidden');
+
+        document.getElementById('lecturerName').innerHTML= name;
+        document.getElementById('lecturerImg').src= `storage/${img}`;
+        document.getElementById('lecturerNIP').innerHTML= nip;
+        document.getElementById('lecturerEmail').innerHTML= email;
+
     }
 </script>
 @endsection
