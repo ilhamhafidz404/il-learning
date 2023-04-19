@@ -23,11 +23,24 @@
     >
         <div 
             id="modalContent" 
-            class="bg-white p-7 rounded shadow grid grid-cols-3 w-[70%] items-center relative"
+            class="
+                dark:bg-slate-800 
+                bg-white 
+                p-7 
+                rounded 
+                shadow 
+                grid 
+                md:grid-cols-3 
+                md:w-[70%]
+                w-[95%] 
+                items-center 
+                relative
+                box-border
+            "
         >
 
             <span 
-                class="absolute top-0 right-0 m-7 cursor-pointer"
+                class="absolute top-0 right-0 md:m-7 m-3 cursor-pointer"
                 onclick="toggleModalLecturerDetail()"
             >
                 <svg 
@@ -36,7 +49,7 @@
                     viewBox="0 0 24 24" 
                     stroke-width="1.5" 
                     stroke="currentColor" 
-                    class="w-10 text-indigo-500"
+                    class="md:w-10 w-7 text-indigo-500"
                 >
                     <path 
                         stroke-linecap="round" 
@@ -46,12 +59,25 @@
                 </svg>
             </span>
 
-            <div>
-                <img src="" alt="" id="lecturerImg" class="w-[300px] h-[300px] object-cover">
+            <div class="md:block flex justify-center">
+                <img 
+                    src="" 
+                    alt="" 
+                    id="lecturerImg" 
+                    class="md:w-[300px] md:h-[300px] md:mt-0 mt-10 object-cover"
+                >
             </div>
             <div class="col-span-2">
-                <h1 id="lecturerName" class="text-2xl font-bold text-gray-800">Lecturer Name</h1>
-                <small id="lecturerNIP" class="text-sm text-gray-500"></small>
+                <h1 
+                    id="lecturerName" 
+                    class="
+                        text-2xl 
+                        font-bold 
+                        text-gray-800 
+                        dark:text-gray-100
+                    "
+                >Lecturer Name</h1>
+                <small id="lecturerNIP" class="text-sm text-gray-500 dark:text-gray-300"></small>
 
                 <p class="mt-10 flex items-center">
                     <svg 
@@ -67,7 +93,7 @@
                             d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" 
                         />
                     </svg>
-                    <span id="lecturerEmail" class="text-gray-600"></span>
+                    <span id="lecturerEmail" class="text-gray-600 dark:text-gray-200"></span>
                 </p>
             </div>
         </div>
@@ -87,7 +113,8 @@
     >
         <h1 
             class="
-                flex
+                md:flex
+                text-center
                 items-center
                 justify-center
                 text-3xl 
@@ -98,7 +125,23 @@
                 dark:text-gray-100
             "
         >
-            <span class="mr-5 bg-indigo-500 w-[50px] h-[50px] rounded-full flex items-center justify-center">
+            <span 
+                class="
+                    mx-auto 
+                    md:mx-0
+                    md:mr-5 
+                    bg-indigo-500 
+                    w-[50px] 
+                    h-[50px] 
+                    rounded-full
+                    md:flex 
+                    inline-flex 
+                    items-center 
+                    justify-center
+                    md:mb-0
+                    mb-3
+                "
+            >
                 <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     fill="none" 
@@ -115,11 +158,13 @@
                 </svg>
             </span>
 
+            <br>
+
             ALOPE LECTURERS
         </h1>
 
         <form action="" class="text-center">
-            <div class="relative w-[70%] mx-auto">
+            <div class="relative md:w-[70%] w-full mx-auto">
                 <input 
                     type="text" 
                     class="
@@ -132,28 +177,49 @@
                         shadow
                     "
                     placeholder="Search..."
+                    name="q"
+                    value="{{ $_GET['q'] ?? ""}}"
                 >
 
-                <span class="absolute top-1/2 -translate-y-1/2 right-0 mr-4">
-                    <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke-width="1.5" 
-                        stroke="currentColor" 
-                        class="w-6 h-6 text-indigo-500"
-                    >
-                        <path 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round" 
-                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" 
-                        />
-                    </svg>
-                </span>
+                @if (isset($_GET['q']) && $_GET['q'] != '')
+                    <a href="{{ route('lecturer.index') }}" class="absolute top-1/2 -translate-y-1/2 right-0 mr-4">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-7 text-red-500"
+                        >
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                d="M6 18L18 6M6 6l12 12" 
+                            />
+                        </svg>
+                    </a>
+                @else
+                    <button class="absolute top-1/2 -translate-y-1/2 right-0 mr-4">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-7 text-indigo-500"
+                        >
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" 
+                            />
+                        </svg>
+                    </button>
+                @endif
             </div>
         </form>
 
-        <div class="grid grid-cols-4 mt-10 gap-5">
+        <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 mt-10 gap-5">
             @foreach ($lecturers as $lecturer)
                 <div 
                     class="

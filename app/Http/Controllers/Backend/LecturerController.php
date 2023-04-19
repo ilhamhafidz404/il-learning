@@ -12,8 +12,15 @@ class LecturerController extends Controller
 {
     public function __invoke()
     {
+        $lecturer = Lecturer::all();
+        if (isset($_GET['q']) && $_GET['q'] != '') {
+            $lecturer = Lecturer::whereHas('user', function ($q) {
+                $q->where('name', 'LIKE', "%" . $_GET['q'] . "%");
+            })->get();
+        }
+
         return view('backend.oneForAll.lecturer.index', [
-            'lecturers' => Lecturer::all(),
+            'lecturers' => $lecturer,
             'user' => Student::whereUserId(Auth::user()->id)->first()
         ]);
     }
