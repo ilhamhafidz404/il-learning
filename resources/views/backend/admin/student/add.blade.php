@@ -3,8 +3,8 @@
 @section('content')
     @include('components.confirmModal' , 
         [ 
-            'title' => 'Apakah anda yakin?', 
-            'subtitle' => 'Akun Student akan ditambhkan',
+            'title' => 'Are you sure?', 
+            'subtitle' => 'Make sure student account correctly',
             'to' => 'confirmAddLecturer'
         ]
     )
@@ -371,7 +371,6 @@
                                 @enderror
                             "
                             readonly
-                            disabled
                         >
                             <option value="" selected hidden id="selectClassroom">Select Program Study First</option>
                             @forelse ($classrooms as $classroom)
@@ -444,7 +443,7 @@
                                 text-gray-800
                             "
                         >
-                            Jenis Kelamin :
+                            Gender :
                         </label>
                         
                         <span class="inline-block mr-10">

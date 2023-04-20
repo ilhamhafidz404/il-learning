@@ -3,6 +3,13 @@
     Dashboard
 @endsection
 @section('content')
+@include('components.confirmModal' , 
+        [ 
+            'title' => 'Are you sure?', 
+            'subtitle' => 'End this semester on this day?',
+            'to' => 'confirmEndTheSemester'
+        ]
+    )
     @include('components.toast')
     <section 
         class="
@@ -14,12 +21,13 @@
             lg:pr-[70px]
             relative
             grid
-            grid-cols-6
+            lg:grid-cols-5
+            md:grid-cols-4
             gap-5
         "
     >
-        <div class="col-span-2 bg-white dark:bg-slate-800 rounded p-5 text-gray-200">
-            <h3 class="text-xl font-semibold dark:text-gray-100 text-gray-800 mb-5">Setting deadline SKS</h3>
+        <div class="col-span-2 bg-white dark:bg-slate-800 rounded p-5 text-gray-200 shadow">
+            <h3 class="text-xl font-semibold dark:text-gray-100 text-gray-800 mb-5 text-center">Setting deadline SKS</h3>
             @if ($setting->sks_countdown == null)
                 <div 
                     class="
@@ -142,6 +150,70 @@
                     </button>
                 </div>
             </form>
+        </div>
+
+        <div class="col-span-2">
+            <div class="bg-white dark:bg-slate-800 rounded p-5 text-gray-200 shadow">
+                <h3 class="text-xl font-semibold dark:text-gray-100 text-gray-800 mb-5 text-center">Setting Semester</h3>
+                @if ($setting->sks_countdown == null)
+                    <div 
+                        class="
+                            bg-red-500/40 
+                            p-5 
+                            rounded 
+                            text-center 
+                            text-red-500 
+                            font-semibold 
+                            border-2 
+                            border-red-500
+                            text-sm
+                        "
+                    >
+                        The course schedule has not been set yet. Please start the semester before this semester ends
+                    </div>
+                @else
+                    <div 
+                        class="
+                            bg-indigo-500/40 
+                            p-5 
+                            rounded 
+                            text-center 
+                            text-indigo-500 
+                            font-semibold 
+                            border-2 
+                            border-indigo-500
+                            text-sm
+                        "
+                    >
+                        This semester started on {{ $sksCountdown->diffForHumans() }}
+                    </div>
+                @endif
+
+                <form action="{{ route('admin.setting.semesterControl') }}" method="POST" id="confirmEndTheSemester">
+                    @csrf
+                    <button 
+                            @if ($setting->sks_countdown != null)
+                                onclick="toggleConfirm()"
+                            @endif
+                            type="button"
+                            class="
+                                w-full
+                                bg-indigo-500 
+                                hover:bg-indigo-400 
+                                px-5 
+                                py-2 
+                                rounded 
+                                text-white 
+                                mt-3
+                                @if (!$setting->sks_countdown)
+                                    cursor-not-allowed
+                                @endif
+                            "
+                        >
+                            Next Semester
+                        </button>
+                </form>
+            </div>
         </div>
     </section>
 @endsection

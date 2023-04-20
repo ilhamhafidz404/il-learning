@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('profile')->nullable();
             $table->enum('gender', ['man', 'woman']);
             $table->foreignId('classroom_id');
+            $table->integer('semester')->default(1);
             $table->text('about')->nullable();
             $table->string('birthday')->nullable();
             $table->text('address')->nullable();

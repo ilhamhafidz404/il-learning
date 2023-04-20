@@ -154,7 +154,9 @@
             <div>
                 <table class="w-full dark:text-gray-300">
                     <tr class="dark:text-white text-gray-800">
+                        <th class="py-6 min-w-[300px]">NIM</th>
                         <th class="py-6 min-w-[300px]">Name</th>
+                        <th class="py-6 min-w-[300px]">Semester</th>
                         <th class="min-w-[150px]">Action</th>
                     </tr>
                     @forelse ($students as $index => $student)
@@ -166,10 +168,16 @@
                                 @endif
                             "
                         >
+                            <td class="py-5 pl-7 w-[30%]">
+                                {{ $student->nim }}
+                            </td>
                             <td class="py-5 pl-7 w-[80%]">
                                 <a href="{{ route('admin.student.show', $student->user->username) }}">
                                     {{ $student->user->name }}
                                 </a>
+                            </td>
+                            <td class="py-5 pl-7 text-center">
+                                {{ $student->semester }}
                             </td>
                             <td class="text-center">
                                 <div class="flex items-center justify-center">
@@ -207,7 +215,7 @@
                         </tr>
                     @endforelse
                     <tr class="bg-indigo-500">
-                        <td colspan="2" class="px-10 pb-5 pt-1">
+                        <td colspan="5" class="px-10 pb-5 pt-1">
                             <div class="mt-5 w-full text-white">
                                 {{$students->links()}}
                             </div>

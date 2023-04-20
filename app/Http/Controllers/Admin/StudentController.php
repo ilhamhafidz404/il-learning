@@ -98,8 +98,8 @@ class StudentController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => "Berhasil menambah Student",
-            'message' => "Student sudah ditambhkan"
+            'title' => "update student account successfullt",
+            'message' => "Now student account is change"
         ]);
     }
 
@@ -111,8 +111,8 @@ class StudentController extends Controller
 
         return redirect()->back()->with([
             'success' => true,
-            'title' => 'Berhasil Menghapus Student',
-            'message' => 'Sekarang Student telah dihapus'
+            'title' => 'Delete student account successfully',
+            'message' => 'Now this student account was Deleted'
         ]);
     }
 }

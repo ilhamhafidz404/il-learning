@@ -88,6 +88,7 @@ Route::name('admin.')->group(function () {
         // 
         Route::get('/setting', [SettingController::class, 'index'])->name('setting');
         Route::post('admin/sks-countdown', [SettingController::class, 'sksCountdown'])->name('setting.sksCountdown');
+        Route::post('admin/semester-control', [SettingController::class, 'semesterControl'])->name('setting.semesterControl');
     });
 });
 
