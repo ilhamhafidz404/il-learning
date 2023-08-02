@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-
+  
   <main className="grid grid-cols-5 gap-10">
     <Sidebar />
     <slot></slot>

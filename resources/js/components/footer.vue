@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gray-800 text-gray-100">
+  <footer>
     <div class="container mx-auto px-3">
       <div class="grid lg:grid-cols-3 md:grid-cols-2 py-10 lg:gap-5 gap-10">
         <div>
@@ -92,7 +92,7 @@
         </h5>
       </div>
     </div>
-    <div class="py-5 text-center bg-gray-900 text-sm">
+    <div class="py-5 text-center bg-base-200 text-sm">
       Copyright &copy; by ALOPE
     </div>
   </footer>

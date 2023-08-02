@@ -46,16 +46,16 @@
 </template>
 
 <script>
-window.addEventListener("scroll", function () {
-  const nav = document.querySelector("nav");
-  nav.classList.toggle("bg-slate-800", scrollY > 0);
-  nav.classList.toggle("bg-transparent", scrollY == 0);
-  nav.classList.toggle("py-5", scrollY == 0);
-  nav.classList.toggle("py-3", scrollY > 0);
-  nav.classList.toggle("shadow", scrollY > 0);
-  nav.classList.toggle("px-5", scrollY == 0);
-  nav.classList.toggle("px-3", scrollY > 0);
-});
+// window.addEventListener("scroll", function () {
+//   const nav = document.querySelector("nav");
+//   nav.classList.toggle("bg-base-100", scrollY > 0);
+//   nav.classList.toggle("bg-transparent", scrollY == 0);
+//   nav.classList.toggle("py-5", scrollY == 0);
+//   nav.classList.toggle("py-3", scrollY > 0);
+//   nav.classList.toggle("shadow", scrollY > 0);
+//   nav.classList.toggle("px-5", scrollY == 0);
+//   nav.classList.toggle("px-3", scrollY > 0);
+// });
 export default {};
 </script>
 

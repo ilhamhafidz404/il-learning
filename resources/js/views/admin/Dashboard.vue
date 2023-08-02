@@ -19,11 +19,14 @@
 
 <script>
 import AdminLayout from "./AdminLayout.vue";
+
 //actions
 import { getCourses } from "./../../api/Course";
+
 // components
 import Widget from "../../components/widget.vue";
 import CourseCard from "../../components/cards/courseCard.vue";
+
 export default {
   components: {
     AdminLayout,
