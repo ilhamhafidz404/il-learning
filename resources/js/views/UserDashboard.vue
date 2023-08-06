@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout>
+  <DashboardLayout>
     <section class="col-span-4 pr-7 py-24 text-gray-200">
       <Widget />
       <section class="grid grid-cols-8 mt-10 gap-10">
@@ -14,22 +14,22 @@
         </div>
       </section>
     </section>
-  </AdminLayout>
+  </DashboardLayout>
 </template>
 
 <script>
-import AdminLayout from "./AdminLayout.vue";
+import DashboardLayout from "./DashboardLayout.vue";
 
 //actions
-import { getCourses } from "./../../api/Course";
+import { getCourses } from "./../api/Course";
 
 // components
-import Widget from "../../components/widget.vue";
-import CourseCard from "../../components/cards/courseCard.vue";
+import Widget from "../components/widget.vue";
+import CourseCard from "../components/cards/courseCard.vue";
 
 export default {
   components: {
-    AdminLayout,
+    DashboardLayout,
     //
     Widget,
     CourseCard,

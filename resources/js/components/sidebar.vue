@@ -5,22 +5,22 @@
   >
     <ul>
       <li class="mb-2">
-        <a
-          href="{{ route('admin.dashboard') }}"
+        <router-link
+          to="/dashboard"
           class="px-5 py-3 border-l-[5px] border-primary flex items-center hover:text-primary text-primary"
         >
           <CubeTransparentIcon myClass="w-5 mr-3" />
           Dashboard
-        </a>
+        </router-link>
       </li>
       <li class="mb-2">
-        <a
-          href="{{ route('admin.course.index') }}"
+        <router-link
+          to="/courses"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
         >
           <BookIcon myClass="w-5 mr-3" />
           Course
-        </a>
+        </router-link>
       </li>
       <li class="mb-2">
         <a

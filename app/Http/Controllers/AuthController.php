@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -29,5 +30,19 @@ class AuthController extends Controller
 
 
         return response()->json([]);
+    }
+
+    public function logout(Request $request)
+    {
+        //remove token
+        $removeToken = JWTAuth::invalidate(JWTAuth::getToken());
+
+        if ($removeToken) {
+            //return response JSON
+            return response()->json([
+                'success' => true,
+                'message' => 'Logout Berhasil!',
+            ]);
+        }
     }
 }
