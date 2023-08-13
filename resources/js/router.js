@@ -7,6 +7,7 @@ import Login from "./views/auth/Login.vue";
 
 // admin
 import AdminDashboard from "./views/admin/Dashboard.vue";
+import ClassroomIndex from "./views/classroom/Index.vue"
 
 // --------------------- user
 import UserDashboard from "./views/UserDashboard.vue";
@@ -28,6 +29,7 @@ const routes = [
 
     // admin
     { path: "/admin/dashboard", component: AdminDashboard },
+    { path: "/classroom/index", component: ClassroomIndex },
 ];
 
 const router = createRouter({
