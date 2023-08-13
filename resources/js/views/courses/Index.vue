@@ -10,20 +10,26 @@ import limitStr from "../../tools/limitStr.ts";
         :key="course.id"
         class="card bg-base-100 shadow-xl"
       >
-        <figure class="p-3">
-          <img
-            :src="'/storage/' + course.background"
-            :alt="course.name"
-            class="w-full min-h-[200px] max-h-[200px] rounded-md object-cover"
-          />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">{{ course.name }}</h2>
-          <p>{{ limitStr(course.description, 50) }}</p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+        <router-link :to="'/courses/' + course.slug">
+          <figure class="p-3">
+            <img
+              :src="'/storage/' + course.background"
+              :alt="course.name"
+              class="w-full min-h-[200px] max-h-[200px] rounded-md object-cover"
+            />
+          </figure>
+          <div class="card-body">
+            <small>
+              {{ course.program.name }} ({{ course.program.level }})</small
+            >
+            <h2 class="card-title -mt-2">{{ course.name }}</h2>
+            <p>{{ limitStr(course.description, 70) }}</p>
+            <!-- <div class="card-actions justify-end mt-5">
+            <button class="btn btn-secondary btn-sm">See My Course</button>
+            <button class="btn btn-primary btn-sm">Read More</button>
+          </div> -->
           </div>
-        </div>
+        </router-link>
       </div>
     </section>
   </DashboardLayout>
@@ -53,7 +59,6 @@ export default {
         console.error(error);
       }
     },
-    limitStr() {},
   },
   mounted() {
     this.getCoursesData();

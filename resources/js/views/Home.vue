@@ -9,7 +9,8 @@
       </div>
       <div class="flex items-center">
         <div>
-          <router-link to="/login">Login</router-link>
+          <!-- <router-link to="/login">Login</router-link> -->
+          <a href="/login">Login</a>
         </div>
         <div class="ml-10">
           <label class="swap swap-rotate">

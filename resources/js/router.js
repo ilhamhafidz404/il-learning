@@ -13,6 +13,7 @@ import UserDashboard from "./views/UserDashboard.vue";
 
 // Courses
 import CourseIndex from "./views/courses/Index.vue";
+import CourseShow from "./views/courses/Show.vue";
 
 const routes = [
     { path: "/", component: Home },
@@ -23,6 +24,7 @@ const routes = [
     // user
     { path: "/dashboard", component: UserDashboard },
     { path: "/courses", component: CourseIndex },
+    { path: "/courses/:slug", component: CourseShow, props: true },
 
     // admin
     { path: "/admin/dashboard", component: AdminDashboard },
