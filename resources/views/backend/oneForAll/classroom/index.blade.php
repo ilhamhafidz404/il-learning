@@ -18,7 +18,7 @@
         gap-5
     "
 >
-    <div class="bg-white dark:bg-slate-800 col-span-6 shadow-md rounded p-5">
+    <div class="bg-white dark:bg-slate-800 col-span-6 p-5 overflow-auto rounded-lg shadow hidden md:block">
         <h2 
             class="
                 text-3xl 
@@ -33,7 +33,7 @@
         <div class="overflow-auto pb-5 md:pb-0">
             <table class="w-[800px] md:w-full text-left">
                 <tr class="text-white bg-indigo-500">
-                    <th class="py-4 pl-5">#</th>
+                    <th class="py-4 pl-5">No.</th>
                     <th class="py-4 pl-5">Classroom</th>
                     <th>Mentor</th>
                     <th>Student Count</th>
@@ -47,7 +47,7 @@
                             @endif
                         "
                     >
-                        <td class="pl-5">
+                        <td class="pl-5 whitespace-nowrap">
                             {{ $index+1 }}
                         </td>
                         <td class="py-3">
@@ -58,10 +58,10 @@
                                 {{ $classroom->name }}
                             </a>
                         </td>
-                        <td>
+                        <td class="whitespace-nowrap">
                             {{ $classroom->mentor }}
                         </td>
-                        <td>
+                        <td class="whitespace-nowrap">
                             {{ $classroom->student->count() }}
                         </td>
                     </tr>
@@ -80,5 +80,23 @@
             </table>
         </div>
     </div>
+
+    {{-- responsive di mobile --}}
+
+    @foreach ($classrooms as $index => $classroom)
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow text-white md:hidden">
+            <div class="flex items-center space-x-2 text-sm">
+                    <div class="underline underline-offset-4 decoration-2 decoration-indigo-500">
+                        <a 
+                                        href="{{ route('classroom.show', $classroom->slug) }}"
+                                    >
+                                    {{ $classroom->name }}
+                                    </a>
+                            </div>
+                            <div>{{ $classroom->mentor }}</div>
+                            <div>{{ $classroom->student->count() }}</div>
+            </div>
+        </div>
+    @endforeach
 </section>
 @endsection

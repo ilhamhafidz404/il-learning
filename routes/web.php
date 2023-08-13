@@ -144,9 +144,9 @@ use Illuminate\Support\Facades\Route;
 //     Route::get('/lecturer-profile/{username}', [ProfileController::class, 'showLecturer'])->name('lecturer.profile.show');
 // });
 
-Auth::routes([
-    'register' => false
-]);
+// Auth::routes([
+//     'register' => false
+// ]);
 
 
 Route::get('/{any}', function () {

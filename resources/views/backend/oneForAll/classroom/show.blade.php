@@ -18,7 +18,7 @@
         gap-5
     "
 >
-    <div class="bg-white dark:bg-slate-800 col-span-6 shadow-md rounded p-5">
+    <div class="bg-white dark:bg-slate-800 col-span-6 p-5 overflow-auto rounded-lg shadow hidden md:block">
         <h2 
             class="
                 text-3xl 
@@ -34,7 +34,7 @@
         <div class="overflow-auto pb-5 md:pb-0">
             <table class="w-[800px] md:w-full text-left">
                 <tr class="text-white bg-indigo-500">
-                    <th class="py-4 pl-5">#</th>
+                    <th class="py-4 pl-5">No.</th>
                     <th class="py-4 pl-5">Student</th>
                 </tr>
                 @forelse ($classroom->student as $index => $student)
@@ -69,5 +69,25 @@
             </table>
         </div>
     </div>
+    
+    @foreach ($classroom->student as $index => $student)
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow text-white md:hidden">
+            <h2 
+            class="
+                text-xl 
+                font-semibold 
+                dark:text-indigo-500
+                p-3
+                text-indigo-500
+            "
+        >
+            Classmate
+            {{ $classroom->name }}
+        </h2>
+            <div class="flex items-center space-x-2 text-sm">
+                <div class="m-3"><span class="text-indigo-500 font-semibold">Student</span>: {{ $student->user->name }}</div>
+            </div>
+        </div>
+    @endforeach
 </section>
 @endsection
