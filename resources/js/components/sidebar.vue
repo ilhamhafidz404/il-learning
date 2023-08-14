@@ -7,7 +7,8 @@
       <li class="mb-2">
         <router-link
           to="/dashboard"
-          class="px-5 py-3 border-l-[5px] border-primary flex items-center hover:text-primary text-primary"
+          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
+          :class="{ '!border-primary text-primary': active == '/dashboard' }"
         >
           <CubeTransparentIcon myClass="w-5 mr-3" />
           Dashboard
@@ -17,6 +18,7 @@
         <router-link
           to="/courses"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
+          :class="{ '!border-primary text-primary': active == '/courses' }"
         >
           <BookIcon myClass="w-5 mr-3" />
           Course
@@ -44,6 +46,7 @@
         <router-link
           to="/classrooms"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
+          :class="{ '!border-primary text-primary': active == '/classrooms' }"
         >
           <BagBriefcaseIcon myClass="w-5 mr-3" />
           Classroom
@@ -103,6 +106,15 @@ export default {
     UserCardIcon,
     BarsArrowUpIcon,
     CogIcon,
+  },
+  data() {
+    return {
+      active: "/dashboard",
+    };
+  },
+  mounted() {
+    // console.log(this.$route.path);
+    this.active = this.$route.path;
   },
 };
 </script>
