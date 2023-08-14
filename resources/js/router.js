@@ -7,7 +7,7 @@ import Login from "./views/auth/Login.vue";
 
 // admin
 import AdminDashboard from "./views/admin/Dashboard.vue";
-import ClassroomIndex from "./views/classroom/Index.vue"
+import ClassroomIndex from "./views/classroom/Index.vue";
 
 // --------------------- user
 import UserDashboard from "./views/UserDashboard.vue";
@@ -27,9 +27,11 @@ const routes = [
     { path: "/courses", component: CourseIndex },
     { path: "/courses/:slug", component: CourseShow, props: true },
 
+    //classroom
+    { path: "/classrooms", component: ClassroomIndex },
+
     // admin
     { path: "/admin/dashboard", component: AdminDashboard },
-    { path: "/classroom/index", component: ClassroomIndex },
 ];
 
 const router = createRouter({

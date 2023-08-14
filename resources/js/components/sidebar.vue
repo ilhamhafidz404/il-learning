@@ -22,7 +22,7 @@
           Course
         </router-link>
       </li>
-      <li class="mb-2">
+      <!-- <li class="mb-2">
         <a
           href="{{ route('admin.lecturer.index') }}"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
@@ -30,8 +30,8 @@
           <UserGroupIcon myClass="w-5 mr-3" />
           Lecturer
         </a>
-      </li>
-      <li class="mb-2">
+      </li> -->
+      <!-- <li class="mb-2">
         <a
           href="{{ route('admin.student.index') }}"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
@@ -39,17 +39,17 @@
           <AcademicCapIcon myClass="w-5 mr-3" />
           Student
         </a>
-      </li>
+      </li> -->
       <li class="mb-2">
-        <a
-          href="{{ route('admin.classroom.index') }}"
+        <router-link
+          to="/classrooms"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
         >
           <BagBriefcaseIcon myClass="w-5 mr-3" />
           Classroom
-        </a>
+        </router-link>
       </li>
-      <li class="mb-2">
+      <!-- <li class="mb-2">
         <a
           href="{{ route('admin.program.index') }}"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
@@ -57,8 +57,8 @@
           <UserCardIcon myClass="w-5 mr-3" />
           Study Program
         </a>
-      </li>
-      <li class="mb-2">
+      </li> -->
+      <!-- <li class="mb-2">
         <a
           href="{{ route('admin.level.index') }}"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
@@ -66,7 +66,7 @@
           <BarsArrowUpIcon myClass="w-5 mr-3" />
           Level
         </a>
-      </li>
+      </li> -->
       <li class="mb-2">
         <hr class="my-5" />
       </li>
