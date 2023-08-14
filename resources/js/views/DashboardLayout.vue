@@ -8,16 +8,30 @@
 </template>
 
 <script>
+import router from "@/router";
+
 import Sidebar from "../components/sidebar.vue";
 import Navbar from "../components/navbar.vue";
 export default {
   name: "DashboardLayout",
+  data() {
+    return {
+      authData: [],
+    };
+  },
   components: {
     Navbar,
     Sidebar,
   },
+  mounted() {
+    const dataOnStorage = localStorage.getItem("authData");
+    if (dataOnStorage !== null) {
+      console.log("masuk sini");
+      this.authData = JSON.parse(dataOnStorage);
+    } else {
+      router.push("/login");
+    }
+  },
 };
 </script>
-
-<style>
-</style>
+<style></style>;

@@ -72,6 +72,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Progress::class);
     }
 
+    public function Classroom()
+    {
+        return $this->belongsTo(Classroom::class);
+    }
+
     // Rest omitted for brevity
 
     /**

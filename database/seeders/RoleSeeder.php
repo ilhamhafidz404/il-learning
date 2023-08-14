@@ -18,15 +18,15 @@ class RoleSeeder extends Seeder
         Role::insert([
             [
                 'name' => 'student',
-                'guard_name' => 'web'
+                'guard_name' => 'api'
             ],
             [
                 'name' => 'assistant',
-                'guard_name' => 'web'
+                'guard_name' => 'api'
             ],
             [
                 'name' => 'lecturer',
-                'guard_name' => 'web'
+                'guard_name' => 'api'
             ],
         ]);
     }

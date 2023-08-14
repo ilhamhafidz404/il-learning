@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $user = User::whereEmail($request->email)->first();
+        $user = User::with("classroom")->whereEmail($request->email)->first();
 
         if (!$token = auth()->attempt($request->only('email', 'password'))) {
             return response()->json([
@@ -24,7 +24,9 @@ class AuthController extends Controller
             return response()->json([
                 "code" => "IL-01",
                 "message" => "Login Successfully",
-                'token' => $token
+                'token' => $token,
+                "user" => $user,
+                "authStatus" => "authenticate"
             ]);
         }
 

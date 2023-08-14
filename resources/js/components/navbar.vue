@@ -19,13 +19,22 @@
       <!--  -->
       <div className="flex-none">
         <div className="dropdown dropdown-end">
-          <label tabIndex="{0}" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-              />
+          <div class="flex items-center">
+            <label
+              tabIndex="{0}"
+              className="btn btn-ghost btn-circle avatar mr-3"
+            >
+              <div className="w-10 rounded-full">
+                <img
+                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                />
+              </div>
+            </label>
+            <div>
+              <p class="-mb-2 font-bold">{{ authData.name }}</p>
+              <small>{{ authData.classroom }}</small>
             </div>
-          </label>
+          </div>
           <ul
             tabIndex="{0}"
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
@@ -47,6 +56,7 @@
 
 <script>
 import axios from "axios";
+import router from "@/router";
 // window.addEventListener("scroll", function () {
 //   const nav = document.querySelector("nav");
 //   nav.classList.toggle("bg-base-100", scrollY > 0);
@@ -58,6 +68,14 @@ import axios from "axios";
 //   nav.classList.toggle("px-3", scrollY > 0);
 // });
 export default {
+  data() {
+    return {
+      authData: {
+        name: "",
+        classroom: "",
+      },
+    };
+  },
   methods: {
     async handleLogout() {
       try {
@@ -76,6 +94,18 @@ export default {
         console.error(error);
       }
     },
+  },
+  mounted() {
+    const dataOnStorage = localStorage.getItem("authData");
+    if (dataOnStorage !== null) {
+      const resAuth = JSON.parse(localStorage.getItem("authData"));
+      this.authData = {
+        name: resAuth.user.name,
+        classroom: resAuth.user.classroom.name,
+      };
+    } else {
+      router.push("/login");
+    }
   },
 };
 </script>

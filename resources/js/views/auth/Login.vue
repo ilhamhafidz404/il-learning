@@ -168,10 +168,22 @@ export default {
         };
 
         if (this.formStatus.code == "IL-01") {
-          router.push("/admin/dashboard");
+          const dataToStore = {
+            token: result.data.token,
+            user: result.data.user,
+          };
+
+          router.push("/dashboard");
+          localStorage.setItem("authData", JSON.stringify(dataToStore));
         }
       }
     },
+  },
+  mounted() {
+    const dataOnStorage = localStorage.getItem("authData");
+    if (dataOnStorage != null) {
+      router.push("/dashboard");
+    }
   },
 };
 </script>

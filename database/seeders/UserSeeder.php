@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             'email' => 'xxspanzie@gmail.com',
             'password' => bcrypt('password'),
             'mode' => 'dark',
+            "classroom_id" => 1
         ])->assignRole('student');
 
         User::create([
@@ -31,6 +32,7 @@ class UserSeeder extends Seeder
             'email' => 'ajacobaan91@gmail.com',
             'password' => bcrypt('password'),
             'mode' => 'light',
+            "classroom_id" => 1
         ])->assignRole('student');
 
         // lecturer
@@ -40,6 +42,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'mode' => 'light',
             'username' => 'sherly',
+            "classroom_id" => 1
         ])->assignRole('lecturer');
 
         User::create([
@@ -48,6 +51,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'mode' => 'light',
             'username' => 'iman',
+            "classroom_id" => 1
         ])->assignRole('lecturer');
     }
 }
