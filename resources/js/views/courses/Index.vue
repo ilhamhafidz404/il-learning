@@ -3,6 +3,7 @@ import limitStr from "../../tools/limitStr.ts";
 </script>
 
 <template>
+  <Loading :show="isLoading" />
   <DashboardLayout>
     <section class="mt-24 grid gap-5 grid-cols-3 col-span-4 pr-7">
       <div
@@ -37,22 +38,27 @@ import limitStr from "../../tools/limitStr.ts";
 
 <script>
 import DashboardLayout from "../DashboardLayout.vue";
+import Loading from "../../components/loading.vue";
 
 // actions
 import { getCourses } from "../../api/Course";
 export default {
   components: {
     DashboardLayout,
+    Loading,
   },
   data() {
     return {
       courses: [],
+      isLoading: false,
     };
   },
   methods: {
     async getCoursesData() {
+      this.isLoading = false;
       try {
         let result = await getCourses();
+        this.isLoading = true;
         this.courses = result.data;
         console.log(this.courses);
       } catch (error) {

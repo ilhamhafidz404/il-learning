@@ -10,22 +10,28 @@
       class="w-full sm:w-[35%] h-[65%] sm:!h-full object-cover rounded"
     />
     <div class="w-full sm:w-[65%]">
-      <small class="uppercase dark:text-gray-100">
+      <small class="uppercase dark:text-gray-200 text-gray-700">
         {{ "tEKNIK INFORMATIKA" + " " + "S1" }}
       </small>
-      <h2 class="text-xl font-medium mb-3 dark:text-gray-100 uppercase">
+      <h2
+        class="text-xl font-medium mb-3 dark:text-gray-200 text-gray-700 uppercase"
+      >
         {{ course.name }}
       </h2>
       <span>
         <!-- @foreach ($course->lecturer as $lecturer) @foreach
                 ($lecturer->classroom as $classroom) @if ($classroom->name ==
                 $user->classroom->name) -->
-        <small class="font-semibold dark:text-gray-100 capitalize">
+        <small
+          class="font-semibold dark:text-gray-200 text-gray-700 capitalize"
+        >
           {{ "Sherly Gina Supratman, M.Kom," }}
         </small>
         <!-- @endif @endforeach @endforeach -->
-        <small class="dark:text-gray-100"> | </small>
-        <small class="dark:text-gray-100">{{ "TINFC-2022-01" }}</small>
+        <small class="dark:text-gray-200 text-gray-700"> | </small>
+        <small class="dark:text-gray-200 text-gray-700">{{
+          "TINFC-2022-01"
+        }}</small>
       </span>
     </div>
   </a>

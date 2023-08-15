@@ -1,6 +1,6 @@
 <template>
   <DashboardLayout>
-    <section class="col-span-4 pr-7 py-24 text-gray-200">
+    <section class="col-span-4 pr-7 py-24 dark:text-gray-200 text-gray-700">
       <Widget />
       <section class="grid grid-cols-8 mt-10 gap-10">
         <div class="col-span-5 p-5 shadow-xl rounded">

@@ -23,8 +23,18 @@
       </div>
     </section>
     <section
-      class="z-20 right-0 flex items-center rounded justify-center border-blue-500 order-1 sm:order-2 md:right-[50px] lg:right-0 top-0 md:top-1/2 lg:top-0 md:-translate-y-1/2 lg:-translate-y-0 relative md:absolute lg:relative w-auto md:w-[400px] lg:w-auto py-0 md:py-7 lg:py-0 border-b-0 md:border-b-[5px] lg:border-b-0 h-screen md:h-auto bg-[#1d232a]"
+      class="z-20 right-0 flex items-center rounded justify-center border-blue-500 order-1 sm:order-2 md:right-[50px] lg:right-0 top-0 md:top-1/2 lg:top-0 md:-translate-y-1/2 lg:-translate-y-0 relative md:absolute lg:relative w-auto md:w-[400px] lg:w-auto py-0 md:py-7 lg:py-0 border-b-0 md:border-b-[5px] lg:border-b-0 h-screen md:h-auto"
     >
+      <div
+        class="absolute top-0 right-0 m-7 text-gray-700 dark:text-gray-200 p-1 rounded-full flex items-center justify-center"
+      >
+        <label class="swap swap-rotate">
+          <input type="checkbox" @click="toggleTheme" />
+          <SunIcon />
+          <MoonIcon />
+        </label>
+      </div>
+
       <div class="w-[80%] md:w-[85%] lg:w-[70%] text-center">
         <div class="mb-10">
           <img
@@ -118,7 +128,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import router from "@/router";
 
 //ation
@@ -130,9 +139,11 @@ import Loading from "../../components/loading.vue";
 import AtIcon from "../../components/icons/atEmailIcon.vue";
 import EyeIcon from "../../components/icons/eyeIcon.vue";
 import LockIcon from "../../components/icons/lockIcon.vue";
+import MoonIcon from "../../components/icons/moonIcon.vue";
+import SunIcon from "../../components/icons/sunIcon.vue";
 
 export default {
-  components: { LockIcon, EyeIcon, AtIcon, Loading },
+  components: { LockIcon, EyeIcon, AtIcon, Loading, MoonIcon, SunIcon },
   data() {
     return {
       formData: {
@@ -154,6 +165,20 @@ export default {
         message: "",
         code: "",
       };
+    },
+    toggleTheme() {
+      const htmlEL = document.getElementsByTagName("html");
+      const dataThemeValue = htmlEL[0].getAttribute("data-theme");
+      if (dataThemeValue == "light") {
+        htmlEL[0].setAttribute("data-theme", "dark");
+        htmlEL[0].classList.add("dark");
+        htmlEL[0].classList.remove("light");
+      } else {
+        htmlEL[0].setAttribute("data-theme", "light");
+        htmlEL[0].classList.add("light");
+        htmlEL[0].classList.remove("dark");
+      }
+      // console.log(htmlEl);
     },
     async handleSubmit() {
       // reset fromSatatus

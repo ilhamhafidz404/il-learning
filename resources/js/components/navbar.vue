@@ -17,6 +17,13 @@
         </router-link>
       </div>
       <!--  -->
+      <div class="mr-10">
+        <label class="swap swap-rotate">
+          <input type="checkbox" @click="toggleTheme" />
+          <SunIcon />
+          <MoonIcon />
+        </label>
+      </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
           <div class="flex items-center">
@@ -58,8 +65,16 @@
 
 <script>
 import router from "@/router";
+
+// icons
+import SunIcon from "./icons/sunIcon.vue";
+import MoonIcon from "./icons/moonIcon.vue";
 // });
 export default {
+  conmponents: {
+    MoonIcon,
+    SunIcon,
+  },
   data() {
     return {
       authData: {
@@ -72,6 +87,21 @@ export default {
     handleLogout() {
       localStorage.removeItem("authData");
       router.push("/login");
+    },
+    toggleTheme() {
+      const htmlEL = document.getElementsByTagName("html");
+
+      const dataThemeValue = htmlEL[0].getAttribute("data-theme");
+      if (dataThemeValue == "light") {
+        htmlEL[0].setAttribute("data-theme", "dark");
+        htmlEL[0].classList.add("dark");
+        htmlEL[0].classList.remove("light");
+      } else {
+        htmlEL[0].setAttribute("data-theme", "light");
+        htmlEL[0].classList.add("light");
+        htmlEL[0].classList.remove("dark");
+      }
+      // console.log(htmlEl);
     },
   },
   mounted() {

@@ -1,14 +1,14 @@
 <template>
   <aside
     id="sidebar"
-    class="shadow-xl min-h-screen fixed py-24 w-[250px] duration-300 -left-full lg:left-0 border-r sm:border-0 z-40 text-gray-200"
+    class="shadow-xl min-h-screen fixed py-24 w-[250px] duration-300 -left-full lg:left-0 border-r sm:border-0 z-50 text-gray-200"
   >
     <ul>
       <li class="mb-2">
         <router-link
           to="/dashboard"
-          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
-          :class="{ '!border-primary text-primary': active == '/dashboard' }"
+          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary dark:text-gray-200 text-gray-700"
+          :class="{ '!border-primary !text-primary': active == '/dashboard' }"
         >
           <CubeTransparentIcon myClass="w-5 mr-3" />
           Dashboard
@@ -17,8 +17,8 @@
       <li class="mb-2">
         <router-link
           to="/courses"
-          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
-          :class="{ '!border-primary text-primary': active == '/courses' }"
+          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary dark:text-gray-200 text-gray-700"
+          :class="{ '!border-primary !text-primary': active == '/courses' }"
         >
           <BookIcon myClass="w-5 mr-3" />
           Course
@@ -45,8 +45,8 @@
       <li class="mb-2">
         <router-link
           to="/classrooms"
-          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
-          :class="{ '!border-primary text-primary': active == '/classrooms' }"
+          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary dark:text-gray-200 text-gray-700"
+          :class="{ '!border-primary !text-primary': active == '/classrooms' }"
         >
           <BagBriefcaseIcon myClass="w-5 mr-3" />
           Classroom
@@ -76,7 +76,7 @@
       <li class="mb-2">
         <a
           href="{{ route('admin.setting') }}"
-          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary"
+          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary dark:text-gray-200 text-gray-700"
         >
           <CogIcon myClass="w-5 mr-3" />
           Setting
