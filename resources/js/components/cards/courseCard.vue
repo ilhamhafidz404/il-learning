@@ -1,8 +1,8 @@
 <template>
-  <a
+  <router-link
     v-for="course in courses"
     :key="course.id"
-    href="/course"
+    :to="'/courses/' + course.slug"
     class="btn btn-ghost flex flex-col gap-5 items-center h-[300px] sm:h-[170px] p-5 text-left"
   >
     <img
@@ -34,7 +34,7 @@
         }}</small>
       </span>
     </div>
-  </a>
+  </router-link>
 </template>
 
 <script>
