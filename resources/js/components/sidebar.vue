@@ -1,7 +1,7 @@
 <template>
   <aside
     id="sidebar"
-    class="shadow-xl min-h-screen fixed py-24 w-[250px] duration-300 -left-full lg:left-0 border-r sm:border-0 z-50 text-gray-200"
+    class="shadow-xl min-h-screen fixed py-24 w-[250px] duration-300 -left-full lg:left-0 border-r sm:border-0 z-40 text-gray-200 bg-base-100"
   >
     <ul>
       <li class="mb-2">
