@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ProgressController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource("/courses", CourseController::class);
 Route::apiResource("/classrooms", ClassroomController::class);
+Route::apiResource("/missions", MissionController::class);
 Route::get("/progress/{userId}/", ProgressController::class);
 
 //
