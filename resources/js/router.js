@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 
 // auth
 import Login from "./views/auth/Login.vue";
+import AdminLogin from "./views/auth/AdminLogin.vue";
 
 // admin
 import AdminDashboard from "./views/admin/Dashboard.vue";
@@ -21,6 +22,7 @@ const routes = [
 
     // auth
     { path: "/login", component: Login },
+    { path: "/admin/login", component: AdminLogin },
 
     // user
     { path: "/dashboard", component: UserDashboard },
