@@ -22,24 +22,26 @@ class AuthController extends Controller
                 ]);
             }
 
+            $loginAs = "";
+
+            if ($user->hasRole("student")) {
+                $loginAs = "student";
+            } else {
+                $loginAs = "lecturer";
+            }
+
             if ($user && Hash::check($request->password, $user->password)) {
                 return response()->json([
                     "code" => "IL-01",
                     "message" => "Login Successfully",
                     'token' => $token,
                     "user" => $user,
-                    "authStatus" => "authenticate"
+                    "authStatus" => "authenticate",
+                    "loginAs" => $loginAs
                 ]);
             }
         } else {
             $admin = Admin::whereEmail($request->email)->first();
-
-            // if (!$token = auth()->attempt($request->only('email', 'password'))) {
-            //     return response()->json([
-            //         "code" => "IL-02",
-            //         "message" => "Email atau Password tidak sesuai",
-            //     ]);
-            // }
 
             if ($admin && Hash::check($request->password, $admin->password)) {
                 return response()->json([
@@ -48,7 +50,7 @@ class AuthController extends Controller
                     // 'token' => $token,
                     "admin" => $admin,
                     "authStatus" => "authenticate",
-                    "isAdmin" => true
+                    "loginAs" => "admin"
                 ]);
             } else {
                 return response()->json([

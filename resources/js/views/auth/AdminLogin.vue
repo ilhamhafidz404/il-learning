@@ -197,7 +197,7 @@ export default {
             admin: result.data.admin,
           };
 
-          router.push("/dashboard/admin");
+          router.push("/admin/dashboard");
           localStorage.setItem("authData", JSON.stringify(dataToStore));
         }
       }

@@ -175,7 +175,6 @@ export default {
         htmlEL[0].classList.add("light");
         htmlEL[0].classList.remove("dark");
       }
-      // console.log(htmlEl);
     },
     async handleSubmit() {
       // reset fromSatatus
@@ -195,7 +194,12 @@ export default {
             user: result.data.user,
           };
 
-          router.push("/dashboard");
+          if (result.data.loginAs == "student") {
+            router.push("/dashboard");
+          } else {
+            router.push("/lecturer/dashboard");
+          }
+
           localStorage.setItem("authData", JSON.stringify(dataToStore));
         }
       }
