@@ -192,6 +192,7 @@ export default {
           const dataToStore = {
             token: result.data.token,
             user: result.data.user,
+            userData: result.data.userData,
           };
 
           if (result.data.loginAs == "student") {

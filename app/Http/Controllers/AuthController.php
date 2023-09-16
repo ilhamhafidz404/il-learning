@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Lecturer;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,11 +25,14 @@ class AuthController extends Controller
             }
 
             $loginAs = "";
+            $userData = [];
 
             if ($user->hasRole("student")) {
                 $loginAs = "student";
+                $userData = Student::with("user")->first();
             } else {
                 $loginAs = "lecturer";
+                $userData = Lecturer::with("user")->with("course")->first();
             }
 
             if ($user && Hash::check($request->password, $user->password)) {
@@ -36,6 +41,7 @@ class AuthController extends Controller
                     "message" => "Login Successfully",
                     'token' => $token,
                     "user" => $user,
+                    "userData" => $userData,
                     "authStatus" => "authenticate",
                     "loginAs" => $loginAs
                 ]);
