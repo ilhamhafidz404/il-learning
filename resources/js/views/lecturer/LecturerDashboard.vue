@@ -5,7 +5,7 @@
       <section class="grid grid-cols-8 mt-10 gap-10">
         <div class="col-span-5 p-5 shadow-xl rounded">
           <h3 class="text-2xl font-bold">Courses</h3>
-          <CourseCard :courses="courses" />
+          <CourseCard :courses="courses" :isLecturer="true" />
         </div>
       </section>
     </section>
