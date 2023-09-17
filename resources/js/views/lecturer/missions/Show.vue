@@ -1,33 +1,42 @@
+<script setup>
+// tools
+import diffForHumans from "./../../../tools/diffForHumans";
+</script>
 <template>
   <DashboardLayout>
     <section id="bg" class="w-full right-0 h-[350px] absolute mt-16"></section>
     <section class="mt-40 relative z-30 col-span-4 pr-7">
       <div class="relative h-[200px]">
         <h1 class="text-3xl text-gray-200 uppercase font-bold">
-          {{ course.name }}
+          {{ mission.name }}
         </h1>
+        <!-- <p>{{ mission.course.name }}</p> -->
 
         <div class="absolute right-0 bottom-[20px] flex gap-3">
-          <router-link to="/mission/create/" class="btn btn-primary">
-            Add Mission
+          <!-- <router-link to="/mission/create/" class="btn btn-accent"
+            >Add Mission</router-link
+          > -->
+          <router-link to="/submission/create/" class="btn btn-primary">
+            Add Submission
           </router-link>
         </div>
       </div>
-      <!-- <img src="/images/auth/slide1.jpg" alt="" /> -->
+
       <div class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow">
         <router-link
-          :to="'/lecturer/missions/' + mission.slug"
-          v-for="mission in missions"
-          :key="mission.id"
+          :to="'/lecturer/mission/' + submission.slug"
+          v-for="submission in submissions"
+          :key="submission.id"
           class="bg-base-200 p-5 rounded hover:bg-base-300"
         >
-          <h2>{{ mission.name }}</h2>
-          <div class="flex gap-3 mt-1">
-            <ArchiveBoxIcon myClass="w-5" />
-            <p class="text-sm">
-              Has {{ mission.submission.length }} submissions
-            </p>
-          </div>
+          <h2 class="font-semibold mb-2">{{ submission.name }}</h2>
+          <p class="text-sm mb-1">
+            {{ diffForHumans(submission.deadline) }}
+          </p>
+          <h3 class="text-sm">
+            For :
+            <span class="font-semibold">{{ submission.classroom.name }}</span>
+          </h3>
         </router-link>
       </div>
     </section>
@@ -35,12 +44,8 @@
 </template>
 
 <script>
-// icons
-import ArchiveBoxIcon from "../../../components/icons/archiveBoxIcon.vue";
-
 // api
-import { showCourses } from "../../../api/Course";
-
+import { showMission } from "../../../api/Mission";
 //
 import DashboardLayout from "./../../Dashboardlayout.vue";
 
@@ -48,32 +53,29 @@ import DashboardLayout from "./../../Dashboardlayout.vue";
 export default {
   props: ["slug"],
   components: {
-    //icons
-    ArchiveBoxIcon,
     //
     DashboardLayout,
   },
   data() {
     return {
-      course: [],
-      missions: [],
-      progresses: [],
+      mission: {},
+      submissions: [],
     };
   },
   methods: {
-    async showCoursesData() {
+    async showMissionData() {
       try {
-        let result = await showCourses(this.slug);
+        let result = await showMission(this.slug);
         //
-        this.course = result.data.course;
-        this.missions = result.data.missions;
+        this.mission = result.data.mission;
+        this.submissions = result.data.submissions;
       } catch (error) {
         console.error(error);
       }
     },
   },
   mounted() {
-    this.showCoursesData();
+    this.showMissionData();
   },
 };
 </script>

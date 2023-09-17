@@ -20,6 +20,8 @@ import CourseShow from "./views/courses/Show.vue";
 import LecturerDashboard from "./views/lecturer/LecturerDashboard.vue";
 // Courses
 import LecturerCourseShow from "./views/lecturer/courses/Show.vue";
+// Courses
+import LecturerMissionShow from "./views/lecturer/missions/Show.vue";
 
 const routes = [
     { path: "/", component: Home },
@@ -38,6 +40,11 @@ const routes = [
     {
         path: "/lecturer/courses/:slug",
         component: LecturerCourseShow,
+        props: true,
+    },
+    {
+        path: "/lecturer/missions/:slug",
+        component: LecturerMissionShow,
         props: true,
     },
 
