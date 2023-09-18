@@ -36,6 +36,24 @@ export async function insertMission(data: { name: string; courseId: number }) {
     }
 }
 
+export async function updateMission(data: { slug: String; name: String }) {
+    try {
+        let result = await axios.patch(
+            `http://127.0.0.1:8000/api/missions/${data.slug}`,
+            {
+                name: data.name,
+            }
+        );
+        if (result) {
+            console.log(result);
+            return result;
+        }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 export async function deleteMission(missionId: number) {
     try {
         let result = await axios.delete(

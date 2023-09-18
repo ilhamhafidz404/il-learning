@@ -40,6 +40,20 @@ class MissionController extends Controller
         ]);
     }
 
+    public function update(Request $request, $slug)
+    {
+        $mission = Mission::whereSlug($slug)->first();
+        $mission->update([
+            "name" => $request->name,
+            "slug" => Str::slug($request->name),
+        ]);
+
+        return response()->json([
+            "code" => "IL-01",
+            "message" => "Update Mission Successfully",
+        ]);
+    }
+
     public function destroy($id)
     {
         Mission::find($id)->delete();

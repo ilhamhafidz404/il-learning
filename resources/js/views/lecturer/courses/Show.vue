@@ -28,12 +28,20 @@
               </p>
             </div>
           </router-link>
-          <button
-            @click="confirmDelete(mission.id)"
-            class="btn btn-error h-full absolute right-0 top-0 rounded-r rounded-l-none dark:text-gray-100"
-          >
-            <TrashIcon myClass="w-6 h-6" />
-          </button>
+          <div class="h-full absolute right-0 top-0">
+            <button
+              @click="editMission(mission.slug, mission.name)"
+              class="btn h-full btn-info rounded-none dark:text-gray-100"
+            >
+              <PencilIcon myClass="w-6 h-6" />
+            </button>
+            <button
+              @click="confirmDelete(mission.id)"
+              class="btn h-full btn-error rounded-r rounded-l-none dark:text-gray-100"
+            >
+              <TrashIcon myClass="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -43,6 +51,12 @@
       :courseId="course.id"
       @resetGetPage="showCoursesData"
     />
+
+    <EditMissionModal
+      :courseName="course.name"
+      :selectedMission="editedMission"
+      @resetGetPage="showCoursesData"
+    />
   </DashboardLayout>
 </template>
 
@@ -50,6 +64,7 @@
 // icons
 import ArchiveBoxIcon from "../../../components/icons/archiveBoxIcon.vue";
 import TrashIcon from "../../../components/icons/trashIcon.vue";
+import PencilIcon from "../../../components/icons/pencilIcon.vue";
 
 // api
 import { showCourses } from "../../../api/Course";
@@ -57,6 +72,7 @@ import { deleteMission } from "../../../api/Mission";
 
 // components
 import CreateMissionModal from "../../../components/modal/createMission.vue";
+import EditMissionModal from "../../../components/modal/editMission.vue";
 
 //
 import DashboardLayout from "./../../Dashboardlayout.vue";
@@ -68,16 +84,25 @@ export default {
     //icons
     ArchiveBoxIcon,
     TrashIcon,
+    PencilIcon,
     // components
     CreateMissionModal,
+    EditMissionModal,
     //
     DashboardLayout,
+    PencilIcon,
   },
   data() {
     return {
       course: [],
       missions: [],
       progresses: [],
+
+      // for edit
+      editedMission: {
+        slug: 0,
+        name: "",
+      },
     };
   },
   methods: {
@@ -91,6 +116,13 @@ export default {
         console.error(error);
       }
     },
+    editMission(slug, name) {
+      document.getElementById("editMission").showModal();
+
+      this.editedMission.slug = slug;
+      this.editedMission.name = name;
+    },
+    //
     async deleteMissionData(id) {
       const result = await deleteMission(id);
       console.log(id);
