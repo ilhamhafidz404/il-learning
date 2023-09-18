@@ -8,9 +8,9 @@
         </h1>
 
         <div class="absolute right-0 bottom-[20px] flex gap-3">
-          <router-link to="/mission/create/" class="btn btn-primary">
+          <button class="btn btn-primary" onclick="createMission.showModal()">
             Add Mission
-          </router-link>
+          </button>
         </div>
       </div>
       <!-- <img src="/images/auth/slide1.jpg" alt="" /> -->
@@ -31,6 +31,12 @@
         </router-link>
       </div>
     </section>
+
+    <CreateMissionModal
+      :courseName="course.name"
+      :courseId="course.id"
+      @resetGetPage="showCoursesData"
+    />
   </DashboardLayout>
 </template>
 
@@ -41,6 +47,9 @@ import ArchiveBoxIcon from "../../../components/icons/archiveBoxIcon.vue";
 // api
 import { showCourses } from "../../../api/Course";
 
+// components
+import CreateMissionModal from "../../../components/modal/createMission.vue";
+
 //
 import DashboardLayout from "./../../Dashboardlayout.vue";
 
@@ -50,6 +59,8 @@ export default {
   components: {
     //icons
     ArchiveBoxIcon,
+    // components
+    CreateMissionModal,
     //
     DashboardLayout,
   },

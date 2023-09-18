@@ -19,3 +19,19 @@ export async function showMission(slug: String) {
         throw error;
     }
 }
+
+export async function insertMission(data: { name: string; courseId: number }) {
+    try {
+        let result = await axios.post(`http://127.0.0.1:8000/api/missions/`, {
+            name: data.name,
+            courseId: data.courseId,
+        });
+        if (result) {
+            console.log(result);
+            return result;
+        }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}

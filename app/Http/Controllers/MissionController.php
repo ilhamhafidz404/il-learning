@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mission;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MissionController extends Controller
 {
@@ -22,6 +23,20 @@ class MissionController extends Controller
         return response()->json([
             "mission" => $mission,
             "submissions" => $submissions
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        Mission::create([
+            "name" => $request->name,
+            "slug" => Str::slug($request->name),
+            "course_id" => $request->courseId,
+        ]);
+
+        return response()->json([
+            "code" => "IL-01",
+            "message" => "Add Mission Successfully",
         ]);
     }
 }
