@@ -39,4 +39,14 @@ class MissionController extends Controller
             "message" => "Add Mission Successfully",
         ]);
     }
+
+    public function destroy($id)
+    {
+        Mission::find($id)->delete();
+
+        return response()->json([
+            "code" => "IL-01",
+            "message" => "Delete Mission Successfully",
+        ]);
+    }
 }

@@ -15,20 +15,26 @@
       </div>
       <!-- <img src="/images/auth/slide1.jpg" alt="" /> -->
       <div class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow">
-        <router-link
-          :to="'/lecturer/missions/' + mission.slug"
-          v-for="mission in missions"
-          :key="mission.id"
-          class="bg-base-200 p-5 rounded hover:bg-base-300"
-        >
-          <h2>{{ mission.name }}</h2>
-          <div class="flex gap-3 mt-1">
-            <ArchiveBoxIcon myClass="w-5" />
-            <p class="text-sm">
-              Has {{ mission.submission.length }} submissions
-            </p>
-          </div>
-        </router-link>
+        <div class="relative" v-for="mission in missions" :key="mission.id">
+          <router-link
+            :to="'/lecturer/missions/' + mission.slug"
+            class="bg-base-200 p-5 rounded hover:bg-base-300 block"
+          >
+            <h2>{{ mission.name }}</h2>
+            <div class="flex gap-3 mt-1">
+              <ArchiveBoxIcon myClass="w-5" />
+              <p class="text-sm">
+                Has {{ mission.submission.length }} submissions
+              </p>
+            </div>
+          </router-link>
+          <button
+            @click="confirmDelete(mission.id)"
+            class="btn btn-error h-full absolute right-0 top-0 rounded-r rounded-l-none dark:text-gray-100"
+          >
+            <TrashIcon myClass="w-6 h-6" />
+          </button>
+        </div>
       </div>
     </section>
 
@@ -43,9 +49,11 @@
 <script>
 // icons
 import ArchiveBoxIcon from "../../../components/icons/archiveBoxIcon.vue";
+import TrashIcon from "../../../components/icons/trashIcon.vue";
 
 // api
 import { showCourses } from "../../../api/Course";
+import { deleteMission } from "../../../api/Mission";
 
 // components
 import CreateMissionModal from "../../../components/modal/createMission.vue";
@@ -59,6 +67,7 @@ export default {
   components: {
     //icons
     ArchiveBoxIcon,
+    TrashIcon,
     // components
     CreateMissionModal,
     //
@@ -81,6 +90,35 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    async deleteMissionData(id) {
+      const result = await deleteMission(id);
+      console.log(id);
+      if (result) {
+        this.$swal({
+          title: "Success Delete Mission",
+          text: "Delete Mission Successfully",
+          icon: "success",
+        });
+
+        this.showCoursesData();
+      }
+    },
+    confirmDelete(id) {
+      // Use sweetalert2
+      this.$swal({
+        title: "Are you sure?",
+        text: "You won't be able to delete this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteMissionData(id);
+        }
+      });
     },
   },
   mounted() {

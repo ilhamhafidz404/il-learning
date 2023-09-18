@@ -35,3 +35,18 @@ export async function insertMission(data: { name: string; courseId: number }) {
         throw error;
     }
 }
+
+export async function deleteMission(missionId: number) {
+    try {
+        let result = await axios.delete(
+            `http://127.0.0.1:8000/api/missions/${missionId}`
+        );
+        if (result) {
+            console.log(result);
+            return result;
+        }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
