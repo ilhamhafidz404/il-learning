@@ -14,7 +14,13 @@
         </div>
       </div>
       <!-- <img src="/images/auth/slide1.jpg" alt="" /> -->
-      <div class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow">
+      <div v-if="onLoadingGetData">
+        <SkeletonLoadingCol2 :show="onLoadingGetData" />
+      </div>
+      <div
+        v-else-if="missions.length && !onLoadingGetData"
+        class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow"
+      >
         <div class="relative" v-for="mission in missions" :key="mission.id">
           <router-link
             :to="'/lecturer/missions/' + mission.slug"
@@ -43,6 +49,10 @@
             </button>
           </div>
         </div>
+      </div>
+      <div v-else class="bg-base-100 p-5 rounded shadow text-center">
+        <h2 class="text-5xl">☹️</h2>
+        <p class="mt-2 text-xl">this course doesn't have mission</p>
       </div>
     </section>
 
@@ -73,6 +83,7 @@ import { deleteMission } from "../../../api/Mission";
 // components
 import CreateMissionModal from "../../../components/modal/createMission.vue";
 import EditMissionModal from "../../../components/modal/editMission.vue";
+import SkeletonLoadingCol2 from "../../../components/skeletonLoading/col2.vue";
 
 //
 import DashboardLayout from "./../../Dashboardlayout.vue";
@@ -88,6 +99,7 @@ export default {
     // components
     CreateMissionModal,
     EditMissionModal,
+    SkeletonLoadingCol2,
     //
     DashboardLayout,
     PencilIcon,
@@ -103,15 +115,22 @@ export default {
         slug: 0,
         name: "",
       },
+
+      //
+      onLoadingGetData: false,
     };
   },
   methods: {
     async showCoursesData() {
       try {
+        this.onLoadingGetData = true;
         let result = await showCourses(this.slug);
-        //
-        this.course = result.data.course;
-        this.missions = result.data.missions;
+        if (result) {
+          this.course = result.data.course;
+          this.missions = result.data.missions;
+
+          this.onLoadingGetData = false;
+        }
       } catch (error) {
         console.error(error);
       }
