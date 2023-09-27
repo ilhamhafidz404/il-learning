@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^4.2.3",
+        "@vuepic/vue-datepicker": "^6.1.0",
         "dayjs": "^1.11.9",
         "vue": "^3.3.4",
         "vue-loader": "^17.0.1",

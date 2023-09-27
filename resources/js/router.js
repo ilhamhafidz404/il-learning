@@ -20,8 +20,11 @@ import CourseShow from "./views/courses/Show.vue";
 import LecturerDashboard from "./views/lecturer/LecturerDashboard.vue";
 // Courses
 import LecturerCourseShow from "./views/lecturer/courses/Show.vue";
-// Courses
+// Mission
 import LecturerMissionShow from "./views/lecturer/missions/Show.vue";
+// Submission
+import LecturerSubmissionCreate from "./views/lecturer/submissions/Create.vue";
+import LecturerSubmissionEdit from "./views/lecturer/submissions/Edit.vue";
 
 const routes = [
     { path: "/", component: Home },
@@ -37,6 +40,7 @@ const routes = [
 
     // lecturer
     { path: "/lecturer/dashboard", component: LecturerDashboard },
+    //
     {
         path: "/lecturer/courses/:slug",
         component: LecturerCourseShow,
@@ -45,6 +49,16 @@ const routes = [
     {
         path: "/lecturer/missions/:slug",
         component: LecturerMissionShow,
+        props: true,
+    },
+    //
+    {
+        path: "/lecturer/submissions/create",
+        component: LecturerSubmissionCreate,
+    },
+    {
+        path: "/lecturer/submissions/:slug/edit",
+        component: LecturerSubmissionEdit,
         props: true,
     },
 

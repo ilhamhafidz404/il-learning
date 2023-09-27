@@ -2,62 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Mission;
 use App\Models\Submission;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        $deadline = $request->deadlineDate . ' ' . $request->deadlineTime . ':00';
+        $mission = Mission::find($request->mission);
+
+        Submission::create([
+            'name' => $request->title,
+            'slug' => Str::slug($request->title) . '-' . Str::slug($mission->name) . '_' . $request->classroom,
+            'description' => $request->description,
+            'deadline' => $deadline,
+            'mission_id' => $request->mission,
+            'lecturer_id' => $request->lecturer,
+            'course_id' => $mission->course_id,
+            'classroom_id' => $request->classroom,
+        ]);
+
+        return response()->json([
+            "code" => "IL-01",
+            "message" => "Add Submission Successfully",
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($slug)
     {
-        //
-    }
+        $submission = Submission::whereSlug($slug)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($submission);
     }
 
     /**
@@ -67,9 +51,29 @@ class SubmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+
+        $submission = Submission::whereSlug($slug)->first();
+
+        $deadline = $request->deadlineDate . ' ' . $request->deadlineTime;
+        $mission = Mission::find($request->mission);
+
+        $submission->update([
+            'name' => $request->title,
+            'slug' => Str::slug($request->title) . '-' . Str::slug($mission->name) . '_' . $request->classroom,
+            'description' => $request->description,
+            'deadline' => $deadline,
+            'mission_id' => $request->mission,
+            'lecturer_id' => $request->lecturer,
+            'course_id' => $mission->course_id,
+            'classroom_id' => $request->classroom,
+        ]);
+
+        return response()->json([
+            "code" => "IL-01",
+            "message" => "Update Submission Successfully",
+        ]);
     }
 
     /**

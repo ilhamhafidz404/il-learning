@@ -26,7 +26,6 @@ export default {
   mounted() {
     const dataOnStorage = localStorage.getItem("authData");
     if (dataOnStorage !== null) {
-      console.log("masuk sini");
       this.authData = JSON.parse(dataOnStorage);
     } else {
       router.push("/login");

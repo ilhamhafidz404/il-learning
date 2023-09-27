@@ -9,11 +9,12 @@ use Illuminate\Support\Str;
 
 class MissionController extends Controller
 {
-    // public function index()
-    // {
-    //     $missions = Missions
-    //     return "halo";
-    // }
+    public function index()
+    {
+        $missions = Mission::all();
+
+        return response()->json($missions);
+    }
 
     public function show($slug)
     {

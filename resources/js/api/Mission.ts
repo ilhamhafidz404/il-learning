@@ -1,5 +1,16 @@
 import axios from "axios";
 
+export async function getMission() {
+    try {
+        let result = await axios.get(`http://127.0.0.1:8000/api/missions/`);
+        if (result) {
+            return result;
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 export async function showMission(slug: String) {
     try {
         let result = await axios.get(
@@ -11,11 +22,9 @@ export async function showMission(slug: String) {
             }
         );
         if (result) {
-            console.log(result);
             return result;
         }
     } catch (error) {
-        console.error(error);
         throw error;
     }
 }
@@ -27,11 +36,9 @@ export async function insertMission(data: { name: string; courseId: number }) {
             courseId: data.courseId,
         });
         if (result) {
-            console.log(result);
             return result;
         }
     } catch (error) {
-        console.error(error);
         throw error;
     }
 }
@@ -45,11 +52,9 @@ export async function updateMission(data: { slug: String; name: String }) {
             }
         );
         if (result) {
-            console.log(result);
             return result;
         }
     } catch (error) {
-        console.error(error);
         throw error;
     }
 }
@@ -60,11 +65,9 @@ export async function deleteMission(missionId: number) {
             `http://127.0.0.1:8000/api/missions/${missionId}`
         );
         if (result) {
-            console.log(result);
             return result;
         }
     } catch (error) {
-        console.error(error);
         throw error;
     }
 }
