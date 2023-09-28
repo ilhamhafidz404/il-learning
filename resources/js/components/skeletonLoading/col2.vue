@@ -16,8 +16,17 @@ export default {
 </script>
 
 <style scoped>
-.col .line {
+html .col .line {
   background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+  animation: shine-lines 1.6s infinite linear;
+}
+html.dark .col .line {
+  background-image: linear-gradient(
+    90deg,
+    #303132 0px,
+    #1d232a 40px,
+    #191e24 80px
+  );
   animation: shine-lines 1.6s infinite linear;
 }
 @keyframes shine-lines {
