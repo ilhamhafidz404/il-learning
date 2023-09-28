@@ -5,7 +5,13 @@
       <section class="grid grid-cols-8 mt-10 gap-10">
         <div class="col-span-5 p-5 shadow-xl rounded">
           <h3 class="text-2xl font-bold">Courses</h3>
-          <CourseCard :courses="courses" />
+          <div v-if="courses.length">
+            <CourseCard :courses="courses" />
+          </div>
+          <div v-else class="text-xl text-center mt-5">
+            <p class="text-4xl">☹️</p>
+            <h2 class="mt-2 font-semibold mb-4">You doesn't have course</h2>
+          </div>
         </div>
         <div class="shadow-md col-span-3">
           <div class="card-body">
@@ -36,7 +42,7 @@ export default {
   },
   data() {
     return {
-      courses: null,
+      courses: [],
     };
   },
   methods: {
@@ -44,7 +50,6 @@ export default {
       try {
         let result = await getCourses();
         this.courses = result.data;
-        console.log(this.courses);
       } catch (error) {
         console.error(error);
       }

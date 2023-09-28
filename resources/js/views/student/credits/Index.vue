@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     async getDataCourses() {
-      const result = await getCourses();
+      const result = await getCourses(true);
       if (result) {
         this.courses = result.data;
       }
