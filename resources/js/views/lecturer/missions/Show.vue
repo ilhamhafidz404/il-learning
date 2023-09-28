@@ -24,7 +24,9 @@ import diffForHumans from "./../../../tools/diffForHumans";
           </router-link>
         </div>
       </div>
-
+      <div v-if="onLoadingGetData">
+        <SkeletonLoadingCol2 :show="onLoadingGetData" />
+      </div>
       <div class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow">
         <div
           class="relative"
@@ -72,6 +74,9 @@ import { deleteSubmission } from "../../../api/Submission";
 import TrashIcon from "../../../components/icons/trashIcon.vue";
 import PencilIcon from "../../../components/icons/pencilIcon.vue";
 
+// components
+import SkeletonLoadingCol2 from "../../../components/skeletonLoading/col2.vue";
+
 //
 import DashboardLayout from "./../LecturerDashboardlayout.vue";
 // actions
@@ -81,6 +86,8 @@ export default {
     // icons
     TrashIcon,
     PencilIcon,
+    // components
+    SkeletonLoadingCol2,
     //
     DashboardLayout,
   },
@@ -88,15 +95,21 @@ export default {
     return {
       mission: {},
       submissions: [],
+
+      //
+      onLoadingGetData: false,
     };
   },
   methods: {
     async showMissionData() {
+      this.onLoadingGetData = true;
       try {
         let result = await showMission(this.slug);
         //
         this.mission = result.data.mission;
         this.submissions = result.data.submissions;
+
+        this.onLoadingGetData = false;
       } catch (error) {
         console.error(error);
       }

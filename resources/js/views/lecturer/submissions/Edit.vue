@@ -8,7 +8,10 @@
         </h1>
       </div>
 
-      <form method="POST" @submit.prevent="editSubmission()">
+      <div v-if="onLoadingGetData">
+        <SkeletonLoadingCol1 :show="onLoadingGetData" />
+      </div>
+      <form v-else method="POST" @submit.prevent="editSubmission()">
         <div
           class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow mb-20"
         >
@@ -77,9 +80,13 @@
           </div>
           <div class="col-span-2 flex justify-between items-center">
             <div>
-              <router-link to="/lecturer/mission" class="btn btn-neutral"
-                >Go Back</router-link
+              <button
+                type="button"
+                onclick="window.history.back()"
+                class="btn btn-neutral"
               >
+                Go Back
+              </button>
             </div>
             <div>
               <button class="btn btn-error" type="reset">Reset</button>
@@ -99,6 +106,8 @@ import { getClassrooms } from "../../../api/Classroom";
 import { updateSubmission, showSubmission } from "../../../api/Submission";
 // icons
 import TrashIcon from "../../../components/icons/trashIcon.vue";
+// components
+import SkeletonLoadingCol1 from "./../../../components/skeletonLoading/col1.vue";
 //
 import DashboardLayout from "./../LecturerDashboardlayout.vue";
 //
@@ -107,6 +116,8 @@ export default {
   components: {
     // icons
     TrashIcon,
+    // components
+    SkeletonLoadingCol1,
     //
     DashboardLayout,
   },
@@ -124,6 +135,8 @@ export default {
         deadlineTime: "",
         lecturer: 0,
       },
+
+      onLoadingGetData: false,
     };
   },
   methods: {
@@ -146,8 +159,10 @@ export default {
       }
     },
     async showDataSubmission(slug) {
+      this.onLoadingGetData = true;
       const result = await showSubmission(slug);
       if (result) {
+        this.onLoadingGetData = false;
         const [deadlineDate, dedlineTime] = result.data.deadline.split(" ");
 
         this.formData = {

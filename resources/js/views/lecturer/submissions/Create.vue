@@ -84,9 +84,13 @@ import diffForHumans from "./../../../tools/diffForHumans";
           </div>
           <div class="col-span-2 flex justify-between items-center">
             <div>
-              <router-link to="/lecturer/mission" class="btn btn-neutral"
-                >Go Back</router-link
+              <button
+                type="button"
+                onclick="window.history.back()"
+                class="btn btn-neutral"
               >
+                Go Back
+              </button>
             </div>
             <div>
               <button class="btn btn-error" type="reset">Reset</button>
