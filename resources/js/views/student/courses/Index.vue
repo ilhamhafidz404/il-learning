@@ -1,5 +1,5 @@
 <script setup>
-import limitStr from "../../tools/limitStr.ts";
+import limitStr from "./../../../tools/limitStr.ts";
 </script>
 
 <template>
@@ -37,11 +37,11 @@ import limitStr from "../../tools/limitStr.ts";
 </template>
 
 <script>
-import DashboardLayout from "../DashboardLayout.vue";
-import Loading from "../../components/loading.vue";
+import DashboardLayout from "./../StudentDashboardLayout.vue";
+import Loading from "./../../../components/loading.vue";
 
 // actions
-import { getCourses } from "../../api/Course";
+import { getCourses } from "./../../../api/Course";
 export default {
   components: {
     DashboardLayout,

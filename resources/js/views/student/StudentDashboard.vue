@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import DashboardLayout from "./DashboardLayout.vue";
+import DashboardLayout from "./StudentDashboardLayout.vue";
 
 //actions
-import { getCourses } from "./../api/Course";
+import { getCourses } from "../../api/Course";
 
 // components
-import Widget from "../components/widget.vue";
-import CourseCard from "../components/cards/courseCard.vue";
+import Widget from "../../components/widget.vue";
+import CourseCard from "../../components/cards/courseCard.vue";
 
 export default {
   components: {

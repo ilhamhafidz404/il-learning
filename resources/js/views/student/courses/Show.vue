@@ -52,17 +52,17 @@
 
 <script>
 // icons
-import ArchiveBoxIcon from "../../components/icons/archiveBoxIcon.vue";
+import ArchiveBoxIcon from "./../../../components/icons/archiveBoxIcon.vue";
 
 // tools
-import limitStr from "../../tools/limitStr";
+import limitStr from "./../../../tools/limitStr";
 
 // api
-import { showCourses } from "../../api/Course";
-import { getProgresses } from "../../api/Progress";
+import { showCourses } from "./../../../api/Course";
+import { getProgresses } from "./../../../api/Progress";
 
 //
-import DashboardLayout from "./../Dashboardlayout.vue";
+import DashboardLayout from "./../StudentDashboardlayout.vue";
 
 // actions
 export default {

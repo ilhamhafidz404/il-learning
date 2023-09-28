@@ -8,13 +8,14 @@ import AdminLogin from "./views/auth/AdminLogin.vue";
 
 // admin
 import AdminDashboard from "./views/admin/Dashboard.vue";
-import ClassroomIndex from "./views/classroom/Index.vue";
 
-// --------------------- user
-import UserDashboard from "./views/UserDashboard.vue";
+// --------------------- student
+import StudentDashboard from "./views/student/StudentDashboard.vue";
 // Courses
-import CourseIndex from "./views/courses/Index.vue";
-import CourseShow from "./views/courses/Show.vue";
+import CourseIndex from "./views/student/courses/Index.vue";
+import CourseShow from "./views/student/courses/Show.vue";
+// classroom
+import ClassroomIndex from "./views/student/classroom/Index.vue";
 
 // --------------------- lecturer
 import LecturerDashboard from "./views/lecturer/LecturerDashboard.vue";
@@ -33,8 +34,8 @@ const routes = [
     { path: "/login", component: Login },
     { path: "/admin/login", component: AdminLogin },
 
-    // user
-    { path: "/dashboard", component: UserDashboard },
+    // student
+    { path: "/dashboard", component: StudentDashboard },
     { path: "/courses", component: CourseIndex },
     { path: "/courses/:slug", component: CourseShow, props: true },
 

@@ -10,8 +10,8 @@
 <script>
 import router from "@/router";
 
-import Sidebar from "../components/sidebar.vue";
-import Navbar from "../components/navbar.vue";
+import Sidebar from "../../components/sidebar.vue";
+import Navbar from "../../components/navbar.vue";
 export default {
   name: "DashboardLayout",
   data() {

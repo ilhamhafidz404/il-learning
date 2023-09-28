@@ -107,7 +107,7 @@ import { insertSubmission } from "../../../api/Submission";
 // icons
 import TrashIcon from "../../../components/icons/trashIcon.vue";
 //
-import DashboardLayout from "./../../Dashboardlayout.vue";
+import DashboardLayout from "./../LecturerDashboardlayout.vue";
 //
 export default {
   props: ["slug"],
@@ -161,12 +161,12 @@ export default {
       const result = await insertSubmission(this.formData);
       if (result) {
         this.$swal({
-          title: "Success Delete Mission",
-          text: "Delete Mission Successfully",
+          title: "Success Add Submission",
+          text: "Create Submission Successfully",
           icon: "success",
         }).then((result) => {
           if (result.isConfirmed) {
-            this.$router.push("/lecturer/missions/new-mission");
+            window.history.back();
           }
         });
       }

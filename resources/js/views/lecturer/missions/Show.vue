@@ -73,7 +73,7 @@ import TrashIcon from "../../../components/icons/trashIcon.vue";
 import PencilIcon from "../../../components/icons/pencilIcon.vue";
 
 //
-import DashboardLayout from "./../../Dashboardlayout.vue";
+import DashboardLayout from "./../LecturerDashboardlayout.vue";
 // actions
 export default {
   props: ["slug"],
