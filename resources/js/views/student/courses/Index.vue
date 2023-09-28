@@ -60,7 +60,6 @@ export default {
         let result = await getCourses();
         this.isLoading = true;
         this.courses = result.data;
-        console.log(this.courses);
       } catch (error) {
         console.error(error);
       }

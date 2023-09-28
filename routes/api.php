@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\_AcceptCreditsController;
 use App\Http\Controllers\_CourseLecturerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassroomController;
@@ -29,6 +30,7 @@ Route::apiResource("/submissions", SubmissionController::class);
 //
 Route::get("/progress/{userId}/", ProgressController::class);
 Route::get("/course-leturer/{lecturerId}/", _CourseLecturerController::class);
+Route::post("/accept-credits", _AcceptCreditsController::class);
 
 //
 Route::post("/auth/login", [AuthController::class, "login"]);

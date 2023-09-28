@@ -16,6 +16,18 @@
       </li>
       <li class="mb-2">
         <router-link
+          to="/accept-credits"
+          class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary dark:text-gray-200 text-gray-700"
+          :class="{
+            '!border-primary !text-primary': active == '/accept-credits',
+          }"
+        >
+          <ClipboardDocCheck myClass="w-5 mr-3" />
+          Acception Credits
+        </router-link>
+      </li>
+      <li class="mb-2">
+        <router-link
           to="/courses"
           class="px-5 py-3 border-l-[5px] border-transparent flex items-center hover:text-primary dark:text-gray-200 text-gray-700"
           :class="{ '!border-primary !text-primary': active == '/courses' }"
@@ -96,6 +108,7 @@ import AcademicCapIcon from "./icons/academicCapIcon.vue";
 import UserCardIcon from "./icons/userCardIcon.vue";
 import BarsArrowUpIcon from "./icons/barsArrowUpIcon.vue";
 import CogIcon from "./icons/cogIcon.vue";
+import ClipboardDocCheck from "./icons/clipboardDocCheck.vue";
 export default {
   components: {
     CubeTransparentIcon,
@@ -106,6 +119,7 @@ export default {
     UserCardIcon,
     BarsArrowUpIcon,
     CogIcon,
+    ClipboardDocCheck,
   },
   data() {
     return {

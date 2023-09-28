@@ -15,7 +15,9 @@ import StudentDashboard from "./views/student/StudentDashboard.vue";
 import CourseIndex from "./views/student/courses/Index.vue";
 import CourseShow from "./views/student/courses/Show.vue";
 // classroom
-import ClassroomIndex from "./views/student/classroom/Index.vue";
+import ClassroomIndex from "./views/student/classrooms/Index.vue";
+//
+import AcceptCredits from "./views/student/credits/Index.vue";
 
 // --------------------- lecturer
 import LecturerDashboard from "./views/lecturer/LecturerDashboard.vue";
@@ -38,6 +40,7 @@ const routes = [
     { path: "/dashboard", component: StudentDashboard },
     { path: "/courses", component: CourseIndex },
     { path: "/courses/:slug", component: CourseShow, props: true },
+    { path: "/accept-credits", component: AcceptCredits },
 
     // lecturer
     { path: "/lecturer/dashboard", component: LecturerDashboard },
