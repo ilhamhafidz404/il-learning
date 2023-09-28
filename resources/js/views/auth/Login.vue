@@ -69,6 +69,7 @@
           <div class="form-control mb-5">
             <div class="input-group">
               <input
+                id="password"
                 type="password"
                 placeholder="Password"
                 class="input input-bordered w-full"
@@ -80,10 +81,14 @@
                   'btn-error text-white': formStatus.code == 'IL-02',
                 }"
                 type="button"
+                @click="showMyPassword()"
               >
                 <!-- {{-- lock --}} -->
-                <LockIcon myClass="w-6 h-6" />
-                <!-- <EyeIcon myClass="w-6 h-6" /> -->
+                <LockIcon v-if="!formData.password" myClass="w-6 h-6" />
+                <small v-else>
+                  <EyeIcon v-if="isShowPassword" myClass="w-6 h-6" />
+                  <EyeSlashIcon v-else myClass="w-6 h-6" />
+                </small>
               </button>
             </div>
           </div>
@@ -135,12 +140,21 @@ import Loading from "../../components/loading.vue";
 // icons
 import AtIcon from "../../components/icons/atEmailIcon.vue";
 import EyeIcon from "../../components/icons/eyeIcon.vue";
+import EyeSlashIcon from "../../components/icons/eyeSlashIcon.vue";
 import LockIcon from "../../components/icons/lockIcon.vue";
 import MoonIcon from "../../components/icons/moonIcon.vue";
 import SunIcon from "../../components/icons/sunIcon.vue";
 
 export default {
-  components: { LockIcon, EyeIcon, AtIcon, Loading, MoonIcon, SunIcon },
+  components: {
+    LockIcon,
+    EyeIcon,
+    EyeSlashIcon,
+    AtIcon,
+    Loading,
+    MoonIcon,
+    SunIcon,
+  },
   data() {
     return {
       formData: {
@@ -154,6 +168,7 @@ export default {
       },
 
       isLoading: true,
+      isShowPassword: false,
     };
   },
   methods: {
@@ -174,6 +189,18 @@ export default {
         htmlEL[0].setAttribute("data-theme", "light");
         htmlEL[0].classList.add("light");
         htmlEL[0].classList.remove("dark");
+      }
+    },
+    showMyPassword() {
+      if (this.formData.password) {
+        const passwordInput = document.getElementById("password");
+        if (!this.isShowPassword) {
+          passwordInput.type = "text";
+          this.isShowPassword = true;
+        } else {
+          passwordInput.type = "password";
+          this.isShowPassword = false;
+        }
       }
     },
     async handleSubmit() {
