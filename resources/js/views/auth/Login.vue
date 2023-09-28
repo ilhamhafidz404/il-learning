@@ -193,6 +193,7 @@ export default {
             token: result.data.token,
             user: result.data.user,
             userData: result.data.userData,
+            loginAs: result.data.loginAs,
           };
 
           if (result.data.loginAs == "student") {
@@ -208,8 +209,13 @@ export default {
   },
   mounted() {
     const dataOnStorage = localStorage.getItem("authData");
+
     if (dataOnStorage != null) {
-      router.push("/dashboard");
+      if (JSON.parse(dataOnStorage).loginAs == "lecturer") {
+        router.push("/lecturer/dashboard");
+      } else {
+        router.push("/dashboard");
+      }
     }
   },
 };
