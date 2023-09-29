@@ -6,9 +6,15 @@
         {{ course.name }}
       </h1>
       <!-- <img src="/images/auth/slide1.jpg" alt="" /> -->
-      <div class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded mt-32 shadow">
+      <div v-if="onLoadingGetData" class="mt-52">
+        <SkeletonLoadingCol2 :show="onLoadingGetData" />
+      </div>
+      <div
+        v-else
+        class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded mt-32 shadow"
+      >
         <router-link
-          :to="'/mission/' + mission.slug"
+          :to="'/missions/' + mission.slug"
           v-for="mission in missions"
           :key="mission.id"
           class="bg-base-200 p-5 rounded hover:bg-base-300"
@@ -61,6 +67,9 @@ import limitStr from "./../../../tools/limitStr";
 import { showCourses } from "./../../../api/Course";
 import { getProgresses } from "./../../../api/Progress";
 
+// components
+import SkeletonLoadingCol2 from "../../../components/skeletonLoading/col2.vue";
+
 //
 import DashboardLayout from "./../StudentDashboardlayout.vue";
 
@@ -70,6 +79,8 @@ export default {
   components: {
     //icons
     ArchiveBoxIcon,
+    // components
+    SkeletonLoadingCol2,
     //
     DashboardLayout,
   },
@@ -78,17 +89,19 @@ export default {
       course: [],
       missions: [],
       progresses: [],
+
+      onLoadingGetData: false,
     };
   },
   methods: {
     async showCoursesData() {
-      try {
-        let result = await showCourses(this.slug);
+      this.onLoadingGetData = true;
+      let result = await showCourses(this.slug);
+      if (result) {
+        this.onLoadingGetData = false;
         //
         this.course = result.data.course;
         this.missions = result.data.missions;
-      } catch (error) {
-        console.error(error);
       }
     },
     async getProgressMissions() {

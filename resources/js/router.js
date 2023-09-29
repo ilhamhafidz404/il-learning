@@ -14,6 +14,10 @@ import StudentDashboard from "./views/student/StudentDashboard.vue";
 // Courses
 import CourseIndex from "./views/student/courses/Index.vue";
 import CourseShow from "./views/student/courses/Show.vue";
+// missions
+import MissionShow from "./views/student/missions/Show.vue";
+// submissions
+import SubmissionShow from "./views/student/submissions/Show.vue";
 // classroom
 import ClassroomIndex from "./views/student/classrooms/Index.vue";
 //
@@ -38,8 +42,14 @@ const routes = [
 
     // student
     { path: "/dashboard", component: StudentDashboard },
+    // courses
     { path: "/courses", component: CourseIndex },
     { path: "/courses/:slug", component: CourseShow, props: true },
+    // missions
+    { path: "/missions/:slug", component: MissionShow, props: true },
+    // sibmissions
+    { path: "/submissions/:slug", component: SubmissionShow, props: true },
+
     { path: "/accept-credits", component: AcceptCredits },
 
     // lecturer

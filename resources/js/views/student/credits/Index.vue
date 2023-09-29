@@ -18,7 +18,8 @@
         <span>Peringatan terakhir FRS</span>
       </div>
 
-      <div class="mt-10 mb-10">
+      <SkeletonLoadingCol1 v-if="onLoadingGetData" :show="onLoadingGetData" />
+      <div v-else class="mt-10 mb-10">
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             <thead>
@@ -67,22 +68,31 @@
 import { getCourses } from "../../../api/Course";
 import acceptCredits from "../../../api/_acceptCredits";
 
+// components
+import SkeletonLoadingCol1 from "./../../../components/skeletonLoading/col1.vue";
+
 //
 import DashboardLayout from "./../StudentDashboardLayout.vue";
 
 export default {
   components: {
     DashboardLayout,
+    // components
+    SkeletonLoadingCol1,
   },
   data() {
     return {
       courses: [],
       selectedCourses: [],
+
+      onLoadingGetData: false,
     };
   },
   methods: {
     async getDataCourses() {
+      this.onLoadingGetData = true;
       const result = await getCourses(true);
+      this.onLoadingGetData = false;
       if (result) {
         this.courses = result.data;
       }
