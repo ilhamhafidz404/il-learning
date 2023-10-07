@@ -29,6 +29,16 @@ class MissionController extends Controller
 
     public function store(Request $request)
     {
+        // check mission name
+        $checkSameName = Mission::whereSlug(Str::slug($request->name))->count();
+        if ($checkSameName) {
+            return response()->json([
+                "code" => "IL-02",
+                "message" => "The Name Already Exists",
+                "subMessage" => "please use a different name"
+            ]);
+        }
+
         Mission::create([
             "name" => $request->name,
             "slug" => Str::slug($request->name),

@@ -144,7 +144,6 @@ export default {
     //
     async deleteMissionData(id) {
       const result = await deleteMission(id);
-      console.log(id);
       if (result) {
         this.$swal({
           title: "Success Delete Mission",
