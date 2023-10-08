@@ -9,7 +9,7 @@ class ProgressController extends Controller
 {
     public function __invoke($userId)
     {
-        $progresses = Progress::all();
+        $progresses = Progress::whereUserId($userId)->get();
 
         return response()->json($progresses);
     }
