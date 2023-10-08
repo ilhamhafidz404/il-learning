@@ -32,6 +32,7 @@ import LecturerMissionShow from "./views/lecturer/missions/Show.vue";
 // Submission
 import LecturerSubmissionCreate from "./views/lecturer/submissions/Create.vue";
 import LecturerSubmissionEdit from "./views/lecturer/submissions/Edit.vue";
+import LecturerSubmissionShow from "./views/lecturer/submissions/Show.vue";
 
 const routes = [
     { path: "/", component: Home },
@@ -73,6 +74,11 @@ const routes = [
     {
         path: "/lecturer/submissions/:slug/edit",
         component: LecturerSubmissionEdit,
+        props: true,
+    },
+    {
+        path: "/lecturer/submissions/:slug",
+        component: LecturerSubmissionShow,
         props: true,
     },
 

@@ -34,7 +34,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
           :key="submission.id"
         >
           <router-link
-            :to="'/lecturer/mission/' + submission.slug"
+            :to="'/lecturer/submissions/' + submission.slug"
             class="bg-base-200 p-5 rounded hover:bg-base-300 w-full inline-block"
           >
             <h2 class="font-semibold mb-2">{{ submission.name }}</h2>
