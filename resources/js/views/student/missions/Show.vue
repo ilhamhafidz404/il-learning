@@ -7,6 +7,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
     <section id="bg" class="w-full right-0 h-[350px] absolute mt-16"></section>
     <section class="mt-40 relative z-30 col-span-4 pr-7">
       <div class="relative h-[200px]">
+        <p class="font-bold" v-if="mission.course">{{ mission.course.name }}</p>
         <h1 class="text-3xl text-gray-200 uppercase font-bold">
           {{ mission.name }}
         </h1>

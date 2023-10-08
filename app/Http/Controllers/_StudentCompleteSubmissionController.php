@@ -12,7 +12,7 @@ class _StudentCompleteSubmissionController extends Controller
 {
     public function __invoke($submissionSlug)
     {
-        $submission = Submission::whereSlug($submissionSlug)->first();
+        $submission = Submission::whereSlug($submissionSlug)->with("mission")->first();
 
         // $lecturer = Lecturer::whereUserId($_GET["lecturer"])->first();
         $submitSubmissions = Submitsubmission::whereSubmissionId($submission->id)->with("user", "submission")->get();

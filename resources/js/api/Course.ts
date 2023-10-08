@@ -13,7 +13,6 @@ export async function getCourses(getAllData = false) {
             },
         });
         if (result) {
-            console.log(result);
             return result;
         }
     } catch (error) {

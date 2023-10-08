@@ -108,8 +108,6 @@ export default {
       let result = await getProgresses();
       if (result) {
         this.progresses = result.data;
-
-        console.log(progresess);
       }
     },
   },

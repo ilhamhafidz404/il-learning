@@ -1,5 +1,8 @@
 <template>
-  <div :class="{ hidden: !show }" class="grid grid-cols-2 mt-20 gap-10">
+  <div
+    :class="{ hidden: !show }"
+    class="grid grid-cols-2 mt-20 bg-base-100 p-5 gap-10"
+  >
     <div class="col">
       <div class="line w-full h-[100px] rounded-lg"></div>
     </div>

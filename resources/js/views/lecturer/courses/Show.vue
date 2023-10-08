@@ -15,7 +15,7 @@
       </div>
       <!-- <img src="/images/auth/slide1.jpg" alt="" /> -->
       <div v-if="onLoadingGetData">
-        <SkeletonLoadingCol2 :show="onLoadingGetData" />
+        <SkeletonLoadingCol2 :show="onLoadingGetData" :isLecturer="true" />
       </div>
       <div
         v-else-if="missions.length && !onLoadingGetData"

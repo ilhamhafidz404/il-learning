@@ -39,7 +39,7 @@ class SubmissionController extends Controller
 
     public function show($slug)
     {
-        $submission = Submission::whereSlug($slug)->first();
+        $submission = Submission::whereSlug($slug)->with("mission")->first();
 
         return response()->json($submission);
     }

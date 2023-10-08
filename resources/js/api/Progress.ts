@@ -10,7 +10,6 @@ export async function getProgresses() {
             `http://127.0.0.1:8000/api/progress/${authData.user.id}`
         );
         if (result) {
-            console.log(result);
             return result;
         }
     } catch (error) {
