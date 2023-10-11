@@ -71,7 +71,7 @@
         </a>
       </li> -->
       <li class="mb-2">
-        <hr class="my-5" />
+        <hr class="my-5 dark:border-slate-600" />
       </li>
       <li class="mb-2">
         <a

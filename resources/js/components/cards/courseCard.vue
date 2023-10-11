@@ -2,7 +2,7 @@
   <router-link
     v-for="course in courses"
     :key="course.id"
-    :to="'/courses/' + course.slug"
+    :to="link + course.slug"
     class="btn btn-ghost flex flex-col gap-5 items-center h-[300px] sm:h-[170px] p-5 text-left"
   >
     <img
@@ -11,7 +11,7 @@
     />
     <div class="w-full sm:w-[65%]">
       <small class="uppercase dark:text-gray-200 text-gray-700">
-        {{ "tEKNIK INFORMATIKA" + " " + "S1" }}
+        {{ "TEKNIK INFORMATIKA" + " " + "S1" }}
       </small>
       <h2
         class="text-xl font-medium mb-3 dark:text-gray-200 text-gray-700 uppercase"
@@ -19,9 +19,6 @@
         {{ course.name }}
       </h2>
       <span>
-        <!-- @foreach ($course->lecturer as $lecturer) @foreach
-                ($lecturer->classroom as $classroom) @if ($classroom->name ==
-                $user->classroom->name) -->
         <small
           class="font-semibold dark:text-gray-200 text-gray-700 capitalize"
         >
@@ -39,9 +36,16 @@
 
 <script>
 export default {
-  props: ["courses"],
+  props: ["courses", "isLecturer"],
+  data() {
+    return {
+      link: "/courses/",
+    };
+  },
   mounted() {
-    console.log(this.courses);
+    if (this.isLecturer) {
+      this.link = "/lecturer/courses/";
+    }
   },
 };
 </script>

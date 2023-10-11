@@ -6,41 +6,109 @@
         {{ course.name }}
       </h1>
       <!-- <img src="/images/auth/slide1.jpg" alt="" /> -->
-      <div class="bg-base-100 p-5 rounded mt-20">
-        <h1>{{ course }}</h1>
+      <div class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded mt-32 shadow">
+        <router-link
+          :to="'/mission/' + mission.slug"
+          v-for="mission in missions"
+          :key="mission.id"
+          class="bg-base-200 p-5 rounded hover:bg-base-300"
+        >
+          <h2>{{ mission.name }}</h2>
+          <div class="flex gap-3 mt-1">
+            <ArchiveBoxIcon myClass="w-5" />
+            <p class="text-sm">
+              Has {{ mission.submission.length }} submissions
+            </p>
+          </div>
+          <div
+            class="relative"
+            v-for="progress in progresses"
+            :key="progress.id"
+          >
+            <progress
+              v-if="progress.mission_id == mission.id"
+              class="progress progress-primary w-full mt-5"
+              :value="
+                progressCount(progress.submission_count, progress.progress)
+              "
+              max="100"
+            ></progress>
+
+            <p
+              class="absolute top-[-5px] right-0"
+              v-if="progress.mission_id == mission.id"
+            >
+              {{
+                progressCount(progress.submission_count, progress.progress) +
+                "%"
+              }}
+            </p>
+          </div>
+        </router-link>
       </div>
     </section>
   </DashboardLayout>
 </template>
 
 <script>
+// icons
+import ArchiveBoxIcon from "../../components/icons/archiveBoxIcon.vue";
+
+// tools
+import limitStr from "../../tools/limitStr";
+
+// api
 import { showCourses } from "../../api/Course";
+import { getProgresses } from "../../api/Progress";
+
+//
 import DashboardLayout from "./../Dashboardlayout.vue";
 
 // actions
 export default {
   props: ["slug"],
   components: {
+    //icons
+    ArchiveBoxIcon,
+    //
     DashboardLayout,
   },
   data() {
     return {
       course: [],
+      missions: [],
+      progresses: [],
     };
   },
   methods: {
     async showCoursesData() {
       try {
         let result = await showCourses(this.slug);
-        this.course = result.data;
-        console.log(this.course);
+        //
+        this.course = result.data.course;
+        this.missions = result.data.missions;
       } catch (error) {
         console.error(error);
       }
     },
+    async getProgressMissions() {
+      let result = await getProgresses();
+      if (result) {
+        this.progresses = result.data;
+      }
+    },
+  },
+  computed: {
+    progressCount() {
+      return (submissionCount, progress) => {
+        const percentage = (progress / submissionCount) * 100;
+        return limitStr(String(percentage), 4, "");
+      };
+    },
   },
   mounted() {
     this.showCoursesData();
+    this.getProgressMissions();
   },
 };
 </script>

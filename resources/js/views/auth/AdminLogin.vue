@@ -44,6 +44,7 @@
           <h2 class="text-2xl md:text-xl lg:text-2xl font-semibold">
             ALOPE UNIVERSITY
           </h2>
+          <p class="text-primary uppercase font-semibold">Login as ADMIN</p>
         </div>
         <form @submit.prevent="handleSubmit()">
           <div class="form-control mb-5">
@@ -104,11 +105,11 @@
                 >OR</small
               >
             </span>
-            <router-link to="admin/login" class="btn btn-primary w-full mb-3">
-              Login As Admin
+            <router-link to="/login" class="btn btn-primary w-full mb-3">
+              Login As User / Lecturer
             </router-link>
             <button class="btn btn-outline btn-primary w-full">
-              <img src="images/icon/google.png" width="25" class="mr-3" />
+              <img src="/images/icon/google.png" width="25" class="mr-3" />
               <!-- {{-- <a href="https://www.flaticon.com/free-icons/google" title="google icons">Google icons created by Freepik - Flaticon</a> --}} -->
               Login Using Google Account
             </button>
@@ -146,6 +147,7 @@ export default {
       formData: {
         email: "",
         password: "",
+        loginAsAdmin: true,
       },
 
       formStatus: {
@@ -175,6 +177,7 @@ export default {
         htmlEL[0].classList.add("light");
         htmlEL[0].classList.remove("dark");
       }
+      // console.log(htmlEl);
     },
     async handleSubmit() {
       // reset fromSatatus
@@ -191,16 +194,10 @@ export default {
         if (this.formStatus.code == "IL-01") {
           const dataToStore = {
             token: result.data.token,
-            user: result.data.user,
-            userData: result.data.userData,
+            admin: result.data.admin,
           };
 
-          if (result.data.loginAs == "student") {
-            router.push("/dashboard");
-          } else {
-            router.push("/lecturer/dashboard");
-          }
-
+          router.push("/admin/dashboard");
           localStorage.setItem("authData", JSON.stringify(dataToStore));
         }
       }
@@ -209,7 +206,7 @@ export default {
   mounted() {
     const dataOnStorage = localStorage.getItem("authData");
     if (dataOnStorage != null) {
-      router.push("/dashboard");
+      router.push("/admin/dashboard");
     }
   },
 };
