@@ -15,7 +15,7 @@
       </div>
       <!-- <img src="/images/auth/slide1.jpg" alt="" /> -->
       <div v-if="onLoadingGetData">
-        <SkeletonLoadingCol2 :show="onLoadingGetData" />
+        <SkeletonLoadingCol2 :show="onLoadingGetData" :isLecturer="true" />
       </div>
       <div
         v-else-if="missions.length && !onLoadingGetData"
@@ -34,16 +34,16 @@
               </p>
             </div>
           </router-link>
-          <div class="h-full absolute right-0 top-0">
+          <div class="h-full flex items-center absolute right-[20px] top-0">
             <button
               @click="editMission(mission.slug, mission.name)"
-              class="btn h-full btn-info rounded-none dark:text-gray-100"
+              class="btn btn-info rounded-l rounded-r-none rounded-none dark:text-gray-100"
             >
               <PencilIcon myClass="w-6 h-6" />
             </button>
             <button
               @click="confirmDelete(mission.id)"
-              class="btn h-full btn-error rounded-r rounded-l-none dark:text-gray-100"
+              class="btn btn-error rounded-r rounded-l-none dark:text-gray-100"
             >
               <TrashIcon myClass="w-6 h-6" />
             </button>
@@ -86,7 +86,7 @@ import EditMissionModal from "../../../components/modal/editMission.vue";
 import SkeletonLoadingCol2 from "../../../components/skeletonLoading/col2.vue";
 
 //
-import DashboardLayout from "./../../Dashboardlayout.vue";
+import DashboardLayout from "./../LecturerDashboardlayout.vue";
 
 // actions
 export default {
@@ -144,12 +144,12 @@ export default {
     //
     async deleteMissionData(id) {
       const result = await deleteMission(id);
-      console.log(id);
       if (result) {
         this.$swal({
           title: "Success Delete Mission",
           text: "Delete Mission Successfully",
           icon: "success",
+          theme: "dark",
         });
 
         this.showCoursesData();

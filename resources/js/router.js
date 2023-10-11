@@ -8,20 +8,31 @@ import AdminLogin from "./views/auth/AdminLogin.vue";
 
 // admin
 import AdminDashboard from "./views/admin/Dashboard.vue";
-import ClassroomIndex from "./views/classroom/Index.vue";
 
-// --------------------- user
-import UserDashboard from "./views/UserDashboard.vue";
+// --------------------- student
+import StudentDashboard from "./views/student/StudentDashboard.vue";
 // Courses
-import CourseIndex from "./views/courses/Index.vue";
-import CourseShow from "./views/courses/Show.vue";
+import CourseIndex from "./views/student/courses/Index.vue";
+import CourseShow from "./views/student/courses/Show.vue";
+// missions
+import MissionShow from "./views/student/missions/Show.vue";
+// submissions
+import SubmissionShow from "./views/student/submissions/Show.vue";
+// classroom
+import ClassroomIndex from "./views/student/classrooms/Index.vue";
+//
+import AcceptCredits from "./views/student/credits/Index.vue";
 
 // --------------------- lecturer
 import LecturerDashboard from "./views/lecturer/LecturerDashboard.vue";
 // Courses
 import LecturerCourseShow from "./views/lecturer/courses/Show.vue";
-// Courses
+// Mission
 import LecturerMissionShow from "./views/lecturer/missions/Show.vue";
+// Submission
+import LecturerSubmissionCreate from "./views/lecturer/submissions/Create.vue";
+import LecturerSubmissionEdit from "./views/lecturer/submissions/Edit.vue";
+import LecturerSubmissionShow from "./views/lecturer/submissions/Show.vue";
 
 const routes = [
     { path: "/", component: Home },
@@ -30,13 +41,21 @@ const routes = [
     { path: "/login", component: Login },
     { path: "/admin/login", component: AdminLogin },
 
-    // user
-    { path: "/dashboard", component: UserDashboard },
+    // student
+    { path: "/dashboard", component: StudentDashboard },
+    // courses
     { path: "/courses", component: CourseIndex },
     { path: "/courses/:slug", component: CourseShow, props: true },
+    // missions
+    { path: "/missions/:slug", component: MissionShow, props: true },
+    // sibmissions
+    { path: "/submissions/:slug", component: SubmissionShow, props: true },
+
+    { path: "/accept-credits", component: AcceptCredits },
 
     // lecturer
     { path: "/lecturer/dashboard", component: LecturerDashboard },
+    //
     {
         path: "/lecturer/courses/:slug",
         component: LecturerCourseShow,
@@ -45,6 +64,21 @@ const routes = [
     {
         path: "/lecturer/missions/:slug",
         component: LecturerMissionShow,
+        props: true,
+    },
+    //
+    {
+        path: "/lecturer/submissions/create",
+        component: LecturerSubmissionCreate,
+    },
+    {
+        path: "/lecturer/submissions/:slug/edit",
+        component: LecturerSubmissionEdit,
+        props: true,
+    },
+    {
+        path: "/lecturer/submissions/:slug",
+        component: LecturerSubmissionShow,
         props: true,
     },
 

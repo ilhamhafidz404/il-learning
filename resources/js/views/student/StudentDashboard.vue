@@ -1,5 +1,5 @@
 <template>
-  <LecturerDashboardLayout>
+  <DashboardLayout>
     <section class="col-span-4 pr-7 py-24 dark:text-gray-200 text-gray-700">
       <Widget />
       <SkeletonLoadingDashboard
@@ -9,18 +9,29 @@
       <section v-else class="grid grid-cols-8 mt-10 gap-10">
         <div class="col-span-5 p-5 shadow-xl rounded">
           <h3 class="text-2xl font-bold">Courses</h3>
-          <CourseCard :courses="courses" :isLecturer="true" />
+          <div v-if="courses.length">
+            <CourseCard :courses="courses" />
+          </div>
+          <div v-else class="text-xl text-center mt-5">
+            <p class="text-4xl">☹️</p>
+            <h2 class="mt-2 font-semibold mb-4">You doesn't have course</h2>
+          </div>
+        </div>
+        <div class="shadow-md col-span-3">
+          <div class="card-body">
+            <h3 class="text-xl font-bold">Upcoming Event</h3>
+          </div>
         </div>
       </section>
     </section>
-  </LecturerDashboardLayout>
+  </DashboardLayout>
 </template>
 
 <script>
-import LecturerDashboardLayout from "./LecturerDashboardLayout.vue";
+import DashboardLayout from "./StudentDashboardLayout.vue";
 
 //actions
-import getCourseLecturer from "./../../api/_getCourseLecturer";
+import { getCourses } from "../../api/Course";
 
 // components
 import Widget from "../../components/widget.vue";
@@ -29,7 +40,7 @@ import SkeletonLoadingDashboard from "../../components/skeletonLoading/dashboard
 
 export default {
   components: {
-    LecturerDashboardLayout,
+    DashboardLayout,
     //
     Widget,
     CourseCard,
@@ -37,30 +48,23 @@ export default {
   },
   data() {
     return {
-      courses: null,
+      courses: [],
 
       onLoadingGetData: false,
     };
   },
   methods: {
-    async getCoursesData(lecturerId) {
+    async getCoursesData() {
       this.onLoadingGetData = true;
-      try {
-        let result = await getCourseLecturer(lecturerId);
-        if (result) {
-          this.onLoadingGetData = false;
-
-          this.courses = result.data.courses;
-        }
-      } catch (error) {
-        console.error(error);
+      let result = await getCourses();
+      if (result) {
+        this.onLoadingGetData = false;
+        this.courses = result.data;
       }
     },
   },
   mounted() {
-    const authData = JSON.parse(localStorage.getItem("authData"));
-
-    this.getCoursesData(authData.userData.id);
+    this.getCoursesData();
   },
 };
 </script>

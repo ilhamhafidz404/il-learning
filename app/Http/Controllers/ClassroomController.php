@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $classrooms = Classroom::all();

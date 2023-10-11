@@ -10,8 +10,8 @@
 <script>
 import router from "@/router";
 
-import Sidebar from "../components/sidebar.vue";
-import Navbar from "../components/navbar.vue";
+import Sidebar from "../../components/sidebar.vue";
+import Navbar from "../../components/navbar.vue";
 export default {
   name: "DashboardLayout",
   data() {
@@ -26,7 +26,6 @@ export default {
   mounted() {
     const dataOnStorage = localStorage.getItem("authData");
     if (dataOnStorage !== null) {
-      console.log("masuk sini");
       this.authData = JSON.parse(dataOnStorage);
     } else {
       router.push("/login");

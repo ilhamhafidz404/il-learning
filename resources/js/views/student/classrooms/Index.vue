@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import DashboardLayout from "../DashboardLayout.vue";
+import DashboardLayout from "./../StudentDashboardLayout.vue";
 
 //actions
-import { getClassrooms } from "../../api/Classroom";
+import { getClassrooms } from "./../../../api/Classroom";
 export default {
   components: {
     DashboardLayout,
