@@ -28,7 +28,10 @@ import diffForHumans from "./../../../tools/diffForHumans";
       <div v-if="onLoadingGetData">
         <SkeletonLoadingCol2 :show="onLoadingGetData" :isLecturer="true" />
       </div>
-      <div class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow">
+      <div
+        v-if="submissions.length"
+        class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow"
+      >
         <div
           class="relative"
           v-for="submission in submissions"
@@ -62,6 +65,12 @@ import diffForHumans from "./../../../tools/diffForHumans";
             </button>
           </div>
         </div>
+      </div>
+      <div v-else class="bg-base-100 rounded shadow text-center py-10">
+        <p class="text-5xl">☹️</p>
+        <h3 class="text-xl mt-3 font-semibold">
+          This missions doesn't have a submission
+        </h3>
       </div>
     </section>
   </DashboardLayout>
