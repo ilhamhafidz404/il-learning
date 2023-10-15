@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Mission;
+use App\Models\Progress;
 use App\Models\Submission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -31,9 +32,19 @@ class SubmissionController extends Controller
             'classroom_id' => $request->classroom,
         ]);
 
+        $progresses = Progress::whereMissionId($request->mission)->whereClassroomId($request->classroom)->get();
+        if ($progresses->count() > 0) {
+            foreach ($progresses as $progress) {
+                $progress->update([
+                    'submission_count' => $progress->submission_count + 1
+                ]);
+            }
+        }
+
         return response()->json([
             "code" => "IL-01",
             "message" => "Add Submission Successfully",
+            "progress" => $progresses
         ]);
     }
 

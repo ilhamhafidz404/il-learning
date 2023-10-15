@@ -28,49 +28,53 @@ import diffForHumans from "./../../../tools/diffForHumans";
       <div v-if="onLoadingGetData">
         <SkeletonLoadingCol2 :show="onLoadingGetData" :isLecturer="true" />
       </div>
-      <div
-        v-if="submissions.length"
-        class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow"
-      >
+      <div v-else>
         <div
-          class="relative"
-          v-for="submission in submissions"
-          :key="submission.id"
+          v-if="submissions.length"
+          class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow"
         >
-          <router-link
-            :to="'/lecturer/submissions/' + submission.slug"
-            class="bg-base-200 p-5 rounded hover:bg-base-300 w-full inline-block"
+          <div
+            class="relative"
+            v-for="submission in submissions"
+            :key="submission.id"
           >
-            <h2 class="font-semibold mb-2">{{ submission.name }}</h2>
-            <p class="text-sm mb-1">
-              {{ diffForHumans(submission.deadline) }}
-            </p>
-            <h3 class="text-sm">
-              For :
-              <span class="font-semibold">{{ submission.classroom.name }}</span>
-            </h3>
-          </router-link>
-          <div class="h-full flex items-center absolute right-[20px] top-0">
             <router-link
-              :to="'/lecturer/submissions/' + submission.slug + '/edit'"
-              class="btn btn-info rounded-l rounded-r-none rounded-none dark:text-gray-100"
+              :to="'/lecturer/submissions/' + submission.slug"
+              class="bg-base-200 p-5 rounded hover:bg-base-300 w-full inline-block"
             >
-              <PencilIcon myClass="w-6 h-6" />
+              <h2 class="font-semibold mb-2">{{ submission.name }}</h2>
+              <p class="text-sm mb-1">
+                {{ diffForHumans(submission.deadline) }}
+              </p>
+              <h3 class="text-sm">
+                For :
+                <span class="font-semibold">{{
+                  submission.classroom.name
+                }}</span>
+              </h3>
             </router-link>
-            <button
-              @click="confirmDelete(submission.id)"
-              class="btn btn-error rounded-r rounded-l-none dark:text-gray-100"
-            >
-              <TrashIcon myClass="w-6 h-6" />
-            </button>
+            <div class="h-full flex items-center absolute right-[20px] top-0">
+              <router-link
+                :to="'/lecturer/submissions/' + submission.slug + '/edit'"
+                class="btn btn-info rounded-l rounded-r-none rounded-none dark:text-gray-100"
+              >
+                <PencilIcon myClass="w-6 h-6" />
+              </router-link>
+              <button
+                @click="confirmDelete(submission.id)"
+                class="btn btn-error rounded-r rounded-l-none dark:text-gray-100"
+              >
+                <TrashIcon myClass="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div v-else class="bg-base-100 rounded shadow text-center py-10">
-        <p class="text-5xl">☹️</p>
-        <h3 class="text-xl mt-3 font-semibold">
-          This missions doesn't have a submission
-        </h3>
+        <div v-else class="bg-base-100 rounded shadow text-center py-10">
+          <p class="text-5xl">☹️</p>
+          <h3 class="text-xl mt-3 font-semibold">
+            This missions doesn't have a submission
+          </h3>
+        </div>
       </div>
     </section>
   </DashboardLayout>
