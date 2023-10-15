@@ -9,48 +9,56 @@
       <div v-if="onLoadingGetData" class="mt-52">
         <SkeletonLoadingCol2 :show="onLoadingGetData" />
       </div>
-      <div
-        v-else
-        class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded mt-32 shadow"
-      >
-        <router-link
-          :to="'/missions/' + mission.slug"
-          v-for="mission in missions"
-          :key="mission.id"
-          class="bg-base-200 p-5 rounded hover:bg-base-300"
+      <div v-else>
+        <div
+          v-if="missions.length"
+          class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded mt-32 shadow"
         >
-          <h2>{{ mission.name }}</h2>
-          <div class="flex gap-3 mt-1">
-            <ArchiveBoxIcon myClass="w-5" />
-            <p class="text-sm">
-              Has {{ mission.submission.length }} submissions
-            </p>
-          </div>
-          <div
-            class="relative"
-            v-for="progress in progresses"
-            :key="progress.id"
+          <router-link
+            :to="'/missions/' + mission.slug"
+            v-for="mission in missions"
+            :key="mission.id"
+            class="bg-base-200 p-5 rounded hover:bg-base-300"
           >
-            <progress
-              v-if="progress.mission_id == mission.id"
-              class="progress progress-primary w-full mt-5"
-              :value="
-                progressCount(progress.submission_count, progress.progress)
-              "
-              max="100"
-            ></progress>
-
-            <p
-              class="absolute top-[-5px] right-0"
-              v-if="progress.mission_id == mission.id"
+            <h2>{{ mission.name }}</h2>
+            <div class="flex gap-3 mt-1">
+              <ArchiveBoxIcon myClass="w-5" />
+              <p class="text-sm">
+                Has {{ mission.submission.length }} submissions
+              </p>
+            </div>
+            <div
+              class="relative"
+              v-for="progress in progresses"
+              :key="progress.id"
             >
-              {{
-                progressCount(progress.submission_count, progress.progress) +
-                "%"
-              }}
-            </p>
-          </div>
-        </router-link>
+              <progress
+                v-if="progress.mission_id == mission.id"
+                class="progress progress-primary w-full mt-5"
+                :value="
+                  progressCount(progress.submission_count, progress.progress)
+                "
+                max="100"
+              ></progress>
+
+              <p
+                class="absolute top-[-5px] right-0"
+                v-if="progress.mission_id == mission.id"
+              >
+                {{
+                  progressCount(progress.submission_count, progress.progress) +
+                  "%"
+                }}
+              </p>
+            </div>
+          </router-link>
+        </div>
+        <div v-else class="bg-base-100 rounded shadow text-center py-10 mt-32">
+          <p class="text-5xl">☹️</p>
+          <h3 class="text-xl mt-3 font-semibold">
+            This Course doesn't have a mission
+          </h3>
+        </div>
       </div>
     </section>
   </DashboardLayout>
