@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Completed;
 use App\Models\Course;
 use App\Models\Mission;
 use App\Models\Progress;
+use App\Models\Student;
 use App\Models\Submission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -21,7 +23,7 @@ class SubmissionController extends Controller
         $deadline = $request->deadlineDate . ' ' . $request->deadlineTime . ':00';
         $mission = Mission::find($request->mission);
 
-        Submission::create([
+        $submission = Submission::create([
             'name' => $request->title,
             'slug' => Str::slug($request->title) . '-' . Str::slug($mission->name) . '_' . $request->classroom,
             'description' => $request->description,
@@ -31,6 +33,15 @@ class SubmissionController extends Controller
             'course_id' => $mission->course_id,
             'classroom_id' => $request->classroom,
         ]);
+
+        $students = Student::whereClassroomId($request->classroom)->get();
+        foreach ($students as $student) {
+            Completed::create([
+                'user_id' => $student->user->id,
+                'submission_id' => $submission->id,
+                'status' => false
+            ]);
+        }
 
         $progresses = Progress::whereMissionId($request->mission)->whereClassroomId($request->classroom)->get();
         if ($progresses->count() > 0) {
