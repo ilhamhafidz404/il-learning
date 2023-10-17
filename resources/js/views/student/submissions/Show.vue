@@ -18,7 +18,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
       <div v-if="onLoadingGetData" class="-mt-20">
         <SkeletonLoadingCol1 :show="onLoadingGetData" />
       </div>
-      <div v-else class="bg-base-100 p-5 mb-20 rounded shadow">
+      <div v-else class="bg-base-200 p-5 mb-20 rounded shadow">
         <div class="flex items-center justify-between">
           <div>
             <h1 class="text-xl font-semibold">{{ submission.name }}</h1>

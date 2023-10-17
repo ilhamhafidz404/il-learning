@@ -1,5 +1,5 @@
 <template>
-  <div className="navbar bg-base-100 shadow-xl fixed z-50">
+  <div className="navbar bg-base-200 shadow-xl fixed z-50">
     <div class="container mx-auto">
       <div className="flex-1">
         <router-link to="/" className="flex">

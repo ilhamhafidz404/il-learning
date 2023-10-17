@@ -19,12 +19,12 @@
       </div>
       <div
         v-else-if="missions.length && !onLoadingGetData"
-        class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow"
+        class="grid grid-cols-2 gap-5 bg-base-200 p-5 rounded shadow"
       >
         <div class="relative" v-for="mission in missions" :key="mission.id">
           <router-link
             :to="'/lecturer/missions/' + mission.slug"
-            class="bg-base-200 p-5 rounded hover:bg-base-300 block"
+            class="bg-base-300 p-5 rounded hover:bg-base-300 block"
           >
             <h2>{{ mission.name }}</h2>
             <div class="flex gap-3 mt-1">
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      <div v-else class="bg-base-100 p-5 rounded shadow text-center">
+      <div v-else class="bg-base-200 py-10 rounded shadow text-center">
         <h2 class="text-5xl">☹️</h2>
         <p class="mt-2 text-xl">this course doesn't have mission</p>
       </div>

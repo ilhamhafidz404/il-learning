@@ -19,7 +19,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
       </div>
       <div
         v-else-if="datas.length && !onLoadingGetData"
-        class="bg-base-100 p-5 rounded shadow"
+        class="bg-base-200 p-5 rounded shadow"
       >
         <div class="overflow-x-auto">
           <table class="table">
@@ -38,7 +38,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
               <tr
                 v-for="(data, index) in datas"
                 :key="data.id"
-                class="bg-base-200"
+                class="bg-base-300"
               >
                 <th>{{ index + 1 }}</th>
                 <td>{{ data.user.name }}</td>

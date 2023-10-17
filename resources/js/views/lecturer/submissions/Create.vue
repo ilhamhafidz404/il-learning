@@ -17,7 +17,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
 
       <form method="POST" @submit.prevent="createSubmission()">
         <div
-          class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow mb-20"
+          class="grid grid-cols-2 gap-5 bg-base-200 p-5 rounded shadow mb-20"
         >
           <div class="col-span-2 form-control w-full">
             <label class="label font-semibold"> Title Submission </label>

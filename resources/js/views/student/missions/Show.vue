@@ -19,7 +19,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
       <div v-else>
         <div
           v-if="submissions.length"
-          class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow"
+          class="grid grid-cols-2 gap-5 bg-base-200 p-5 rounded shadow"
         >
           <div
             class="relative"
@@ -28,7 +28,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
           >
             <router-link
               :to="'/submissions/' + submission.slug"
-              class="bg-base-200 p-5 rounded hover:bg-base-300 w-full inline-block border-l-4 border-primary"
+              class="bg-base-300 p-5 rounded hover:bg-base-300 w-full inline-block border-l-4 border-primary"
             >
               <h2 class="font-semibold mb-2">{{ submission.name }}</h2>
               <p class="text-sm mb-1">

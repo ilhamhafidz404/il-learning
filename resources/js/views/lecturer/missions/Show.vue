@@ -31,7 +31,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
       <div v-else>
         <div
           v-if="submissions.length"
-          class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded shadow"
+          class="grid grid-cols-2 gap-5 bg-base-200 p-5 rounded shadow"
         >
           <div
             class="relative"
@@ -40,7 +40,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
           >
             <router-link
               :to="'/lecturer/submissions/' + submission.slug"
-              class="bg-base-200 p-5 rounded hover:bg-base-300 w-full inline-block"
+              class="bg-base-300 p-5 rounded hover:bg-base-300 w-full inline-block"
             >
               <h2 class="font-semibold mb-2">{{ submission.name }}</h2>
               <p class="text-sm mb-1">
@@ -69,7 +69,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
             </div>
           </div>
         </div>
-        <div v-else class="bg-base-100 rounded shadow text-center py-10">
+        <div v-else class="bg-base-200 rounded shadow text-center py-10">
           <p class="text-5xl">☹️</p>
           <h3 class="text-xl mt-3 font-semibold">
             This missions doesn't have a submission
