@@ -14,6 +14,13 @@
           v-if="missions.length"
           class="grid grid-cols-2 gap-5 bg-base-100 p-5 rounded mt-32 shadow"
         >
+          <div class="text-sm breadcrumbs col-span-2">
+            <ul>
+              <li><a>Home</a></li> 
+              <li><a>Documents</a></li> 
+              <li>Add Document</li>
+            </ul>
+          </div>
           <router-link
             :to="'/missions/' + mission.slug"
             v-for="mission in missions"
