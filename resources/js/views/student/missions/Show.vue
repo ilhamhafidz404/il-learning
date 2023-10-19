@@ -21,6 +21,22 @@ import diffForHumans from "./../../../tools/diffForHumans";
           v-if="submissions.length"
           class="grid grid-cols-2 gap-5 bg-base-200 p-5 rounded shadow"
         >
+          <div class="text-sm breadcrumbs col-span-2">
+            <ul>
+              <li>
+                <router-link to="/dashboard"> Dashboard </router-link>
+              </li>
+              <li>
+                <router-link to="/courses"> Course </router-link>
+              </li>
+              <li>
+                <router-link :to="'/courses/' + mission.course.slug">
+                  {{ mission.course.name }}
+                </router-link>
+              </li>
+              <li>{{ mission.name }}</li>
+            </ul>
+          </div>
           <div
             class="relative"
             v-for="submission in submissions"

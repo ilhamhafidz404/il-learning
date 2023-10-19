@@ -21,6 +21,24 @@ import diffForHumans from "./../../../tools/diffForHumans";
         v-else-if="datas.length && !onLoadingGetData"
         class="bg-base-200 p-5 rounded shadow"
       >
+        <div class="text-sm breadcrumbs col-span-2 mb-7">
+          <ul>
+            <li>
+              <router-link to="/lecturer/dashboard">Dasboard</router-link>
+            </li>
+            <li>Courses</li>
+            <li>...</li>
+            <li v-if="submission.mission">
+              <router-link
+                :to="'/lecturer/missions/' + submission.mission.slug"
+              >
+                {{ submission.mission.name }}
+              </router-link>
+            </li>
+            <li>{{ submission.name }}</li>
+          </ul>
+        </div>
+
         <div class="overflow-x-auto">
           <table class="table">
             <!-- head -->
@@ -94,7 +112,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
           </table>
         </div>
       </div>
-      <div v-else class="bg-base-100 p-5 rounded shadow text-center">
+      <div v-else class="bg-base-200 p-10 rounded shadow text-center">
         <h2 class="text-5xl">☹️</h2>
         <p class="mt-2 text-xl">this course doesn't have mission</p>
       </div>

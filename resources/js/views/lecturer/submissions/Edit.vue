@@ -15,6 +15,13 @@
         <div
           class="grid grid-cols-2 gap-5 bg-base-200 p-5 rounded shadow mb-20"
         >
+          <div class="text-sm breadcrumbs col-span-2">
+            <ul>
+              <li><a>Home</a></li>
+              <li><a>Documents</a></li>
+              <li>Add Document</li>
+            </ul>
+          </div>
           <div class="col-span-2 form-control w-full">
             <label class="label font-semibold"> Title Submission </label>
             <input

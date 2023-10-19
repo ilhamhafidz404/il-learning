@@ -19,6 +19,31 @@ import diffForHumans from "./../../../tools/diffForHumans";
         <SkeletonLoadingCol1 :show="onLoadingGetData" />
       </div>
       <div v-else class="bg-base-200 p-5 mb-20 rounded shadow">
+        <div class="text-sm breadcrumbs col-span-2 mb-5">
+          <ul>
+            <li>
+              <router-link to="/dashboard"> Dashboard </router-link>
+            </li>
+            <li>
+              <router-link to="/courses"> Course </router-link>
+            </li>
+            <li>...</li>
+            <li v-if="submission.mission">
+              <router-link :to="'/missions/' + submission.mission.slug">
+                {{ submission.mission.name }}
+              </router-link>
+            </li>
+            <li>
+              {{ submission.name }}
+            </li>
+            <!-- <li>
+              <router-link :to="'/courses/' + mission.course.slug">
+                {{ mission.course.name }}
+              </router-link>
+            </li>
+            <li>{{ mission.name }}</li> -->
+          </ul>
+        </div>
         <div class="flex items-center justify-between">
           <div>
             <h1 class="text-xl font-semibold">{{ submission.name }}</h1>

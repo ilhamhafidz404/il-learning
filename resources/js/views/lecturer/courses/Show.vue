@@ -21,6 +21,16 @@
         v-else-if="missions.length && !onLoadingGetData"
         class="grid grid-cols-2 gap-5 bg-base-200 p-5 rounded shadow"
       >
+        <div class="text-sm breadcrumbs col-span-2">
+          <ul>
+            <li>
+              <router-link to="/lecturer/dashboard">Dasboard</router-link>
+            </li>
+            <li>Courses</li>
+            <li>{{ course.name }}</li>
+          </ul>
+        </div>
+
         <div class="relative" v-for="mission in missions" :key="mission.id">
           <router-link
             :to="'/lecturer/missions/' + mission.slug"

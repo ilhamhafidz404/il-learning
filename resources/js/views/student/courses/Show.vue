@@ -16,9 +16,13 @@
         >
           <div class="text-sm breadcrumbs col-span-2">
             <ul>
-              <li><a>Home</a></li> 
-              <li><a>Documents</a></li> 
-              <li>Add Document</li>
+              <li>
+                <router-link to="/dashboard"> Dashboard </router-link>
+              </li>
+              <li>
+                <router-link to="/courses"> Course </router-link>
+              </li>
+              <li>{{ course.name }}</li>
             </ul>
           </div>
           <router-link
