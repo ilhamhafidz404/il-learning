@@ -52,7 +52,6 @@ import diffForHumans from "./../../../tools/diffForHumans";
               </tr>
             </thead>
             <tbody>
-              <!-- row 1 -->
               <tr
                 v-for="(data, index) in datas"
                 :key="data.id"
