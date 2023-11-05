@@ -52,7 +52,6 @@ import diffForHumans from "./../../../tools/diffForHumans";
               </tr>
             </thead>
             <tbody>
-              <!-- row 1 -->
               <tr
                 v-for="(data, index) in datas"
                 :key="data.id"
@@ -114,7 +113,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
       </div>
       <div v-else class="bg-base-200 p-10 rounded shadow text-center">
         <h2 class="text-5xl">☹️</h2>
-        <p class="mt-2 text-xl">this course doesn't have mission</p>
+        <p class="mt-2 text-xl">No one has collected yet</p>
       </div>
     </section>
 

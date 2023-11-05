@@ -8,6 +8,7 @@ use App\Http\Controllers\_SubmitSubmissionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\SubmissionController;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource("/courses", CourseController::class);
 Route::apiResource("/classrooms", ClassroomController::class);
+Route::apiResource("/faculties", FacultyController::class);
 Route::apiResource("/missions", MissionController::class);
 Route::apiResource("/submissions", SubmissionController::class);
 Route::apiResource("/submit-submissions", SubmitsubmissionController::class);

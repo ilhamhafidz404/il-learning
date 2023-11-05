@@ -15,7 +15,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
         </h1>
       </div>
 
-      <form method="POST" @submit.prevent="createSubmission()">
+      <form method="POST" @submit.prevent="submitCheck()">
         <div
           class="grid grid-cols-2 gap-5 bg-base-200 p-5 rounded shadow mb-20"
         >
@@ -28,12 +28,19 @@ import diffForHumans from "./../../../tools/diffForHumans";
           </div>
 
           <div class="col-span-2 form-control w-full">
-            <label class="label font-semibold"> Title Submission </label>
+            <label
+              class="label font-semibold"
+              :class="{ 'text-error': error.title }"
+            >
+              Title Submission
+            </label>
             <input
               type="text"
               class="input input-bordered w-full"
+              :class="{ 'bg-red-500/20 border-error': error.title }"
               v-model="formData.title"
             />
+            <small class="text-error">{{ error.title }}</small>
           </div>
           <div class="col-span-2 form-control w-full">
             <label class="label font-semibold"> Description </label>
@@ -43,10 +50,16 @@ import diffForHumans from "./../../../tools/diffForHumans";
             ></textarea>
           </div>
           <div class="form-control w-full">
-            <label class="label font-semibold"> Select Mission </label>
+            <label
+              class="label font-semibold"
+              :class="{ 'text-error': error.mission }"
+            >
+              Select Mission
+            </label>
             <select
               class="select select-bordered w-full"
               v-model="formData.mission"
+              :class="{ 'bg-red-500/20 border-error': error.mission }"
             >
               <option
                 v-for="mission in missions"
@@ -57,11 +70,18 @@ import diffForHumans from "./../../../tools/diffForHumans";
                 {{ mission.name }}
               </option>
             </select>
+            <small class="text-error">{{ error.mission }}</small>
           </div>
           <div class="form-control w-full">
-            <label class="label font-semibold"> Select Classroom </label>
+            <label
+              class="label font-semibold"
+              :class="{ 'text-error': error.title }"
+            >
+              Select Classroom
+            </label>
             <select
               class="select select-bordered w-full"
+              :class="{ 'bg-red-500/20 border-error': error.classroom }"
               v-model="formData.classroom"
             >
               <option
@@ -73,22 +93,38 @@ import diffForHumans from "./../../../tools/diffForHumans";
                 {{ classroom.name }}
               </option>
             </select>
+
+            <small class="text-error">{{ error.classroom }}</small>
           </div>
           <div class="form-control w-full">
-            <label class="label font-semibold"> Deadline Date </label>
+            <label
+              class="label font-semibold"
+              :class="{ 'text-error': error.deadlineDate }"
+            >
+              Deadline Date
+            </label>
             <input
               type="date"
               class="input input-bordered w-full"
               v-model="formData.deadlineDate"
+              :class="{ 'bg-red-500/20 border-error': error.deadlineDate }"
             />
+            <small class="text-error">{{ error.deadlineDate }}</small>
           </div>
           <div class="form-control w-full">
-            <label class="label font-semibold"> Deadline Time </label>
+            <label
+              class="label font-semibold"
+              :class="{ 'text-error': error.deadlineTime }"
+            >
+              Deadline Time
+            </label>
             <input
               type="time"
               class="input input-bordered w-full"
               v-model="formData.deadlineTime"
+              :class="{ 'bg-red-500/20 border-error': error.deadlineTime }"
             />
+            <small class="text-error">{{ error.deadlineTime }}</small>
           </div>
           <div class="col-span-2 flex justify-between items-center">
             <div>
@@ -143,6 +179,14 @@ export default {
         deadlineTime: "",
         lecturer: 0,
       },
+
+      error: {
+        title: "",
+        mission: "",
+        classroom: "",
+        deadlineDate: "",
+        deadlineTime: "",
+      },
     };
   },
   methods: {
@@ -162,6 +206,36 @@ export default {
         this.classrooms = result.data;
       } catch (error) {
         console.error(error);
+      }
+    },
+
+    submitCheck() {
+      let validate = {};
+
+      if (!this.formData.title) {
+        validate.title = "Title is required!";
+      }
+      if (!this.formData.mission) {
+        validate.mission = "Mission must selected!";
+      }
+      if (!this.formData.classroom) {
+        validate.classroom = "Classroom must selected!";
+      }
+      if (!this.formData.deadlineDate) {
+        validate.deadlineDate = "Deadline Date required";
+      }
+      if (!this.formData.deadlineTime) {
+        validate.deadlineTime = "Deadline Time required";
+      }
+
+      if (!Object.keys(validate).length) {
+        this.createSubmission();
+      } else {
+        this.error.title = validate.title;
+        this.error.mission = validate.mission;
+        this.error.classroom = validate.classroom;
+        this.error.deadlineDate = validate.deadlineDate;
+        this.error.deadlineTime = validate.deadlineTime;
       }
     },
 

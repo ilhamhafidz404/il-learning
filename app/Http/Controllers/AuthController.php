@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if (!$request->loginAsAdmin) {
-            $user = User::with("classroom")->whereEmail($request->email)->first();
+            $user = User::whereEmail($request->email)->first();
 
             if (!$token = auth()->attempt($request->only('email', 'password'))) {
                 return response()->json([
@@ -29,7 +29,7 @@ class AuthController extends Controller
 
             if ($user->hasRole("student")) {
                 $loginAs = "student";
-                $userData = Student::with("user")->first();
+                $userData = Student::whereUserId($user->id)->with("user")->with("classroom")->first();
             } else {
                 $loginAs = "lecturer";
                 $userData = Lecturer::with("user")->with("course")->first();
