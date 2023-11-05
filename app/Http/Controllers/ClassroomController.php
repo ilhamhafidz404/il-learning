@@ -42,8 +42,15 @@ class ClassroomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
+        $classroom = Classroom::whereSlug($slug)->first();
+        $students = Student::whereClassroomId($classroom->id)->get();
+
+        return response()->json([
+            "classroom" => $classroom,
+            "students" => $students
+        ]);
     }
 
     /**
