@@ -22,6 +22,8 @@ import SubmissionShow from "./views/student/submissions/Show.vue";
 import ClassroomIndex from "./views/student/classrooms/Index.vue";
 //
 import AcceptCredits from "./views/student/credits/Index.vue";
+// profile
+import ProfileShow from "./views/student/profile/Show.vue";
 
 // --------------------- lecturer
 import LecturerDashboard from "./views/lecturer/LecturerDashboard.vue";
@@ -52,6 +54,9 @@ const routes = [
     { path: "/submissions/:slug", component: SubmissionShow, props: true },
 
     { path: "/accept-credits", component: AcceptCredits },
+
+    // profile
+    { path: "/profile/:username", component: ProfileShow, props: true },
 
     // lecturer
     { path: "/lecturer/dashboard", component: LecturerDashboard },
