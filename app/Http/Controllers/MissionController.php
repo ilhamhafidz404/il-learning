@@ -19,7 +19,12 @@ class MissionController extends Controller
     public function show($slug)
     {
         $mission = Mission::whereSlug($slug)->with('course')->first();
-        $submissions = Submission::whereMissionId($mission->id)->whereClassroomId($_GET["classroom"])->with('classroom')->get();
+
+        if ($_GET["classroom"] == "isLecturer") {
+            $submissions = Submission::whereMissionId($mission->id)->with('classroom')->get();
+        } else {
+            $submissions = Submission::whereMissionId($mission->id)->whereClassroomId($_GET["classroom"])->with('classroom')->get();
+        }
 
         return response()->json([
             "mission" => $mission,

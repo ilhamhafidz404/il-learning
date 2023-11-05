@@ -59,7 +59,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
             </router-link>
           </div>
         </div>
-        <div v-else class="bg-base-100 rounded shadow text-center py-10">
+        <div v-else class="bg-base-200 rounded shadow text-center py-10">
           <p class="text-5xl">☹️</p>
           <h3 class="text-xl mt-3 font-semibold">
             This missions doesn't have a submission

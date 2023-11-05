@@ -145,7 +145,6 @@ export default {
     },
     async deleteSubmissionData(id) {
       const result = await deleteSubmission(id);
-      console.log(id);
       if (result) {
         this.$swal({
           title: "Success Delete Submission",

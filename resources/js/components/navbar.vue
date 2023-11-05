@@ -99,6 +99,8 @@ export default {
         name: "",
         classroom: "",
       },
+
+      role: "",
     };
   },
   methods: {
@@ -126,10 +128,14 @@ export default {
     const dataOnStorage = localStorage.getItem("authData");
     if (dataOnStorage !== null) {
       const resAuth = JSON.parse(localStorage.getItem("authData"));
-      this.authData = {
-        name: resAuth.user.name,
-        classroom: resAuth.user.classroom.name,
-      };
+      this.role = resAuth.loginAs;
+
+      if (this.role != "lecturer") {
+        this.authData = {
+          name: resAuth.user.name,
+          classroom: resAuth.userData.classroom.name,
+        };
+      }
     } else {
       router.push("/login");
     }
