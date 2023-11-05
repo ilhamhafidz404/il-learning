@@ -10,3 +10,14 @@ export async function getClassrooms() {
         throw error;
     }
 }
+
+export async function showClassroom(slug) {
+    try {
+        let result = await axios.get(`http://127.0.0.1:8000/api/classrooms/${slug}`);
+        if (result) {
+            return result;
+        }
+    } catch (error) {
+        throw error;
+    }
+}

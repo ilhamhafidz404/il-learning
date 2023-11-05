@@ -43,7 +43,7 @@ class ClassroomController extends Controller
      */
     public function show($slug)
     {
-        $classroom = Classroom::whereSlug($slug)->first;
+        $classroom = Classroom::whereSlug($slug)->first();
         $students = Student::whereClassroomId($classroom->id)->get();
 
         return response()->json([
