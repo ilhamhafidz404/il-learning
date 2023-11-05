@@ -8,6 +8,7 @@
           type="text"
           placeholder="Type Name Mission here"
           class="input input-bordered w-full"
+          @keypress.enter="insertDataMission()"
           v-model="formData.name"
         />
         <small>{{ validation }}</small>

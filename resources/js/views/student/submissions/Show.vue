@@ -199,7 +199,7 @@ export default {
       formData.append("description", this.descriptionInput);
       formData.append("mission", this.submission.mission_id);
       formData.append("submission", this.submission.id);
-      formData.append("classroom", authData.user.classroom_id);
+      formData.append("classroom", authData.userData.classroom_id);
       formData.append("user", authData.user.id);
 
       let result = await submitSubmission(formData);

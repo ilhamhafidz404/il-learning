@@ -75,9 +75,9 @@ class _SubmitSubmissionController extends Controller
       ]);
     }
 
-    // Completed::whereUserId($request->user)->whereSubmissionId($request->submission)->first()->update([
-    //   'status' => true
-    // ]);
+    Completed::whereUserId($request->user)->whereSubmissionId($request->submission)->first()->update([
+      'status' => true
+    ]);
 
 
     if ($request->file) {
