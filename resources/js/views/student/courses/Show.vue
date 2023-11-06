@@ -27,7 +27,7 @@
           </div>
           <router-link
             :to="'/missions/' + mission.slug"
-            v-for="mission in missions"
+            v-for="(mission, index) in missions"
             :key="mission.id"
             class="bg-base-300 p-5 rounded hover:bg-base-300"
           >
@@ -35,7 +35,10 @@
             <div class="flex gap-3 mt-1">
               <ArchiveBoxIcon myClass="w-5" />
               <p class="text-sm">
-                Has {{ mission.submission.length }} submissions
+                <!-- {{ getSubmissionCountOnMissionData(mission.id) }} -->
+                Has
+                {{ submissionCounts.length ? submissionCounts[index] : "" }}
+                submissions
               </p>
             </div>
             <div
@@ -85,6 +88,7 @@ import limitStr from "./../../../tools/limitStr";
 // api
 import { showCourses } from "./../../../api/Course";
 import { getProgresses } from "./../../../api/Progress";
+import getSubmissionCountOnMission from "./../../../api/_getSubmissionCountOnMission";
 
 // components
 import SkeletonLoadingCol2 from "../../../components/skeletonLoading/col2.vue";
@@ -109,6 +113,8 @@ export default {
       missions: [],
       progresses: [],
 
+      submissionCounts: [],
+
       onLoadingGetData: false,
     };
   },
@@ -121,12 +127,24 @@ export default {
         //
         this.course = result.data.course;
         this.missions = result.data.missions;
+
+        this.missions.forEach((mission) => {
+          this.getSubmissionCountOnMissionData(mission.id);
+        });
       }
     },
     async getProgressMissions() {
       let result = await getProgresses();
       if (result) {
         this.progresses = result.data;
+      }
+    },
+    async getSubmissionCountOnMissionData(missionId) {
+      let result = await getSubmissionCountOnMission(missionId);
+      if (result) {
+        this.submissionCounts.push(result.data);
+
+        console.log(this.submissionCounts);
       }
     },
   },

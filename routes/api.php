@@ -3,6 +3,7 @@
 use App\Http\Controllers\_AcceptCreditsController;
 use App\Http\Controllers\_CompleatedSubmissionController;
 use App\Http\Controllers\_CourseLecturerController;
+use App\Http\Controllers\_GetCountSubmissionOnMission;
 use App\Http\Controllers\_StudentCompleteSubmissionController;
 use App\Http\Controllers\_SubmitSubmissionController;
 use App\Http\Controllers\AuthController;
@@ -41,6 +42,7 @@ Route::post("/accept-credits", _AcceptCreditsController::class);
 Route::post("/submit-submission", _SubmitSubmissionController::class);
 Route::get("/students-submission-complete/{submissionSlug}", _StudentCompleteSubmissionController::class);
 Route::get("/uncompleateds-submission/{userId}", _CompleatedSubmissionController::class);
+Route::get("/submission-count-on-mission", _GetCountSubmissionOnMission::class);
 
 //
 Route::post("/auth/login", [AuthController::class, "login"]);
