@@ -109,6 +109,18 @@ export default {
       router.push("/login");
     },
     toggleTheme() {
+      var removeLightMode = document.querySelector(
+        'link[href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css"]'
+      );
+      var removeDarkMode = document.querySelector(
+        'link[href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"]'
+      );
+      removeLightMode && removeLightMode.remove();
+      removeDarkMode && removeDarkMode.remove();
+
+      var ss = document.createElement("link");
+      ss.rel = "stylesheet";
+
       const htmlEL = document.getElementsByTagName("html");
 
       const dataThemeValue = htmlEL[0].getAttribute("data-theme");
@@ -116,12 +128,20 @@ export default {
         htmlEL[0].setAttribute("data-theme", "dark");
         htmlEL[0].classList.add("dark");
         htmlEL[0].classList.remove("light");
+
+        ss.href = "//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css";
       } else {
         htmlEL[0].setAttribute("data-theme", "light");
         htmlEL[0].classList.add("light");
         htmlEL[0].classList.remove("dark");
+
+        ss.href =
+          "//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css";
       }
-      // console.log(htmlEl);
+
+      document.head.appendChild(ss);
+
+      this.$emit("toggleTheme", dataThemeValue);
     },
   },
   mounted() {

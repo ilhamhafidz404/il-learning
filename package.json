@@ -18,6 +18,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@sweetalert2/themes": "^5.0.15",
         "@vitejs/plugin-vue": "^4.2.3",
         "@vuepic/vue-datepicker": "^6.1.0",
         "dayjs": "^1.11.9",

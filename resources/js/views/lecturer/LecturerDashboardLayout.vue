@@ -1,9 +1,9 @@
 <template>
-  <Navbar />
+  <Navbar @toggleTheme="toggleTheme" />
 
   <main className="grid grid-cols-5 gap-10">
     <Sidebar />
-    <slot></slot>
+    <slot :theme="theme"></slot>
   </main>
 </template>
 
@@ -17,11 +17,17 @@ export default {
   data() {
     return {
       authData: [],
+      theme: "",
     };
   },
   components: {
     Navbar,
     Sidebar,
+  },
+  methods: {
+    toggleTheme(theme) {
+      this.theme = theme;
+    },
   },
   mounted() {
     const dataOnStorage = localStorage.getItem("authData");

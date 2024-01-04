@@ -6,12 +6,13 @@
 	<title>Il-Learning</title>
 	
     <link rel="icon" href="{{ asset('images/favicon/favicon-32x32.png') }}" type="image/png">
-
-	@vite('resources/css/app.css')
-</head>
-<body>
-	<div id="app"></div>
-
-	@vite('resources/js/app.js')
+		<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+		
+		@vite('resources/css/app.css')
+	</head>
+	<body>
+		<div id="app"></div>
+		
+		@vite('resources/js/app.js')
 </body>
 </html>
