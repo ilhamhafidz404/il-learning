@@ -54,6 +54,7 @@ import diffForHumans from "../../tools/diffForHumans";
                 </span>
                 Upcoming Event
               </h3>
+
               <div v-if="uncompleteds.length">
                 <router-link
                   :to="'submissions/' + uncompleted.submission.slug"
@@ -81,8 +82,9 @@ import diffForHumans from "../../tools/diffForHumans";
                     <p class="font-bold pb-0">
                       {{ uncompleted.submission.name }}
                     </p>
-                    <small class="block -mt-[5px]"
-                      >Mission 1 - Algoritma Pemrogramman</small
+                    <small class="block -mt-[5px]">
+                      {{ uncompleted.submission.mission.name }} -
+                      {{ uncompleted.submission.mission.course.name }}</small
                     >
                   </div>
                   <small class="w-[100px]">{{

@@ -15,7 +15,7 @@ class _CompleatedSubmissionController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $uncompleteds = Completed::whereUserId($request->userId)->whereStatus(0)->with("submission")->get();
+        $uncompleteds = Completed::whereUserId($request->userId)->whereStatus(0)->with("submission.mission.course")->get();
 
         return response()->json($uncompleteds);
     }
