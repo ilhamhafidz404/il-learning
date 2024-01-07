@@ -229,6 +229,8 @@ export default {
             router.push("/lecturer/dashboard");
           }
 
+          console.log(dataToStore);
+
           localStorage.setItem("authData", JSON.stringify(dataToStore));
         }
       }

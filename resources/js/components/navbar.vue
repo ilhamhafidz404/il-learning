@@ -2,7 +2,7 @@
   <div className="navbar bg-base-200 shadow-xl fixed z-50">
     <div class="container mx-auto">
       <div className="flex-1">
-        <router-link to="/" className="flex">
+        <router-link to="/" className="inline-flex">
           <div>
             <img
               src="/images/logo.png"
@@ -154,6 +154,11 @@ export default {
         this.authData = {
           name: resAuth.user.name,
           classroom: resAuth.userData.classroom.name,
+        };
+      } else {
+        this.authData = {
+          name: resAuth.user.name,
+          classroom: "Lecturer ALOPE",
         };
       }
     } else {
