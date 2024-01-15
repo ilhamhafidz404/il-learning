@@ -43,46 +43,69 @@
         </div>
     </header>
     <body>
-        <center><h1>KATEGORI</h1></center>
-        <center><h2>KATEGORI UNIVERSITAS KUNINGAN</h2></center>
-        <div class="grid-container">
-            
-                <div class="grid-item">
-                    <a href="http://">
+        <h1 class="text-center text-gray-200 my-[25px] text-xl">KATEGORI</h1>
+        <div class="grid grid-cols-3 p-[15px] gap-[30px] px-[50px]">
+            <div
+                id="fkip"
+                class="bg-[#353535] p-[50px] text-white text-center text-2xl hover:bg-[#252525] rounded-[10PX]"
+            >
+                <a href="http://" class="z-50 relative">
                     Fakultas Keguruan Dan <br />
                     Ilmu Pendidikan
                 </a>
-                </div>
-            <a href="">
-                <div class="grid-item">
+            </div>
+            <div
+                id="feb"
+                class="bg-[#353535] p-[50px] text-white text-center text-2xl hover:bg-[#252525] rounded-[10PX]"
+            >
+                <a href="http://" class="z-50 relative">
                     Fakultas Ekonomi Dan <br />
                     Bisnis
-                </div>
-            </a>
-            <a href="">
-                <div class="grid-item">
+                </a>
+            </div>
+            <div
+                id="fkom"
+                class="bg-[#353535] p-[50px] text-white text-center text-2xl hover:bg-[#252525] rounded-[10PX]"
+            >
+                <a href="http://" class="z-50 relative">
                     Fakultas Ilmu <br />
                     Komputer
-                </div>
-            </a>
-            <a href="">
-                <div class="grid-item">
+                </a>
+            </div>
+            <div
+                id="hukum"
+                class="bg-[#353535] p-[50px] text-white text-center text-2xl hover:bg-[#252525] rounded-[10PX]"
+            >
+                <a href="http://" class="z-50 relative">
                     Fakultas <br />
                     hukum
-                </div>
-            </a>
-            <a href="">
-                <div class="grid-item">
+                </a>
+            </div>
+            <div
+                id="fhut"
+                class="bg-[#353535] p-[50px] text-white text-center text-2xl hover:bg-[#252525] rounded-[10PX]"
+            >
+                <a href="http://" class="z-50 relative">
                     Fakultas Kehutanan Dan <br />
                     Lingkungan
-                </div>
-            </a>
-            <a href="">
-                <div class="grid-item">
+                </a>
+            </div>
+            <div
+                id="pasca"
+                class="bg-[#353535] p-[50px] text-white text-center text-2xl hover:bg-[#252525] rounded-[10PX]"
+            >
+                <a href="http://" class="z-50 relative">
                     Sekolah Pasca <br />
                     Sarjana
-                </div>
-            </a>
+                </a>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <button
+                class="bg-blue-500 hover:bg-blue-700 opacity-50 hover:opacity-100 text-white font-bold py-2 px-4 my-[25px] rounded-full"
+            >
+                Button
+            </button>
         </div>
     </body>
     <Footer />
@@ -139,24 +162,76 @@ export default {
 header {
     background-image: url("/images/auth/slide1.jpg");
 }
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 10px;
+#fkip {
+    background-image: url("/images/kategori/fkip.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
-.grid-item {
-    margin: 30px 30px 30px 30px;
-    color: black;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 0px solid rgba(0, 0, 0, 0.8);
-    padding: 50px;
-    /* width: 250; */
-    font-size: 25px;
-    text-align: center;
+#fkip::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.719);
 }
-.grid-item:hover  {
-    color: blue !important;
+#feb {
+    background-image: url("/images/kategori/feb.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+#feb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.719);
+}
+#fkom {
+    background-image: url("/images/kategori/fkom.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+#fkom::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.719);
+}
+#hukum {
+    background-image: url("/images/kategori/hukum.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+#hukum::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.719);
+}
+#fhut {
+    background-image: url("/images/kategori/fhut.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+#fhut::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.719);
+}
+#pasca {
+    background-image: url("/images/kategori/pasca.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+#pasca::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.719);;
 }
 </style>
-
-
