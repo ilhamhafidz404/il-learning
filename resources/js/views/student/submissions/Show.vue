@@ -36,12 +36,6 @@ import diffForHumans from "./../../../tools/diffForHumans";
             <li>
               {{ submission.name }}
             </li>
-            <!-- <li>
-              <router-link :to="'/courses/' + mission.course.slug">
-                {{ mission.course.name }}
-              </router-link>
-            </li>
-            <li>{{ mission.name }}</li> -->
           </ul>
         </div>
         <div class="flex items-center justify-between">
@@ -106,6 +100,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
               Download
             </a>
           </div>
+          <p class="text-error italic">{{ errorMessage }}</p>
           <div class="mt-16 flex justify-between items-center">
             <div>
               <button
@@ -155,6 +150,9 @@ export default {
       //
       descriptionInput: "",
       onLoadingGetData: false,
+
+      //
+      errorMessage: "",
     };
   },
   methods: {
@@ -166,8 +164,6 @@ export default {
           this.submitSubmissionData = result.data.submitSubmission;
 
           this.descriptionInput = this.submitSubmissionData.description;
-        } else {
-          console.log("belum dikumpulkan");
         }
       }
     },
@@ -188,7 +184,14 @@ export default {
       }
     },
     async uploadSubmission() {
+      this.errorMessage = "";
+
       const file = this.$refs.submissionFile.files[0];
+
+      if (!file) {
+        this.errorMessage = "File is required!";
+        return;
+      }
 
       // get data user di local storage
       const authDataString = localStorage.getItem("authData");

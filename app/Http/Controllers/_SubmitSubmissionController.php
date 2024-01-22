@@ -43,11 +43,14 @@ class _SubmitSubmissionController extends Controller
     }
 
 
+
     // cek apakah ada progres dari user yang login dengan mission dan classroom yang di request (submit)
     $check = Progress::whereUserId($request->user)
       ->whereMissionId($request->mission)
       ->whereClassroomId($request->classroom)
       ->first();
+
+    return $check;
 
     // jika ada berarti akan melakukan update pada progresnya (tambah progres)
     if ($check) {
