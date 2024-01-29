@@ -21,9 +21,11 @@ import diffForHumans from "./../../../tools/diffForHumans";
         >
           <div class="text-sm breadcrumbs col-span-2">
             <ul>
-              <li><a>Home</a></li>
-              <li><a>Documents</a></li>
-              <li>Add Document</li>
+              <li>
+                <router-link to="/lecturer/dashboard">Dashboard</router-link>
+              </li>
+              <li>Courses</li>
+              <li>Add Submission</li>
             </ul>
           </div>
 

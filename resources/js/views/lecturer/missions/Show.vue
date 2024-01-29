@@ -36,7 +36,7 @@ import diffForHumans from "./../../../tools/diffForHumans";
           <div class="text-sm breadcrumbs col-span-2">
             <ul>
               <li>
-                <router-link to="/lecturer/dashboard">Dasboard</router-link>
+                <router-link to="/lecturer/dashboard">Dashboard</router-link>
               </li>
               <li>Courses</li>
               <li v-if="mission.course">

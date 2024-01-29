@@ -17,9 +17,11 @@
         >
           <div class="text-sm breadcrumbs col-span-2">
             <ul>
-              <li><a>Home</a></li>
-              <li><a>Documents</a></li>
-              <li>Add Document</li>
+              <li>
+                <router-link to="/lecturer/dashboard">Dashboard</router-link>
+              </li>
+              <li>Courses</li>
+              <li>Edit Submission</li>
             </ul>
           </div>
           <div class="col-span-2 form-control w-full">
