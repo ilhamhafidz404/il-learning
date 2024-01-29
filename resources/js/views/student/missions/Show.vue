@@ -64,6 +64,9 @@ import diffForHumans from "./../../../tools/diffForHumans";
           <h3 class="text-xl mt-3 font-semibold">
             This missions doesn't have a submission
           </h3>
+          <button onclick="history.back()" class="mt-5 btn btn-neutral btn-sm">
+            Go Back
+          </button>
         </div>
       </div>
     </section>

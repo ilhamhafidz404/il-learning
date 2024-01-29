@@ -63,6 +63,9 @@
       <div v-else class="bg-base-200 py-10 rounded shadow text-center">
         <h2 class="text-5xl">☹️</h2>
         <p class="mt-2 text-xl">this course doesn't have mission</p>
+        <button onclick="history.back()" class="mt-5 btn btn-neutral btn-sm">
+          Go Back
+        </button>
       </div>
     </section>
 

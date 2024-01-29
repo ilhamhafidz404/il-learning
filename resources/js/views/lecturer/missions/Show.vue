@@ -86,9 +86,12 @@ import diffForHumans from "./../../../tools/diffForHumans";
         </div>
         <div v-else class="bg-base-200 rounded shadow text-center py-10">
           <p class="text-5xl">☹️</p>
-          <h3 class="text-xl mt-3 font-semibold">
+          <p class="text-xl mt-3 font-semibold">
             This missions doesn't have a submission
-          </h3>
+          </p>
+          <button onclick="history.back()" class="mt-5 btn btn-neutral btn-sm">
+            Go Back
+          </button>
         </div>
       </div>
     </section>
